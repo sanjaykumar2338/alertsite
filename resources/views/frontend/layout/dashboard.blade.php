@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CauseStand</title>
+  <title>{{env('APP_NAME')}}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -68,14 +68,7 @@
             <a href="{{url('/admin/order')}}" class="nav-link {{$activeLink=='orders'?'active':''}}">
               <i class="nav-icon fas fa-shopping-bag"></i>
               <p>
-                My Orders
-              </p>
-            </a>
-
-            <a href="{{url('/admin/order')}}" style="display:none;" class="nav-link {{$activeLink=='order'?'active':''}}">
-              <i class="nav-icon fas fa-shopping-bag"></i>
-              <p>
-                Setting
+                My Track(s)
               </p>
             </a>
 
