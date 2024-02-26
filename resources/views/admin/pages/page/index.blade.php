@@ -97,7 +97,7 @@
                                                 </div>
                                             </td>
                                             <td class="col-sm-3 col-md-3" style="text-align: right">
-                                              <a href="/admin/pages/remove/{{$blog->id}}" class="btn btn-danger">Remove</a>
+                                              <a style="display: none;" href="/admin/pages/remove/{{$blog->id}}" class="btn btn-danger">Remove</a>
                                               <a href="/admin/pages/edit/{{$blog->id}}" class="btn btn-primary">EDIT</a>
                                             </td>
                                         </tr>
