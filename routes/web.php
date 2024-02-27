@@ -58,6 +58,8 @@ Route::group(['prefix' => 'admin','middleware' => 'check.auth'], function () {
 
 Route::group(['middleware' => 'check.auth'], function () {
     Route::get('/my_account', [App\Http\Controllers\HomeController::class, 'my_account'])->name('my_account');
+    Route::get('/track/list', [App\Http\Controllers\TrackController::class, 'track_list'])->name('track.list');
+    Route::get('/track/add', [App\Http\Controllers\TrackController::class, 'add'])->name('track.add');
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

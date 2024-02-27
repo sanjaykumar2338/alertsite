@@ -45,7 +45,7 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->route('my_account')->with('success', 'Login successful.');
+            return redirect()->route('track.list')->with('success', 'Login successful.');
         }
 
         return back()->withErrors([

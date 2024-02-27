@@ -65,7 +65,7 @@
               </p>
             </a>
 
-            <a href="{{url('/admin/order')}}" class="nav-link {{$activeLink=='orders'?'active':''}}">
+            <a href="{{url('/track/list')}}" class="nav-link {{$activeLink=='track'?'active':''}}">
               <i class="nav-icon fas fa-shopping-bag"></i>
               <p>
                 My Track(s)
