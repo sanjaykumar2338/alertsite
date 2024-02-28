@@ -66,7 +66,7 @@
             </a>
 
             <a href="{{url('/track/list')}}" class="nav-link {{$activeLink=='track'?'active':''}}">
-              <i class="nav-icon fas fa-shopping-bag"></i>
+              <i class="nav-icon fas fa-walking"></i>
               <p>
                 My Track(s)
               </p>
@@ -124,7 +124,7 @@
 <!-- jQuery Knob Chart -->
 <script src="{{url('/')}}/asset/admin/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
-<script src="{{url('/')}}/{{url('/')}}/asset/admin/plugins/moment/moment.min.js"></script>
+<script src="{{url('/')}}/asset/admin/plugins/moment/moment.min.js"></script>
 <script src="{{url('/')}}/asset/admin/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{url('/')}}/asset/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
@@ -138,5 +138,42 @@
 <script src="{{url('/')}}/asset/admin/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('/')}}/asset/admin/dist/js/demo.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+<style>
+  .selectpicker option
+  {
+          border: none;
+          background-color: white;
+          outline: none;
+          -webkit-appearance: none;
+          -moz-appearance : none;
+          color: #14B1B2;
+          font-weight: bold;
+          font-size: 30px;
+          margin: 0;
+          padding-left: 0;
+          margin-top: -20px;
+          background: none;
+      }
+  select.selectpicker
+  {
+          border: none;
+          background-color: white;
+          outline: none;
+          -webkit-appearance: none;
+          -moz-appearance : none;
+          color: #14B1B2;
+          font-weight: bold;
+          font-size: 30px;
+          margin: 0;
+          padding-left: 0;
+          margin-top: -20px;
+          background: none;
+  }
+</style>
 </body>
 </html> 

@@ -7,76 +7,132 @@ use Cloudinary\Configuration\Configuration;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use App\Models\PrintfulOrder;
 use App\Models\Tracks;
+use DB;
 
 class TrackController extends Controller
 {
     public function track_list()
     {
         $id = auth()->user()->id;
-        $tracks = Tracks::join('users', 'users.id', '=', 'tracks.user_id')->where('tracks.user_id',$id)->paginate(10);
+        $tracks = Tracks::join('users', 'users.id', '=', 'tracks.user_id')->join('stores', 'stores.store_id', '=', 'tracks.store_id')->where('tracks.user_id',$id)->select('tracks.*','stores.store_name')->paginate(10);
         return view('frontend.track.index')->with('activeLink', 'track')->with('tracks', $tracks);
     }
 
     public function add(Request $request){
-        //$this->getstorewithname(); die;
-        return view('frontend.track.add')->with('activeLink', 'track');
+        $stores = DB::table('stores')->get();
+        return view('frontend.track.add')->with('activeLink', 'track')->with('stores', $stores);
+    }
+
+    public function edit(Request $request, $id){
+        $track = Tracks::find($id);
+        $stores = DB::table('stores')->get();
+        return view('frontend.track.edit')->with('activeLink', 'track')->with('track', $track)->with('stores', $stores);
+    }
+
+    public function destroy(Request $request, $id){
+        try{
+            Tracks::where('id',$id)->delete();
+            return redirect()->back()->with('success', 'Track deleted successfully.'); 
+        }catch(\Exception $e){
+            return redirect()->back()->with('success', $e->getMessage()); 
+        }
+    }
+
+    public function save(Request $request){
+        try{
+            $this->validate($request,[
+                'store'=>'required',
+                'discount_type'=>'required',
+                'operator'=>'required',
+                'price'=>'required',
+                'status'=>'required'
+            ]);
+
+            $track = new Tracks;
+            $track->user_id = \Auth::id();
+            $track->store_id = $request->store;
+            $track->discount_type = $request->discount_type;
+            $track->operator = $request->operator;
+            $track->price = $request->price;
+            $track->alert_email = $request->alert_email;
+            $track->alert_text = $request->alert_text;
+            $track->status = $request->status;
+            $track->save();
+            return redirect()->route('track.list')->with('success', 'Track saved successfully');   
+        }catch(\Exception $e){
+            return redirect()->back()->with('success', $e->getMessage()); 
+        }
+        //echo "<pre>"; print_r($request->all()); die;
+    }
+
+    public function update(Request $request, $id){
+        try{
+            $this->validate($request,[
+                'store'=>'required',
+                'discount_type'=>'required',
+                'operator'=>'required',
+                'price'=>'required',
+                'status'=>'required'
+            ]);
+
+            $track = Tracks::find($id);
+            $track->user_id = \Auth::id();
+            $track->store_id = $request->store;
+            $track->discount_type = $request->discount_type;
+            $track->operator = $request->operator;
+            $track->price = $request->price;
+            $track->alert_email = $request->alert_email;
+            $track->alert_text = $request->alert_text;
+            $track->status = $request->status;
+            $track->save();
+            return redirect()->route('track.list')->with('success', 'Track updated successfully');   
+        }catch(\Exception $e){
+            return redirect()->back()->with('success', $e->getMessage()); 
+        }
+        //echo "<pre>"; print_r($request->all()); die;
     }
 
     public function getstorewithname(){
 
-        $storeIds = [];
-        for ($i = 0; $i < 40; $i++) { 
-           $data = \DB::table('stores')->offset($i * 100)->limit(100)->pluck('store_id')->toArray();
-           $storeIds = [];
-           $storeIds = array_merge($storeIds, $data);
-
-           echo "<pre>"; 
-           print_r($storeIds); 
-           die;
-        }
-
-        $data = \DB::table('stores')->limit(10)->get();
-        //$storeIds = $data->pluck('store_id')->toArray();
-
-        $storeIds = [];
-        \DB::table('stores')->orderBy('id')->chunk(10, function ($data) {
-            $storeIds[] = $data->pluck('store_id')->toArray();
-        });
-
-        echo "<pre>"; print_r($storeIds); die;
-
         $url = "https://api.engager.ecbsn.com/datagrid/rest/v1/data";
         $name = "button_domain_batch_v1";
-        $variables = json_encode(["storeIds" => $storeIds]);
+        
+        for ($i = 0; $i < 40; $i++) { 
+            $data = \DB::table('stores')->offset($i * 100)->limit(100)->pluck('store_id')->toArray();
+            $variables = json_encode(["storeIds" => $data]);
+           
+            $queryParams = http_build_query([
+                "name" => $name,
+                "variables" => $variables
+            ]);
 
-        $queryParams = http_build_query([
-            "name" => $name,
-            "variables" => $variables
-        ]);
+            $requestUrl = "$url?$queryParams";
+            $headers = array(
+                'Client-Agent: button',
+                'Cookie: AWSALB=gQohOefAFs4jwe/MaeO8F1XYpacK1MPTm9aNk0uHr8q8dFr8XLRDOXocDDuapu7sdDGDIdujWLDCo5Xdzw8fdT15rCscBiG09lnBLjEezyJOYsjt1MihuE3jt2nw; AWSALBCORS=gQohOefAFs4jwe/MaeO8F1XYpacK1MPTm9aNk0uHr8q8dFr8XLRDOXocDDuapu7sdDGDIdujWLDCo5Xdzw8fdT15rCscBiG09lnBLjEezyJOYsjt1MihuE3jt2nw'
+            );
 
-        $requestUrl = "$url?$queryParams";
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $requestUrl);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-        $headers = array(
-            'Client-Agent: button',
-            'Cookie: AWSALB=gQohOefAFs4jwe/MaeO8F1XYpacK1MPTm9aNk0uHr8q8dFr8XLRDOXocDDuapu7sdDGDIdujWLDCo5Xdzw8fdT15rCscBiG09lnBLjEezyJOYsjt1MihuE3jt2nw; AWSALBCORS=gQohOefAFs4jwe/MaeO8F1XYpacK1MPTm9aNk0uHr8q8dFr8XLRDOXocDDuapu7sdDGDIdujWLDCo5Xdzw8fdT15rCscBiG09lnBLjEezyJOYsjt1MihuE3jt2nw'
-        );
+            $response = curl_exec($ch);
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $requestUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            if (curl_errno($ch)) {
+                //echo 'Error: ' . curl_error($ch);
+            } else {
+                //echo $response;
+            }
 
-        $response = curl_exec($ch);
+            curl_close($ch);
+            $data = json_decode($response,true);
+            //echo "<pre>"; print_r($data); die;
 
-        if (curl_errno($ch)) {
-            //echo 'Error: ' . curl_error($ch);
-        } else {
-            //echo $response;
+            foreach($data['data']['stores'] as $row){
+                \DB::table('stores')->where('store_id',$row['storeId'])->update(['store_name'=>$row['storeName'],'site_url'=>$row['siteUrl'],'shopping_url'=>$row['shoppingURL']]);
+            }   
         }
-
-        curl_close($ch);
-        $data = json_decode($response,true);
-        echo "<pre>"; print_r($data); die;
     }
 
     public function getallstore(){
@@ -103,9 +159,12 @@ class TrackController extends Controller
         //echo $response;
 
         foreach($data['data']['stores'] as $row){
-            \DB::table('stores')->insert(['store_id'=>$row['id'],'amount'=>$row['reward']['amount'],'display'=>$row['reward']['display']]);
-            //echo "<pre>"; print_r($row); die;
-        }
-        //echo "<pre>"; print_r($response); 
+            $count = \DB::table('stores')->where('store_id',$row['id'])->count();
+            if($count){
+                \DB::table('stores')->where('store_id', $row['id'])->update(['amount' => $row['reward']['amount'], 'display' => $row['reward']['display']]);
+            }else{
+                \DB::table('stores')->insert(['store_id'=>$row['id'],'amount'=>$row['reward']['amount'],'display'=>$row['reward']['display']]);
+            }
+        } 
     }
 }

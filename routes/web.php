@@ -60,6 +60,10 @@ Route::group(['middleware' => 'check.auth'], function () {
     Route::get('/my_account', [App\Http\Controllers\HomeController::class, 'my_account'])->name('my_account');
     Route::get('/track/list', [App\Http\Controllers\TrackController::class, 'track_list'])->name('track.list');
     Route::get('/track/add', [App\Http\Controllers\TrackController::class, 'add'])->name('track.add');
+    Route::post('/track/save', [App\Http\Controllers\TrackController::class, 'save'])->name('track.save');
+    Route::get('/track/remove/{id}', [App\Http\Controllers\TrackController::class, 'destroy'])->name('track.destroy');
+    Route::get('/track/edit/{id}', [App\Http\Controllers\TrackController::class, 'edit'])->name('track.edit');
+    Route::post('/track/update/{id}', [App\Http\Controllers\TrackController::class, 'update'])->name('track.update');
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

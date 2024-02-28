@@ -44,44 +44,44 @@
          </div>
       @endif
 
-      <form name="save_track" method="post" action="{{route('track.save')}}">
+      <form name="save_track" method="post" action="{{route('track.update', $track->id)}}">
           @csrf
           <div class="form-group">
             <label for="exampleFormControlSelect1">Select Store</label>
             <select class="selectpicker form-control" name="store" id="store" data-live-search="true">
               @foreach($stores as $store)
-                <option value="{{$store->store_id}}">{{$store->store_name}}</option>
+                <option {{$track->store_id==$store->store_id ? 'selected':''}} value="{{$store->store_id}}">{{$store->store_name}}</option>
               @endforeach
             </select>
           </div>
           <div class="form-group">
             <label for="exampleFormControlSelect1">Discount Type</label>
             <select class="form-control" id="discount_type" name="discount_type">
-              <option>Fixed</option>
-              <option>Percentage</option>
+              <option {{$track->discount_type=='Fixed' ? 'selected':''}}>Fixed</option>
+              <option {{$track->discount_type=='Percentage' ? 'selected':''}}>Percentage</option>
             </select>
           </div>
           <div class="form-group">
               <label for="exampleFormControlSelect1">Operator</label>
               <select class="form-control" id="operator" name="operator">
-                  <option value=">">> (Great than)</option>
-                  <option value="==">== (Equal to)</option>
+                  <option {{$track->operator=='>' ? 'selected':''}} value=">">> (Great than)</option>
+                  <option {{$track->operator=='==' ? 'selected':''}} value="==">== (Equal to)</option>
               </select>
           </div>
           <div class="form-group">
               <label for="exampleFormControlSelect1">Price</label>
-              <input type="number" class="form-control" id="price" name="price">
+              <input type="number" value="{{$track->price}}" class="form-control" id="price" name="price">
           </div>
           <div class="form-group">
               <label for="exampleFormControlSelect1">Alert Type</label>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="email" name="alert_email" id="alert_email">
+                <input class="form-check-input" {{$track->alert_email=='email' ? 'checked':''}} type="checkbox" value="email" name="alert_email" id="alert_email">
                 <label class="form-check-label" for="flexRadioDefault1">
                   Email
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="text" name="alert_text" id="alert_text">
+                <input class="form-check-input" {{$track->alert_text=='text' ? 'checked':''}} type="checkbox" value="text" name="alert_text" id="alert_text">
                 <label class="form-check-label" for="flexRadioDefault2">
                   Text
                 </label>
@@ -90,8 +90,8 @@
           <div class="form-group">
               <label for="exampleFormControlSelect1">Status</label>
               <select class="form-control" id="status" name="status">
-                  <option value="1">Active</option>
-                  <option value="0">In-Active</option>
+                  <option value="1" {{$track->status=='1' ? 'selected':''}}>Active</option>
+                  <option value="0" {{$track->status=='0' ? 'selected':''}}>In-Active</option>
               </select>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
