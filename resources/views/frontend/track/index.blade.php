@@ -36,12 +36,12 @@
         <thead>
           <tr>
             <th scope="col">#ID</th>
-            <th scope="col">Store ID</th>
+            <th scope="col">Store</th>
             <th scope="col">Store Name</th>
             <th scope="col">Discount Type(Per/Fixed)</th>
             <th scope="col">On Price Action</th>
             <th scope="col">Operator</th>
-            <th scope="col">Status</th>
+            <th scope="col">Alert</th>
             <th scope="col">Alert Type</th>
             <th scope="col">Created On</th>
             <th scope="col">Action</th>
@@ -57,7 +57,7 @@
                     <td>{{$track->discount_type}}</td>
                     <td>{{$track->price}}</td>
                     <td>{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}}</td>
-                    <td>{{$track->status==1 ? 'Active':'In-Active'}}</td>
+                    <td>{{$track->status==1 ? 'On':'Off'}}</td>
                     <td>{{$track->alert_email ? $track->alert_email.',':''}} {{$track->alert_text}}</td>
                     <td>{{$track->created_at}}</td>
                     <td><a href="{{route('track.edit',$track->id)}}">Edit</a> | <a onclick="return confirm('Are you sure ?')" href="{{route('track.destroy',$track->id)}}">Delete</a></td>

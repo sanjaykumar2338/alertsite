@@ -60,6 +60,12 @@ class HomeController extends Controller
         return view('frontend.pages.faq')->with('faq', $faq);
     }
 
+    public function terms()
+    {
+        $terms = Pages::where('slug','terms-and-conditions')->first();
+        return view('frontend.pages.terms')->with('terms', $terms);
+    }
+
     public function shop2()
     {
         return view('frontend.pages.shop');

@@ -173,7 +173,7 @@
             </div>
 
             <div class="copy-right">
-                <p>© {{date('Y')}} All Rights Reserved | {{env('APP_NAME')}}</p>
+                <p>© {{date('Y')}} TrackRak, All Rights Reserved  |  <a href="{{route('terms')}}">Terms & Conditions</a></p>
                 <img src="{{url('/')}}/asset/frontend/images/new-logo.jpg" alt="" >
             </div>
         </div>

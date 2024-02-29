@@ -47,7 +47,7 @@
       <form name="save_track" method="post" action="{{route('track.update', $track->id)}}">
           @csrf
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Select Store</label>
+            <label for="exampleFormControlSelect1">Store</label>
             <select class="selectpicker form-control" name="store" id="store" data-live-search="true">
               @foreach($stores as $store)
                 <option {{$track->store_id==$store->store_id ? 'selected':''}} value="{{$store->store_id}}">{{$store->store_name}}</option>
@@ -88,10 +88,10 @@
               </div>
           </div>
           <div class="form-group">
-              <label for="exampleFormControlSelect1">Status</label>
+              <label for="exampleFormControlSelect1">ALERT</label>
               <select class="form-control" id="status" name="status">
-                  <option value="1" {{$track->status=='1' ? 'selected':''}}>Active</option>
-                  <option value="0" {{$track->status=='0' ? 'selected':''}}>In-Active</option>
+                  <option value="1" {{$track->status=='1' ? 'selected':''}}>On</option>
+                  <option value="0" {{$track->status=='0' ? 'selected':''}}>Off</option>
               </select>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
