@@ -24,7 +24,7 @@
                     <div class="img-style">
                         <div class="set">
                             <div class="icon">
-                                <i class="fa-solid fa-calendar-days"></i>
+                                <img onclick="window.location.href = '{{ route('home') }}';" src="{{ url('/asset/frontend/images/new-logo.png') }}" alt="" style="width: 200px;">
                             </div>
                             <div class="text">
                                 {!! $contact->description !!}

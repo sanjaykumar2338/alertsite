@@ -84,8 +84,6 @@ body {
         font-size: 22px;
     }
 }
-
-
 </style>
     <section class="Stand">
         <div class="container">
