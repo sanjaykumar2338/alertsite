@@ -125,8 +125,6 @@
                 <div class="col-md-12 col-lg-4">
                     <div class="fo-one">
                         <img src="{{url('/')}}/asset/frontend/images/new-logo.png" alt="" style="width: 294px;">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                        </p>
                         <div class="f-icon">
                             <i class="fa-brands fa-facebook-f"></i>
                             <i class="fa-brands fa-twitter"></i>
