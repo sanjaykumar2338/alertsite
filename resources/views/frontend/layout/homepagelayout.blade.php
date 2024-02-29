@@ -125,6 +125,8 @@
                 <div class="col-md-12 col-lg-4">
                     <div class="fo-one">
                         <img src="{{url('/')}}/asset/frontend/images/new-logo.png" alt="" style="width: 294px;">
+                        <p>
+                        </p>
                         <div class="f-icon">
                             <i class="fa-brands fa-facebook-f"></i>
                             <i class="fa-brands fa-twitter"></i>
