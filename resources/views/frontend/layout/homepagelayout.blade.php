@@ -53,9 +53,15 @@
 
                         @if (Auth::check())
                             <li>
-                                <span style="cursor: pointer;" class="add-border" onclick='location.href ="{{route('my_account')}}";'>
-                                    My Account
-                                </span>
+                                @if(Auth::user()->email=='admin@gmail.com')
+                                    <span style="cursor: pointer;" class="add-border" onclick='location.href ="{{route('my_account')}}";'>
+                                        My Account
+                                    </span>
+                                @else
+                                    <span style="cursor: pointer;" class="add-border" onclick='location.href ="{{route('track.list')}}";'>
+                                        My Account
+                                    </span>
+                                @endif
                             </li>
                             <li>
                                 <span style="cursor: pointer;" onclick='location.href ="{{route('logout')}}";'>
