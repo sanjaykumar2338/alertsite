@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\BlogsController;
 use App\Http\Controllers\Admin\PagesController;
-use App\Http\Controllers\Subscriptions\SubscriptionController;
+use App\Http\Controllers\SubscriptionController;
 use Laravel\Cashier\Http\Controllers\WebhookController;
 
 /*
@@ -126,12 +126,3 @@ Route::get('/welcome', 'SubscriptionController@showWelcome')->middleware('subscr
 Route::group(['middleware' => ['role:seller']], function () {
   Route::get('/welcome', 'SubscriptionController@showWelcome');
 });
-
-Route::group(['namespace' => 'Subscriptions'], function() {
-    Route::get('plans', 'SubscriptionController@index')->name('plans');
-    Route::get('/payments', 'PaymentController@index')->name('payments');
-    Route::post('/payments', 'PaymentController@store')->name('payments.store');
-});
-
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
