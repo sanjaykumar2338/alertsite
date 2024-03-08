@@ -149,6 +149,7 @@
                             <li><a href="{{route('track_order')}}">Home</a></li>
                             <li><a href="{{route('shipping')}}"> Track</a></li>
                             <li><a href="{{route('wishlist')}}">Contact us</a></li>
+                            <li><a href="{{route('pricing')}}">Pricing</a></li>
                         </ul>
                     </div>
 
@@ -159,18 +160,17 @@
                         <h3>Talk To Us</h3>
                         <p class="Got">Got Questions? Call us</p>
                         <h4 class="mobile-number">
-                            + 00 123 123 123
+                           
                         </h4>
                         <ul>
                             <li class="align">
                                 <i class="fa-regular fa-envelope"></i>
                                 <span>
-                                    trackrak@gmail.com</span>
+                                    </span>
                             </li>
                             <li class="align margin-top">
                                 <i class="fa-solid fa-location-dot"></i>
-                                <span>trackrak.
-                                    usa
+                                <span>
                                 </span>
                             </li>
                         </ul>
@@ -240,14 +240,16 @@
             // Find the active button
             const activeButton = document.querySelector('.carousel-indicators button.active');
 
-            // Find the index of the active button
-            const activeIndex = Array.from(buttons).indexOf(activeButton);
+            if(activeButton){
+                // Find the index of the active button
+                const activeIndex = Array.from(buttons).indexOf(activeButton);
 
-            // Calculate the index of the next button
-            const nextIndex = (activeIndex + 1) % buttons.length;
+                // Calculate the index of the next button
+                const nextIndex = (activeIndex + 1) % buttons.length;
 
-            // Trigger click on the next button
-            buttons[nextIndex].click();
+                // Trigger click on the next button
+                buttons[nextIndex].click();
+            }
         }
 
         // Set interval to trigger click every 3 seconds

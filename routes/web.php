@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\BlogsController;
 use App\Http\Controllers\Admin\PagesController;
+use App\Http\Controllers\Subscriptions\SubscriptionController;
 use Laravel\Cashier\Http\Controllers\WebhookController;
 
 /*
@@ -72,7 +73,7 @@ Route::get('/get_images', [App\Http\Controllers\HomeController::class, 'get_imag
 Route::get('/updateImageNames', [App\Http\Controllers\HomeController::class, 'updateImageNames'])->name('updateImageNames');
 Route::get('/updateEmptyImageColumns', [App\Http\Controllers\HomeController::class, 'updateEmptyImageColumns'])->name('updateEmptyImageColumns');
 
-
+Route::get('/pricing', [App\Http\Controllers\HomeController::class, 'pricing'])->name('pricing');
 Route::get('/contactus', [App\Http\Controllers\HomeController::class, 'contactus'])->name('contactus');
 Route::get('/aboutus', [App\Http\Controllers\HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('/track', [App\Http\Controllers\HomeController::class, 'track'])->name('track');
@@ -116,3 +117,21 @@ Route::post('/charge', [App\Http\Controllers\PaymentController::class, 'processP
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
+
+Route::get('/plan/{id}', [App\Http\Controllers\HomeController::class, 'plandetails']);
+Route::get('/subscribe', 'SubscriptionController@showSubscription');
+Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, 'processSubscription']);
+// welcome page only for subscribed users
+Route::get('/welcome', 'SubscriptionController@showWelcome')->middleware('subscribed');
+Route::group(['middleware' => ['role:seller']], function () {
+  Route::get('/welcome', 'SubscriptionController@showWelcome');
+});
+
+Route::group(['namespace' => 'Subscriptions'], function() {
+    Route::get('plans', 'SubscriptionController@index')->name('plans');
+    Route::get('/payments', 'PaymentController@index')->name('payments');
+    Route::post('/payments', 'PaymentController@store')->name('payments.store');
+});
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');

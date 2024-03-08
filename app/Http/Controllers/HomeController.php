@@ -104,6 +104,18 @@ class HomeController extends Controller
         return view('frontend.pages.justice');
     }
 
+    public function pricing(){
+        return view('frontend.pages.pricing');
+    }
+
+    public function plandetails(Request $request, $id=null){
+        $plan = \DB::table('plans')->where('id',$id)->first();
+        if(!$plan){
+            return redirect()->back()->with('success', 'No plan found!!!');   
+        }
+        return view('frontend.pages.pricingdetails');
+    }
+
     public function products()
     {
         return view('frontend.pages.products');
