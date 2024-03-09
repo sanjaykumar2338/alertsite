@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="{{url('/')}}/asset/admin/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -50,14 +51,14 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">     
+    <div class="sidebar">
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview">
-          
+
             <a href="{{url('/')}}" class="nav-link" target="_blank">
               <i class="nav-icon fas fa-solid fa-globe"></i>
               <p>
@@ -78,7 +79,7 @@
                 Logout
               </p>
             </a>
-          </li>       
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -86,7 +87,7 @@
     <!-- /.sidebar -->
   </aside>
 
-  <div class="content-wrapper">    
+  <div class="content-wrapper">
     <!-- Main content -->
     @yield('content')
     <!-- /.content -->
@@ -94,7 +95,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; {{date('Y')}}</strong>
-    All rights reserved.    
+    All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -176,4 +177,4 @@
   }
 </style>
 </body>
-</html> 
+</html>

@@ -187,9 +187,134 @@
     .example.example5 .success .reset path {
       fill: #fff;
     }
+
+    /* Absolute Center Spinner */
+    .loading {
+        position: fixed;
+        z-index: 999;
+        height: 2em;
+        width: 2em;
+        overflow: show;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    /* Transparent Overlay */
+    .loading:before {
+        content: '';
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0, .8));
+
+        background: -webkit-radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0,.8));
+    }
+
+    /* :not(:required) hides these rules from IE9 and below */
+    .loading:not(:required) {
+        /* hide "loading..." text */
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+    }
+
+    .loading:not(:required):after {
+        content: '';
+        display: block;
+        font-size: 10px;
+        width: 1em;
+        height: 1em;
+        margin-top: -0.5em;
+        -webkit-animation: spinner 150ms infinite linear;
+        -moz-animation: spinner 150ms infinite linear;
+        -ms-animation: spinner 150ms infinite linear;
+        -o-animation: spinner 150ms infinite linear;
+        animation: spinner 150ms infinite linear;
+        border-radius: 0.5em;
+        -webkit-box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+        box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+    }
+
+    /* Animation */
+
+    @-webkit-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    @-moz-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    @-o-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
 </style>
 
 <script src="https://js.stripe.com/v3/"></script>
+
+<div class="loading" hidden id="screen-loader">Loading&#8230;</div>
 
 <section class="Support-Cause">
     <div class="container">
@@ -198,8 +323,8 @@
 </section>
 
 <div class="cell example example5">
-        <form name="paymentfrm" id="paymentfrm" method="post" action="{{url('subscribe')}}"> 
-          @csrf  
+        <form name="paymentfrm" id="paymentfrm" method="post" action="{{route('subscribe.form')}}">
+          @csrf
           <div id="example5-paymentRequest">
             <!--Stripe paymentRequestButton Element inserted here-->
           </div>
@@ -209,13 +334,15 @@
             <div class="row">
               <div class="field">
                 <label for="example5-name" data-tid="elements_examples.form.name_label">Name</label>
-                <input id="example5-name" data-tid="elements_examples.form.name_placeholder" class="input" type="text" placeholder="Jane Doe" required="" autocomplete="name">
+                <input value="{{auth()->user()->name ?? ''}}"  data-client-secret="{{$userIntent->client_secret}}" id="example5-name" data-tid="elements_examples.form.name_placeholder" class="input" type="text" placeholder="Jane Doe" required="" autocomplete="name">
               </div>
             </div>
-            <div class="row">
+              <input type="hidden" name="plan" value="{{$planId}}">
+              <input type="hidden" name="email" id="hidden-email">
+              <div class="row">
               <div class="field">
                 <label for="example5-email" data-tid="elements_examples.form.email_label">Email</label>
-                <input id="example5-email" data-tid="elements_examples.form.email_placeholder" class="input" type="text" placeholder="janedoe@gmail.com" required="" autocomplete="email">
+                <input value="{{auth()->user()->email ?? ''}}" id="visible-email" data-tid="elements_examples.form.email_placeholder" class="input" type="text" placeholder="janedoe@gmail.com" required="" autocomplete="email">
               </div>
               <div class="field">
                 <label for="example5-phone" data-tid="elements_examples.form.phone_label">Phone</label>
@@ -248,12 +375,14 @@
               <div class="field">
                 <label for="example5-card" data-tid="elements_examples.form.card_label">Card</label>
                 <div id="example5-card" class="input"></div>
+                 <div id="card-errors" class="text-danger mt-1"></div>
               </div>
             </div>
             <input type="hidden" name="token" class="token">
-            <button type="submit" data-tid="elements_examples.form.pay_button">Pay $25</button>
+            <button type="button" id="checkout-submit-btn" data-tid="elements_examples.form.pay_button">Pay $25</button>
           </fieldset>
-          <div class="error" role="alert">
+
+            <div class="error" role="alert">
 <!--             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
               <path class="base" fill="#000" d="M8.5,17 C3.80557963,17 0,13.1944204 0,8.5 C0,3.80557963 3.80557963,0 8.5,0 C13.1944204,0 17,3.80557963 17,8.5 C17,13.1944204 13.1944204,17 8.5,17 Z"></path>
               <path class="glyph" fill="#FFF" d="M8.5,7.29791847 L6.12604076,4.92395924 C5.79409512,4.59201359 5.25590488,4.59201359 4.92395924,4.92395924 C4.59201359,5.25590488 4.59201359,5.79409512 4.92395924,6.12604076 L7.29791847,8.5 L4.92395924,10.8739592 C4.59201359,11.2059049 4.59201359,11.7440951 4.92395924,12.0760408 C5.25590488,12.4079864 5.79409512,12.4079864 6.12604076,12.0760408 L8.5,9.70208153 L10.8739592,12.0760408 C11.2059049,12.4079864 11.7440951,12.4079864 12.0760408,12.0760408 C12.4079864,11.7440951 12.4079864,11.2059049 12.0760408,10.8739592 L9.70208153,8.5 L12.0760408,6.12604076 C12.4079864,5.79409512 12.4079864,5.25590488 12.0760408,4.92395924 C11.7440951,4.59201359 11.2059049,4.59201359 10.8739592,4.92395924 L8.5,7.29791847 L8.5,7.29791847 Z"></path>
@@ -280,7 +409,7 @@
   <script type="text/javascript">
       'use strict';
 
-        var stripe = Stripe('pk_test_1mUYabOqDa27wuLOlWVWKt5x');
+        var stripe = Stripe('pk_test_51OorH6GwaL3VeJw6AGuv6k9hXgQYiQzLmtaUQJ2yWb0Tyr4NwUWyPVjxMbNM83jUBtcFwRSitLTdhxulXJ8XDACW00qDv6g840');
 
         function registerElements(elements, exampleName) {
           var formClass = '.' + exampleName;
@@ -354,85 +483,97 @@
           });
 
           // Listen on the form's 'submit' handler...
-          form.addEventListener('submit', function(e) {
-            e.preventDefault();
+          // form.addEventListener('submit', function(e) {
+          //   e.preventDefault();
+          //
+          //   // Trigger HTML5 validation UI on the form if any of the inputs fail
+          //   // validation.
+          //   var plainInputsValid = true;
+          //   Array.prototype.forEach.call(form.querySelectorAll('input'), function(
+          //     input
+          //   ) {
+          //     if (input.checkValidity && !input.checkValidity()) {
+          //       plainInputsValid = false;
+          //       return;
+          //     }
+          //   });
+          //   if (!plainInputsValid) {
+          //     triggerBrowserValidation();
+          //     return;
+          //   }
+          //
+          //   // Show a loading screen...
+          //   example.classList.add('submitting');
+          //
+          //   // Disable all inputs.
+          //   disableInputs();
+          //
+          //   // Gather additional customer data we may have collected in our form.
+          //   var name = form.querySelector('#' + exampleName + '-name');
+          //   var address1 = form.querySelector('#' + exampleName + '-address');
+          //   var city = form.querySelector('#' + exampleName + '-city');
+          //   var state = form.querySelector('#' + exampleName + '-state');
+          //   var zip = form.querySelector('#' + exampleName + '-zip');
+          //   var additionalData = {
+          //     name: name ? name.value : undefined,
+          //     address_line1: address1 ? address1.value : undefined,
+          //     address_city: city ? city.value : undefined,
+          //     address_state: state ? state.value : undefined,
+          //     address_zip: zip ? zip.value : undefined,
+          //   };
+          //
+          //   // Use Stripe.js to create a token. We only need to pass in one Element
+          //   // from the Element group in order to create a token. We can also pass
+          //   // in the additional customer data we collected in our form.
+          //
+          //    //  stripe.createToken(elements[0], additionalData).then(function(result) {
+          //    //  // Stop loading!
+          //    //  example.classList.remove('submitting');
+          //    //
+          //    //
+          //    //  if (result.token) {
+          //    //    // If we received a token, show the token ID.
+          //    //    example.querySelector('.token').value = result.token.id;
+          //    //    example.classList.add('submitted');
+          //    //    $('#paymentfrm').submit();
+          //    //  } else {
+          //    //    // Otherwise, un-disable inputs.
+          //    //    enableInputs();
+          //    //  }
+          //    // });
+          //
+          //
+          // });
 
-            // Trigger HTML5 validation UI on the form if any of the inputs fail
-            // validation.
-            var plainInputsValid = true;
-            Array.prototype.forEach.call(form.querySelectorAll('input'), function(
-              input
-            ) {
-              if (input.checkValidity && !input.checkValidity()) {
-                plainInputsValid = false;
-                return;
-              }
-            });
-            if (!plainInputsValid) {
-              triggerBrowserValidation();
-              return;
-            }
-
-            // Show a loading screen...
-            example.classList.add('submitting');
-
-            // Disable all inputs.
-            disableInputs();
-
-            // Gather additional customer data we may have collected in our form.
-            var name = form.querySelector('#' + exampleName + '-name');
-            var address1 = form.querySelector('#' + exampleName + '-address');
-            var city = form.querySelector('#' + exampleName + '-city');
-            var state = form.querySelector('#' + exampleName + '-state');
-            var zip = form.querySelector('#' + exampleName + '-zip');
-            var additionalData = {
-              name: name ? name.value : undefined,
-              address_line1: address1 ? address1.value : undefined,
-              address_city: city ? city.value : undefined,
-              address_state: state ? state.value : undefined,
-              address_zip: zip ? zip.value : undefined,
-            };
-
-            // Use Stripe.js to create a token. We only need to pass in one Element
-            // from the Element group in order to create a token. We can also pass
-            // in the additional customer data we collected in our form.
-            stripe.createToken(elements[0], additionalData).then(function(result) {
-              // Stop loading!
-              example.classList.remove('submitting');
-
-              if (result.token) {
-                // If we received a token, show the token ID.
-                example.querySelector('.token').value = result.token.id;
-                example.classList.add('submitted');
-                $('#paymentfrm').submit();
-              } else {
-                // Otherwise, un-disable inputs.
-                enableInputs();
-              }
-            });
-          });
-
-          resetButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Resetting the form (instead of setting the value to `''` for each input)
-            // helps us clear webkit autofill styles.
-            form.reset();
-
-            // Clear each Element.
-            elements.forEach(function(element) {
-              element.clear();
-            });
-
-            // Reset error state as well.
-            error.classList.remove('visible');
-
-            // Resetting the form does not un-disable inputs, so we need to do it separately:
-            enableInputs();
-            example.classList.remove('submitted');
-          });
+          // resetButton.addEventListener('click', function(e) {
+          //   e.preventDefault();
+          //   // Resetting the form (instead of setting the value to `''` for each input)
+          //   // helps us clear webkit autofill styles.
+          //   form.reset();
+          //
+          //   // Clear each Element.
+          //   elements.forEach(function(element) {
+          //     element.clear();
+          //   });
+          //
+          //   // Reset error state as well.
+          //   error.classList.remove('visible');
+          //
+          //   // Resetting the form does not un-disable inputs, so we need to do it separately:
+          //   enableInputs();
+          //   example.classList.remove('submitted');
+          // });
         }
         (function() {
           "use strict";
+
+            function showLoader() {
+                document.getElementById('screen-loader').removeAttribute('hidden');
+            }
+
+            function hideLoader() {
+                document.getElementById('screen-loader').setAttribute('hidden', 'true');
+            }
 
           var elements = stripe.elements({
             // Stripe's examples are localized to specific languages, but if
@@ -445,6 +586,7 @@
            * Card Element
            */
           var card = elements.create("card", {
+            hidePostalCode: true,
             iconStyle: "solid",
             style: {
               base: {
@@ -470,6 +612,52 @@
           });
           card.mount("#example5-card");
 
+          card.addEventListener('change', function (event) {
+                var displayError = document.getElementById('card-errors');
+                if (event.error) {
+                    displayError.textContent = event.error.message;
+                } else {
+                    displayError.textContent = '';
+                }
+          });
+
+            const checkoutSubmitBtn = document.getElementById('checkout-submit-btn');
+            checkoutSubmitBtn.addEventListener('click', async (e) => {
+                showLoader();
+                e.preventDefault();
+                var name = document.getElementById('visible-email');
+                const clientSecret = document.getElementById('example5-name').getAttribute('data-client-secret');
+                console.log(clientSecret);
+                const {setupIntent, error} =  await stripe.confirmCardSetup(
+                    clientSecret, {
+                        payment_method: {
+                            card: card,
+                            billing_details: {name: name.value}
+                        },
+                    }
+                );
+                if (error) {
+                    hideLoader();
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = error.message;
+                } else {
+                    paymentMethodHandler(setupIntent.payment_method);
+                }
+
+                function paymentMethodHandler(payment_method) {
+                    var subscriptionForm = document.getElementById('paymentfrm');
+                    var visibleEmail = document.getElementById('visible-email');
+                    var hiddenEmail = document.getElementById('hidden-email');
+                    hiddenEmail.value = visibleEmail.value;
+                    var hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = 'payment_method';
+                    hiddenInput.value = payment_method;
+                    hiddenEmail.appendChild(hiddenInput);
+                    subscriptionForm.submit();
+                }
+            });
+
           /**
            * Payment Request Element---how much they pay
            */
@@ -490,6 +678,7 @@
               }
             ]
           });
+
           paymentRequest.on("token", function(result) {
             var example = document.querySelector(".example5");
             example.querySelector(".token").innerText = result.token.id;

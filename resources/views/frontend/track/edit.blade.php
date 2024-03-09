@@ -94,7 +94,34 @@
                   <option value="0" {{$track->status=='0' ? 'selected':''}}>Off</option>
               </select>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+
+          <style>
+
+              .track-form-submit-btn:hover {
+                  cursor: pointer;
+              }
+
+              [data-tooltip]:before {
+                  content: attr(data-tooltip);
+                  position: absolute;
+                  opacity: 0;
+                  bottom:42px;
+                  left: -30px;
+                  transition: 256ms all ease;
+                  padding: 3px 20px 3px 20px;
+                  color: white;
+                  border-radius: 5px;
+                  box-shadow: 0px 6px 21px rgb(0 0 0 / 10%);
+              }
+
+              [data-tooltip]:hover:before {
+                  opacity: 1;
+                  background: black;
+                  border-radius: 5px;
+                  border: 1px solid #ccc;
+              }
+          </style>
+          <button type="submit" class="btn btn-primary track-form-submit-btn" @if(!auth()->user()->subscribed()) data-tooltip="Please buy a plan"  disabled @endif>Submit</button>
       </form>
     </div>
   </div>

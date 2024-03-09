@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckUpdateTrackLimit;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,6 +66,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'check.auth' => \App\Http\Middleware\AuthCheck::class,
-        'subscribed' => \App\Http\Middleware\Subscribed::class
+        'subscribed' => \App\Http\Middleware\Subscribed::class,
+        'check.track.limit' => \App\Http\Middleware\CheckTrackLimit::class,
+        'check.track.update.limit' => CheckUpdateTrackLimit::class
     ];
 }

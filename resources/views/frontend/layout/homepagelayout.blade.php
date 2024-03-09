@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{env('APP_NAME')}}</title>
     <!-- stylesheet  -->
-    
+
 
     <!--
         <link rel="stylesheet" href="asset/frontend/css/stylesheet.css">
@@ -68,7 +68,7 @@
                                     Logout
                                 </span>
                             </li>
-                        @else                            
+                        @else
                             <li>
                                 <span style="cursor: pointer;" class="add-border" onclick='location.href ="{{route('register')}}";'>
                                     sign up
@@ -116,6 +116,9 @@
                         <li>
                             <a class="nav-link" href="{{route('contactus')}}">Contact Us </a>
                         </li>
+                        <li>
+                            <a class="nav-link" href="{{route('plans')}}">Plans </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -160,7 +163,7 @@
                         <h3>Talk To Us</h3>
                         <p class="Got">Got Questions? Call us</p>
                         <h4 class="mobile-number">
-                           
+
                         </h4>
                         <ul>
                             <li class="align">
@@ -227,7 +230,7 @@
             $('.stop').on('click', function () {
                 owl.trigger('stop.owl.autoplay')
             })
-    
+
             $('#myCarousel').carousel({
                 interval: 3000,
                 cycle: true

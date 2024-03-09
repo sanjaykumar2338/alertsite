@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\Subscriptions\PaymentController;
+use App\Http\Controllers\Subscriptions\SubscriptionController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\BlogsController;
 use App\Http\Controllers\Admin\PagesController;
-use App\Http\Controllers\SubscriptionController;
 use Laravel\Cashier\Http\Controllers\WebhookController;
 
 /*
@@ -60,11 +60,11 @@ Route::group(['prefix' => 'admin','middleware' => 'check.auth'], function () {
 Route::group(['middleware' => 'check.auth'], function () {
     Route::get('/my_account', [App\Http\Controllers\HomeController::class, 'my_account'])->name('my_account');
     Route::get('/track/list', [App\Http\Controllers\TrackController::class, 'track_list'])->name('track.list');
-    Route::get('/track/add', [App\Http\Controllers\TrackController::class, 'add'])->name('track.add');
+    Route::get('/track/add', [App\Http\Controllers\TrackController::class, 'add'])->middleware('check.track.limit')->name('track.add');
     Route::post('/track/save', [App\Http\Controllers\TrackController::class, 'save'])->name('track.save');
     Route::get('/track/remove/{id}', [App\Http\Controllers\TrackController::class, 'destroy'])->name('track.destroy');
     Route::get('/track/edit/{id}', [App\Http\Controllers\TrackController::class, 'edit'])->name('track.edit');
-    Route::post('/track/update/{id}', [App\Http\Controllers\TrackController::class, 'update'])->name('track.update');
+    Route::post('/track/update/{id}', [App\Http\Controllers\TrackController::class, 'update'])->middleware('check.track.update.limit')->name('track.update');
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -118,11 +118,25 @@ Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
 
-Route::get('/plan/{id}', [App\Http\Controllers\HomeController::class, 'plandetails']);
+Route::get('plans', [SubscriptionController::class, 'index'])->name('plans');
+Route::get('/plan/{id}', [App\Http\Controllers\HomeController::class, 'plandetails'])->middleware('auth')->name('plan.detail');
 Route::get('/subscribe', 'SubscriptionController@showSubscription');
-Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, 'processSubscription']);
+Route::post('/subscribe', [PaymentController::class, 'store'])->name('subscribe.form');
+Route::get('/subscription-cancel', [PaymentController::class, 'subscriptionCancel'])->name('subscription-cancel');
+
 // welcome page only for subscribed users
 Route::get('/welcome', 'SubscriptionController@showWelcome')->middleware('subscribed');
 Route::group(['middleware' => ['role:seller']], function () {
   Route::get('/welcome', 'SubscriptionController@showWelcome');
+});
+
+
+Route::any('/dd', function (){
+    $user = auth()->user();
+
+    $tracks = $user->tracks();
+
+    $tracks = \App\Models\Tracks::where('user_id', auth()->id())->get();
+
+    dd($tracks);
 });

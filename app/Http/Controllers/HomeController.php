@@ -109,11 +109,18 @@ class HomeController extends Controller
     }
 
     public function plandetails(Request $request, $id=null){
+
         $plan = \DB::table('plans')->where('id',$id)->first();
+
+        $planId = $plan->id;
+
         if(!$plan){
-            return redirect()->back()->with('success', 'No plan found!!!');   
+            return redirect()->back()->with('success', 'No plan found!!!');
         }
-        return view('frontend.pages.pricingdetails');
+
+        $userIntent = auth()->user()->createSetupIntent();
+
+        return view('frontend.pages.pricingdetails', compact('planId', 'userIntent'));
     }
 
     public function products()
@@ -325,9 +332,9 @@ class HomeController extends Controller
             $rec->name = $request->name;
             $rec->email = $request->email;
             $rec->save();
-            return redirect()->back()->with('success', 'Your review submitted successfully');   
+            return redirect()->back()->with('success', 'Your review submitted successfully');
         }catch(\Exception $e){
-            return redirect()->back()->with('success', $e->getMessage()); 
+            return redirect()->back()->with('success', $e->getMessage());
         }
     }
 }
