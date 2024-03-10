@@ -379,7 +379,7 @@
               </div>
             </div>
             <input type="hidden" name="token" class="token">
-            <button type="button" id="checkout-submit-btn" data-tid="elements_examples.form.pay_button">Pay $25</button>
+            <button type="button" id="checkout-submit-btn" data-tid="elements_examples.form.pay_button">Pay ${{$planPrice}}</button>
           </fieldset>
 
             <div class="error" role="alert">

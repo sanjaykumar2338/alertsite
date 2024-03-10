@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogReview;
+use App\Models\Pages;
+use App\Models\PrintfulOrder;
 use App\Models\Products;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use App\Models\User;
-use App\Models\Pages;
-use App\Models\PrintfulOrder;
-use App\Models\Payment;
-use App\Models\BlogReview;
 
 class HomeController extends Controller
 {
@@ -20,8 +17,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         //$this->middleware('auth');
     }
 
@@ -30,131 +26,122 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        $homepage = Pages::where('slug','homepage')->first();
+    public function index() {
+        $homepage = Pages::where('slug', 'homepage')->first();
         return view('frontend.pages.home')->with('homepage', $homepage);
     }
 
-    public function contactus()
-    {
-        $contact = Pages::where('slug','contact-us')->first();
+    public function contactus() {
+        $contact = Pages::where('slug', 'contact-us')->first();
         return view('frontend.pages.contactus')->with('contact', $contact);
     }
 
-    public function aboutus()
-    {
-        $aboutus = Pages::where('slug','about-us')->first();
+    public function aboutus() {
+        $aboutus = Pages::where('slug', 'about-us')->first();
         return view('frontend.pages.aboutus')->with('aboutus', $aboutus);
     }
 
-    public function track()
-    {
-        $track = Pages::where('slug','track')->first();
+    public function track() {
+        $track = Pages::where('slug', 'track')->first();
         return view('frontend.pages.track')->with('track', $track);
     }
 
-    public function faq()
-    {
-        $faq = Pages::where('slug','faq')->first();
+    public function faq() {
+        $faq = Pages::where('slug', 'faq')->first();
         return view('frontend.pages.faq')->with('faq', $faq);
     }
 
-    public function terms()
-    {
-        $terms = Pages::where('slug','terms-and-conditions')->first();
+    public function terms() {
+        $terms = Pages::where('slug', 'terms-and-conditions')->first();
         return view('frontend.pages.terms')->with('terms', $terms);
     }
 
-    public function shop2()
-    {
+    public function shop2() {
         return view('frontend.pages.shop');
     }
 
-    public function media()
-    {
+    public function media() {
         return view('frontend.pages.media');
     }
 
-    public function blog()
-    {
+    public function blog() {
         $blogs = Blogs::all();
-        foreach($blogs as $blog){
+        foreach ($blogs as $blog) {
             $blog->feature_image = fileToUrl($blog->feature_image);
             $blog->blog_image = fileToUrl($blog->blog_image);
         }
 
-        return view('frontend.pages.blog')->with('blogs',$blogs);
+        return view('frontend.pages.blog')->with('blogs', $blogs);
     }
 
-    public function blog_detail(Request $request)
-    {
+    public function blog_detail(Request $request) {
         $slug = $request->slug;
-        $blog = Blogs::where('slug',$slug)->first();
+        $blog = Blogs::where('slug', $slug)->first();
         $blog->feature_image = fileToUrl($blog->feature_image);
         $blog->blog_image = fileToUrl($blog->blog_image);
 
-        $reviews = BlogReview::where('blog_id',$blog->id)->where('status',1)->get();
+        $reviews = BlogReview::where('blog_id', $blog->id)->where('status', 1)->get();
         //echo "<pre>"; print_r($blog); die;
-        return view('frontend.layout.blogtemplate')->with('blog',$blog)->with('reviews',$reviews);
+        return view('frontend.layout.blogtemplate')->with('blog', $blog)->with('reviews', $reviews);
     }
 
-    public function justice()
-    {
+    public function justice() {
         return view('frontend.pages.justice');
     }
 
-    public function pricing(){
+    public function pricing() {
         return view('frontend.pages.pricing');
     }
 
-    public function plandetails(Request $request, $id=null){
+    public function plandetails(Request $request, $id = null) {
 
-        $plan = \DB::table('plans')->where('id',$id)->first();
+        $plan = \DB::table('plans')->where('id', $id)->first();
 
-        $planId = $plan->id;
-
-        if(!$plan){
+        if (!$plan) {
             return redirect()->back()->with('success', 'No plan found!!!');
         }
 
+        $planPrices = [
+            'free' => 0,
+            'basic' => 4.99,
+            'premium' => 9.99,
+        ];
+
+        $planPrice = $planPrices[$plan->identifier] ?? 0;
+
+        $planId = $plan->id;
+
         $userIntent = auth()->user()->createSetupIntent();
 
-        return view('frontend.pages.pricingdetails', compact('planId', 'userIntent'));
+        return view('frontend.pages.pricingdetails', compact('planId', 'userIntent', 'planPrice'));
     }
 
-    public function products()
-    {
+    public function products() {
         return view('frontend.pages.products');
     }
 
-    public function events()
-    {
+    public function events() {
         return view('frontend.pages.events');
     }
 
-    public function track_order()
-    {
+    public function track_order() {
         return view('frontend.pages.track_order');
     }
 
-    public function shipping()
-    {
+    public function shipping() {
         return view('frontend.pages.shipping');
     }
 
-    public function wishlist()
-    {
+    public function wishlist() {
         return view('frontend.pages.wishlist');
     }
 
-    public function my_account()
-    {
+    public function my_account() {
         if (auth()->user()->email == 'admin@gmail.com') {
             return redirect('admin');
         } else {
             $email = auth()->user()->email;
-            $orders = PrintfulOrder::join('users', 'users.email', '=', 'printful_orders.customer_email')->join('products', 'products.id', '=', 'printful_orders.product_id')->join('payments', 'payments.id', '=', 'printful_orders.payment_id')->select('products.*','printful_order_data','payment_intent_id','payments.amount as amt')->where('printful_orders.customer_email',$email)->paginate(5);
+            $orders = PrintfulOrder::join('users', 'users.email', '=', 'printful_orders.customer_email')->join('products', 'products.id', '=', 'printful_orders.product_id')->join('payments', 'payments.id', '=', 'printful_orders.payment_id')->select('products.*', 'printful_order_data', 'payment_intent_id', 'payments.amount as amt')->where('printful_orders.customer_email', $email)->paginate(5);
             //echo "<pre>"; print_r($orders); die;
             //$orders = PrintfulOrder::join('users', 'users.id', '=', 'printful_orders.user_id')->paginate(5);
             //$orders = Payment::join('users', 'users.id', '=', 'payments.user_id')->select('payments.*', 'users.name')->paginate(5);
@@ -162,43 +149,35 @@ class HomeController extends Controller
         }
     }
 
-    public function order_history()
-    {
+    public function order_history() {
         return view('frontend.pages.order_history');
     }
 
-    public function return_order()
-    {
+    public function return_order() {
         return view('frontend.pages.return_order');
     }
 
-    public function donate_now()
-    {
+    public function donate_now() {
         return view('frontend.pages.donate_now');
     }
 
-    public function login()
-    {
+    public function login() {
         return view('frontend.pages.login');
     }
 
-    public function register()
-    {
+    public function register() {
         return view('frontend.pages.register');
     }
 
-    public function product_design()
-    {
+    public function product_design() {
         return view('frontend.pages.product_design');
     }
 
-    public function create_product()
-    {
+    public function create_product() {
         return view('frontend.pages.create_product');
     }
 
-    public function shop(Request $request, $slug)
-    {
+    public function shop(Request $request, $slug) {
         $product = Products::where('product_slug', $request->slug)->first();
         $product->front_image = fileToUrl($product->front_image);
         $product->back_image = fileToUrl($product->back_image);
@@ -214,8 +193,7 @@ class HomeController extends Controller
         return view('frontend.pages.create_product')->with('product', $product);
     }
 
-    public function product_list(Request $request, $standwith, $productfor, $producttype)
-    {
+    public function product_list(Request $request, $standwith, $productfor, $producttype) {
         //echo "<pre>"; print_r(explode('-',$standwith)[2]); die;
         $standwith = @ucfirst(explode('-', $standwith)[2]);
         $productfor = @ucfirst($productfor);
@@ -226,15 +204,14 @@ class HomeController extends Controller
         return view('frontend.pages.product_list')->with('products', $products);
     }
 
-    public function product_category(Request $request, $category)
-    {
+    public function product_category(Request $request, $category) {
         $producttype = @ucfirst($category);
         $products = Products::where('product_type', 'LIKE', '%' . $producttype . '%')->get();
         //echo "<pre>"; print_r($products); die;
         return view('frontend.pages.product_list')->with('products', $products);
     }
 
-    public function country_product (Request $request, $category){
+    public function country_product(Request $request, $category) {
         $producttype = @ucfirst($category);
         $products = Products::select('supporting_country', \DB::raw('MAX(id) as max_id'), \DB::raw('MAX(front_image) as max_front_image'), \DB::raw('MAX(product_type) as product_type'), \DB::raw('MAX(supporting_country) as supporting_country'), \DB::raw('MAX(website_product_name) as website_product_name'), \DB::raw('MAX(product_name) as product_name'), \DB::raw('MAX(product_slug) as product_slug'), \DB::raw('MAX(product_price) as product_price'), \DB::raw('MAX(commission) as commission'))
             ->where('product_type', $producttype)
@@ -245,8 +222,7 @@ class HomeController extends Controller
         return view('frontend.pages.supporting_list')->with('products', $products);
     }
 
-    public function updateEmptyImageColumns()
-    {
+    public function updateEmptyImageColumns() {
         // Find all products where any image column contains 'public/images/images'
         $products = Products::where('product_description', 'test desc')->get();
 
@@ -256,8 +232,7 @@ class HomeController extends Controller
         }
     }
 
-    public function updateImageNames()
-    {
+    public function updateImageNames() {
         $products = Products::all();
 
         foreach ($products as $product) {
@@ -290,8 +265,7 @@ class HomeController extends Controller
         }
     }
 
-    public function get_images(Request $request)
-    {
+    public function get_images(Request $request) {
         // Fetch products from the database
         $products = Products::get();
 
@@ -318,9 +292,9 @@ class HomeController extends Controller
         }
     }
 
-    public function save_review(Request $request){
+    public function save_review(Request $request) {
         //echo "<pre>"; print_r($request->all());
-        try{
+        try {
             $rec = new BlogReview;
             if (auth()->check()) {
                 $rec->user_id = auth()->user()->id;
@@ -333,7 +307,7 @@ class HomeController extends Controller
             $rec->email = $request->email;
             $rec->save();
             return redirect()->back()->with('success', 'Your review submitted successfully');
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return redirect()->back()->with('success', $e->getMessage());
         }
     }
