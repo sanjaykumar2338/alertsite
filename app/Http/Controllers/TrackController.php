@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Plans;
+use App\Jobs\SendEmailJob;
+use App\Jobs\UpdateStoresJob;
 use App\Models\Tracks;
+use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TrackController extends Controller
 {
@@ -131,6 +132,65 @@ class TrackController extends Controller
             return redirect()->back()->with('success', $e->getMessage());
         }
         //echo "<pre>"; print_r($request->all()); die;
+    }
+
+    public function sendEmailToUsersWithTracks() {
+
+        $usersWithSpecificTracks = User::whereHas('tracks', function ($query) {
+            $query->where('status', 1)
+                ->where('alert_email', 'email')
+                ->whereHas('store', function ($storeQuery) {
+                    $storeQuery->whereRaw('tracks.discount_type = stores.display')
+                        ->whereRaw('(
+                        (tracks.operator = "==" AND tracks.price = stores.amount)
+                        OR
+                        (tracks.operator = ">" AND stores.amount > tracks.price)
+                    )');
+                });
+        })->with(['tracks' => function ($query) {
+            $query->where('status', 1)
+                ->where('alert_email', 'email')
+                ->whereHas('store', function ($storeQuery) {
+                    $storeQuery->whereRaw('tracks.discount_type = stores.display')
+                        ->whereRaw('(
+                        (tracks.operator = "==" AND tracks.price = stores.amount)
+                        OR
+                        (tracks.operator = ">" AND stores.amount > tracks.price)
+                    )');
+                });
+        }])->get();
+
+        $emailData = [];
+
+        foreach ($usersWithSpecificTracks as $user) {
+            foreach ($user->tracks as $track) {
+                $store = $track->store;
+                if ($store) {
+                    $emailData[] = [
+                        'email' => $track->user->email,
+                        'name' => $track->user->name,
+                        'storeName' => $store->store_name,
+                        'discountType' => $track->discount_type,
+                        'amount' => $store->amount,
+                        'shoppingUrl' => $store->shopping_url,
+                    ];
+                }
+            }
+        }
+
+        foreach (array_chunk($emailData, 50) as $batch) {
+            foreach ($batch as $data) {
+                SendEmailJob::dispatch(
+                    $data['email'],
+                    $data['name'],
+                    $data['storeName'],
+                    $data['discountType'],
+                    $data['amount'],
+                    $data['shoppingUrl']
+                );
+            }
+        }
+
     }
 
     public function getallstore() {

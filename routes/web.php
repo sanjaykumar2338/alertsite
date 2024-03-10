@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\Subscriptions\PaymentController;
-use App\Http\Controllers\Subscriptions\SubscriptionController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\BlogsController;
 use App\Http\Controllers\Admin\PagesController;
+use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Subscriptions\PaymentController;
+use App\Http\Controllers\Subscriptions\SubscriptionController;
+use App\Http\Controllers\TrackController;
+use Illuminate\Support\Facades\Route;
 use Laravel\Cashier\Http\Controllers\WebhookController;
 
 /*
@@ -130,13 +131,6 @@ Route::group(['middleware' => ['role:seller']], function () {
   Route::get('/welcome', 'SubscriptionController@showWelcome');
 });
 
+Route::any('/email-send', [TrackController::class, 'sendEmailToUsersWithTracks']);
 
-Route::any('/dd', function (){
-    $user = auth()->user();
 
-    $tracks = $user->tracks();
-
-    $tracks = \App\Models\Tracks::where('user_id', auth()->id())->get();
-
-    dd($tracks);
-});
