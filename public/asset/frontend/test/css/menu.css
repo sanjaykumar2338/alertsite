@@ -1,0 +1,153 @@
+/* Navigation */
+.menu-section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.logo-con {
+  width: 320px;
+  height: auto;   
+  margin-left: 30px;  
+}
+.branding { width: 90%; margin-bottom: -40px; }
+.nav-flex {
+    padding: unset !important;
+}
+.menu-con {
+    width: 777px;
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.menu-tag {
+    width: 100%;
+}
+.menu-tag ul {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.menu-tag ul, .menu-tag ul li {
+    margin: 0px;
+    padding: 0px;
+}
+.menu-tag ul li {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    
+}
+.menu-tag ul li a {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    margin-left: 45px;
+    color: #221f1f;
+}
+/* inline and circle */
+.m-layout {
+    position: absolute;
+    bottom: 6px;
+    width: 100%;
+}
+.m-circle {
+    width: 21px;
+    height: 21px;
+    border-radius: 50px;
+    background-color: #ffffff;
+    border: 5px solid #221f1f;
+    z-index: 9;
+    position: absolute;
+    top: -12px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.m-line {
+    width: 100%;
+    height: 5px;
+    background-color: #221f1f;
+    z-index: 4;
+}
+.ml-con {
+    position: relative;
+}
+.track:hover {
+    border-bottom: 10px solid #005280;
+    color: #005280;
+    padding-bottom: 1px;
+}
+.faqs:hover {
+    border-bottom: 10px solid #88173c;
+    color: #88173c;
+    padding-bottom: 1px;
+}
+.contact:hover {
+    border-bottom: 10px solid #f6902d;
+    color: #f6902d;
+    padding-bottom: 1px;
+}
+.login:hover {
+    border-bottom: 10px solid #95bb3c;
+    color: #95bb3c;
+    padding-bottom: 1px;
+}
+.inner-cle-track, .inner-cle-faqs, .inner-cle-contact, .inner-cle-login {
+    width: 13px;
+    height: 13px;
+    border-radius: 50px;
+}
+.inner-cle-track {
+    background-color: #005280;
+}
+.inner-cle-faqs {
+    background-color: #88173c;
+}
+.inner-cle-contact {
+    background-color: #f6902d;
+}
+.inner-cle-login {
+    background-color: #95bb3c;
+}
+/* end / inline and circle */
+@media only screen and (max-width: 541px ) {
+    .menu-tag ul {
+        flex-direction: column;
+   }
+    .menu-tag ul li {
+        padding: 15px 0px 25px 20px;
+        text-align: left;
+   }
+    .menu-tag ul li a {
+        margin-left: 45px;
+   }
+    .ml-con {
+        top: 10px;
+   }
+    .logo-con {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+   }
+    .menu-tag {
+        width: 90%;
+   }
+}
+@media only screen and (max-width: 480px ) {
+    .menu-con {
+        width: 70%;
+   }
+    .logo-con {
+        width: 30%;
+   }
+    .logo-con a, .logo-con a img.branding {
+        width: 100%;
+        padding: 15px;
+   }
+}

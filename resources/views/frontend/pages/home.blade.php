@@ -2,42 +2,53 @@
 
 @section('content')
 
-<section class="slider-Product">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12 p-0 affter">
-                <div id="carouselExampleCaptions" class="carousel slide">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                            class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                    </div>
-                    <div class="carousel-inner" style="height: 600px;">
-                        <div class="carousel-item active">
-                            <img src="asset/frontend/images/employee-discount.png" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="asset/frontend/images/Employee-Discount-Programs-1024x627.jpg" class="d-block w-100" alt="...">
-                        </div>
-                    </div>
-                </div>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 960px; /* Set your desired maximum width */
+            margin: 0 auto;  /* Center the container */
+        }
+
+        .cta-sidebar {
+            width: 30%;
+            box-sizing: border-box; /* Include padding and border in the width */
+            padding: 15px; /* Optional: Add padding for better appearance */
+        }
+
+        .cta-sidebar div {
+            margin-bottom: 20px; /* Optional: Add margin between the two divs */
+        }
+
+        .cta-sidebar a {
+            display: inline-block; /* Ensure the anchor behaves as a block element */
+            padding: 10px 15px; /* Optional: Add padding to the anchor */
+            background-color: #8529cd; /* Set your desired background color */
+            color: #fff; /* Set your desired text color */
+            text-decoration: none; /* Remove underline from the anchor */
+        }
+
+    </style>
+
+    <div class="container" style="margin-bottom: 7rem">
+        <div class="cta-sidebar">
+            <div>
+                <p>Stay on top of <span style='color: #8529cd; width:auto;'>Rakuten</span> deals effortlessly with
+                    our
+                    tracking and alert system. Never miss out on savings again.</p>
+                <a href="https://www.rakuten.com/r/CARRIE21277?eeid=28187&amp;fbclid=IwAR1nvZOOBFIuGjHq-IaiM73dK8iVQaHBqHWOpa--7xWwPwdWYhSXTdoTMVw"
+                   class="cta-btn">Join Now!</a>
             </div>
+            <div>
+                <p>Already saving with TrackRak?</p>
+                <a href="https://www.rakuten.com/r/CARRIE21277?eeid=28187&amp;fbclid=IwAR1nvZOOBFIuGjHq-IaiM73dK8iVQaHBqHWOpa--7xWwPwdWYhSXTdoTMVw"
+                   class="cta-btn">Login Now!</a>
+            </div>
+        </div>
+        <div class="cta-sidebar" style="width: 70%;">
+            {!! $homepage->description !!}
         </div>
     </div>
-</section>
 
-    <section class="Justice">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-lg-12">
-                    <div class="left-text">
-                        {!! $homepage->description !!}
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        </div>
-    </section>
-    @endsection
+@endsection
