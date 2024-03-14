@@ -1,42 +1,42 @@
 <?php
+
 namespace App\Http\Controllers;
-use App\Models\User;
-use App\Models\Products;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Auth;
+
 use App\Models\PrintfulOrder;
+use App\Models\Products;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
 {
-	public function register(Request $request)
-    {
+    public function register(Request $request) {
+
         // Validate the incoming request with proper rules
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone_number' => 'required|string|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|confirmed|string|min:8'
         ]);
 
         // Create a new user instance
         $user = User::create([
-            'name' => $validatedData['name'],
+            'first_name' => $validatedData['first_name'],
+            'last_name' => $validatedData['last_name'],
+            'phone_number' => $request->full_phonenumber,
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
         ]);
-
-        // Optionally, you might want to automatically log in the user after registration
-        // Auth::login($user);
-
-        // Redirect to a success page or login page
 
         auth()->login($user);
         return redirect()->route('my_account')->with('success', 'Registration successful.');
     }
 
-    public function login(Request $request)
-    {
+    public function login(Request $request) {
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -45,9 +45,9 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            if(Auth::user()->email=='admin@gmail.com'){
+            if (Auth::user()->email == 'admin@gmail.com') {
                 return redirect('admin')->with('success', 'Login successful.');
-            }else{
+            } else {
                 return redirect()->route('track.list')->with('success', 'Login successful.');
             }
         }
@@ -57,8 +57,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function logout(Request $request)
-    {
+    public function logout(Request $request) {
         Auth::logout();
 
         $request->session()->invalidate();
@@ -69,7 +68,7 @@ class UserController extends Controller
         return redirect()->route('login');
     }
 
-    public function product_slug(){
+    public function product_slug() {
         // Retrieve all products
         $products = Products::all();
 
@@ -94,10 +93,10 @@ class UserController extends Controller
 
             // Add the new slug to the existing slugs array
             $existingSlugs[] = $newSlug;
-            
+
             // You might want to avoid duplicate slugs in the same batch:
             // $existingSlugs[] = $product->product_slug;
-            
+
             // Or consider validating uniqueness of $existingSlugs before adding
             // $existingSlugs[] = $newSlug;
         }
@@ -107,8 +106,8 @@ class UserController extends Controller
             echo "Product Name: {$product->name} - Updated Slug: {$product->product_slug}\n";
         }
     }
-    public function storeOrder(Request $request)
-    {
+
+    public function storeOrder(Request $request) {
 
         try {
             $_request = json_decode($request->getContent());
@@ -116,8 +115,8 @@ class UserController extends Controller
             $order->printful_order_data = $_request->printful_order_data;
             $order->product_id = $_request->product_id;
             $order->payment_id = $request->payment_id;
-            $order->printful_order_id = json_decode($_request->printful_order_data,true)['id'];
-            $order->customer_email = json_decode($_request->printful_order_data,true)['recipient']['email'];
+            $order->printful_order_id = json_decode($_request->printful_order_data, true)['id'];
+            $order->customer_email = json_decode($_request->printful_order_data, true)['recipient']['email'];
 
             if (auth()->check()) {
                 $order->user_id = auth()->user()->id;
