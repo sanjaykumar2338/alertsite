@@ -1,27 +1,46 @@
-@extends('frontend.layout.homepagelayout')
+@extends('frontend.layout.homepagenew')
 
 @section('content')
 
     <style>
-        .pricing-content{}
-        .single-pricing{
-            background:#fff;
-            padding:40px 20px;
-            border-radius:5px;
-            position:relative;
-            z-index:2;
-            border:1px solid #eee;
-            box-shadow: 0 10px 40px -10px rgba(0,64,128,.09);
-            transition:0.3s;
+
+        .monthly {
+            font-size: 200px;
+            margin-top:0;
         }
-        @media only screen and (max-width:480px) {
-            .single-pricing {margin-bottom:30px;}
+
+        .container {
+            margin-bottom: 50px;
         }
-        .single-pricing:hover{
-            box-shadow:0px 60px 60px rgba(0,0,0,0.1);
-            z-index:100;
+
+        .section-title h1 {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        .single-pricing {
+            background: #fff;
+            padding: 40px 20px;
+            border-radius: 5px;
+            position: relative;
+            z-index: 2;
+            border: 1px solid #eee;
+            box-shadow: 0 10px 40px -10px rgba(0, 64, 128, .09);
+            transition: 0.3s;
+        }
+
+        .single-pricing:hover {
+            box-shadow: 0px 60px 60px rgba(0, 0, 0, 0.1);
+            z-index: 100;
             transform: translate(0, -10px);
         }
+
+        .single-pricing-white {
+            background: #232434;
+        }
+
+        /* Price Label */
         .price-label {
             color: #fff;
             background: #ffaa17;
@@ -34,61 +53,188 @@
             margin-left: -20px;
             position: absolute;
         }
+
+        /* Price Head */
+        .price-head {
+            margin-bottom: 20px;
+        }
+
         .price-head h2 {
             font-weight: 600;
-            margin-bottom: 0px;
+            margin-bottom: 0;
             text-transform: capitalize;
             font-size: 26px;
         }
+
         .price-head span {
             display: inline-block;
-            background:#ffaa17;
+            background: #ffaa17;
             width: 6px;
             height: 6px;
             border-radius: 30px;
             margin-bottom: 20px;
             margin-top: 15px;
         }
+
+        /* Price */
         .price {
             font-weight: 500;
             font-size: 50px;
-            margin-bottom: 0px;
+            margin-bottom: 0;
         }
-        .single-pricing{}
-        .single-pricing h5 {
-            font-size: 14px;
-            margin-bottom: 0px;
-            text-transform: uppercase;
-        }
-        .single-pricing ul{
+
+        /* Pricing Features */
+        .single-pricing ul {
             list-style: none;
             margin-bottom: 20px;
             margin-top: 30px;
         }
 
-        .single-pricing ul li{line-height: 35px;}
+        .single-pricing ul li {
+            line-height: 35px;
+            font-weight: bold;
+        }
+
+        /* Pricing Links */
         .single-pricing a {
-            background:none;
+            background: none;
             border: 2px solid #ffaa17;
             border-radius: 5000px;
             color: #ffaa17;
             display: inline-block;
             font-size: 16px;
             overflow: hidden;
-            padding:10px 45px;
+            padding: 10px 45px;
             text-transform: capitalize;
             transition: all 0.3s ease 0s;
         }
-        .single-pricing a:hover, .single-pricing a:focus{
-            background:#ffaa17;
-            color:#fff;
+
+        .single-pricing a:hover,
+        .single-pricing a:focus {
+            background: #ffaa17;
+            color: #fff;
             border: 2px solid #ffaa17;
         }
-        .single-pricing-white{background: #232434}
-        .single-pricing-white ul li{color:#fff;}
-        .single-pricing-white h2{color:#fff;}
-        .single-pricing-white h1{color:#fff;}
-        .single-pricing-white h5{color:#fff;}
+
+        .pricing-content {
+        }
+
+        .single-pricing {
+            background: #fff;
+            padding: 40px 20px;
+            border-radius: 5px;
+            position: relative;
+            z-index: 2;
+            border: 1px solid #eee;
+            box-shadow: 0 10px 40px -10px rgba(0, 64, 128, .09);
+            transition: 0.3s;
+        }
+
+        @media only screen and (max-width: 480px) {
+            .single-pricing {
+                margin-bottom: 30px;
+            }
+        }
+
+        .single-pricing:hover {
+            box-shadow: 0px 60px 60px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            transform: translate(0, -10px);
+        }
+
+        .price-label {
+            color: #fff;
+            background: #ffaa17;
+            font-size: 16px;
+            width: 100px;
+            margin-bottom: 15px;
+            display: block;
+            -webkit-clip-path: polygon(100% 0%, 90% 50%, 100% 100%, 0% 100%, 0 50%, 0% 0%);
+            clip-path: polygon(100% 0%, 90% 50%, 100% 100%, 0% 100%, 0 50%, 0% 0%);
+            margin-left: -20px;
+            position: absolute;
+        }
+
+        .price-head h2 {
+            font-weight: 600;
+            margin-bottom: 0px;
+            text-transform: capitalize;
+            font-size: 26px;
+        }
+
+        .price-head span {
+            display: inline-block;
+            background: #ffaa17;
+            width: 6px;
+            height: 6px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            margin-top: 15px;
+        }
+
+        .price {
+            font-weight: 500;
+            font-size: 50px;
+            margin-bottom: 0px;
+        }
+
+        .single-pricing {
+        }
+
+        .single-pricing h5 {
+            font-size: 14px;
+            margin-bottom: 0px;
+            text-transform: uppercase;
+        }
+
+        .single-pricing ul {
+            list-style: none;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+
+        .single-pricing ul li {
+            line-height: 35px;
+        }
+
+        .single-pricing a {
+            background: none;
+            border: 2px solid #ffaa17;
+            border-radius: 5000px;
+            color: #ffaa17;
+            display: inline-block;
+            font-size: 16px;
+            overflow: hidden;
+            padding: 10px 45px;
+            text-transform: capitalize;
+            transition: all 0.3s ease 0s;
+        }
+
+        .single-pricing a:hover, .single-pricing a:focus {
+            background: #ffaa17;
+            color: #fff;
+            border: 2px solid #ffaa17;
+        }
+
+        .single-pricing-white {
+            background: #232434
+        }
+
+        .single-pricing-white ul li {
+            color: #fff;
+        }
+
+        .single-pricing-white h2 {
+            color: #fff;
+        }
+
+        .single-pricing-white h1 {
+            color: #fff;
+        }
+
+        .single-pricing-white h5 {
+            color: #fff;
+        }
 
     </style>
 
@@ -102,32 +248,31 @@
                             {{ Session::get('success') }}
                         </div>
                     @endif
-
                     @if(session('error'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             {{ session('error') }}
                         </div>
                     @endif
-
                     @if(session('cancel'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('cancel') }}
                         </div>
                     @endif
-
                     @if(session('unable'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             {{ session('unable') }}
                         </div>
                     @endif
 
-
                     <div class="section-title text-center mb-3">
                         <h1 class="fw-bold">Subscription Plans</h1>
                     </div>
-                    <div class="row text-center">
+
+                    <div class="row text-center" style="display: flex; justify-content: center; gap: 30px;">
                         <div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s"
-                             data-wow-delay="0.1s" data-wow-offset="0">
+                             data-wow-delay="0.1s" data-wow-offset="0"
+                             style="width:350px !important; text-align: center;"
+                        >
                             <div class="single-pricing">
                                 @if($currentPlanName === 'free')
                                     <span class="price-label fw-bold pe-2 text-black">Subscribed</span>
@@ -142,7 +287,7 @@
                                     <span></span>
                                 </div>
                                 <h1 class="price">$0</h1>
-                                <h5>Monthly</h5>
+                                <h5 class="monthly">Monthly</h5>
                                 <ul>
                                     <li class="fw-bold text-center d-block" style="padding-right: 35px">1 Alert</li>
                                 </ul>
@@ -161,7 +306,9 @@
                             </div>
                         </div><!--- END COL -->
                         <div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s"
-                             data-wow-delay="0.2s" data-wow-offset="0">
+                             data-wow-delay="0.2s" data-wow-offset="0"
+                             style="width:350px !important; text-align: center"
+                        >
                             <div class="single-pricing">
                                 @if($currentPlanName === 'basic')
                                     <span class="price-label fw-bold pe-2 text-black">Subscribed</span>
@@ -176,7 +323,7 @@
                                     <span></span>
                                 </div>
                                 <h1 class="price">$4.99</h1>
-                                <h5>Monthly</h5>
+                                <h5 class="monthly">Monthly</h5>
                                 <ul>
                                     <li class="fw-bold text-center d-block" style="padding-right: 35px">5 Alerts</li>
                                 </ul>
@@ -195,7 +342,9 @@
                             </div>
                         </div><!--- END COL -->
                         <div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s"
-                             data-wow-delay="0.3s" data-wow-offset="0">
+                             data-wow-delay="0.3s" data-wow-offset="0"
+                             style="width:350px !important; text-align: center"
+                        >
                             <div class="single-pricing single-pricing-white">
                                 @if($currentPlanName === 'premium')
                                     <span class="price-label fw-bold pe-2 text-black">Subscribed</span>
@@ -211,7 +360,7 @@
                                 </div>
                                 <span class="price-label text-black">Best</span>
                                 <h1 class="price">$9.99</h1>
-                                <h5>Monthly</h5>
+                                <h5 class="monthly">Monthly</h5>
                                 <ul>
                                     <li class="fw-bold text-center d-block" style="padding-right: 35px">10 Alerts</li>
                                 </ul>
