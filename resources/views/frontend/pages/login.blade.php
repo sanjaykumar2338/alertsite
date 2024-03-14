@@ -2,84 +2,104 @@
 
 @section('content')
 
-<style>
-     form {border: 3px solid #f1f1f1;}
+    <style>
 
-    input[type=text], input[type=password] {
-      width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
+        .Login-form-submit-section {
+            margin-top: 13px;
+            font-weight: bolder;
+            display: flex;
+            align-content: center;
+            gap: 5px;
+        }
 
-    .cancelbtn {
-      width: auto;
-      padding: 10px 18px;
-      background-color: #f44336;
-    }
+        .create-account-hover:hover {
+            cursor: pointer;
+        }
 
-    .imgcontainer {
-      text-align: center;
-      margin: 24px 0 12px 0;
-    }
+        .login-title {
+            font-size: 4rem;
+        }
 
-    img.avatar {
-      width: 40%;
-      border-radius: 50%;
-    }
+        form {
+            width: 100%
+        }
 
-    .container {
-      padding: 16px;
-    }
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 7px;
+        }
 
-    span.psw {
-      float: right;
-      padding-top: 16px;
-    }
+        button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 7px;
+            background-color: #d1ddb0;
+            color: black;
+            font-weight: bold;
+            border: none;
+        }
 
-    /* Change styles for span and cancel button on extra small screens */
-    @media screen and (max-width: 300px) {
-      span.psw {
-         display: block;
-         float: none;
-      }
-      .cancelbtn {
-         width: 100%;
-      }
-    }
-</style>
-</head>
-<body>
-<form method="POST" action="{{ route('login') }}">
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+        }
 
-  @csrf
+    </style>
 
-  <div class="imgcontainer">
-    <h2>Login</h2>
-  </div>
+    <section class="main-section full-container">
+        <div class="container flex l-gap  flex-mobile">
+            <div class="cta-sidebar">
+                <div><p>Stay on top of <span style="color: #8529cd; width:auto;">Rakuten</span> deals effortlessly with
+                        our tracking and alert system. Never miss out on savings again.</p><a
+                        href="https://www.rakuten.com/r/CARRIE21277?eeid=28187&amp;fbclid=IwAR1nvZOOBFIuGjHq-IaiM73dK8iVQaHBqHWOpa--7xWwPwdWYhSXTdoTMVw"
+                        class="cta-btn">Join Now!</a></div>
+                <div><p>Already saving with TrackRak?</p><a
+                        href="https://www.rakuten.com/r/CARRIE21277?eeid=28187&amp;fbclid=IwAR1nvZOOBFIuGjHq-IaiM73dK8iVQaHBqHWOpa--7xWwPwdWYhSXTdoTMVw"
+                        class="cta-btn">Login Now!</a></div>
+            </div>
+            <div class="page-content pg-l">
+                <h1 class="login-title">Login</h1>
 
-  @if ($errors->any())
-      <div class="alert alert-danger">
-          {{ $errors->first() }}
-      </div>
-  @endif
+                <form method="POST" action="{{ route('login') }}">
 
-  @if(session('message'))
-    <div class="alert alert-info">
-        {{ session('message') }}
-    </div>
-  @endif
+                    @csrf
 
-  <div class="container">
-    <label for="uname"><b>Email</b></label>
-    <input type="text" placeholder="Enter Username" name="email" required>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            {{ $errors->first() }}
+                        </div>
+                    @endif
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
-        
-    <button type="submit" class="btn btn-primary">Submit</button>   
-  </div>
-</form>
+                    @if(session('message'))
+                        <div class="alert alert-info">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+
+                    <label for="uname"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Username" name="email" required>
+
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+
+                    <button type="submit" class="btn btn-primary">Login</button>
+
+                    <div class="Login-form-submit-section">
+                        <span>Haven't created account yet ?</span>
+                        <span class="create-account-hover"><a href="{{ route('register.form') }}">Create Account</a></span>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
 @endsection
