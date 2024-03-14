@@ -89,6 +89,18 @@
                             </div>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('plans') }}" class="m-hover login">Plans
+                            <div class="ml-con">
+                                <div class="m-layout">
+                                    <div class="m-circle">
+                                        <div class="inner-cle-login"></div>
+                                    </div>
+                                    <div class="m-line"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
