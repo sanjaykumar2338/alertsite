@@ -77,7 +77,7 @@ Route::get('/updateEmptyImageColumns', [App\Http\Controllers\HomeController::cla
 Route::get('/pricing', [App\Http\Controllers\HomeController::class, 'pricing'])->name('pricing');
 Route::get('/contactus', [App\Http\Controllers\HomeController::class, 'contactus'])->name('contactus');
 Route::get('/aboutus', [App\Http\Controllers\HomeController::class, 'aboutus'])->name('aboutus');
-Route::get('/track', [App\Http\Controllers\HomeController::class, 'track'])->name('track');
+Route::get('/track', [App\Http\Controllers\HomeController::class, 'track'])->middleware('auth')->name('track');
 Route::get('/faq', [App\Http\Controllers\HomeController::class, 'faq'])->name('faq');
 Route::get('/terms-and-conditions', [App\Http\Controllers\HomeController::class, 'terms'])->name('terms');
 Route::get('/shop2', [App\Http\Controllers\HomeController::class, 'shop2'])->name('shop2');
@@ -94,7 +94,7 @@ Route::get('/order_history', [App\Http\Controllers\HomeController::class, 'order
 Route::get('/return_order', [App\Http\Controllers\HomeController::class, 'return_order'])->name('return_order');
 Route::get('/donate_now', [App\Http\Controllers\HomeController::class, 'donate_now'])->name('donate_now');
 Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
-Route::get('/register', [App\Http\Controllers\HomeController::class, 'register'])->name('register');
+Route::get('/register', [App\Http\Controllers\HomeController::class, 'register'])->name('register.form');
 Route::get('/product_design', [App\Http\Controllers\HomeController::class, 'product_design'])->name('product_design');
 Route::get('/create_product', [App\Http\Controllers\HomeController::class, 'create_product'])->name('create_product');
 
@@ -132,5 +132,3 @@ Route::group(['middleware' => ['role:seller']], function () {
 });
 
 Route::any('/email-send', [TrackController::class, 'sendEmailToUsersWithTracks']);
-
-
