@@ -4,6 +4,13 @@
 
     <style>
 
+        .text-danger {
+            color: #dc3545; /* Red color for indicating danger */
+            font-size: 14px; /* Adjust font size as needed */
+            margin: 0 0 5px 0; /* Add spacing between the input field and error message */
+            display: block; /* Ensure error message appears on a new line */
+        }
+
         .iti.iti--allow-dropdown {
             width: 100%
         }
@@ -37,6 +44,12 @@
             border: none;
         }
 
+        button:disabled {
+            background-color: #cccccc; /* Change background color */
+            color: #666666; /* Change text color */
+            cursor: not-allowed; /* Change cursor style */
+        }
+
         @media screen and (max-width: 300px) {
             span.psw {
                 display: block;
@@ -64,57 +77,58 @@
                 <form method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
 
-                        <div>
-                            <label for="first_name"><b>First Name</b></label>
-                            <input type="text" id="first_name" placeholder="Enter First Name" name="first_name">
-                            @error('first_name')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+                    <div>
+                        <label for="first_name"><b>First Name</b></label>
+                        <input type="text" id="first_name" placeholder="Enter First Name" name="first_name">
+                        @error('first_name')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                        <div>
-                            <label for="last_name"><b>Last Name</b></label>
-                            <input type="text" id="last_name" placeholder="Enter Last Name" name="last_name">
-                            @error('last_name')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+                    <div>
+                        <label for="last_name"><b>Last Name</b></label>
+                        <input type="text" id="last_name" placeholder="Enter Last Name" name="last_name">
+                        @error('last_name')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                        <div>
-                            <label for="phone_number" class="mb-2"><b>Phone Number</b></label>
-                            <input id="phone_number" type="text" name="phone_number">
-                            @error('phone_number')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+                    <div>
+                        <label for="phone_number" class="mb-2"><b>Phone Number</b></label>
+                        <input id="phone_number" type="text" name="phone_number">
+                        @error('phone_number')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
 
-                        <div>
-                            <label for="uname"><b>Email</b></label>
-                            <input type="text" placeholder="Enter Email" name="email">
-                            @error('email')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+                    <div>
+                        <label for="uname"><b>Email</b></label>
+                        <input type="text" placeholder="Enter Email" name="email">
+                        @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                        <div>
-                            <label for="psw"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="password">
-                            @error('password')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+                    <div>
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="password">
+                        @error('password')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                        <div>
-                            <label for="psw"><b>Confirm Password</b></label>
-                            <input type="password" placeholder="Enter Confirm Password" name="password_confirmation">
-                            @error('password_confirmation')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+                    <div>
+                        <label for="psw"><b>Confirm Password</b></label>
+                        <input type="password" placeholder="Enter Confirm Password" name="password_confirmation">
+                        @error('password_confirmation')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                        <button type="submit" disabled id="intlTelInputFormSubmitBtn" class="btn btn-primary">Sign Up
-                        </button>
+                    <button type="submit" disabled id="intlTelInputFormSubmitBtn" class="btn btn-primary">Sign Up
+                    </button>
+
                 </form>
             </div>
 
