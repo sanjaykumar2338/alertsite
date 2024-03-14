@@ -54,6 +54,30 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('plans') }}" class="m-hover login">Plans
+                            <div class="ml-con">
+                                <div class="m-layout">
+                                    <div class="m-circle">
+                                        <div class="inner-cle-track"></div>
+                                    </div>
+                                    <div class="m-line"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('aboutus') }}" class="m-hover faqs">AboutUS
+                            <div class="ml-con">
+                                <div class="m-layout">
+                                    <div class="m-circle">
+                                        <div class="inner-cle-faqs"></div>
+                                    </div>
+                                    <div class="m-line"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('faq') }}" class="m-hover faqs">FAQs
                             <div class="ml-con">
                                 <div class="m-layout">
@@ -89,18 +113,6 @@
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('plans') }}" class="m-hover login">Plans
-                            <div class="ml-con">
-                                <div class="m-layout">
-                                    <div class="m-circle">
-                                        <div class="inner-cle-login"></div>
-                                    </div>
-                                    <div class="m-line"></div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -123,7 +135,7 @@
                     <div><a class="f-menu" ref="#">TRACK</a></div>
                     <div><a class="f-menu" ref="#">FAQs</a></div>
                     <div><a class="f-menu" ref="#">CONTACT</a></div>
-                    <div>@2024 TrackRak, All Right Reserved | Terms & Condition</div>
+                    <div>@2024 TrackRak, All Right Reserved | <a href="{{ route('terms') }}">Terms & Condition</a></div>
                 </div>
             </div>
         </div>
