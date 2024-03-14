@@ -11,7 +11,6 @@
 
     {{--Intl Tel Input--}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.6/build/css/intlTelInput.css">
-{{--    <link rel="stylesheet" href="{{asset('asset/frontend/css/bootstrap.min.css')}}">--}}
 
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -34,7 +33,7 @@
 <header class="menu-section full-container">
     <div class="container flex f-row flex-m-p nav-flex">
         <div class="logo-con">
-            <a href="#">
+            <a href="{{ route('home') }}">
                 <img src="{{ asset('asset/frontend/test/images/branding.png') }}"
                      class="branding"/>
             </a>
@@ -55,7 +54,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="faqs.html" class="m-hover faqs">FAQs
+                        <a href="{{ route('faq') }}" class="m-hover faqs">FAQs
                             <div class="ml-con">
                                 <div class="m-layout">
                                     <div class="m-circle">
@@ -67,7 +66,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="contact.html" class="m-hover contact">Contact
+                        <a href="{{ route('contactus') }}" class="m-hover contact">Contact
                             <div class="ml-con">
                                 <div class="m-layout">
                                     <div class="m-circle">
@@ -79,7 +78,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="auth.html" class="m-hover login">SignUp/Login
+                        <a href="{{ route('login') }}" class="m-hover login">SignUp/Login
                             <div class="ml-con">
                                 <div class="m-layout">
                                     <div class="m-circle">
