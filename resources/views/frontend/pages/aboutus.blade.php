@@ -1,41 +1,18 @@
-@extends('frontend.layout.homepagelayout')
+@extends('frontend.layout.homepagenew')
 
 @section('content')
 
-
-<!-- ========== End header ========== -->
-<!-- ========== Start about us heading ========== -->
-<section class="about-heading">
-    <div class="container">
-        <div class="text">
-            <h4>about us</h4>
-
-        </div>
-    </div>
-</section>
-<!-- ========== End about us heading ========== -->
-
-
-
-
-
-
-
+            <h1 style="text-align:center">ABOUT US</h1>
 
 <!-- ========== Start about-us-section ========== -->
-<section class="about-section">
+<section class="about-section" style="margin-bottom: 20px">
     <div class="container">
         <div class="row">
-           
             <div class="col-lg-12 col-md-12 d-flex align-items-center">
                 <div class="text-right">
-                    
                    {!! $aboutus->description !!}
-                   
-                    
                 </div>
             </div>
-
         </div>
     </div>
 </section>
