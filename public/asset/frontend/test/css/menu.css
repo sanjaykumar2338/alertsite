@@ -1,14 +1,14 @@
 /* Navigation */
 .menu-section {
-  padding-top: 40px;
-  padding-bottom: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 .logo-con {
-  width: 320px;
-  height: auto;   
-  margin-left: 30px;  
+    width: 320px;
+    height: auto;
+    margin-left: 30px;
 }
-.branding { width: 90%; margin-bottom: -40px; }
+.branding { margin-bottom: -40px; }
 .nav-flex {
     padding: unset !important;
 }
@@ -36,7 +36,7 @@
     display: inline-block;
     width: 100%;
     text-align: left;
-    
+
 }
 .menu-tag ul li a {
     font-family: "Bebas Neue", sans-serif;
@@ -119,35 +119,35 @@
 @media only screen and (max-width: 541px ) {
     .menu-tag ul {
         flex-direction: column;
-   }
+    }
     .menu-tag ul li {
         padding: 15px 0px 25px 20px;
         text-align: left;
-   }
+    }
     .menu-tag ul li a {
         margin-left: 45px;
-   }
+    }
     .ml-con {
         top: 10px;
-   }
+    }
     .logo-con {
         display: flex;
         flex-direction: row;
         align-items: center;
-   }
+    }
     .menu-tag {
         width: 90%;
-   }
+    }
 }
 @media only screen and (max-width: 480px ) {
     .menu-con {
         width: 70%;
-   }
+    }
     .logo-con {
         width: 30%;
-   }
+    }
     .logo-con a, .logo-con a img.branding {
         width: 100%;
         padding: 15px;
-   }
+    }
 }
