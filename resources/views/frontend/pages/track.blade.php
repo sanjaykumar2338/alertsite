@@ -4,30 +4,31 @@
     <section class="main-section full-container">
         <div class="container flex l-gap flex-mobile lr-m">
             <div class="cta-sidebar">
-                <div><p>Stay on top of <span style='color: #8529cd; width:auto;'>Rakuten</span> deals effortlessly with
-                        our
-                        tracking and alert system. Never miss out on savings again.</p><a
-                        href="https://www.rakuten.com/r/CARRIE21277?eeid=28187&amp;fbclid=IwAR1nvZOOBFIuGjHq-IaiM73dK8iVQaHBqHWOpa--7xWwPwdWYhSXTdoTMVw"
-                        class="cta-btn">Join Now!</a></div>
-                <div><p>Already saving with TrackRak?</p><a
-                        href="https://www.rakuten.com/r/CARRIE21277?eeid=28187&amp;fbclid=IwAR1nvZOOBFIuGjHq-IaiM73dK8iVQaHBqHWOpa--7xWwPwdWYhSXTdoTMVw"
-                        class="cta-btn">Login Now!</a></div>
+                <div>
+                    <p><span class="tagline">TrackRak &amp;<br>Get More<br>Money Back!</span><br>
+                        <br>
+                        Stay on top of <a style="color: #8529cd; width:auto; font-weight: 600; text-decoration: none;" href="http://tinyurl.com/d98frkfy" target="_blank">Rakuten</a> deals with our alert tool. Never miss out on savings again!<br>
+                        <br>
+                        Your first alert is <strong>FREE!</strong></p>
+                    <a href="#" class="cta-btn">Join now!</a>
+                </div>
+                <div>
+                    <p>Already saving with TrackRak?</p>
+                    <a href="#" class="cta-btn">Login now!</a>
+                </div>
             </div>
             <div class="page-content home">
                 <div>
                     <form method="post">
                         <div class="form-control-input">
-                            <label>
-                                STORE
-                                <sup>
+                            <label>STORE <sup>
                                     <div class="q-ask">?</div>
                                 </sup>
                             </label>
-                            <input type="input" name="store[]" id="store[]" class="l-store"/></div>
+                            <input type="input" name="store[]" id="store[]" class="l-store">
+                        </div>
                         <div class="form-control-input">
-                            <label>
-                                OPERATOR
-                                <sup>
+                            <label>OPERATOR <sup>
                                     <div class="q-ask">?</div>
                                 </sup>
                             </label>
@@ -42,50 +43,48 @@
                                     <div class="q-ask">?</div>
                                 </sup>
                             </label>
-                            <input type="input" name="percent[]" id="percent[]" class="l-percent"/>
+                            <input type="input" name="percent[]" id="percent[]" class="l-percent">
                         </div>
                         <div class="form-control-atype">
-                            <label>ALERT TYPE <sup><span class="q-ask">?</span></sup></label>
+                            <label>ALERT TYPE <sup>
+                                    <span class="q-ask">?</span>
+                                </sup>
+                            </label>
                             <div>
                                 <div class="box-container">
-                                    <input type="radio" name="alert_checkbox[]" id="alert_checkbox[]"
-                                           class="l-alert_checkbox" value="1"
-                                           onClick="singleSelection(this)"
-                                    />
+                                    <input type="radio" name="alert_checkbox[]" id="alert_checkbox[]" class="l-alert_checkbox" value="1" onclick="singleSelection(this)">
                                     <div class="box-label">Email</div>
                                 </div>
                                 <div class="box-container">
-                                    <input type="radio" name="alert_checkbox[]" id="alert_checkbox[]"
-                                           class="l-alert_checkbox" value="2"
-                                           onClick="singleSelection(this)"
-                                    />
+                                    <input type="radio" name="alert_checkbox[]" id="alert_checkbox[]" class="l-alert_checkbox" value="2" onclick="singleSelection(this)">
                                     <div class="box-label">Text/SMS</div>
                                 </div>
                                 <div class="box-container">
-                                    <input type="radio" name="alert_checkbox[]" id="alert_checkbox[]"
-                                           class="l-alert_checkbox" checked="1" value="3"
-                                           onClick="singleSelection(this)"
-                                    />
+                                    <input type="radio" name="alert_checkbox[]" id="alert_checkbox[]" class="l-alert_checkbox" checked="1" value="3" onclick="singleSelection(this)">
                                     <div class="box-label">Both</div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-control-alert-on">
-                            <label>ALERT <sup><span class="q-ask">?</span></sup></label>
+                            <label>ALERT <sup>
+                                    <span class="q-ask">?</span>
+                                </sup>
+                            </label>
                             <label class="switch">
-                                <input type="checkbox"
-                                       name="alert_on[]"
-                                       id="alert_on[]"
-                                       class="l-alert_on"
-                                       checked=""/>
+                                <input type="checkbox" name="alert_on[]" id="alert_on[]" class="l-alert_on" checked="">
                                 <div class="slider round">
                                     <div class="on-label">ON</div>
-                                    <div class="off-label">OFF</div>
+                                    <div class="off-label end">OFF</div>
                                 </div>
-                            </label></div>
-                        <div class="form-control-add"><label>ADD ANOTHER</label>
-                            <button id="add" class="l-add"><span class="icom-p">+</span></button>
-                            <input type="submit" id="submit" class="l-submit" value="Submit"/></div>
+                            </label>
+                        </div>
+                        <div class="form-control-add">
+                            <label>ADD ANOTHER</label>
+                            <button id="add" class="l-add">
+                                <span class="icom-p">+</span>
+                            </button>
+                            <input type="submit" id="submit" class="l-submit" value="Submit">
+                        </div>
                     </form>
                 </div>
             </div>
@@ -96,11 +95,11 @@
             <div class="hero-column flex-m-2">
                 <div class="hero-main">
                     <div class="h-icon">1</div>
-                    <div class="h-con bcccf">SIGN UP FOR TRACKAPAK TODAY!</div>
+                    <div class="h-con bcccf">SIGN UP FOR TRACKRAK TODAY!</div>
                 </div>
                 <div class="hero-main">
                     <div class="h-icon">2</div>
-                    <div class="h-con adfd">SIGN UP YOUR ALERT USING OUR SIMPLE FORM.</div>
+                    <div class="h-con adfd">SET UP ALERTS USING OUR SIMPLE FORM.</div>
                 </div>
                 <div class="hero-main">
                     <div class="h-icon">3</div>
