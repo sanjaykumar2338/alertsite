@@ -34,8 +34,7 @@
     <div class="container flex f-row flex-m-p nav-flex">
         <div class="logo-con">
             <a href="{{ route('home') }}">
-                <img src="{{ asset('asset/frontend/test/images/branding.png') }}"
-                     class="branding"/>
+                <img src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" class="branding"/>
             </a>
         </div>
         <div class="menu-con">
@@ -54,31 +53,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('plans') }}" class="m-hover login">Plans
-                            <div class="ml-con">
-                                <div class="m-layout">
-                                    <div class="m-circle">
-                                        <div class="inner-cle-track"></div>
-                                    </div>
-                                    <div class="m-line"></div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('aboutus') }}" class="m-hover faqs">AboutUS
-                            <div class="ml-con">
-                                <div class="m-layout">
-                                    <div class="m-circle">
-                                        <div class="inner-cle-faqs"></div>
-                                    </div>
-                                    <div class="m-line"></div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('faq') }}" class="m-hover faqs">FAQs
+                        <a href="{{ route('faq') }}" class="m-hover faqs">FAQ<span class="sm-ls-menu">s</span>
                             <div class="ml-con">
                                 <div class="m-layout">
                                     <div class="m-circle">
@@ -123,25 +98,34 @@
 
 <!-- ========== Start footer ========== -->
 
-{{--<footer>--}}
 <section class="full-container ftr-content">
     <footer class="container b-top">
         <div class="ftr-content flex-m-2">
             <div class="l-cols">
-                <img src="{{ asset('asset/frontend/test/images/trackrak.jpg') }}" alt="trackrak"/>
+                <a href="http://tinyurl.com/d98frkfy" class="r-link" target="_blank">
+                    <img src="{{ asset('/asset/frontend/test/images/get-rakuten.png') }}"
+                         alt="Get Rakuten"></a>
             </div>
             <div class="r-cols">
                 <div class="menu-ftr">
-                    <div><a class="f-menu" ref="#">TRACK</a></div>
-                    <div><a class="f-menu" ref="#">FAQs</a></div>
-                    <div><a class="f-menu" ref="#">CONTACT</a></div>
-                    <div>@2024 TrackRak, All Right Reserved | <a href="{{ route('terms') }}">Terms & Condition</a></div>
+                    <div>
+                        <a class="f-menu" href="{{ route('track') }}">TRACK</a>
+                    </div>
+                    <div>
+                        <a class="f-menu" href="{{ route('plans') }}">PLANS</a>
+                    </div>
+                    <div>
+                        <a class="f-menu" href="{{ route('aboutus') }}">ABOUT US</a>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="ftr-info">
+            <div id="ftr_yr">@2024</div>
+            <div class="ftr-terms">TrackRak, All Rights Reserved | <a href="{{ route('terms') }}">Terms &amp; Conditions</a></div>
+        </div>
     </footer>
 </section>
-{{--</footer>--}}
 
 <!-- ========== End footer ========== -->
 <script id="form_fields" type="text/javascript" src="{{ asset('asset/frontend/test/js/script.js') }}"></script>
