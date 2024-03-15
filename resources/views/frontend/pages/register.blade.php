@@ -73,7 +73,7 @@
             </div>
 
             <div class="page-content pg-l">
-                <h1 class="login-title">SIGNUP</h1>
+                <h1 class="page-title">SIGNUP</h1>
                 <form method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
 
