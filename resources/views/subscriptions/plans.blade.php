@@ -264,8 +264,8 @@
                         </div>
                     @endif
 
-                    <div class="section-title text-center mb-3">
-                        <h1 class="fw-bold">Subscription Plans</h1>
+                    <div>
+                        <h1 class="page-title" style="width: 64%">Subscription Plans</h1>
                     </div>
 
                     <div class="row text-center" style="display: flex; justify-content: center; gap: 30px;">
