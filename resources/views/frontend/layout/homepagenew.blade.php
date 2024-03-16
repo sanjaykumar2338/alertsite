@@ -121,7 +121,7 @@
             </div>
         </div>
         <div class="ftr-info">
-            <div id="ftr_yr">@2024</div>
+            <div id="ftr_yr">{{\App\Models\Pages::where('slug', 'terms-and-conditions')->first()->created_at->format('Y')}}</div>
             <div class="ftr-terms">TrackRak, All Rights Reserved | <a href="{{ route('terms') }}">Terms &amp; Conditions</a></div>
         </div>
     </footer>
