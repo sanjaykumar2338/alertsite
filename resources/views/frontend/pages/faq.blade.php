@@ -11,11 +11,11 @@
                         Stay on top of <a style="color: #8529cd; width:auto; font-weight: 600; text-decoration: none;" href="http://tinyurl.com/d98frkfy" target="_blank">Rakuten</a> deals with our alert tool. Never miss out on savings again!<br>
                         <br>
                         Your first alert is <strong>FREE!</strong></p>
-                    <a href="#" class="cta-btn">Join now!</a>
+                    <a href="{{route('register')}}" class="cta-btn">Join now!</a>
                 </div>
                 <div>
                     <p>Already saving with TrackRak?</p>
-                    <a href="#" class="cta-btn">Login now!</a>
+                    <a href="{{route('login')}}" class="cta-btn">Login now!</a>
                 </div>
             </div>
             <div class="page-content pg-l">
