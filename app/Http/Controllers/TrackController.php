@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\SendEmailJob;
+use App\Jobs\SendSMSJob;
 use App\Jobs\UpdateStoresJob;
 use App\Models\Tracks;
 use App\Models\User;
@@ -134,6 +135,70 @@ class TrackController extends Controller
         //echo "<pre>"; print_r($request->all()); die;
     }
 
+    public function sendSMSToUsers() {
+
+        $usersWithSpecificTracks = User::whereHas('tracks', function ($query) {
+            $query->where('status', 1)
+                ->where('alert_text', 'text')
+                ->whereHas('store', function ($storeQuery) {
+                    $storeQuery->whereRaw('tracks.discount_type = stores.display')
+                        ->whereRaw('(
+                        (tracks.operator = "==" AND tracks.price = stores.amount)
+                        OR
+                        (tracks.operator = ">" AND stores.amount > tracks.price)
+                    )');
+                });
+        })->with(['tracks' => function ($query) {
+            $query->where('status', 1)
+                ->where('alert_text', 'text')
+                ->whereHas('store', function ($storeQuery) {
+                    $storeQuery->whereRaw('tracks.discount_type = stores.display')
+                        ->whereRaw('(
+                        (tracks.operator = "==" AND tracks.price = stores.amount)
+                        OR
+                        (tracks.operator = ">" AND stores.amount > tracks.price)
+                    )');
+                });
+        }])->get();
+
+//        dd($usersWithSpecificTracks);
+
+        $smsData = [];
+
+        foreach ($usersWithSpecificTracks as $user) {
+            foreach ($user->tracks as $track) {
+                $store = $track->store;
+                if ($store) {
+                    $smsData[] = [
+                        'name' => $track->user->first_name . $track->user->last_name,
+                        'phone_number' => $track->user->phone_number,
+                        'storeName' => $store->store_name,
+                        'discountType' => $track->discount_type,
+                        'amount' => $store->amount,
+                        'shoppingUrl' => $store->shopping_url,
+                        'operator' => $track->operator
+                    ];
+                }
+            }
+        }
+
+        foreach (array_chunk($smsData, 50) as $batch) {
+            foreach ($batch as $data) {
+                SendSMSJob::dispatch(
+                    $data['name'],
+                    $data['phone_number'],
+                    $data['storeName'],
+                    $data['discountType'],
+                    $data['amount'],
+                    $data['shoppingUrl'],
+                    $data['operator']
+                );
+            }
+        }
+
+
+    }
+
     public function sendEmailToUsersWithTracks() {
 
         $usersWithSpecificTracks = User::whereHas('tracks', function ($query) {
@@ -168,7 +233,7 @@ class TrackController extends Controller
                 if ($store) {
                     $emailData[] = [
                         'email' => $track->user->email,
-                        'name' => $track->user->name,
+                        'name' => $track->user->first_name . $track->user->last_name,
                         'storeName' => $store->store_name,
                         'discountType' => $track->discount_type,
                         'amount' => $store->amount,
