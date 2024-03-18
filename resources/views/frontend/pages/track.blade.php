@@ -7,7 +7,9 @@
                 <div>
                     <p><span class="tagline">TrackRak &amp;<br>Get More<br>Money Back!</span><br>
                         <br>
-                        Stay on top of <a style="color: #8529cd; width:auto; font-weight: 600; text-decoration: none;" href="http://tinyurl.com/d98frkfy" target="_blank">Rakuten</a> deals with our alert tool. Never miss out on savings again!<br>
+                        Stay on top of <a style="color: #8529cd; width:auto; font-weight: 600; text-decoration: none;"
+                                          href="http://tinyurl.com/d98frkfy" target="_blank">Rakuten</a> deals with our
+                        alert tool. Never miss out on savings again!<br>
                         <br>
                         Your first alert is <strong>FREE!</strong></p>
                     <a href="{{route('register')}}" class="cta-btn">Join now!</a>
@@ -19,23 +21,83 @@
             </div>
             <div class="page-content home">
                 <div>
-                    <form method="post">
+                    <style>
+                        .selectpicker option {
+                            border: none;
+                            background-color: white;
+                            outline: none;
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            color: black;
+                            font-size: 1rem;
+                            margin: 0;
+                            padding-left: 0;
+                            margin-top: -20px;
+                            background: none;
+                        }
+
+                        select.selectpicker {
+                            border: none;
+                            background-color: #FFFFFF !important;
+                            outline: none;
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            color: black;
+                            height: 2.5rem;
+                            font-size: 1rem;
+                            margin: 0;
+                            padding-left: 0.7rem;
+                            padding-top: 3px !important;
+                            padding-bottom: 3px !important;
+                            margin-top: -20px;
+                            background: none;
+                            width: 76.5%;
+                        }
+                        .alert {
+                            padding: 2px;
+                            margin-bottom: 50px;
+                            border: 1px solid transparent;
+                            border-radius: 4px;
+                        }
+
+                        .alert-danger {
+                            color: #721c24;
+                            background-color: #f8d7da;
+                            border-color: #f5c6cb;
+                        }
+                    </style>
+
+                    @if (count($errors) > 0)
+                        <div class = "alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form name="save_track" method="post" action="{{route('track.save')}}">
+                        @csrf
                         <div class="form-control-input">
-                            <label>STORE <sup>
+                            <label for="store">STORE <sup>
                                     <div class="q-ask">?</div>
                                 </sup>
                             </label>
-                            <input type="input" name="store[]" id="store[]" class="l-store">
+                            <select name="store" id="store" class="l-store selectpicker">
+                                @foreach($stores as $store)
+                                    <option value="{{$store->store_id}}">{{$store->store_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-control-input">
                             <label>OPERATOR <sup>
                                     <div class="q-ask">?</div>
                                 </sup>
                             </label>
-                            <select name="operator[]" id="operator[]" class="l-operator">
-                                <option value="Option 1">Option 1</option>
-                                <option value="Option 2">Option 2</option>
-                                <option value="Option 3">Option 3</option>
+                            <select class="l-operator" id="discount_type" name="discount_type">
+                                <option>Fixed</option>
+                                <option>Percentage</option>
                             </select>
                         </div>
                         <div class="form-control-input">
@@ -43,7 +105,17 @@
                                     <div class="q-ask">?</div>
                                 </sup>
                             </label>
-                            <input type="input" name="percent[]" id="percent[]" class="l-percent">
+                            <select class="l-operator" id="operator" name="operator">
+                                <option value=">">> (Great than)</option>
+                                <option value="==">== (Equal to)</option>
+                            </select>
+                        </div>
+                        <div class="form-control-input">
+                            <label>PRICE <sup>
+                                    <div class="q-ask">?</div>
+                                </sup>
+                            </label>
+                            <input type="number" class="l-operator" placeholder="Enter Price" id="price" name="price" style="width: 73.3% !important;height: 1.2rem !important; color: black !important;">
                         </div>
                         <div class="form-control-atype">
                             <label>ALERT TYPE <sup>
@@ -52,15 +124,19 @@
                             </label>
                             <div>
                                 <div class="box-container">
-                                    <input type="radio" name="alert_checkbox[]" id="alert_checkbox[]" class="l-alert_checkbox" value="1" onclick="singleSelection(this)">
+                                    <input type="radio" value="email" name="alert_type" id="alert_checkbox[]"
+                                           class="l-alert_checkbox" onclick="singleSelection(this)">
                                     <div class="box-label">Email</div>
                                 </div>
                                 <div class="box-container">
-                                    <input type="radio" name="alert_checkbox[]" id="alert_checkbox[]" class="l-alert_checkbox" value="2" onclick="singleSelection(this)">
+                                    <input type="radio" name="alert_type" id="alert_checkbox[]"
+                                           class="l-alert_checkbox" value="text" onclick="singleSelection(this)">
                                     <div class="box-label">Text/SMS</div>
                                 </div>
                                 <div class="box-container">
-                                    <input type="radio" name="alert_checkbox[]" id="alert_checkbox[]" class="l-alert_checkbox" checked="1" value="3" onclick="singleSelection(this)">
+                                    <input type="radio" name="alert_type" id="alert_checkbox[]"
+                                           class="l-alert_checkbox" checked="1" value="both"
+                                           onclick="singleSelection(this)">
                                     <div class="box-label">Both</div>
                                 </div>
                             </div>
@@ -71,7 +147,7 @@
                                 </sup>
                             </label>
                             <label class="switch">
-                                <input type="checkbox" name="alert_on[]" id="alert_on[]" class="l-alert_on" checked="">
+                                <input type="checkbox" id="status" name="status" class="l-alert_on" checked value="1">
                                 <div class="slider round">
                                     <div class="on-label">ON</div>
                                     <div class="off-label end">OFF</div>
