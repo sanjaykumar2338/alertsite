@@ -23,7 +23,7 @@ class AdminController extends Controller{
     }
 
     public function customer(){
-        $customers = User::paginate(5);
+        $customers = User::where('role',1)->paginate(5);
         return view('admin.pages.user.index')->with('customers',$customers)->with('activeLink','customer');
     }
 }
