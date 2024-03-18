@@ -7,6 +7,7 @@ use App\Models\Pages;
 use App\Models\PrintfulOrder;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
@@ -43,7 +44,8 @@ class HomeController extends Controller
 
     public function track() {
         $track = Pages::where('slug', 'track')->first();
-        return view('frontend.pages.track')->with('track', $track);
+        $stores = DB::table('stores')->get();
+        return view('frontend.pages.track')->with('track', $track)->with('stores', $stores);
     }
 
     public function faq() {
