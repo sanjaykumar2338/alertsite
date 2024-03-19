@@ -77,16 +77,29 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('login') }}" class="m-hover login">SignUp/Login
-                            <div class="ml-con">
-                                <div class="m-layout">
-                                    <div class="m-circle">
-                                        <div class="inner-cle-login"></div>
+                        @if(auth()->check())
+                            <a href="{{ route('track.list') }}" class="m-hover login">My Account
+                                <div class="ml-con">
+                                    <div class="m-layout">
+                                        <div class="m-circle">
+                                            <div class="inner-cle-login"></div>
+                                        </div>
+                                        <div class="m-line"></div>
                                     </div>
-                                    <div class="m-line"></div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}" class="m-hover login">SignUp/Login
+                                <div class="ml-con">
+                                    <div class="m-layout">
+                                        <div class="m-circle">
+                                            <div class="inner-cle-login"></div>
+                                        </div>
+                                        <div class="m-line"></div>
+                                    </div>
+                                </div>
+                            </a>
+                        @endif
                     </li>
                 </ul>
             </div>
@@ -121,8 +134,10 @@
             </div>
         </div>
         <div class="ftr-info">
-            <div id="ftr_yr">{{\App\Models\Pages::where('slug', 'terms-and-conditions')->first()->created_at->format('Y')}}</div>
-            <div class="ftr-terms">TrackRak, All Rights Reserved | <a href="{{ route('terms') }}">Terms &amp; Conditions</a></div>
+            <div
+                id="ftr_yr">{{\App\Models\Pages::where('slug', 'terms-and-conditions')->first()->created_at->format('Y')}}</div>
+            <div class="ftr-terms">TrackRak, All Rights Reserved | <a href="{{ route('terms') }}">Terms &amp;
+                    Conditions</a></div>
         </div>
     </footer>
 </section>
