@@ -80,6 +80,8 @@ Route::get('/aboutus', [App\Http\Controllers\HomeController::class, 'aboutus'])-
 Route::get('/track', [App\Http\Controllers\HomeController::class, 'track'])->middleware('auth')->name('track');
 Route::get('/faq', [App\Http\Controllers\HomeController::class, 'faq'])->name('faq');
 Route::get('/terms-and-conditions', [App\Http\Controllers\HomeController::class, 'terms'])->name('terms');
+Route::get('/privacy-policy', [App\Http\Controllers\HomeController::class, 'privacy_policy'])->name('privacy_policy');
+
 Route::get('/shop2', [App\Http\Controllers\HomeController::class, 'shop2'])->name('shop2');
 Route::get('/media', [App\Http\Controllers\HomeController::class, 'media'])->name('media');
 Route::get('/justice', [App\Http\Controllers\HomeController::class, 'justice'])->name('justice');

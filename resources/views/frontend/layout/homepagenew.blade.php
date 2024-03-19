@@ -137,7 +137,7 @@
             <div
                 id="ftr_yr">{{\App\Models\Pages::where('slug', 'terms-and-conditions')->first()->created_at->format('Y')}}</div>
             <div class="ftr-terms">TrackRak, All Rights Reserved | <a href="{{ route('terms') }}">Terms &amp;
-                    Conditions</a></div>
+                    Conditions</a> | <a href="{{ route('privacy_policy') }}">Privacy Policy</a></div>
         </div>
     </footer>
 </section>

@@ -58,6 +58,11 @@ class HomeController extends Controller
         return view('frontend.pages.terms')->with('terms', $terms);
     }
 
+    public function privacy_policy() {
+        $terms = Pages::where('slug', 'privacy-policy')->first();
+        return view('frontend.pages.terms')->with('terms', $terms);
+    }
+
     public function shop2() {
         return view('frontend.pages.shop');
     }
