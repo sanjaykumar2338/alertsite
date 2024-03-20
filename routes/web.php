@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BlogsController;
 use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Subscriptions\PaymentController;
+use App\Http\Controllers\Subscriptions\StripeWebhookController;
 use App\Http\Controllers\Subscriptions\SubscriptionController;
 use App\Http\Controllers\TrackController;
 use Illuminate\Support\Facades\Route;
@@ -132,6 +133,9 @@ Route::get('/welcome', 'SubscriptionController@showWelcome')->middleware('subscr
 Route::group(['middleware' => ['role:seller']], function () {
   Route::get('/welcome', 'SubscriptionController@showWelcome');
 });
+
+
+Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook'])->name('cashier.webhook');
 
 Route::any('/email-send', [TrackController::class, 'sendEmailToUsersWithTracks']);
 Route::any('/sms-send', [TrackController::class, 'sendSMSToUsers']);
