@@ -58,7 +58,7 @@
     <a href="{{url('/admin')}}" class="brand-link">
       <img style="margin-left: -0.2rem;" src="{{url('/')}}/asset/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span style="font-size: 17PX;" class="brand-text font-weight-light">{{env('APP_NAME')}}</span>
+      <span style="font-size: 13PX;" class="brand-text font-weight-light">{{env('APP_NAME')}}</span>
     </a>
 
     <!-- Sidebar -->
