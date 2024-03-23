@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 
 class UserController extends Controller
@@ -22,6 +23,28 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|confirmed|string|min:8'
         ]);
+
+        $validator = Validator::make($request->all(), [
+            'full_phonenumber' =>
+                function ($attribute, $value, $fail) {
+                    if (User::where('phone_number', $value)->exists()) {
+                        $fail('The phone number has already been taken.');
+                    }
+                },
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            if ($errors->has('full_phonenumber')) {
+                $fullPhoneNumberError = $errors->first('full_phonenumber');
+            } else {
+                $fullPhoneNumberError = null;
+            }
+            session()->flash('fullPhoneNumberError', $fullPhoneNumberError);
+            return back();
+        }
+
+        dd('hasan');
 
         // Create a new user instance
         $user = User::create([
