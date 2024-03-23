@@ -35,6 +35,7 @@ Route::group(['prefix' => 'admin','middleware' => 'check.auth'], function () {
     Route::get('photos/create/{id}', 'PhotoController@create');
     Route::get('/order', [AdminController::class, 'order']);
     Route::get('/customer', [AdminController::class, 'customer']);
+    Route::post('/cancel-subscription/{id}', [AdminController::class, 'cancelSubscription'])->name('cancel.subscription');
 
     //blogs
     Route::get('blogs', [BlogsController::class, 'index']);

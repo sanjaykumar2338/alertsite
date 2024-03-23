@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container flex l-gap  flex-mobile">
+    <div class="container flex l-gap flex-mobile custom-margin-top">
         <div class="cta-sidebar">
             <div><p>Stay on top of <span style="color: #8529cd; width:auto;">Rakuten</span> deals effortlessly with our
                     tracking and alert system. Never miss out on savings again.</p><a

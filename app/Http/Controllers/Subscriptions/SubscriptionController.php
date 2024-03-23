@@ -19,6 +19,7 @@ class SubscriptionController extends Controller
         $currentPlanName = '';
 
         $user = auth()->user();
+        $userSubscribed = $user->subscribed();
         if ($user){
             $subscription = $user->subscription('default');
             if ($subscription) {
@@ -29,7 +30,7 @@ class SubscriptionController extends Controller
             }
         }
 
-        return view('subscriptions.plans', compact('plansArray', 'currentPlanName'));
+        return view('subscriptions.plans', compact('plansArray', 'currentPlanName', 'user', 'userSubscribed'));
 
     }
 }

@@ -3,11 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{{env('APP_NAME')}} | Admin</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{env('APP_NAME')}} | Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{url('/')}}/asset/admin/plugins/fontawesome-free/css/all.min.css">
+  <!-- Sweet Alert 2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
@@ -58,13 +62,13 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">     
+    <div class="sidebar">
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->  
-          
+               with font-awesome or any other icon font library -->
+
           <li class="nav-item has-treeview menu-open">
             <a href="{{url('/')}}" class="nav-link" target="_blank">
               <i class="nav-icon fas fa-solid fa-globe"></i>
@@ -72,8 +76,8 @@
                 View Site
                 <i class="right fas"></i>
               </p>
-            </a>            
-          </li>  
+            </a>
+          </li>
 
           <li class="nav-item has-treeview menu-open">
             <a href="{{url('/')}}/admin" class="nav-link {{$activeLink=='dashboard'?'active':''}}">
@@ -82,9 +86,9 @@
                 Dashboard
                 <i class="right fas"></i>
               </p>
-            </a>            
+            </a>
           </li>
-          
+
           <li class="nav-item has-treeview">
             <a href="{{url('/admin/customer')}}" class="nav-link {{$activeLink=='customer'?'active':''}}">
               <i class="nav-icon fas fa-solid fa-user"></i>
@@ -127,7 +131,7 @@
                 Logout
               </p>
             </a>
-          </li>       
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -135,7 +139,7 @@
     <!-- /.sidebar -->
   </aside>
 
-  <div class="content-wrapper">    
+  <div class="content-wrapper">
     <!-- Main content -->
     @yield('content')
     <!-- /.content -->
@@ -143,7 +147,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; {{date('Y')}}</strong>
-    All rights reserved.    
+    All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -190,9 +194,66 @@
 
 <script src="https://cdn.tiny.cloud/1/7gtylscgdr875mfsqpbflevbsvh2fwh9blxq0mhiab5psdd5/tinymce/6/tinymce.min.js"></script>
 
+<!-- Sweet Alert 2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js"></script>
+
 <script>
 
-      tinymce.init({
+    $(document).ready(function() {
+        $('#cancel-subscription-btn').on('click', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, cancel it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: $(this).data('route'),
+                        type: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            if (response.status === 'cancelled'){
+                                window.location.href = window.location.href + '?showNotification=true';
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert('Error: ' + xhr.responseText);
+                        }
+                    });
+                }
+            });
+        });
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('showNotification')) {
+            Swal.fire({
+                title: "Subscription Cancelled!",
+                text: "Customer subscription has been cancelled.",
+                icon: "success"
+            });
+            const newUrl = window.location.href.split('?')[0];
+            history.replaceState({}, document.title, newUrl);
+        }
+
+        $('#not-subscribed-btn').on('click', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "User Not Subscribed",
+                icon: "warning"
+            });
+        });
+
+    });
+
+
+
+    tinymce.init({
           selector: 'textarea#description',
           plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
           imagetools_cors_hosts: ['picsum.photos'],
@@ -253,4 +314,4 @@
 
 
 </body>
-</html> 
+</html>

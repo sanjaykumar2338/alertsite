@@ -236,6 +236,27 @@
             color: #fff;
         }
 
+        .native-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            padding: .75rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+
+        .native-error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            padding: .75rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+
+
     </style>
 
     <div class="container mt-2 mb-5">
@@ -244,22 +265,22 @@
                 <div class="container">
 
                     @if(Session::has('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <div class="alert native-success" role="alert">
                             {{ Session::get('success') }}
                         </div>
                     @endif
                     @if(session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div class="alert native-error" role="alert">
                             {{ session('error') }}
                         </div>
                     @endif
                     @if(session('cancel'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <div class="alert native-success" role="alert">
                             {{ session('cancel') }}
                         </div>
                     @endif
                     @if(session('unable'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div class="alert native-error" role="alert">
                             {{ session('unable') }}
                         </div>
                     @endif
@@ -291,7 +312,7 @@
                                 <ul>
                                     <li class="fw-bold text-center d-block" style="padding-right: 35px">1 Alert</li>
                                 </ul>
-                                @if($currentPlanName === 'free')
+                                @if($user && $userSubscribed && $currentPlanName === 'free')
                                     <a
                                         style="background-color: #cb1414; color: white; text-decoration: none; border:none"
                                         href="{{ route('subscription-cancel') }}"
@@ -327,7 +348,7 @@
                                 <ul>
                                     <li class="fw-bold text-center d-block" style="padding-right: 35px">5 Alerts</li>
                                 </ul>
-                                @if($currentPlanName === 'basic')
+                                @if($user && $userSubscribed && $currentPlanName === 'basic')
                                     <a
                                         style="background-color: #cb1414; color: white; text-decoration: none; border:none"
                                         href="{{ route('subscription-cancel') }}"
@@ -364,7 +385,7 @@
                                 <ul>
                                     <li class="fw-bold text-center d-block" style="padding-right: 35px">10 Alerts</li>
                                 </ul>
-                                @if($currentPlanName === 'premium')
+                                @if($user && $userSubscribed && $currentPlanName === 'premium')
                                     <a
                                         style="background-color: #cb1414; color: white; text-decoration: none; border:none"
                                         href="{{ route('subscription-cancel') }}"

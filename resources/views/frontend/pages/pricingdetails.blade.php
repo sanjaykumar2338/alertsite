@@ -328,7 +328,7 @@
 
     <div class="loading" hidden id="screen-loader">Loading&#8230;</div>
 
-    <section class="Support-Cause" style="margin-top:25px">
+    <section class="Support-Cause custom-margin-top">
         <div class="container">
             <h1 class="page-title" style="width:24%;">Pricing<br></h1>
             <div class="cell example example5">

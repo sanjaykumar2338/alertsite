@@ -71,15 +71,23 @@
                            <th>Name</th>
                            <th>Email</th>
                            <th>Registration On</th>
+                           <th class="text-center">Cancel Subscription</th>
                         </tr>
                      </thead>
                      <tbody>
-                        
+
                         @foreach($customers as $customer)
                             <tr>
-                                <td>{{$customer->name}}</td>
+                                <td>{{$customer->first_name . ' ' . $customer->last_name }}</td>
                                 <td>{{$customer->email}}</td>
                                 <td>{{$customer->created_at}}</td>
+                                <td class="justify-content-center text-center">
+                                @if($customer->subscribed())
+                                    <button data-route="{{ route('cancel.subscription', $customer->id) }}" type="button" id="cancel-subscription-btn" class="btn btn-danger">Cancel</button>
+                                @else
+                                    <button type="button" id="not-subscribed-btn" class="btn btn-info">Not Subscribed</button>
+                                @endif
+                                </td>
                             </tr>
                         @endforeach
 
@@ -94,13 +102,14 @@
          </div>
          <!-- /.card -->
       </div>
+    </div>
    </div>
 </section>
 <div class="pagination">
         @if ($customers->previousPageUrl())
             << <a href="{{ $customers->previousPageUrl() }}">Previous</a>
         @endif
-        
+
         @if ($customers->nextPageUrl())
             &nbsp;&nbsp;&nbsp;<a href="{{ $customers->nextPageUrl() }}">Next >></a>
         @endif

@@ -6,11 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Payment;
+use PhpParser\Node\Stmt\If_;
+
 class AdminController extends Controller{
-    
+
     public function __construct()
     {
         //$this->middleware('auth');
+    }
+
+    public function cancelSubscription(User $id){
+        if ($id && $id->subscribed('default')) {
+            $id->subscription('default')->cancelNow();
+        }
+        return response()->json(['status' => 'cancelled']);
     }
 
     public function index(Request $request){
@@ -23,7 +32,7 @@ class AdminController extends Controller{
     }
 
     public function customer(){
-        $customers = User::where('role',2)->paginate(5);
+        $customers = User::where('role', 2)->paginate(5);
         return view('admin.pages.user.index')->with('customers',$customers)->with('activeLink','customer');
     }
 }
