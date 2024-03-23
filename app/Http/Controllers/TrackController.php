@@ -196,6 +196,8 @@ class TrackController extends Controller
             }
         }
 
+        //echo "<pre>"; print_r($usersWithSpecificTracks); die;
+
         foreach (array_chunk($smsData, 50) as $batch) {
             foreach ($batch as $data) {
                 SendSMSJob::dispatch(

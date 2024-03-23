@@ -54,7 +54,7 @@
 
                     @if (Auth::check())
                         <li>
-                            @if(Auth::user()->email=='admin@gmail.com')
+                            @if(Auth::user()->role==1)
                                 <span style="cursor: pointer;" class="add-border"
                                       onclick='location.href ="{{route('my_account')}}";'>
                                         My Account

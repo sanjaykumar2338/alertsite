@@ -136,6 +136,5 @@ Route::group(['middleware' => ['role:seller']], function () {
 
 
 Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook'])->name('cashier.webhook');
-
 Route::any('/email-send', [TrackController::class, 'sendEmailToUsersWithTracks']);
 Route::any('/sms-send', [TrackController::class, 'sendSMSToUsers']);
