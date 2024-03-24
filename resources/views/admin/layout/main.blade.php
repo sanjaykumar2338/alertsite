@@ -124,6 +124,7 @@
                 Settings
               </p>
             </a>
+            
 
             <a href="{{url('/logout')}}" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
