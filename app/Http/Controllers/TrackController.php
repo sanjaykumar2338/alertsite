@@ -39,49 +39,6 @@ class TrackController extends Controller
         }
     }
 
-    public function getstorewithname() {
-
-        $url = "https://api.engager.ecbsn.com/datagrid/rest/v1/data";
-        $name = "button_domain_batch_v1";
-
-        for ($i = 0; $i < 40; $i++) {
-            $data = \DB::table('stores')->offset($i * 100)->limit(100)->pluck('store_id')->toArray();
-            $variables = json_encode(["storeIds" => $data]);
-
-            $queryParams = http_build_query([
-                "name" => $name,
-                "variables" => $variables
-            ]);
-
-            $requestUrl = "$url?$queryParams";
-            $headers = array(
-                'Client-Agent: button',
-                'Cookie: AWSALB=gQohOefAFs4jwe/MaeO8F1XYpacK1MPTm9aNk0uHr8q8dFr8XLRDOXocDDuapu7sdDGDIdujWLDCo5Xdzw8fdT15rCscBiG09lnBLjEezyJOYsjt1MihuE3jt2nw; AWSALBCORS=gQohOefAFs4jwe/MaeO8F1XYpacK1MPTm9aNk0uHr8q8dFr8XLRDOXocDDuapu7sdDGDIdujWLDCo5Xdzw8fdT15rCscBiG09lnBLjEezyJOYsjt1MihuE3jt2nw'
-            );
-
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $requestUrl);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-            $response = curl_exec($ch);
-
-            if (curl_errno($ch)) {
-                //echo 'Error: ' . curl_error($ch);
-            } else {
-                //echo $response;
-            }
-
-            curl_close($ch);
-            $data = json_decode($response, true);
-            //echo "<pre>"; print_r($data); die;
-
-            foreach ($data['data']['stores'] as $row) {
-                \DB::table('stores')->where('store_id', $row['storeId'])->update(['store_name' => $row['storeName'], 'site_url' => $row['siteUrl'], 'shopping_url' => $row['shoppingURL']]);
-            }
-        }
-    }
-
     public function update(Request $request, $id) {
         try {
             $this->validate($request, [
@@ -303,6 +260,49 @@ class TrackController extends Controller
                 \DB::table('stores')->where('store_id', $row['id'])->update(['amount' => $row['reward']['amount'], 'display' => $row['reward']['display']]);
             } else {
                 \DB::table('stores')->insert(['store_id' => $row['id'], 'amount' => $row['reward']['amount'], 'display' => $row['reward']['display']]);
+            }
+        }
+    }
+
+    public function getstorewithname() {
+
+        $url = "https://api.engager.ecbsn.com/datagrid/rest/v1/data";
+        $name = "button_domain_batch_v1";
+
+        for ($i = 0; $i < 40; $i++) {
+            $data = \DB::table('stores')->offset($i * 100)->limit(100)->pluck('store_id')->toArray();
+            $variables = json_encode(["storeIds" => $data]);
+
+            $queryParams = http_build_query([
+                "name" => $name,
+                "variables" => $variables
+            ]);
+
+            $requestUrl = "$url?$queryParams";
+            $headers = array(
+                'Client-Agent: button',
+                'Cookie: AWSALB=gQohOefAFs4jwe/MaeO8F1XYpacK1MPTm9aNk0uHr8q8dFr8XLRDOXocDDuapu7sdDGDIdujWLDCo5Xdzw8fdT15rCscBiG09lnBLjEezyJOYsjt1MihuE3jt2nw; AWSALBCORS=gQohOefAFs4jwe/MaeO8F1XYpacK1MPTm9aNk0uHr8q8dFr8XLRDOXocDDuapu7sdDGDIdujWLDCo5Xdzw8fdT15rCscBiG09lnBLjEezyJOYsjt1MihuE3jt2nw'
+            );
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $requestUrl);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+            $response = curl_exec($ch);
+
+            if (curl_errno($ch)) {
+                //echo 'Error: ' . curl_error($ch);
+            } else {
+                //echo $response;
+            }
+
+            curl_close($ch);
+            $data = json_decode($response, true);
+            //echo "<pre>"; print_r($data); die;
+
+            foreach ($data['data']['stores'] as $row) {
+                \DB::table('stores')->where('store_id', $row['storeId'])->update(['store_name' => $row['storeName'], 'site_url' => $row['siteUrl'], 'shopping_url' => $row['shoppingURL']]);
             }
         }
     }
