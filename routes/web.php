@@ -138,6 +138,6 @@ Route::group(['middleware' => ['role:seller']], function () {
 Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook'])->name('cashier.webhook');
 Route::any('/email-send', [TrackController::class, 'sendEmailToUsersWithTracks']);
 Route::any('/sms-send', [TrackController::class, 'sendSMSToUsers']);
-Route::any('/get-store-price', [TrackController::class, 'getallstore']);
-Route::any('/get-store-name', [TrackController::class, 'getstorewithname']);
+Route::get('/get-store-price', [TrackController::class, 'getallstore']);
+Route::get('/get-store-name', [TrackController::class, 'getstorewithname']);
 
