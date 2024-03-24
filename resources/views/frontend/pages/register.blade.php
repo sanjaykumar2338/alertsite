@@ -79,7 +79,7 @@
 
                     <div>
                         <label for="first_name"><b>First Name</b></label>
-                        <input type="text" id="first_name" placeholder="Enter First Name" name="first_name">
+                        <input value="{{ old('first_name') }}" type="text" id="first_name" placeholder="Enter First Name" name="first_name">
                         @error('first_name')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -87,7 +87,7 @@
 
                     <div>
                         <label for="last_name"><b>Last Name</b></label>
-                        <input type="text" id="last_name" placeholder="Enter Last Name" name="last_name">
+                        <input value="{{ old('last_name') }}" type="text" id="last_name" placeholder="Enter Last Name" name="last_name">
                         @error('last_name')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -95,16 +95,18 @@
 
                     <div>
                         <label for="phone_number" class="mb-2"><b>Phone Number</b></label>
-                        <input id="phone_number" type="text" name="phone_number">
+                        <input value="{{ old('phone_number') }}" id="phone_number" type="text" name="phone_number">
                         @error('phone_number')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
+                        @if (session('fullPhoneNumberError'))
+                            <span class="text-danger" style="margin-top: 2px">{{ session('fullPhoneNumberError') }}</span>
+                        @endif
                     </div>
-
 
                     <div>
                         <label for="uname"><b>Email</b></label>
-                        <input type="text" placeholder="Enter Email" name="email">
+                        <input value="{{ old('email') }}" type="text" placeholder="Enter Email" name="email">
                         @error('email')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
