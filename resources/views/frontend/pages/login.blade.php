@@ -87,7 +87,7 @@
             <div class="page-content pg-l">
                 <h1 class="page-title">Login</h1>
 
-                <form method="POST" action="{{ route('login2') }}">
+                <form method="POST" action="{{ route('login') }}">
 
                     @csrf
 

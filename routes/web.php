@@ -109,7 +109,7 @@ Route::get('/country/product/{category}', [App\Http\Controllers\HomeController::
 
 Route::post('/register', [App\Http\Controllers\UserController::class, 'register'])->name('register');
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
-Route::post('/login', [App\Http\Controllers\UserController::class, 'login'])->name('login2');
+Route::post('/login', [App\Http\Controllers\UserController::class, 'login'])->name('login');
 Route::get('/product_slug', [App\Http\Controllers\UserController::class, 'product_slug'])->name('product_slug');
 Route::post('/storeOrder', [App\Http\Controllers\UserController::class, 'storeOrder']);
 
