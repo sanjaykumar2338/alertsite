@@ -2,39 +2,48 @@
 
 @section('content')
 
-    <section class="main-section full-container">
-        <div class="container flex l-gap flex-mobile lr-m">
-            <div class="cta-sidebar">
-                <div>
-                    <p><span class="tagline">TrackRak &<br />Get More<br />Money Back!</span><br />
-                        <br />
-                        Stay on top of <a style='color: #8529cd; width:auto; font-weight: 600; text-decoration: none;' href="http://tinyurl.com/d98frkfy" target="_blank">Rakuten</a> deals with our alert tool. Never miss out on savings again!<br />
-                        <br />
-                        Your first alert is <strong>FREE!</strong></p>
-                    <a href="#" class="cta-btn">Join now!</a>
-                </div>
-                <div>
-                    <p>Already saving with TrackRak?</p>
-                    <a href="#" class="cta-btn">Login now!</a>
-                </div>
+<section class="main-section full-container">
+    <div class="container flex l-gap flex-mobile lr-m">
+        <div class="cta-sidebar">
+            <div>
+                <p><span class="tagline">TrackRak &<br />Get More<br />Money Back!</span><br />
+                    <br />
+                    Stay on top of <a style='color: #8529cd; width:auto; font-weight: 600; text-decoration: none;' href="http://tinyurl.com/d98frkfy" target="_blank">Rakuten</a> deals with our alert tool. Never miss out on savings again!<br />
+                    <br />
+                    Your first alert is <strong>FREE!</strong>
+                </p>
+                <a href="#" class="cta-btn">Join now!</a>
             </div>
-            <div class="page-content pg-l">
-                <h1 class="page-title">FAQ <span class="sm-ls">s</span>
-                </h1>
-                <div class="accordion-app">
-                    <button class="accordion"><div class="t-label">Lorem Ipsum is simply dummy</div></button>
-                    <div class="panel" style="display: none;">{!! $faq->description !!}</div>
-                    <button class="accordion"><div class="t-label">Lorem Ipsum is simply dummy</div></button>
-                    <div class="panel" style="display: none;">{!! $faq->description !!}</div>
-                    <button class="accordion"><div class="t-label">Lorem Ipsum is simply dummy</div></button>
-                    <div class="panel" style="display: none;">{!! $faq->description !!}</div>
-                    <button class="accordion"><div class="t-label">Lorem Ipsum is simply dummy</div></button>
-                    <div class="panel" style="display: none;">{!! $faq->description !!}</div>
-                </div>
+            <div>
+                <p>Already saving with TrackRak?</p>
+                <a href="#" class="cta-btn">Login now!</a>
             </div>
         </div>
-    </section>
+        <div class="page-content pg-l">
+            <h1 class="page-title">FAQ <span class="sm-ls">s</span>
+            </h1>
+            <div class="accordion-app">
+                <button class="accordion">
+                    <div class="t-label">Lorem Ipsum is simply dummy</div>
+                </button>
+                <div class="panel" style="display: none;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit veniam unde beatae repudiandae ratione suscipit, illum incidunt similique corrupti inventore ducimus. Error similique consequuntur odio accusantium. Ut molestiae explicabo quo sed saepe repellendus dignissimos cum distinctio hic praesentium accusantium laudantium eius facilis quis quasi, provident in at reprehenderit repellat quia.</div>
+                <button class="accordion">
+                    <div class="t-label">Lorem Ipsum is simply dummy</div>
+                </button>
+                <div class="panel" style="display: none;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit veniam unde beatae repudiandae ratione suscipit, illum incidunt similique corrupti inventore ducimus. Error similique consequuntur odio accusantium. Ut molestiae explicabo quo sed saepe repellendus dignissimos cum distinctio hic praesentium accusantium laudantium eius facilis quis quasi, provident in at reprehenderit repellat quia.</div>
+                <button class="accordion">
+                    <div class="t-label">Lorem Ipsum is simply dummy</div>
+                </button>
+                <div class="panel" style="display: none;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit veniam unde beatae repudiandae ratione suscipit, illum incidunt similique corrupti inventore ducimus. Error similique consequuntur odio accusantium. Ut molestiae explicabo quo sed saepe repellendus dignissimos cum distinctio hic praesentium accusantium laudantium eius facilis quis quasi, provident in at reprehenderit repellat quia.</div>
+                <button class="accordion">
+                    <div class="t-label">Lorem Ipsum is simply dummy</div>
+                </button>
+                <div class="panel" style="display: none;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit veniam unde beatae repudiandae ratione suscipit, illum incidunt similique corrupti inventore ducimus. Error similique consequuntur odio accusantium. Ut molestiae explicabo quo sed saepe repellendus dignissimos cum distinctio hic praesentium accusantium laudantium eius facilis quis quasi, provident in at reprehenderit repellat quia.</div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    @includeIf('frontend.layout.hero-section')
+@includeIf('frontend.layout.hero-section')
 
 @endsection
