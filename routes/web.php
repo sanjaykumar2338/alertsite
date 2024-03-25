@@ -123,7 +123,7 @@ Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
 
-Route::get('plans', [SubscriptionController::class, 'index'])->name('plans');
+Route::get('plans', [SubscriptionController::class, 'index'])->middleware('auth')->name('plans');
 Route::get('/plan/{id}', [App\Http\Controllers\HomeController::class, 'plandetails'])->middleware('auth')->name('plan.detail');
 Route::get('/subscribe', 'SubscriptionController@showSubscription');
 Route::post('/subscribe', [PaymentController::class, 'store'])->name('subscribe.form');
