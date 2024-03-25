@@ -49,7 +49,7 @@ class HomeController extends Controller
     }
 
     public function faq() {
-        $faq = Pages::where('slug', 'faq')->first();
+        $faq = Pages::where('slug', 'faq')->get();
         return view('frontend.pages.faq')->with('faq', $faq);
     }
 
