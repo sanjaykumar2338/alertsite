@@ -23,22 +23,12 @@
             <h1 class="page-title">FAQ <span class="sm-ls">s</span>
             </h1>
             <div class="accordion-app">
-                <button class="accordion">
-                    <div class="t-label">Lorem Ipsum is simply dummy</div>
-                </button>
-                <div class="panel" style="display: none;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit veniam unde beatae repudiandae ratione suscipit, illum incidunt similique corrupti inventore ducimus. Error similique consequuntur odio accusantium. Ut molestiae explicabo quo sed saepe repellendus dignissimos cum distinctio hic praesentium accusantium laudantium eius facilis quis quasi, provident in at reprehenderit repellat quia.</div>
-                <button class="accordion">
-                    <div class="t-label">Lorem Ipsum is simply dummy</div>
-                </button>
-                <div class="panel" style="display: none;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit veniam unde beatae repudiandae ratione suscipit, illum incidunt similique corrupti inventore ducimus. Error similique consequuntur odio accusantium. Ut molestiae explicabo quo sed saepe repellendus dignissimos cum distinctio hic praesentium accusantium laudantium eius facilis quis quasi, provident in at reprehenderit repellat quia.</div>
-                <button class="accordion">
-                    <div class="t-label">Lorem Ipsum is simply dummy</div>
-                </button>
-                <div class="panel" style="display: none;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit veniam unde beatae repudiandae ratione suscipit, illum incidunt similique corrupti inventore ducimus. Error similique consequuntur odio accusantium. Ut molestiae explicabo quo sed saepe repellendus dignissimos cum distinctio hic praesentium accusantium laudantium eius facilis quis quasi, provident in at reprehenderit repellat quia.</div>
-                <button class="accordion">
-                    <div class="t-label">Lorem Ipsum is simply dummy</div>
-                </button>
-                <div class="panel" style="display: none;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit veniam unde beatae repudiandae ratione suscipit, illum incidunt similique corrupti inventore ducimus. Error similique consequuntur odio accusantium. Ut molestiae explicabo quo sed saepe repellendus dignissimos cum distinctio hic praesentium accusantium laudantium eius facilis quis quasi, provident in at reprehenderit repellat quia.</div>
+                @foreach($faq as $q)
+                    <button class="accordion">
+                        <div class="t-label">{!! $q->title !!}</div>
+                    </button>
+                    <div class="panel" style="display: none;">{!! $q->description !!}</div>
+                @endforeach
             </div>
         </div>
     </div>
