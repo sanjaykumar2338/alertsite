@@ -44,8 +44,6 @@ class UserController extends Controller
             return back();
         }
 
-        dd('hasan');
-
         // Create a new user instance
         $user = User::create([
             'first_name' => $validatedData['first_name'],
