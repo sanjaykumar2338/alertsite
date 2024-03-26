@@ -118,7 +118,7 @@
               </p>
             </a>
 
-            <a href="#" class="nav-link {{$activeLink=='settings'?'active':''}}">
+            <a href="{{url('/admin/setting')}}" class="nav-link {{$activeLink=='setting'?'active':''}}">
               <i class="nav-icon fas fa-solid fa-cog"></i>
               <p>
                 Settings

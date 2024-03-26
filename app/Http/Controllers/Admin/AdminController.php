@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Setting;
 use App\Models\Payment;
 use PhpParser\Node\Stmt\If_;
 
@@ -24,6 +25,29 @@ class AdminController extends Controller{
 
     public function index(Request $request){
         return view('admin.pages.dashboard')->with('activeLink','dashboard');
+    }
+
+    public function setting(Request $request){
+        $rec = Setting::first();
+        return view('admin.pages.setting')->with('activeLink','setting')->with('rec',$rec);
+    }
+
+    public function setting_save(Request $request){
+        //echo "<pre>"; print_r($request->all()); die();
+        $rec = Setting::count();
+        if($rec){
+            $rec = Setting::first();
+            $rec->email = $request->email;
+            $rec->phone = $request->phone;
+            $rec->save();
+        }else{
+            $setting = new Setting();
+            $setting->email = $request->email;
+            $setting->phone = $request->phone;
+            $setting->save();
+        }
+
+        return redirect('/admin/setting')->with('success');
     }
 
     public function order(){

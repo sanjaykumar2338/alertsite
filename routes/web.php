@@ -71,6 +71,10 @@ Route::group(['prefix' => 'admin','middleware' => 'check.auth'], function () {
     Route::get('faq/add/new', [FaqController::class, 'create']);
     Route::get('faq/moderate/{id}', [FaqController::class, 'moderate']);
     Route::get('faq/moderate/changestatus/{id}/{status}', [FaqController::class, 'changestatus']);
+
+    //setting
+    Route::get('setting', [AdminController::class, 'setting']);
+    Route::post('setting_save', [AdminController::class, 'setting_save'])->name('setting.store');
 });
 
 Route::group(['middleware' => 'check.auth'], function () {
