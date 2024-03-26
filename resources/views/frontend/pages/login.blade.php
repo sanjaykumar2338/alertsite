@@ -115,7 +115,7 @@
                         <span>Haven't created account yet ?</span>
                         <span class="create-account-hover"><a href="{{ route('register.form') }}">Create Account</a></span>
                     </div>
-
+                    <a href="{{ route('password.request') }}">Forget Password!</a>
                 </form>
             </div>
         </div>

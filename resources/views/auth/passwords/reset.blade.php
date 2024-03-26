@@ -1,14 +1,28 @@
-@extends('layouts.app')
-
+@extends('frontend.layout.homepagenew')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
+ <div class="container flex l-gap flex-mobile custom-margin-top">
+        <div class="cta-sidebar">
+            <div><p>Stay on top of <span style="color: #8529cd; width:auto;">Rakuten</span> deals effortlessly with our
+                    tracking and alert system. Never miss out on savings again.</p><a
+                    href="{{route('register')}}"
+                    class="cta-btn">Join Now!</a></div>
+            <div><p>Already saving with TrackRak?</p><a
+                    href="{{route('login')}}"
+                    class="cta-btn">Login Now!</a></div>
+        </div>
+        <div class="page-content pg-l">
+                    <div class="card">
+                        <h1 class="page-title">{{ __('Reset Password') }}</h1>
+
+                        <div class="card-body">
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+
+                        <form method="POST" action="{{ route('password.update') }}">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
@@ -48,7 +62,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-
+                        <br>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -57,9 +71,8 @@
                             </div>
                         </div>
                     </form>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
-</div>
 @endsection

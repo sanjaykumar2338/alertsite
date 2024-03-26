@@ -13,6 +13,9 @@ use App\Http\Controllers\TrackController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Cashier\Http\Controllers\WebhookController;
 
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -88,6 +91,7 @@ Route::group(['middleware' => 'check.auth'], function () {
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/save_review', [App\Http\Controllers\HomeController::class, 'save_review'])->name('save_review');
 Route::get('/get_images', [App\Http\Controllers\HomeController::class, 'get_images'])->name('get_images');
 Route::get('/updateImageNames', [App\Http\Controllers\HomeController::class, 'updateImageNames'])->name('updateImageNames');
@@ -158,7 +162,7 @@ Route::any('/sms-send', [TrackController::class, 'sendSMSToUsers']);
 Route::any('/get-store-price', [TrackController::class, 'getallstore']);
 Route::any('/get-store-name', [TrackController::class, 'getstorewithname']);
 
-
-
-
-
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
