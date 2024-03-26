@@ -76,7 +76,7 @@
               <input autocomplete="new-password" type="password" class="form-control" id="password_confirmation" name="password_confirmation">
           </div>
 
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">Update</button>
 
       </form>
     </div>
