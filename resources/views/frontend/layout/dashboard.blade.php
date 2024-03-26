@@ -66,6 +66,13 @@
               </p>
             </a>
 
+            <a href="{{url('/myprofile')}}" class="nav-link {{$activeLink=='myprofile'?'active':''}}">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                My Profile
+              </p>
+            </a>
+
             <a href="{{url('/track/list')}}" class="nav-link {{$activeLink=='track'?'active':''}}">
               <i class="nav-icon fas fa-walking"></i>
               <p>

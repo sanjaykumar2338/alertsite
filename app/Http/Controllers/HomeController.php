@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class HomeController extends Controller
 {
@@ -70,6 +73,57 @@ class HomeController extends Controller
 
     public function media() {
         return view('frontend.pages.media');
+    }
+
+    public function myprofile(){
+        return view('frontend.pages.setting')->with('activeLink', 'myprofile');
+    }
+
+    public function profile_update(Request $request){
+        // Validate the request data
+        $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore(Auth::id()),
+            ],
+            'phone_number' => [
+                'required',
+                'string',
+                'regex:/^\+?[0-9]+$/',
+                Rule::unique('users')->ignore(Auth::id()),
+            ],
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+
+        // Normalize phone number (add '+' if missing)
+        $phoneNumber = $request->input('phone_number');
+        if ($phoneNumber[0] !== '+') {
+            $phoneNumber = '+' . $phoneNumber;
+        }
+
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Update user profile data
+        $user->update([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'email' => $request->input('email'),
+            'phone_number' => $phoneNumber,
+        ]);
+
+        // Update password if provided
+        if ($request->filled('password')) {
+            $user->update([
+                'password' => bcrypt($request->input('password')),
+            ]);
+        }
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Profile updated successfully.');
     }
 
     public function blog() {
