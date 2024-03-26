@@ -54,7 +54,7 @@ class UserController extends Controller
         ]);
 
         auth()->login($user);
-        return redirect()->route('my_account')->with('success', 'Registration successful.');
+        return redirect()->route('track.list')->with('success', 'Registration successful.');
     }
 
     public function login(Request $request) {

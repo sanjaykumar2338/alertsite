@@ -343,7 +343,7 @@
                                     <span></span>
                                     <span></span>
                                 </div>
-                                <h1 class="price">$4.99</h1>
+                                <h1 class="price">$3.99</h1>
                                 <h5 class="monthly">Monthly</h5>
                                 <ul>
                                     <li class="fw-bold text-center d-block" style="padding-right: 35px">5 Alerts</li>

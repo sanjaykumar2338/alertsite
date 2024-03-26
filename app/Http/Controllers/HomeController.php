@@ -145,7 +145,7 @@ class HomeController extends Controller
     }
 
     public function my_account() {
-        if (auth()->user()->email == 'admin@gmail.com') {
+        if (auth()->user()->role == 1) {
             return redirect('admin');
         } else {
             $email = auth()->user()->email;
