@@ -111,7 +111,7 @@ class HomeController extends Controller
 
         $planPrices = [
             'free' => 0,
-            'basic' => 4.99,
+            'basic' => 3.99,
             'premium' => 9.99,
         ];
 
