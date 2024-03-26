@@ -67,7 +67,6 @@ class TrackController extends Controller
     }
 
     public function save(Request $request) {
-//        try {
         $this->validate($request, [
             'store' => 'required',
             'discount_type' => 'required',
@@ -76,34 +75,17 @@ class TrackController extends Controller
         ]);
 
         $status = $request->has('status') ? 1 : 0;
-
-        $alert_email = null;
-        $alert_text = null;
-
-        if ($request->alert_type === "email") {
-            $alert_email = "email";
-        } elseif ($request->alert_type === "text") {
-            $alert_text = "text";
-        } elseif ($request->alert_type === "both") {
-            $alert_email = "email";
-            $alert_text = "text";
-        }
-
         $track = new Tracks;
         $track->user_id = Auth::id();
         $track->store_id = $request->store;
         $track->discount_type = $request->discount_type;
         $track->operator = $request->operator;
         $track->price = $request->price;
-        $track->alert_email = $alert_email;
-        $track->alert_text = $alert_text;
+        $track->alert_email = $request->alert_email;
+        $track->alert_text = $request->alert_text;
         $track->status = $status;
         $track->save();
         return redirect()->route('track.list')->with('success', 'Track saved successfully');
-//        } catch (\Exception $e) {
-//            return redirect()->back()->with('success', $e->getMessage());
-//        }
-        //echo "<pre>"; print_r($request->all()); die;
     }
 
     public function sendSMSToUsers() {

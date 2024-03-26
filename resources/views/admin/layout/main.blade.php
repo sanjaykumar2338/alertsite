@@ -70,7 +70,7 @@
                with font-awesome or any other icon font library -->
 
           <li class="nav-item has-treeview menu-open">
-            <a href="{{url('/')}}" class="nav-link" target="_blank">
+            <a href="{{url('/')}}" class="nav-link">
               <i class="nav-icon fas fa-solid fa-globe"></i>
               <p>
                 View Site
