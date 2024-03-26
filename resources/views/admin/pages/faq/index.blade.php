@@ -37,12 +37,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Blogs List</h1>
+            <h1>Faqs List</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/admin')}}">Home</a></li>
-              <li class="breadcrumb-item active">Blogs</li>
+              <li class="breadcrumb-item active">Faqs</li>
             </ol>
           </div>
         </div>
@@ -58,7 +58,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title"><a href="{{url('admin/blogs/add/new')}}">Add New Blog</a></h3>
+                <h3 class="card-title"><a href="{{url('admin/faq/add/new')}}">Add New Faq</a></h3>
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -77,8 +77,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                @if(count($blogs)>0)
-                    @foreach($blogs as $blog)
+                @if(count($faqs)>0)
+                    @foreach($faqs as $blog)
 
                             <div class="row">
 
@@ -106,9 +106,8 @@
                                                 </div>
                                             </td>
                                             <td class="col-sm-3 col-md-3" style="text-align: right">
-                                              <a href="/admin/blogs/remove/{{$blog->id}}" class="btn btn-danger">Remove</a>
-                                              <a href="/admin/blogs/edit/{{$blog->id}}" class="btn btn-primary">EDIT</a>
-                                              <a href="/admin/blogs/moderate/{{$blog->id}}" class="btn btn-primary">Moderate</a>
+                                              <a onclick="return confirm('Are you sure ?')" href="/admin/faq/remove/{{$blog->id}}" class="btn btn-danger">Remove</a>
+                                              <a href="/admin/faq/edit/{{$blog->id}}" class="btn btn-primary">EDIT</a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -116,7 +115,7 @@
                             </div>
                         @endforeach
                     @else
-                        <h6 class="display-8">THERE'S NO PRODUCT<BR><a href="/admin/blogs/add/new">ADD Blogs </a>  </h6>
+                        <h6 class="display-8">THERE'S NO FAQS</h6>
 
                 @endif
                 </div>
@@ -132,12 +131,12 @@
     </section>
      <!-- Previous and Next buttons -->
      <div class="pagination">
-        @if ($blogs->previousPageUrl())
-            <a href="{{ $blogs->previousPageUrl() }}"><< Previous</a>
+        @if ($faqs->previousPageUrl())
+            <a href="{{ $faqs->previousPageUrl() }}"><< Previous</a>
         @endif
         
-        @if ($blogs->nextPageUrl())
-          &nbsp;&nbsp;&nbsp;<a href="{{ $blogs->nextPageUrl() }}">Next >></a>
+        @if ($faqs->nextPageUrl())
+          &nbsp;&nbsp;&nbsp;<a href="{{ $faqs->nextPageUrl() }}">Next >></a>
         @endif
     </div>
 @endsection

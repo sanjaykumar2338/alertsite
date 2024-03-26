@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BlogsController;
 use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\FaqController;
+
 use App\Http\Controllers\Subscriptions\PaymentController;
 use App\Http\Controllers\Subscriptions\StripeWebhookController;
 use App\Http\Controllers\Subscriptions\SubscriptionController;
@@ -58,6 +60,17 @@ Route::group(['prefix' => 'admin','middleware' => 'check.auth'], function () {
     Route::get('pages/add/new', [PagesController::class, 'create']);
     Route::get('pages/moderate/{id}', [PagesController::class, 'moderate']);
     Route::get('pages/moderate/changestatus/{id}/{status}', [PagesController::class, 'changestatus']);
+
+    //faq
+    Route::get('faq', [FaqController::class, 'index']);
+    Route::post('/faq', [FaqController::class, 'store'])->name('admin.faq.store');
+    Route::post('/faq/update/{id}', [FaqController::class, 'update']);
+    Route::get('/faq/remove/{id}', [FaqController::class, 'destroy']);
+    Route::get('/faq/edit/{id}', [FaqController::class, 'edit']);
+    Route::get('faq/{product}', [FaqController::class, 'show']);
+    Route::get('faq/add/new', [FaqController::class, 'create']);
+    Route::get('faq/moderate/{id}', [FaqController::class, 'moderate']);
+    Route::get('faq/moderate/changestatus/{id}/{status}', [FaqController::class, 'changestatus']);
 });
 
 Route::group(['middleware' => 'check.auth'], function () {

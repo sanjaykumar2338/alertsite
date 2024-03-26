@@ -80,16 +80,20 @@
                         </li>
                         <li>
                             @if(auth()->check())
-                            <a href="{{ route('track.list') }}" class="m-hover login">My Account
-                                <div class="ml-con">
-                                    <div class="m-layout">
-                                        <div class="m-circle">
-                                            <div class="inner-cle-login"></div>
+                                @if(Auth::user()->role==1)
+                                    <a href="{{ url('admin') }}" class="m-hover login">My Account
+                                @else(Auth::user()->role==1)  
+                                    <a href="{{ route('track.list') }}" class="m-hover login">My Account
+                                @endif  
+                                    <div class="ml-con">
+                                        <div class="m-layout">
+                                            <div class="m-circle">
+                                                <div class="inner-cle-login"></div>
+                                            </div>
+                                            <div class="m-line"></div>
                                         </div>
-                                        <div class="m-line"></div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
                             @else
                             <a href="{{ route('login') }}" class="m-hover login">SignUp/Login
                                 <div class="ml-con">

@@ -118,10 +118,17 @@
               </p>
             </a>
 
-            <a style="display:none;" href="#" class="nav-link {{$activeLink=='settings'?'active':''}}">
+            <a href="#" class="nav-link {{$activeLink=='settings'?'active':''}}">
               <i class="nav-icon fas fa-solid fa-cog"></i>
               <p>
                 Settings
+              </p>
+            </a>
+
+            <a href="{{url('/admin/faq')}}" class="nav-link {{$activeLink=='faq'?'active':''}}">
+              <i class="nav-icon fas fa-question-circle"></i>
+              <p>
+                Faq
               </p>
             </a>
             

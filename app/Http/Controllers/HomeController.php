@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogReview;
 use App\Models\Pages;
+use App\Models\Faqs;
 use App\Models\PrintfulOrder;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -49,7 +50,7 @@ class HomeController extends Controller
     }
 
     public function faq() {
-        $faq = Pages::where('slug', 'faq')->get();
+        $faq = Faqs::get();
         return view('frontend.pages.faq')->with('faq', $faq);
     }
 
