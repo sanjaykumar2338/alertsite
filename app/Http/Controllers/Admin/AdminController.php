@@ -13,7 +13,13 @@ class AdminController extends Controller{
 
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            if (auth()->check() && auth()->user()->role == 1) {
+                return $next($request);
+            }
+
+            abort(403, 'Unauthorized');
+        });
     }
 
     public function cancelSubscription(User $id){
@@ -30,6 +36,11 @@ class AdminController extends Controller{
     public function setting(Request $request){
         $rec = Setting::first();
         return view('admin.pages.setting')->with('activeLink','setting')->with('rec',$rec);
+    }
+
+    public function store(Request $request){
+        $rec = \DB::table('stores')->get();
+        return view('admin.pages.stores')->with('activeLink','store')->with('rec',$rec);
     }
 
     public function setting_save(Request $request){

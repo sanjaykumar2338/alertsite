@@ -31,6 +31,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowgroup/1.5.0/css/rowGroup.dataTables.css">
   <style>
     .ck-editor__editable_inline {
         min-height: 200px;
@@ -125,6 +128,13 @@
               </p>
             </a>
 
+            <a href="{{url('/admin/store')}}" class="nav-link {{$activeLink=='store'?'active':''}}">
+              <i class="nav-icon fas fa-solid fa-store"></i>
+              <p>
+                Stores
+              </p>
+            </a>
+
             <a href="{{url('/admin/faq')}}" class="nav-link {{$activeLink=='faq'?'active':''}}">
               <i class="nav-icon fas fa-question-circle"></i>
               <p>
@@ -205,9 +215,18 @@
 <!-- Sweet Alert 2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js"></script>
 
+<script type="text/javascript" src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
 <script>
 
     $(document).ready(function() {
+
+        new DataTable('#example');
+        $("#querydatatablesets").css("width","100%")
+
+
         $('#cancel-subscription-btn').on('click', function(e) {
             e.preventDefault();
             Swal.fire({

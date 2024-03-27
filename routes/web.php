@@ -78,6 +78,7 @@ Route::group(['prefix' => 'admin','middleware' => 'check.auth'], function () {
     //setting
     Route::get('setting', [AdminController::class, 'setting']);
     Route::post('setting_save', [AdminController::class, 'setting_save'])->name('setting.store');
+    Route::get('store', [AdminController::class, 'store']);
 });
 
 Route::group(['middleware' => 'check.auth'], function () {

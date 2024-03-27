@@ -28,9 +28,13 @@ class BlogsController extends Controller
 
     public function __construct()
     {
-        //if(auth()->user()->email!='admin@gmail.com'){
-        //return redirect('/');
-        //}
+        $this->middleware(function ($request, $next) {
+            if (auth()->check() && auth()->user()->role == 1) {
+                return $next($request);
+            }
+
+            abort(403, 'Unauthorized');
+        });
     }
 
     public function index()
