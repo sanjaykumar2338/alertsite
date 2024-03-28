@@ -85,13 +85,27 @@
                                 </sup>
                             </label>
                             <select name="store" id="store" class="l-store selectpicker">
+                                <option value="" disabled selected>Type store name</option>
                                 @foreach($stores as $store)
                                     <option value="{{$store->store_id}}">{{$store->store_name}}</option>
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="form-control-input">
                             <label>OPERATOR <sup>
+                                    <div class="q-ask">?</div>
+                                </sup>
+                            </label>
+                            <select class="l-operator" id="operator" name="operator">
+                                <option value=">">Great than</option>
+                                <option value="==">Equal to</option>
+                                <option value=">=">Greater than or Equal to</option>
+                            </select>
+                        </div>
+
+                        <div class="form-control-input">
+                            <label>PERCENT<sup>
                                     <div class="q-ask">?</div>
                                 </sup>
                             </label>
@@ -100,22 +114,14 @@
                                 <option>Percentage</option>
                             </select>
                         </div>
+
                         <div class="form-control-input">
-                            <label>PERCENT <sup>
+                            <label>Amount<sup>
                                     <div class="q-ask">?</div>
                                 </sup>
                             </label>
-                            <select class="l-operator" id="operator" name="operator">
-                                <option value=">">> (Great than)</option>
-                                <option value="==">== (Equal to)</option>
-                            </select>
-                        </div>
-                        <div class="form-control-input">
-                            <label>PRICE <sup>
-                                    <div class="q-ask">?</div>
-                                </sup>
-                            </label>
-                            <input type="number" class="l-operator" placeholder="Enter Price" id="price" name="price" style="width: 73.3% !important;height: 1.2rem !important; color: black !important;">
+                           <input type="text" class="l-operator" placeholder="Enter Price" id="price" name="price" style="width: 73.3% !important;height: 1.2rem !important; color: black !important;" oninput="this.value = this.value.replace(/[^\d]/g, '');">
+
                         </div>
                         <div class="form-control-atype">
                             <label>ALERT TYPE <sup>

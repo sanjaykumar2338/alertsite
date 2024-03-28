@@ -49,28 +49,33 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">Store</label>
             <select class="selectpicker form-control" name="store" id="store" data-live-search="true">
+              <option value="" disabled selected>Type store name</option>
               @foreach($stores as $store)
                 <option value="{{$store->store_id}}">{{$store->store_name}}</option>
               @endforeach
             </select>
           </div>
+
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Discount Type</label>
+              <label for="exampleFormControlSelect1">Operator</label>
+              <select class="form-control" id="operator" name="operator">
+                  <option value=">">Great than</option>
+                  <option value="==">Equal to</option>
+                  <option value=">=">Greater than or Equal to</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">PERCENT</label>
             <select class="form-control" id="discount_type" name="discount_type">
               <option>Fixed</option>
               <option>Percentage</option>
             </select>
           </div>
+          
           <div class="form-group">
-              <label for="exampleFormControlSelect1">Operator</label>
-              <select class="form-control" id="operator" name="operator">
-                  <option value=">">> (Great than)</option>
-                  <option value="==">== (Equal to)</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <label for="exampleFormControlSelect1">Price</label>
-              <input type="number" class="form-control" id="price" name="price">
+              <label for="exampleFormControlSelect1">Amount</label>
+              <input type="number" class="form-control" id="price" name="price" oninput="this.value = this.value.replace(/[^\d]/g, '');">
           </div>
           <div class="form-group">
               <label for="exampleFormControlSelect1">Alert Type</label>

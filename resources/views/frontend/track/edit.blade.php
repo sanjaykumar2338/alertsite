@@ -54,23 +54,30 @@
               @endforeach
             </select>
           </div>
+
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Discount Type</label>
+              <label for="exampleFormControlSelect1">Operator</label>
+              <select class="form-control" id="operator" name="operator">
+                  <option {{$track->operator=='>' ? 'selected':''}} value=">">Great than</option>
+                  <option {{$track->operator=='==' ? 'selected':''}} value="==">Equal to</option>
+                  <option {{$track->operator=='>=' ? 'selected':''}} value=">=">Greater than or Equal to</option>
+              </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">PERCENT</label>
             <select class="form-control" id="discount_type" name="discount_type">
               <option {{$track->discount_type=='Fixed' ? 'selected':''}}>Fixed</option>
               <option {{$track->discount_type=='Percentage' ? 'selected':''}}>Percentage</option>
             </select>
           </div>
+          
+
+
           <div class="form-group">
-              <label for="exampleFormControlSelect1">Operator</label>
-              <select class="form-control" id="operator" name="operator">
-                  <option {{$track->operator=='>' ? 'selected':''}} value=">">> (Great than)</option>
-                  <option {{$track->operator=='==' ? 'selected':''}} value="==">== (Equal to)</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <label for="exampleFormControlSelect1">Price</label>
-              <input type="number" value="{{$track->price}}" class="form-control" id="price" name="price">
+              <label for="exampleFormControlSelect1">Amount</label>
+              <input type="number" value="{{$track->price}}" class="form-control" id="price" name="price" oninput="this.value = this.value.replace(/[^\d]/g, '');">
           </div>
           <div class="form-group">
               <label for="exampleFormControlSelect1">Alert Type</label>

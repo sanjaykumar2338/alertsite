@@ -48,7 +48,11 @@ class HomeController extends Controller
 
     public function track() {
         $track = Pages::where('slug', 'track')->first();
-        $stores = DB::table('stores')->get();
+        $stores = DB::table('stores')
+            ->orderByRaw("CASE WHEN store_name REGEXP '^[A-Za-z]' THEN 0 ELSE 1 END")
+            ->orderBy('store_name', 'asc')
+            ->where('store_name', '!=', '')
+            ->get();
         return view('frontend.pages.track')->with('track', $track)->with('stores', $stores);
     }
 
