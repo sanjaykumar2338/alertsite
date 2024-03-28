@@ -39,7 +39,11 @@ class AdminController extends Controller{
     }
 
     public function store(Request $request){
-        $rec = \DB::table('stores')->get();
+        $rec = \DB::table('stores')
+            ->orderByRaw("CASE WHEN store_name REGEXP '^[A-Za-z]' THEN 0 ELSE 1 END")
+            ->orderBy('store_name', 'asc')
+            ->where('store_name', '!=', '')
+            ->get();
         return view('admin.pages.stores')->with('activeLink','store')->with('rec',$rec);
     }
 
