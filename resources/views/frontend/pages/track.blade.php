@@ -120,7 +120,7 @@
                                     <div class="q-ask">?</div>
                                 </sup>
                             </label>
-                           <input type="text" class="l-operator" placeholder="Enter Price" id="price" name="price" style="width: 73.3% !important;height: 1.2rem !important; color: black !important;" oninput="this.value = this.value.replace(/[^\d]/g, '');">
+                           <input type="text" class="l-operator" placeholder="Enter Amount" id="price" name="price" style="width: 73.3% !important;height: 1.2rem !important; color: black !important;" oninput="this.value = this.value.replace(/[^\d]/g, '');">
 
                         </div>
                         <div class="form-control-atype">
