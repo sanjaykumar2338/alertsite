@@ -103,6 +103,8 @@ class TrackController extends Controller
                         (tracks.operator = "==" AND tracks.price = stores.amount)
                         OR
                         (tracks.operator = ">" AND stores.amount > tracks.price)
+                        OR
+                        (tracks.operator = ">=" AND stores.amount >= tracks.price)
                     )');
                 });
         })->with(['tracks' => function ($query) {
@@ -114,11 +116,13 @@ class TrackController extends Controller
                         (tracks.operator = "==" AND tracks.price = stores.amount)
                         OR
                         (tracks.operator = ">" AND stores.amount > tracks.price)
+                        OR
+                        (tracks.operator = ">=" AND stores.amount >= tracks.price)
                     )');
                 });
         }])->get();
 
-//        dd($usersWithSpecificTracks);
+        //dd($usersWithSpecificTracks);
 
         $smsData = [];
 
@@ -139,7 +143,7 @@ class TrackController extends Controller
             }
         }
 
-        //echo "<pre>"; print_r($usersWithSpecificTracks); die;
+        //echo "<pre>"; print_r($smsData); die;
 
         foreach (array_chunk($smsData, 50) as $batch) {
             foreach ($batch as $data) {
@@ -169,6 +173,8 @@ class TrackController extends Controller
                         (tracks.operator = "==" AND tracks.price = stores.amount)
                         OR
                         (tracks.operator = ">" AND stores.amount > tracks.price)
+                        OR
+                        (tracks.operator = ">=" AND stores.amount >= tracks.price)
                     )');
                 });
         })->with(['tracks' => function ($query) {
@@ -180,6 +186,8 @@ class TrackController extends Controller
                         (tracks.operator = "==" AND tracks.price = stores.amount)
                         OR
                         (tracks.operator = ">" AND stores.amount > tracks.price)
+                        OR
+                        (tracks.operator = ">=" AND stores.amount >= tracks.price)
                     )');
                 });
         }])->get();
@@ -201,6 +209,8 @@ class TrackController extends Controller
                 }
             }
         }
+
+        //echo "<pre>"; print_r($emailData); die;
 
         foreach (array_chunk($emailData, 50) as $batch) {
             foreach ($batch as $data) {

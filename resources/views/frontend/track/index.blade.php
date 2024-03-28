@@ -56,7 +56,7 @@
                     <td>{{$track->store_name}}</td>
                     <td>{{$track->discount_type}}</td>
                     <td>{{$track->price}}</td>
-                    <td>{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}}</td>
+                    <td>{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}} {{$track->operator=='>=' ? 'Greator to or Equal to' : ''}}</td>
                     <td>{{$track->status==1 ? 'On':'Off'}}</td>
                     <td>{{$track->alert_email ? $track->alert_email.',':''}} {{$track->alert_text}}</td>
                     <td>{{$track->created_at}}</td>
