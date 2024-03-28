@@ -58,7 +58,7 @@
           <div class="form-group">
               <label for="exampleFormControlSelect1">Operator</label>
               <select class="form-control" id="operator" name="operator">
-                  <option {{$track->operator=='>' ? 'selected':''}} value=">">Great than</option>
+                  <option {{$track->operator=='>' ? 'selected':''}} value=">">Greater than</option>
                   <option {{$track->operator=='==' ? 'selected':''}} value="==">Equal to</option>
                   <option {{$track->operator=='>=' ? 'selected':''}} value=">=">Greater than or Equal to</option>
               </select>

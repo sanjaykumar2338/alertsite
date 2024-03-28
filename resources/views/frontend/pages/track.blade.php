@@ -98,7 +98,7 @@
                                 </sup>
                             </label>
                             <select class="l-operator" id="operator" name="operator">
-                                <option value=">">Great than</option>
+                                <option value=">">Greater than</option>
                                 <option value="==">Equal to</option>
                                 <option value=">=">Greater than or Equal to</option>
                             </select>
