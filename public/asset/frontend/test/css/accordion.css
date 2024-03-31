@@ -13,9 +13,6 @@
   border: 2px solid #dbdbdb;
   border-radius: 8px;
   margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .active, .accordion:hover {
