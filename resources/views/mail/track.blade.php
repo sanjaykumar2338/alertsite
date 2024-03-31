@@ -398,7 +398,7 @@
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
                           <tbody>
                             <tr>
-                              <td style="width:600px;">
+                              <td>
                                 <img height="auto" src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" style="margin: auto;width: 35% !important;border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;"/>
                               </td>
                             </tr>
