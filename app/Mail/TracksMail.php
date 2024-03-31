@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Setting;
 
 class TracksMail extends Mailable
 {
@@ -25,21 +26,46 @@ class TracksMail extends Mailable
 
     public function envelope(): Envelope {
         return new Envelope(
-            subject: 'New Offer Mail By AlertSite Team',
+            subject: 'New Offer Mail By TrackRak Team',
         );
     }
 
     public function content(): Content {
-        return new Content(
-            markdown: 'mail.tracks-mail',
-            with: [
-                'store' => $this->store,
-                'url' => $this->url,
-                'userName' => $this->userName,
-                'offerPercent' => $this->offerPercent,
-                'storeUrl' => $this->storeUrl
-            ],
-        );
+
+        $template = Setting::first();
+        if ($template) {
+            // Replace placeholders with dynamic data
+            $email_content = $template->email_content;
+            $email_content = str_replace('{{store_name}}', $this->store, $email_content);
+            $email_content = str_replace('{{url}}', $this->url, $email_content);
+            $email_content = str_replace('{{customer_name}}', $this->userName, $email_content);
+            $email_content = str_replace('{{discount_type}}', $this->discountType, $email_content);
+            $email_content = str_replace('{{discount_amount}}', $this->offerPercent, $email_content);
+            $email_content = str_replace('{{storeUrl}}', $this->storeUrl, $email_content);
+
+            return new Content(
+                markdown: 'mail.track',
+                with: [
+                    'store' => $this->store,
+                    'url' => $this->url,
+                    'userName' => $this->userName,
+                    'offerPercent' => $this->offerPercent,
+                    'storeUrl' => $this->storeUrl,
+                    'email_content' => $email_content
+                ],
+            );
+        } else {
+            return new Content(
+                markdown: 'mail.tracks-mail',
+                with: [
+                    'store' => $this->store,
+                    'url' => $this->url,
+                    'userName' => $this->userName,
+                    'offerPercent' => $this->offerPercent,
+                    'storeUrl' => $this->storeUrl
+                ],
+            );
+        }
     }
 
     /**

@@ -9,6 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
+use App\Models\Setting;
 
 class SendSMSJob implements ShouldQueue
 {
@@ -27,16 +28,49 @@ class SendSMSJob implements ShouldQueue
     }
 
     public function handle(): void {
-        $message =
-            "
-            TrackRak Alert
-            Hello [$this->name],
-            [$this->storeName] is [$this->operator] [$this->discountType/$ $this->amount]
-            Store link : [$this->shoppingUrl]
-            TrackRak & Get More Money Back!
-            Don't want these alerts?
-            Login to your TrackRak account and update your alert settings.
-        ";
+        $rec = Setting::first();
+        if($rec){
+            $message = $rec->sms_content;
+            $message = preg_replace("/<[^>]+>(?!,)|(?<=,)<[^>]+>/", "", $message);
+            $message = str_replace('&nbsp;', ' ', $message);
+            $message = str_replace('{{new_line}}', "\n", $message);
+
+            $placeholders = [
+                '{{customer_name}}' => $this->name,
+                '{{store_name}}' => $this->storeName,
+                '{{operator}}' => $this->operator,
+                '{{discount_type}}' => $this->discountType,
+                '{{amount}}' => $this->amount,
+                '{{shopping_url}}' => $this->shoppingUrl
+            ];
+
+            foreach ($placeholders as $placeholder => $value) {
+                $message = str_replace($placeholder, $value, $message);
+            }
+
+            // Replace specific symbols with names
+            $symbols = [
+                '==' => 'equals to',
+                '>=' => 'greater than or equals to',
+                '>' => 'greater than',
+            ];
+
+            foreach ($symbols as $symbol => $name) {
+                $message = str_replace($symbol, $name, $message);
+            }
+
+        }else{
+            $message =
+                "
+                TrackRak Alert
+                Hello [$this->name],
+                [$this->storeName] is [$this->operator] [$this->discountType/$ $this->amount]
+                Store link : [$this->shoppingUrl]
+                TrackRak & Get More Money Back!
+                Don't want these alerts?
+                Login to your TrackRak account and update your alert settings.
+            ";
+        }
 
         try {
             Facade::message($this->phone_number, $message);
@@ -45,6 +79,4 @@ class SendSMSJob implements ShouldQueue
             Log::error("Error: " . $e->getMessage());
         }
     }
-
-
 }

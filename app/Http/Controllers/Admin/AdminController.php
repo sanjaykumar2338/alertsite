@@ -54,11 +54,15 @@ class AdminController extends Controller{
             $rec = Setting::first();
             $rec->email = $request->email;
             $rec->phone = $request->phone;
+            $rec->email_content = $request->email_content;
+            $rec->sms_content = $request->sms_content;
             $rec->save();
         }else{
             $setting = new Setting();
             $setting->email = $request->email;
             $setting->phone = $request->phone;
+            $setting->email_content = $request->email_content;
+            $setting->sms_content = $request->sms_content;
             $setting->save();
         }
 

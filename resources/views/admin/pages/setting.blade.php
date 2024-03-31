@@ -51,6 +51,16 @@
                   <label for="image">Logo:</label>
                   <input type="file" class="form-control" id="logo" name="logo">
                 </div>
+
+                <div class="mb-3 mt-3">
+                  <label for="product_name">Email Content:</label>
+                  <textarea name="email_content" cols="2" id="email_content" class="form-control">{{$rec->email_content}}</textarea>
+                </div>
+
+                <div class="mb-3 mt-3">
+                  <label for="product_name">SMS Content:</label>
+                  <textarea name="sms_content" cols="2" id="sms_content" class="form-control">{{$rec->sms_content}}</textarea>
+                </div>
          
                 <button type="submit" class="btn btn-primary">Update</button>
               </form>

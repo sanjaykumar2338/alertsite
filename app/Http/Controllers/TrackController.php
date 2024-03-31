@@ -131,7 +131,7 @@ class TrackController extends Controller
                 $store = $track->store;
                 if ($store) {
                     $smsData[] = [
-                        'name' => $track->user->first_name . $track->user->last_name,
+                        'name' => $track->user->first_name .' '. $track->user->last_name,
                         'phone_number' => $track->user->phone_number,
                         'storeName' => $store->store_name,
                         'discountType' => $track->discount_type,
@@ -200,7 +200,7 @@ class TrackController extends Controller
                 if ($store) {
                     $emailData[] = [
                         'email' => $track->user->email,
-                        'name' => $track->user->first_name . $track->user->last_name,
+                        'name' => $track->user->first_name .' '. $track->user->last_name,
                         'storeName' => $store->store_name,
                         'discountType' => $track->discount_type,
                         'amount' => $store->amount,
