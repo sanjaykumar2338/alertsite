@@ -100,17 +100,10 @@
               </p>
             </a>
 
-            <a style="display: none;" href="{{url('/admin/order')}}" class="nav-link {{$activeLink=='order'?'active':''}}">
-              <i class="nav-icon fas fa-shopping-bag"></i>
+            <a href="{{url('/admin/store')}}" class="nav-link {{$activeLink=='store'?'active':''}}">
+              <i class="nav-icon fas fa-solid fa-store"></i>
               <p>
-                Orders
-              </p>
-            </a>
-
-            <a style="display: none;" href="{{url('/admin/products')}}" class="nav-link {{$activeLink=='product'?'active':''}}">
-              <i class="nav-icon fas fa-solid fa-box"></i>
-              <p>
-                Products
+                Stores
               </p>
             </a>
 
@@ -121,20 +114,6 @@
               </p>
             </a>
 
-            <a href="{{url('/admin/setting')}}" class="nav-link {{$activeLink=='setting'?'active':''}}">
-              <i class="nav-icon fas fa-solid fa-cog"></i>
-              <p>
-                Settings
-              </p>
-            </a>
-
-            <a href="{{url('/admin/store')}}" class="nav-link {{$activeLink=='store'?'active':''}}">
-              <i class="nav-icon fas fa-solid fa-store"></i>
-              <p>
-                Stores
-              </p>
-            </a>
-
             <a href="{{url('/admin/faq')}}" class="nav-link {{$activeLink=='faq'?'active':''}}">
               <i class="nav-icon fas fa-question-circle"></i>
               <p>
@@ -142,6 +121,12 @@
               </p>
             </a>
             
+            <a href="{{url('/admin/setting')}}" class="nav-link {{$activeLink=='setting'?'active':''}}">
+              <i class="nav-icon fas fa-solid fa-cog"></i>
+              <p>
+                Settings
+              </p>
+            </a>
 
             <a href="{{url('/logout')}}" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
