@@ -78,7 +78,10 @@
                         </div>
                     @endif
                 @if(count($rec)>0)
-                    
+                        
+                    <div id="loader" style="display: none;">
+                        Loading...
+                    </div>
 
                             <div class="row">
 

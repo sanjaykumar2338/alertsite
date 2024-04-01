@@ -208,9 +208,19 @@
 
     $(document).ready(function() {
 
-        new DataTable('#example');
-        $("#querydatatablesets").css("width","100%")
+        // Show loader
+        $("#loader").show();
 
+        // Initialize DataTable
+        var table = new DataTable('#example');
+
+        // Hide loader once DataTable is initialized
+        table.on('draw.dt', function() {
+            $("#loader").hide();
+        });
+
+        // Optional: Adjust the width of DataTable wrapper
+        $("#querydatatablesets").css("width", "100%");
 
         $('#cancel-subscription-btn').on('click', function(e) {
             e.preventDefault();
