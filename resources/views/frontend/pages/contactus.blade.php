@@ -1,21 +1,34 @@
 @extends('frontend.layout.homepagenew')
 
 @section('content')
-
-    <div class="container flex l-gap flex-mobile custom-margin-top">
-        <div class="cta-sidebar">
-            <div><p>Stay on top of <span style="color: #8529cd; width:auto;">Rakuten</span> deals effortlessly with our
-                    tracking and alert system. Never miss out on savings again.</p><a
-                    href="{{route('register')}}"
-                    class="cta-btn">Join Now!</a></div>
-            <div><p>Already saving with TrackRak?</p><a
-                    href="{{route('login')}}"
-                    class="cta-btn">Login Now!</a></div>
+    <section class="main-section full-container">
+        <div class="container flex l-gap flex-mobile lr-m">
+            <div class="cta-sidebar">
+                <div>
+                    <p><span class="tagline">TrackRak &amp;<br>Get More<br>Money Back!</span><br>
+                        <br>
+                        Stay on top of <a style='color: #8529cd; width:auto; font-weight: 600; text-decoration: none;'
+                                          href="http://tinyurl.com/d98frkfy" target="_blank">Rakuten</a> deals with our
+                        alert tool. Never miss out on savings again!<br>
+                        <br>
+                        Your first alert is <strong>FREE!</strong></p>
+                    <a href="{{route('register')}}" class="cta-btn">Join now!</a>
+                </div>
+                <div>
+                    <p>Already saving with TrackRak?</p>
+                    <a href="{{route('login')}}" class="cta-btn">Login now!</a>
+                </div>
+            </div>
+            <div class="page-content pg-l">
+                <div>
+                    
+                    <h1 class="page-title">Contact Us
+            </h1>
+                    {!! $contact->description !!}
+                
+                </div>
+            </div>
         </div>
-        <div class="page-content pg-l">
-            <h1 class="page-title">CONTACT</h1>
-            {!! $contact->description !!}
-        </div>
-    </div>
+    </section>
 
 @endsection
