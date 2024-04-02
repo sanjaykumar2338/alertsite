@@ -112,10 +112,9 @@
                     <button type="submit" class="btn btn-primary">Login</button>
 
                     <div class="Login-form-submit-section">
-                        <span>Haven't created account yet ?</span>
-                        <span class="create-account-hover"><a href="{{ route('register.form') }}">Create Account</a></span>
+                        <span>Don't have an account yet? <a href="{{ route('register.form') }}">Create Account</a></span>
                     </div>
-                    <a href="{{ route('password.request') }}">Forget Password!</a>
+                    Forgot your password? <a href="{{ route('password.request') }}">Reset Password</a>
                 </form>
             </div>
         </div>

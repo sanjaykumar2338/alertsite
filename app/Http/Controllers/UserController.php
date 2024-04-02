@@ -19,43 +19,44 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+            'phone_number' => 'required|string|unique:users|regex:/^\+?1?\d{10}$/',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|confirmed|string|min:8'
         ]);
 
-        /*
-        $validator = Validator::make($request->all(), [
-            'full_phonenumber' =>
-                function ($attribute, $value, $fail) {
-                    if (User::where('phone_number', $value)->exists()) {
-                        $fail('The phone number has already been taken.');
-                    }
-                },
-        ]);
-        
-
-        if ($validator->fails()) {
-            $errors = $validator->errors();
-            if ($errors->has('full_phonenumber')) {
-                $fullPhoneNumberError = $errors->first('full_phonenumber');
-            } else {
-                $fullPhoneNumberError = null;
-            }
-            session()->flash('fullPhoneNumberError', $fullPhoneNumberError);
-            return back();
-        }
-        */
+        $phoneNumber = $request->phone_number;
+        $formattedPhoneNumber = $this->formatUSPhoneNumber($phoneNumber);
 
         // Create a new user instance
         $user = User::create([
             'first_name' => $validatedData['first_name'],
             'last_name' => $validatedData['last_name'],
+            'phone_number' => $formattedPhoneNumber,
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
         ]);
 
         auth()->login($user);
         return redirect()->route('track.list')->with('success', 'Registration successful.');
+    }
+
+    public function formatUSPhoneNumber($phoneNumber)
+    {
+        // Remove all non-numeric characters from the phone number
+        $numericPhoneNumber = preg_replace('/\D/', '', $phoneNumber);
+
+        // Check if the phone number starts with "1" or "+1"
+        if (!\Str::startsWith($numericPhoneNumber, '1') && !\Str::startsWith($numericPhoneNumber, '+1')) {
+            // Add "1" to the beginning of the phone number
+            $numericPhoneNumber = '1' . $numericPhoneNumber;
+        }
+
+        // Add "+" sign if missing
+        if (!\Str::startsWith($numericPhoneNumber, '+')) {
+            $numericPhoneNumber = '+' . $numericPhoneNumber;
+        }
+
+        return $numericPhoneNumber;
     }
 
     public function login(Request $request) {

@@ -95,7 +95,7 @@
 
                     <div>
                         <label for="phone_number" class="mb-2"><b>Phone Number</b></label>
-                        <input value="{{ old('phone_number') }}" oninput="this.value = this.value.replace(/[^\d]/g, '');" id="phone_number" type="text" name="phone_number">
+                        <input value="{{ old('phone_number') }}" id="phone_number" type="text" name="phone_number">
                         @error('phone_number')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -128,7 +128,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Sign Up
+                    <button type="submit" disabled id="intlTelInputFormSubmitBtn" class="btn btn-primary">Sign Up
                     </button>
 
                 </form>
@@ -138,3 +138,54 @@
     </section>
 
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const input = document.querySelector("#phone_number");
+            const intlTelInputFormSubmitBtn = document.querySelector("#intlTelInputFormSubmitBtn");
+
+            let intlTelInput = window.intlTelInput(input, {
+                initialCountry: "in",
+                showSelectedDialCode: true,
+                hiddenInput: () => "full_phonenumber",
+                utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.6/build/js/utils.js',
+            });
+
+            const validationErrors = [
+                {code: "IS_POSSIBLE", message: "The phone number is possible."},
+                {code: "INVALID_COUNTRY_CODE", message: "Invalid country code."},
+                {code: "TOO_SHORT", message: "Your phone number is too short."},
+                {code: "TOO_LONG", message: "The phone number is too long."},
+                {code: "NOT_VALID_NUMBER", message: "Provided phone number is not valid."},
+                {code: "INCORRECT_NUMBER", message: "Please enter a correct phone number"},
+                {code: "INVALID_LENGTH", message: "Invalid phone number length."},
+            ];
+
+            input.addEventListener('input', function (e) {
+                let inputValue = this.value;
+                let cleanedValue = inputValue.replace(/\D/g, '');
+                this.value = cleanedValue;
+
+                let trimmedText = this.value.trim();
+                let textWithoutSpaces = trimmedText.replace(/\s/g, '');
+
+                intlTelInputFormSubmitBtn.disabled = true;
+                intlTelInputFormSubmitBtn.innerHTML = validationErrors[5].message;
+
+                const errorCode = intlTelInput.getValidationError();
+                if (errorCode) {
+                    const errorDetails = validationErrors[errorCode];
+                    intlTelInputFormSubmitBtn.innerHTML = errorDetails.message;
+                } else if (intlTelInput.isValidNumber()) {
+                    intlTelInputFormSubmitBtn.innerHTML = "Sign Up";
+                    intlTelInputFormSubmitBtn.disabled = false;
+                } else {
+                    intlTelInputFormSubmitBtn.disabled = false;
+                }
+            });
+        });
+
+    </script>
+@endpush

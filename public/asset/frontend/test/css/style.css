@@ -457,3 +457,7 @@ input:checked + .slider:before {
   width: auto;
   padding-top: 5px;
 }
+
+div.menu-ftr a.f-menu {
+    text-decoration: none;
+}

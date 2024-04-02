@@ -150,10 +150,6 @@
                             <a class="f-menu" href="{{ route('plans') }}">PLANS</a>
                         </div>
                         
-                        <div>
-                            <a class="f-menu" href="{{ route('aboutus') }}">ABOUT US</a>
-                        </div>
-
                     </div>
                 </div>
             </div>
