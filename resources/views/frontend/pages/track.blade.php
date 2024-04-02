@@ -80,7 +80,7 @@
                     <form name="save_track" method="post" action="{{route('track.save')}}">
                         @csrf
                         <div class="form-control-input">
-                            <label>STORE:
+                            <label style="margin-bottom: 21px;">STORE:
                             </label>
                             <select name="store" id="store" class="l-store selectpicker">
                                 <option value="" disabled selected>Type store name</option>
@@ -101,7 +101,7 @@
                         </div>
 
                         <div class="form-control-input">
-                            <label>PERCENT/CASH AMOUNT;
+                            <label>PERCENT/CASH:&nbsp;
                             </label>
                             <select class="l-operator" id="discount_type" name="discount_type">
                                 <option value="">--Select--</option>
@@ -111,7 +111,7 @@
                         </div>
 
                         <div class="form-control-input amount_div">
-                            <label>Amount
+                            <label>Amount:
                             </label>
                            <input type="text" class="l-operator" placeholder="Enter Amount" id="price" name="price" style="width: 73.3% !important;height: 1.2rem !important; color: black !important;" oninput="this.value = this.value.replace(/[^\d]/g, '');">
                         </div>
