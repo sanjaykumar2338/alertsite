@@ -29,4 +29,6 @@
         </div>
     </section>
 
+    @includeIf('frontend.layout.hero-section')
+    
 @endsection
