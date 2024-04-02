@@ -7,7 +7,7 @@
                 <div>
                     <p><span class="tagline">TrackRak &amp;<br>Get More<br>Money Back!</span><br>
                         <br>
-                        Stay on top of <a style="color: #8529cd; width:auto; font-weight: 600; text-decoration: none;"
+                        Stay on top of <a style='color: #8529cd; width:auto; font-weight: 600; text-decoration: none;'
                                           href="http://tinyurl.com/d98frkfy" target="_blank">Rakuten</a> deals with our
                         alert tool. Never miss out on savings again!<br>
                         <br>
@@ -80,9 +80,7 @@
                     <form name="save_track" method="post" action="{{route('track.save')}}">
                         @csrf
                         <div class="form-control-input">
-                            <label for="store">STORE <sup>
-                                    <div class="q-ask">?</div>
-                                </sup>
+                            <label>STORE:
                             </label>
                             <select name="store" id="store" class="l-store selectpicker">
                                 <option value="" disabled selected>Type store name</option>
@@ -93,9 +91,7 @@
                         </div>
 
                         <div class="form-control-input">
-                            <label>OPERATOR <sup>
-                                    <div class="q-ask">?</div>
-                                </sup>
+                            <label>OPERATOR:
                             </label>
                             <select class="l-operator" id="operator" name="operator">
                                 <option value=">">Greater than</option>
@@ -105,28 +101,23 @@
                         </div>
 
                         <div class="form-control-input">
-                            <label>PERCENT<sup>
-                                    <div class="q-ask">?</div>
-                                </sup>
+                            <label>PERCENT/CASH AMOUNT;
                             </label>
                             <select class="l-operator" id="discount_type" name="discount_type">
-                                <option>Fixed</option>
-                                <option>Percentage</option>
+                                <option value="">--Select--</option>
+                                <option value="Percentage">Percent Cash Back</option>
+                                <option value="Fixed">Fixed Cash Back</option>
                             </select>
                         </div>
 
-                        <div class="form-control-input">
-                            <label>Amount<sup>
-                                    <div class="q-ask">?</div>
-                                </sup>
+                        <div class="form-control-input amount_div">
+                            <label>Amount
                             </label>
                            <input type="text" class="l-operator" placeholder="Enter Amount" id="price" name="price" style="width: 73.3% !important;height: 1.2rem !important; color: black !important;" oninput="this.value = this.value.replace(/[^\d]/g, '');">
-
                         </div>
+
                         <div class="form-control-atype">
-                            <label>ALERT TYPE <sup>
-                                    <span class="q-ask">?</span>
-                                </sup>
+                            <label>ALERT TYPE:
                             </label>
                             <div>
                                 <div class="box-container">
@@ -148,17 +139,20 @@
                             </div>
                         </div>
                         <div class="form-control-alert-on">
-                            <label>ALERT <sup>
-                                    <span class="q-ask">?</span>
-                                </sup>
-                            </label>
-                            <label class="switch">
-                                <input type="checkbox" id="status" name="status" class="l-alert_on" checked value="1">
-                                <div class="slider round">
-                                    <div class="on-label">ON</div>
-                                    <div class="off-label end">OFF</div>
-                                </div>
-                            </label>
+                            <div class="alert-lable-container">
+                             <label>ALERT:
+                             </label>
+                            </div>
+
+                            <div class="alert-input-switcher">
+                                <label class="switch">
+                                    <input type="checkbox" id="status" name="status" class="l-alert_on" checked value="1">
+                                    <div class="slider round">
+                                        <div class="on-label">ON</div>
+                                        <div class="off-label">OFF</div>
+                                    </div>
+                                </label>
+                            </div>
                         </div>
                         <div class="form-control-add">
                             <label>ADD ANOTHER</label>
@@ -173,7 +167,7 @@
         </div>
     </section>
 
-@includeIf('frontend.layout.hero-section')
+    @includeIf('frontend.layout.hero-section')
 
 @endsection
 

@@ -1,11 +1,8 @@
 @media only screen and (max-width: 1100px) {
   .container {
-    width: 100%;
+    width: 90%;
   }
   .home {
-    margin-right: 30px;
-  }
-  .menu-con {
     margin-right: 30px;
   }
 }
@@ -17,9 +14,14 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .l-cols {
+    margin-top: -50px;
+    margin-left: 20px;
+  }
+  .l-gap { padding: unset; }
   .flex-mobile {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
   .flex-m-2 {
     display: flex;
@@ -34,22 +36,58 @@
     margin: 25px 0px;
   }
   .menu-ftr {
-    flex-direction: column;
+    flex-direction: row;
     margin-left: 45px;
+    margin-right: 45px;
   }
   .cta-sidebar {
-    width: 83%;
+    width: 100%;
+    margin-left: unset;
+    padding: unset;
+    gap: unset;
+  }
+  .cta-sidebar div {
+    padding: 30px;
   }
   .home {
-    margin: 0px 30px;
+    margin: 0px;
     width: unset !important;
   }
 }
 
+@media only screen and (max-width: 541px) {
+  .cta-sidebar {
+    margin-top: 30px;
+  }
+  .r-cols {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+  }
+  .menu-ftr {
+    margin: 0px!;
+  }
+}
+@media only screen and (min-width: 541px) {
+  section.main-section {
+    margin-top: 40px;
+  }
+}
 @media only screen and (max-width: 480px) {
   /* .form-control-atype label, .form-control-alert-on label, .form-control-add label { width: 85% !important; } */
+  .form-control-add label,
+  .form-control-alert-on label,
+  .form-control-atype label {
+    width: auto;
+  }
   .container {
     width: 80% !important;
+  }
+  .ftr-info {
+    text-align: center;
   }
   .menu-con,
   .logo-con {
@@ -65,21 +103,16 @@
     margin-left: unset;
   }
   .form-control-add {
-    flex-direction: column;
+    display: flex;
     gap: 15px;
+    flex-direction: column;
   }
   .form-control-add label {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .menu-ftr {
-    margin-left: unset;
-  }
-  .flex-m-p {
-    display: flex;
-    flex-direction: column;
-  }
+
   .l-gap {
     padding-left: unset;
   }
@@ -93,17 +126,45 @@
   flex.l-gap.flex-mobile.lr-m {
     margin: unset;
   }
-  .cta-sidebar {
-    width: 80%;
-    margin: unset;
-  }
+
   .home {
     margin: unset !important;
     background-image: unset;
   }
+  .alert-lable-container {
+    display: flex;
+    width: 40%;
+    align-items: center;
+  }
+
+  .btn-layout-m {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .btn-container-submit {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: flex-start;
+  }
+
+  .label-input {
+    padding-top: 10px;
+  }
+
+  #submit {
+    margin: 0px;
+  }
 }
 
 @media only screen and (max-width: 425px) {
+  .form-control-alert-on label {
+    width: 50%;
+  }
   .bcccf {
     font-size: 45px;
     color: #005280;
@@ -124,6 +185,13 @@
   .form-control-input {
     flex-direction: column;
   }
+  .form-control-input,
+  .q-ask {
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
+  }
+
   .l-store,
   .l-operator,
   .l-percent {
@@ -132,12 +200,9 @@
   .l-operator {
     width: 99% !important;
   }
-  .form-control-atype label,
-  .form-control-alert-on label,
-  .form-control-add label {
-    width: 50%;
+  .icom-p {
+   position: relative;
+   bottom: 1px;
   }
-  .cta-sidebar {
-    width: 85%;
-  }
+
 }

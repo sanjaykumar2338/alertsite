@@ -32,19 +32,26 @@
 <![endif]-->
 
     <header class="menu-section full-container">
-        <div class="container flex f-row flex-m-p nav-flex">
+      <div class="container flex f-row flex-m-p nav-flex">
             <div class="logo-con">
                 <a href="{{ route('home') }}">
-                    <img src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" class="branding" />
+                    <img src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" class="branding" alt="TrackRak logo" />
                 </a>
             </div>
             <div class="menu-con">
+                
+                <div id="menu_burger" class="menu-burger h-large">
+                    <span class="b-layer"></span>
+                    <span class="b-layer"></span>
+                    <span class="b-layer"></span>
+                </div>
+
                 <div class="menu-tag">
                     <ul>
                         <li>
                             <a href="{{ route('track') }}" class="m-hover track">Track
                                 <div class="ml-con">
-                                    <div class="m-layout">
+                                    <div class="m-layout h-mobile">
                                         <div class="m-circle">
                                             <div class="inner-cle-track"></div>
                                         </div>
@@ -56,7 +63,7 @@
                         <li>
                             <a href="{{ route('faq') }}" class="m-hover faqs">FAQ<span class="sm-ls-menu">s</span>
                                 <div class="ml-con">
-                                    <div class="m-layout">
+                                    <div class="m-layout h-mobile">
                                         <div class="m-circle">
                                             <div class="inner-cle-faqs"></div>
                                         </div>
@@ -68,7 +75,7 @@
                         <li>
                             <a href="{{ route('contactus') }}" class="m-hover contact">Contact
                                 <div class="ml-con">
-                                    <div class="m-layout">
+                                    <div class="m-layout h-mobile">
                                         <div class="m-circle">
                                             <div class="inner-cle-contact"></div>
                                         </div>
@@ -85,7 +92,7 @@
                                     <a href="{{ route('track.list') }}" class="m-hover login">My Account
                                 @endif  
                                     <div class="ml-con">
-                                        <div class="m-layout">
+                                        <div class="m-layout h-mobile">
                                             <div class="m-circle">
                                                 <div class="inner-cle-login"></div>
                                             </div>
@@ -96,7 +103,7 @@
                             @else
                             <a href="{{ route('login') }}" class="m-hover login">SignUp/Login
                                 <div class="ml-con">
-                                    <div class="m-layout">
+                                    <div class="m-layout h-mobile">
                                         <div class="m-circle">
                                             <div class="inner-cle-login"></div>
                                         </div>
@@ -110,6 +117,7 @@
                 </div>
             </div>
         </div>
+        <div id="bm_container" class="burger-container h-large h-mobile"></div>
     </header>
 
     @yield('content')
@@ -121,27 +129,35 @@
             <div class="ftr-content flex-m-2">
                 <div class="l-cols">
                     <a href="http://tinyurl.com/d98frkfy" class="r-link" target="_blank">
-                        <img src="{{ asset('/asset/frontend/test/images/get-rakuten.png') }}" alt="Get Rakuten"></a>
+                        <img src="{{ asset('/asset/frontend/test/images/get-rakuten.png') }}" alt="Get Rakuten" /></a>
                 </div>
                 <div class="r-cols">
                     <div class="menu-ftr">
+                        
                         <div>
                             <a class="f-menu" href="{{ route('track') }}">TRACK</a>
                         </div>
+
+                        <div>
+                            <a class="f-menu" href="{{ route('faq') }}">FAQ<span class="sm-ls-ftr">s</span></a>
+                        </div>
+                        
+                        <div>
+                            <a class="f-menu" href="{{ route('contactus') }}">CONTACT</a>
+                        </div>
+
                         <div>
                             <a class="f-menu" href="{{ route('plans') }}">PLANS</a>
                         </div>
+                        
                         <div>
                             <a class="f-menu" href="{{ route('aboutus') }}">ABOUT US</a>
                         </div>
+
                     </div>
                 </div>
             </div>
-            <div class="ftr-info">
-                <div id="ftr_yr">{{\App\Models\Pages::where('slug', 'terms-and-conditions')->first()->created_at->format('Y')}}</div>
-                <div class="ftr-terms">TrackRak, All Rights Reserved | <a href="{{ route('terms') }}">Terms &amp;
-                        Conditions</a> | <a href="{{ route('privacy_policy') }}">Privacy Policy</a></div>
-            </div>
+            <div class="ftr-terms"><div class="ftr-info"><div id="ftr_yr"></div>TrackRak, All Rights Reserved | <span style="cursor:pointer;"  onclick="window.location.href = '{{ route('terms') }}';">Terms & Conditions</span> | <span style="cursor:pointer;"   onclick="window.location.href = '{{ route('privacy_policy') }}';">Privacy Policy</span></div></div>
         </footer>
     </section>
 
@@ -168,6 +184,33 @@
     <script src="{{ asset('asset/frontend/test/js/scc-c2.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.6/build/js/intlTelInput.min.js"></script>
+    <script type="text/javascript">
+        jQuery('.amount_div').hide();
+        document.addEventListener("DOMContentLoaded", function() {
+            var discountTypeSelect = document.getElementById("discount_type");
+            var amountDiv = document.querySelector(".amount_div");
+            var amountInput = document.getElementById("price");
+            
+            discountTypeSelect.addEventListener("change", function() {
+                var selectedValue = discountTypeSelect.value;
+
+                if (selectedValue === "Percentage") {
+                    amountInput.placeholder = "Enter Percentage Amount";
+                } else if (selectedValue === "Fixed") {
+                    amountInput.placeholder = "Enter Fixed Amount";
+                }
+
+                if (selectedValue) {
+                    // Show the amount_div if a value is selected
+                    jQuery('.amount_div').show();
+                } else {
+                    // Hide the amount_div if no value is selected
+                    jQuery('.amount_div').hide();
+                }
+            });
+        });
+
+    </script>
 
     @stack('scripts')
 

@@ -97,5 +97,4 @@ menuBurger.addEventListener('click', function( evt ) {
   } else {
      burgerContainer.classList.add('h-mobile');
   }
-
 })
