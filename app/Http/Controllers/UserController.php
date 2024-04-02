@@ -19,11 +19,11 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'phone_number' => 'required|string|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|confirmed|string|min:8'
         ]);
 
+        /*
         $validator = Validator::make($request->all(), [
             'full_phonenumber' =>
                 function ($attribute, $value, $fail) {
@@ -32,6 +32,7 @@ class UserController extends Controller
                     }
                 },
         ]);
+        
 
         if ($validator->fails()) {
             $errors = $validator->errors();
@@ -43,12 +44,12 @@ class UserController extends Controller
             session()->flash('fullPhoneNumberError', $fullPhoneNumberError);
             return back();
         }
+        */
 
         // Create a new user instance
         $user = User::create([
             'first_name' => $validatedData['first_name'],
             'last_name' => $validatedData['last_name'],
-            'phone_number' => $request->full_phonenumber,
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
         ]);
