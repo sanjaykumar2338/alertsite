@@ -19,7 +19,7 @@
                     <a href="{{route('login')}}" class="cta-btn">Login now!</a>
                 </div>
             </div>
-            <div class="page-content home">
+            <div class="page-content">
                 <div>
                     
                     {!! $homepage->description !!}
