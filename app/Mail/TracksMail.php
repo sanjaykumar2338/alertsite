@@ -41,8 +41,10 @@ class TracksMail extends Mailable
             $email_content = str_replace('{{customer_name}}', $this->userName, $email_content);
             $email_content = str_replace('{{discount_type}}', $this->discountType, $email_content);
             $email_content = str_replace('{{discount_amount}}', $this->offerPercent, $email_content);
-            $email_content = str_replace('{{storeUrl}}', $this->storeUrl, $email_content);
-            $email_content = str_replace('{{shopping_url}}', $this->storeUrl, $email_content);
+            
+            // Replace storeUrl and shopping_url with anchor tags
+            $email_content = str_replace('{{storeUrl}}', '<a href="' . $this->storeUrl . '">' . $this->storeUrl . '</a>', $email_content);
+            $email_content = str_replace('{{shopping_url}}', '<a href="' . $this->storeUrl . '">' . $this->storeUrl . '</a>', $email_content);
 
             return new Content(
                 markdown: 'mail.track',
