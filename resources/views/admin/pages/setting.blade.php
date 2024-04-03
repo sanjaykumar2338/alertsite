@@ -64,7 +64,7 @@
 
                 <div class="mb-3 mt-3">
                   <label for="product_name">Email Content Background Color:</label>
-                  <input type="color" class="form-control" name="background_color">
+                  <input type="color" class="form-control" value="{{$rec->background_color}}" name="background_color">
                 </div>
          
                 <button type="submit" class="btn btn-primary">Update</button>
