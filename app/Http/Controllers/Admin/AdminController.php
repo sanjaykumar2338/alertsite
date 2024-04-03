@@ -56,6 +56,7 @@ class AdminController extends Controller{
             $rec->phone = $request->phone;
             $rec->email_content = $request->email_content;
             $rec->sms_content = $request->sms_content;
+            $rec->background_color = $request->background_color;
             $rec->save();
         }else{
             $setting = new Setting();
@@ -63,6 +64,7 @@ class AdminController extends Controller{
             $setting->phone = $request->phone;
             $setting->email_content = $request->email_content;
             $setting->sms_content = $request->sms_content;
+            $rec->background_color = $request->background_color;
             $setting->save();
         }
 
