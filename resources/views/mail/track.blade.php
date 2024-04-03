@@ -379,10 +379,10 @@
   </style>
 </head>
 
-<body style="word-spacing:normal;background-color:#1c1d22;">
+<body style="word-spacing:normal;">
 <div style="color:transparent;visibility:hidden;opacity:0;font-size:0px;border:0;max-height:1px;width:1px;margin:0px;padding:0px;border-width:0px!important;display:none!important;line-height:0px!important;"><img border="0" width="1" height="1" src="http://post.spmailtechnolo.com/q/1wkKaoq4OrYOqBNTWRWTYA~~/AABEfgA~/RgRn0daSPVcDc3BjQgpl75RR72VErWOqUhZhdG96d2VicGFnZXNAZ21haWwuY29tWAQAAAAA" alt=""/></div>
 
-  <div style="background-color:#1c1d22;">
+  <div>
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" bgcolor="#434857" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
     <div style="background:#434857;background-color:#434857;margin:0px auto;max-width:600px;">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#434857;background-color:#284bb4;width:100%;">
