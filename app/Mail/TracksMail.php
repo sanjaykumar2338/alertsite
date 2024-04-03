@@ -43,7 +43,7 @@ class TracksMail extends Mailable
             $email_content = str_replace('{{discount_amount}}', $this->offerPercent, $email_content);
 
             // Replace storeUrl and shopping_url with anchor tags
-            //$email_content = str_replace('{{url}}', '<a href="' . $this->url . '">' . $this->storeUrl . '</a>', $email_content);
+            $email_content = str_replace('{{url}}', '<a href="' . $this->store . '">' . $this->storeUrl . '</a>', $email_content);
             $email_content = str_replace('{{storeUrl}}', '<a href="' . $this->store . '">' . $this->storeUrl . '</a>', $email_content);
             $email_content = str_replace('{{shopping_url}}', '<a href="' . $this->store . '">' . $this->storeUrl . '</a>', $email_content);
 
