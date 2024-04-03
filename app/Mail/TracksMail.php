@@ -42,6 +42,7 @@ class TracksMail extends Mailable
             $email_content = str_replace('{{discount_type}}', $this->discountType, $email_content);
             $email_content = str_replace('{{discount_amount}}', $this->offerPercent, $email_content);
             $email_content = str_replace('{{storeUrl}}', $this->storeUrl, $email_content);
+            $email_content = str_replace('{{shopping_url}}', $this->storeUrl, $email_content);
 
             return new Content(
                 markdown: 'mail.track',
@@ -51,6 +52,7 @@ class TracksMail extends Mailable
                     'userName' => $this->userName,
                     'offerPercent' => $this->offerPercent,
                     'storeUrl' => $this->storeUrl,
+                    'shopping_url' => $this->storeUrl,
                     'email_content' => $email_content
                 ],
             );
@@ -62,7 +64,8 @@ class TracksMail extends Mailable
                     'url' => $this->url,
                     'userName' => $this->userName,
                     'offerPercent' => $this->offerPercent,
-                    'storeUrl' => $this->storeUrl
+                    'storeUrl' => $this->storeUrl,
+                    'shopping_url' => $this->storeUrl
                 ],
             );
         }
