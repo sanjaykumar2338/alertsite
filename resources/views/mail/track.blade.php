@@ -385,7 +385,7 @@
   <div style="background-color:#1c1d22;">
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" bgcolor="#434857" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
     <div style="background:#434857;background-color:#434857;margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#434857;background-color:#434857;width:100%;">
+      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#434857;background-color:#284bb4;width:100%;">
         <tbody>
           <tr>
             <td style="direction:ltr;font-size:0px;padding:0;text-align:center;">
