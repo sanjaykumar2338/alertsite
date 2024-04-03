@@ -65,18 +65,16 @@
               </select>
           </div>
 
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">PERCENT</label>
-            <select class="form-control" id="discount_type" name="discount_type">
+          <label for="exampleFormControlSelect1">Amount</label>
+          <div class="form-group" style="display: flex;">
+            <select class="form-control" id="discount_type" name="discount_type" style="width: 40%;">
+              <option value="">--Select--</option>
               <option>Fixed</option>
               <option>Percentage</option>
-            </select>
+            </select>&nbsp;&nbsp;&nbsp;
+            <input type="number" class="form-control" id="price" name="price" style="width: 40%;" oninput="this.value = this.value.replace(/\D/g, '').substring(0, 3);">
           </div>
           
-          <div class="form-group">
-              <label for="exampleFormControlSelect1">Amount</label>
-              <input type="number" class="form-control" id="price" name="price" oninput="this.value = this.value.replace(/[^\d]/g, '');">
-          </div>
           <div class="form-group">
               <label for="exampleFormControlSelect1">Alert Type</label>
               <div class="form-check">
@@ -88,7 +86,7 @@
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="text" name="alert_text" id="alert_text">
                 <label class="form-check-label" for="flexRadioDefault2">
-                  Text
+                  SMS
                 </label>
               </div>
           </div>

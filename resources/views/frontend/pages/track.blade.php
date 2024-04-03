@@ -3,22 +3,9 @@
 @section('content')
     <section class="main-section full-container">
         <div class="container flex l-gap flex-mobile lr-m">
-            <div class="cta-sidebar">
-                <div>
-                    <p><span class="tagline">TrackRak &amp;<br>Get More<br>Money Back!</span><br>
-                        <br>
-                        Stay on top of <a style='color: #8529cd; width:auto; font-weight: 600; text-decoration: none;'
-                                          href="http://tinyurl.com/d98frkfy" target="_blank">Rakuten</a> deals with our
-                        alert tool. Never miss out on savings again!<br>
-                        <br>
-                        Your first alert is <strong>FREE!</strong></p>
-                    <a href="{{route('register')}}" class="cta-btn">Join now!</a>
-                </div>
-                <div>
-                    <p>Already saving with TrackRak?</p>
-                    <a href="{{route('login')}}" class="cta-btn">Login now!</a>
-                </div>
-            </div>
+            
+            @includeIf('frontend.layout.sidebar')
+
             <div class="page-content home">
                 <div>
                     <style>
@@ -101,19 +88,16 @@
                         </div>
 
                         <div class="form-control-input">
-                            <label>PERCENT/CASH:&nbsp;
+                            <label>Amount
                             </label>
-                            <select class="l-operator" id="discount_type" name="discount_type">
+                            <select style="width:38.5% !important;margin-left: 73px !important;" class="l-operator" id="discount_type" name="discount_type">
                                 <option value="">--Select--</option>
                                 <option value="Percentage">Percent Cash Back</option>
                                 <option value="Fixed">Fixed Cash Back</option>
                             </select>
-                        </div>
+                            &nbsp;
+                            <input type="text" class="l-operator" placeholder="Enter Amount" id="price" name="price" style="width: 40% !important;height: 1.2rem !important; color: black !important;" oninput="this.value = this.value.replace(/\D/g, '').substring(0, 3);">
 
-                        <div class="form-control-input amount_div">
-                            <label>Amount:
-                            </label>
-                           <input type="text" class="l-operator" placeholder="Enter Amount" id="price" name="price" style="width: 73.3% !important;height: 1.2rem !important; color: black !important;" oninput="this.value = this.value.replace(/[^\d]/g, '');">
                         </div>
 
                         <div class="form-control-atype">

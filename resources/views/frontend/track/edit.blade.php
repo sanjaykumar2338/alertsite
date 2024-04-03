@@ -64,21 +64,18 @@
               </select>
           </div>
 
-
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">PERCENT</label>
-            <select class="form-control" id="discount_type" name="discount_type">
+          <label for="exampleFormControlSelect1">Amount</label>
+          <div class="form-group" style="display: flex;">
+            
+            <select class="form-control" id="discount_type" name="discount_type" style="width: 40%;">
               <option {{$track->discount_type=='Fixed' ? 'selected':''}}>Fixed</option>
               <option {{$track->discount_type=='Percentage' ? 'selected':''}}>Percentage</option>
             </select>
+
+            &nbsp;&nbsp;&nbsp;
+            <input type="number" class="form-control" value="{{$track->price}}" id="price" name="price" style="width: 40%;" oninput="this.value = this.value.replace(/\D/g, '').substring(0, 3);">
           </div>
           
-
-
-          <div class="form-group">
-              <label for="exampleFormControlSelect1">Amount</label>
-              <input type="number" value="{{$track->price}}" class="form-control" id="price" name="price" oninput="this.value = this.value.replace(/[^\d]/g, '');">
-          </div>
           <div class="form-group">
               <label for="exampleFormControlSelect1">Alert Type</label>
               <div class="form-check">
@@ -90,7 +87,7 @@
               <div class="form-check">
                 <input class="form-check-input" {{$track->alert_text=='text' ? 'checked':''}} type="checkbox" value="text" name="alert_text" id="alert_text">
                 <label class="form-check-label" for="flexRadioDefault2">
-                  Text
+                  SMS
                 </label>
               </div>
           </div>
