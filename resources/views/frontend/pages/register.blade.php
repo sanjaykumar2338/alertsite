@@ -65,7 +65,7 @@
             @includeIf('frontend.layout.sidebar')
 
             <div class="page-content pg-l">
-                <h1 class="page-title">SIGNUP</h1>
+                <h1 class="page-title">SIGN UP</h1>
                 <form method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
 
@@ -87,7 +87,7 @@
 
                     <div>
                         <label for="phone_number" class="mb-2"><b>Phone Number</b></label>
-                        <input value="{{ old('phone_number') }}" oninput="this.value = this.value.replace(/[^\d]/g, '');" id="phone_number" type="text" name="phone_number">
+                        <input value="{{ old('phone_number') }}" oninput="this.value = this.value.replace(/[^\d]/g, '');" id="phone_number" type="text" name="phone_number" placeholder="Enter Phone Number">
                         @error('phone_number')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -116,6 +116,14 @@
                         <label for="psw"><b>Confirm Password</b></label>
                         <input type="password" placeholder="Enter Confirm Password" name="password_confirmation">
                         @error('password_confirmation')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <br/>
+                        <input type="checkbox" name="agree_terms_and_condition"> By clicking on the Sign Up button below, you agree to our <span style="cursor:pointer;text-decoration: underline;"  onclick="window.location.href = '{{ route('terms') }}';">Terms & Conditions</span> and have read our <span style="cursor:pointer;text-decoration: underline;"   onclick="window.location.href = '{{ route('privacy_policy') }}';">Privacy Policy</span>.
+                        @error('agree_terms_and_condition')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

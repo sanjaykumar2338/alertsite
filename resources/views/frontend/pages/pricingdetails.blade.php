@@ -322,6 +322,64 @@
             }
         }
 
+        /* This css is for normalizing styles. You can skip this. */
+        *, *:before, *:after {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        .form-group {
+          display: block;
+          margin-bottom: 15px;
+        }
+
+        .form-group input {
+          padding: 0;
+          height: initial;
+          width: initial;
+          margin-bottom: 0;
+          display: none;
+          cursor: pointer;
+        }
+
+        .form-group label {
+          position: relative;
+          cursor: pointer;
+        }
+
+        .form-group label:before {
+          content:'';
+          -webkit-appearance: none;
+          background-color: transparent;
+          border: 2px solid #0079bf;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+          padding: 10px;
+          display: inline-block;
+          position: relative;
+          vertical-align: middle;
+          cursor: pointer;
+          margin-right: 5px;
+        }
+
+        .form-group input:checked + label:after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 2px;
+          left: 9px;
+          width: 6px;
+          height: 14px;
+          border: solid #0079bf;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+
+        .text-danger{
+            color: red;
+        }
     </style>
 
     <script src="https://js.stripe.com/v3/"></script>
@@ -342,7 +400,7 @@
                         <legend class="payment-request-available" data-tid="elements_examples.form.enter_card_manually">Or enter
                             card details
                         </legend>
-                        <div class="row">
+                        <div class="row" style="display: none;">
                             <div class="field">
                                 <label for="example5-name" data-tid="elements_examples.form.name_label" style="color: black; font-weight: bold">Name</label>
                                 <input value="{{auth()->user()->first_name . ' ' . auth()->user()->last_name ?? ''}}"
@@ -353,7 +411,7 @@
                         </div>
                         <input type="hidden" name="plan" value="{{$planId}}">
                         <input type="hidden" name="email" id="hidden-email">
-                        <div class="row">
+                        <div class="row" style="display: none;">
                             <div class="field">
                                 <label for="example5-email" data-tid="elements_examples.form.email_label" style="color: black; font-weight: bold">Email</label>
                                 <input value="{{auth()->user()->email ?? ''}}" id="visible-email"
@@ -363,16 +421,16 @@
                             <div class="field">
                                 <label for="example5-phone" data-tid="elements_examples.form.phone_label" style="color: black; font-weight: bold">Phone</label>
                                 <input id="example5-phone" data-tid="elements_examples.form.phone_placeholder" class="input"
-                                       type="text" placeholder="(941) 555-0123" required="" autocomplete="tel" style="color: black;">
+                                       type="text" placeholder="" required="" autocomplete="tel" style="color: black;">
                             </div>
                         </div>
-                        <div data-locale-reversible>
+                        <div data-locale-reversible style="display: none;">
                             <div class="row">
                                 <div class="field">
                                     <label for="example5-address"
                                            data-tid="elements_examples.form.address_label" style="color: black; font-weight: bold">Address</label>
                                     <input id="example5-address" data-tid="elements_examples.form.address_placeholder"
-                                           class="input" type="text" placeholder="185 Berry St" required=""
+                                           class="input" type="text" placeholder="" required=""
                                            autocomplete="address-line1">
                                 </div>
                             </div>
@@ -380,18 +438,18 @@
                                 <div class="field">
                                     <label for="example5-city" data-tid="elements_examples.form.city_label" style="color: black; font-weight: bold">City</label>
                                     <input id="example5-city" data-tid="elements_examples.form.city_placeholder" class="input"
-                                           type="text" placeholder="San Francisco" required="" autocomplete="address-level2">
+                                           type="text" placeholder="" required="" autocomplete="address-level2">
                                 </div>
                                 <div class="field">
                                     <label for="example5-state" data-tid="elements_examples.form.state_label" style="color: black; font-weight: bold">State</label>
                                     <input id="example5-state" data-tid="elements_examples.form.state_placeholder"
-                                           class="input empty" type="text" placeholder="CA" required=""
+                                           class="input empty" type="text" placeholder="" required=""
                                            autocomplete="address-level1">
                                 </div>
                                 <div class="field">
                                     <label for="example5-zip" data-tid="elements_examples.form.postal_code_label" style="color: black; font-weight: bold">ZIP</label>
                                     <input id="example5-zip" data-tid="elements_examples.form.postal_code_placeholder"
-                                           class="input empty" type="text" placeholder="94107" required=""
+                                           class="input empty" type="text" placeholder="" required=""
                                            autocomplete="postal-code">
                                 </div>
                             </div>
@@ -403,6 +461,16 @@
                                 <div id="card-errors" class="text-danger mt-1"></div>
                             </div>
                         </div>
+
+                        <div class="new">
+                            <div class="form-group">
+                              <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions">
+                              <label for="terms_and_conditions"></label>By clicking on the Sign Up button below, you agree to our <span style="cursor:pointer;text-decoration: underline;"  onclick="window.location.href = '{{ route('terms') }}';">Terms & Conditions</span> and have read our <span style="cursor:pointer;text-decoration: underline;"   onclick="window.location.href = '{{ route('privacy_policy') }}';">Privacy Policy</span>.
+                            </div>
+
+                            <span class="text-danger" id="terms_and_conditions_error">Terms and conditions is required<span>
+                        </div>
+
                         <input type="hidden" name="token" class="token">
                         <button type="button" id="checkout-submit-btn" data-tid="elements_examples.form.pay_button">Pay
                             ${{$planPrice}}</button>
@@ -651,7 +719,18 @@
             });
 
             const checkoutSubmitBtn = document.getElementById('checkout-submit-btn');
+            const terms_and_conditions = document.getElementById('terms_and_conditions');
+            const checkbox = document.getElementById('terms_and_conditions');
+
+            document.getElementById('terms_and_conditions_error').style.display = 'none';
+
             checkoutSubmitBtn.addEventListener('click', async (e) => {
+                if(!checkbox.checked){
+                    document.getElementById('terms_and_conditions_error').style.display = 'inline';
+                    return;
+                }
+
+                document.getElementById('terms_and_conditions_error').style.display = 'none';
                 showLoader();
                 e.preventDefault();
                 var name = document.getElementById('visible-email');

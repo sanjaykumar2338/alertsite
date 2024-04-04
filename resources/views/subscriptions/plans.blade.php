@@ -286,7 +286,7 @@
                     @endif
 
                     <div>
-                        <h1 class="page-title" style="width: 64%">Subscription Plans</h1>
+                        <h1 class="page-title" style="width: 64%">OUR PLANS</h1>
                     </div>
 
                     <div class="row text-center" style="display: flex; justify-content: center; gap: 30px;">

@@ -21,7 +21,8 @@ class UserController extends Controller
             'last_name' => 'required|string|max:255',
             'phone_number' => 'required|string|unique:users|regex:/^\+?1?\d{10}$/',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|confirmed|string|min:8'
+            'password' => 'required|confirmed|string|min:8',
+            'agree_terms_and_condition' => 'required'
         ]);
 
         $phoneNumber = $request->phone_number;

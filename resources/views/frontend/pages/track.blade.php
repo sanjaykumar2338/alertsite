@@ -88,7 +88,7 @@
                         </div>
 
                         <div class="form-control-input">
-                            <label>Amount
+                            <label>Amount:
                             </label>
                             <select style="width:38.5% !important;margin-left: 73px !important;" class="l-operator" id="discount_type" name="discount_type">
                                 <option value="">--Select--</option>
@@ -101,7 +101,7 @@
                         </div>
 
                         <div class="form-control-atype">
-                            <label>ALERT TYPE:
+                            <label>ALERT TYPE*:
                             </label>
                             <div>
                                 <div class="box-container">
@@ -120,7 +120,9 @@
                                            onclick="singleSelection(this)">
                                     <div class="box-label">Both</div>
                                 </div>
+                                <span style="font-size: 10px;padding-left:13px;"><i>Message & data rates may apply</i></span>
                             </div>
+                            <br>
                         </div>
                         <div class="form-control-alert-on">
                             <div class="alert-lable-container">
