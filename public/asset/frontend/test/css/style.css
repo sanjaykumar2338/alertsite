@@ -300,6 +300,7 @@ input:checked + .slider:before {
   margin-top: 15px;
   flex-direction: row;
   gap: 15px;
+  margin-left: 154px;
 }
 .hero-column,
 .hero-main {
@@ -460,4 +461,8 @@ input:checked + .slider:before {
 
 div.menu-ftr a.f-menu {
     text-decoration: none;
+}
+
+.alert-input-switcher{
+  margin-left:62px;
 }

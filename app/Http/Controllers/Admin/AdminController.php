@@ -47,6 +47,13 @@ class AdminController extends Controller{
         return view('admin.pages.stores')->with('activeLink','store')->with('rec',$rec);
     }
 
+    public function contacts(Request $request){
+        $rec = \DB::table('contacts')
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('admin.pages.contacts')->with('activeLink','contacts')->with('rec',$rec);
+    }
+
     public function setting_save(Request $request){
         //echo "<pre>"; print_r($request->all()); die();
         $rec = Setting::count();

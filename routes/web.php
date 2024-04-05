@@ -79,6 +79,7 @@ Route::group(['prefix' => 'admin','middleware' => 'check.auth'], function () {
     Route::get('setting', [AdminController::class, 'setting']);
     Route::post('setting_save', [AdminController::class, 'setting_save'])->name('setting.store');
     Route::get('store', [AdminController::class, 'store']);
+    Route::get('contacts', [AdminController::class, 'contacts']);
 });
 
 Route::group(['middleware' => 'check.auth'], function () {
@@ -100,6 +101,7 @@ Route::post('/save_review', [App\Http\Controllers\HomeController::class, 'save_r
 Route::get('/get_images', [App\Http\Controllers\HomeController::class, 'get_images'])->name('get_images');
 Route::get('/updateImageNames', [App\Http\Controllers\HomeController::class, 'updateImageNames'])->name('updateImageNames');
 Route::get('/updateEmptyImageColumns', [App\Http\Controllers\HomeController::class, 'updateEmptyImageColumns'])->name('updateEmptyImageColumns');
+Route::post('/contact/save', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact.save');
 
 Route::get('/pricing', [App\Http\Controllers\HomeController::class, 'pricing'])->name('pricing');
 Route::get('/contactus', [App\Http\Controllers\HomeController::class, 'contactus'])->name('contactus');

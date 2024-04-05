@@ -5,8 +5,8 @@
         <div class="container flex l-gap flex-mobile lr-m">
             
             @includeIf('frontend.layout.sidebar')
-
             <div class="page-content home">
+                <h1 class="page-title" style="width:235px">Track</h1>
                 <div>
                     <style>
                         .selectpicker option {
@@ -88,9 +88,9 @@
                         </div>
 
                         <div class="form-control-input">
-                            <label>Amount:
+                            <label>AMOUNT:
                             </label>
-                            <select style="width:38.5% !important;margin-left: 73px !important;" class="l-operator" id="discount_type" name="discount_type">
+                            <select style="width:38.5% !important;margin-left: 58px !important;" class="l-operator" id="discount_type" name="discount_type">
                                 <option value="">--Select--</option>
                                 <option value="Percentage">Percent Cash Back</option>
                                 <option value="Fixed">Fixed Cash Back</option>
@@ -112,7 +112,7 @@
                                 <div class="box-container">
                                     <input type="radio" name="alert_type" id="alert_checkbox[]"
                                            class="l-alert_checkbox" value="text" onclick="singleSelection(this)">
-                                    <div class="box-label">Text/SMS</div>
+                                    <div class="box-label">*Text/SMS</div>
                                 </div>
                                 <div class="box-container">
                                     <input type="radio" name="alert_type" id="alert_checkbox[]"
@@ -120,7 +120,7 @@
                                            onclick="singleSelection(this)">
                                     <div class="box-label">Both</div>
                                 </div>
-                                <span style="font-size: 10px;padding-left:13px;"><i>Message & data rates may apply</i></span>
+                                <span style="font-size: 10px;padding-left:13px;"><i>*Message & data rates may apply</i></span>
                             </div>
                             <br>
                         </div>
@@ -141,10 +141,7 @@
                             </div>
                         </div>
                         <div class="form-control-add">
-                            <label>ADD ANOTHER</label>
-                            <button id="add" class="l-add">
-                                <span class="icom-p">+</span>
-                            </button>
+                            
                             <input type="submit" id="submit" class="l-submit" value="Submit">
                         </div>
                     </form>

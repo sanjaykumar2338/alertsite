@@ -17,8 +17,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap" rel="stylesheet">
     <link id="reset_style" rel="stylesheet" href="{{asset('asset/frontend/test/css/normalize.css')}}" />
-    <link id="layout_main" rel="stylesheet" href="{{asset('asset/frontend/test/css/style.css')}}" />
-    <link id="layout_menu" rel="stylesheet" href="{{asset('asset/frontend/test/css/menu.css')}}" />
+    <link id="layout_main" rel="stylesheet" href="{{asset('asset/frontend/test/css/style.css')}}?v={{time()}}" />
+    <link id="layout_menu" rel="stylesheet" href="{{asset('asset/frontend/test/css/menu.css')}}?v={{time()}}" />
     <link id="mobile_responsive" rel="stylesheet" href="{{asset('asset/frontend/test/css/responsive.css')}}" />
     <link id="accordion_layout" rel="stylesheet" href="{{asset('asset/frontend/test/css/accordion.css')}}" />
 

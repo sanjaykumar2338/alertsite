@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BlogReview;
 use App\Models\Pages;
 use App\Models\Faqs;
+use App\Models\Contacts;
 use App\Models\PrintfulOrder;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -181,6 +182,19 @@ class HomeController extends Controller
 
         return view('frontend.pages.pricingdetails', compact('planId', 'userIntent', 'planPrice'));
     }
+
+    public function contact(Request $request) {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'message' => 'required'
+        ]);
+
+        Contacts::create($request->all());
+        return redirect()->route('home')->with('success', 'We have received your message and will get back to you soon.');
+    }
+
 
     public function products() {
         return view('frontend.pages.products');

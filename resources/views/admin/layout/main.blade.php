@@ -100,6 +100,13 @@
               </p>
             </a>
 
+            <a href="{{url('/admin/contacts')}}" class="nav-link {{$activeLink=='contacts'?'active':''}}">
+              <i class="nav-icon fas fa-envelope icon"></i>
+              <p>
+                Contacts
+              </p>
+            </a>
+
             <a href="{{url('/admin/store')}}" class="nav-link {{$activeLink=='store'?'active':''}}">
               <i class="nav-icon fas fa-solid fa-store"></i>
               <p>
