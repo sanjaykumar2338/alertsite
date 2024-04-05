@@ -70,7 +70,7 @@
 
                             <div class="row">
 
-                                    <table id="example" class="display" style="width: 135%;">
+                                    <table id="example" class="display">
         <thead>
             <tr>
                
