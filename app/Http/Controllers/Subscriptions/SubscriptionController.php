@@ -30,7 +30,7 @@ class SubscriptionController extends Controller
             }
         }
 
-        return view('subscriptions.plans', compact('plansArray', 'currentPlanName', 'user', 'userSubscribed'));
+        return view('subscriptions.plans', compact('plansArray', 'currentPlanName', 'user', 'userSubscribed'))->with('page',array());
 
     }
 }

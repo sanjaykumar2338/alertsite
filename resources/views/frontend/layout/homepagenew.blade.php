@@ -4,9 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{env('APP_NAME')}}</title>
+    <title>
+        @if (!empty(@$page->meta_title))
+            {{@$page->meta_title}}
+        @else
+            {{env('APP_NAME')}}
+        @endif
+    </title>
+    <meta name="keywords" content="{{@$page->meta_keywords}}">
+    <meta name="description" content="{{@$page->meta_description}}">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
     <link rel="icon" href="{{ asset('asset/frontend/images/favicon.png') }}" type="image/x-icon">
 
     {{--Intl Tel Input

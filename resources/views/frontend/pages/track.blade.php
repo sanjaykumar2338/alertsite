@@ -120,7 +120,7 @@
                                            onclick="singleSelection(this)">
                                     <div class="box-label">Both</div>
                                 </div>
-                                <span style="font-size: 10px;padding-left:13px;"><i>*Message & data rates may apply</i></span>
+                                <span style="font-size: 10px;padding-left:13px;"><i>*US Customers only. Automated alert messages will be sent to the phone number provided. Msg and data rates may apply. Msg frequency may vary. To opt out, text "STOP"</i></span>
                             </div>
                             <br>
                         </div>

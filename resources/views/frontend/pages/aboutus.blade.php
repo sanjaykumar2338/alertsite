@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 d-flex align-items-center">
                 <div class="text-right">
-                   {!! $aboutus->description !!}
+                   {!! $page->description !!}
                 </div>
             </div>
         </div>

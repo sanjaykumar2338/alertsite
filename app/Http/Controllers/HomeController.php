@@ -34,17 +34,17 @@ class HomeController extends Controller
      */
     public function index() {
         $homepage = Pages::where('slug', 'homepage')->first();
-        return view('frontend.pages.home')->with('homepage', $homepage);
+        return view('frontend.pages.home')->with('page', $homepage);
     }
 
     public function contactus() {
         $contact = Pages::where('slug', 'contact-us')->first();
-        return view('frontend.pages.contactus')->with('contact', $contact);
+        return view('frontend.pages.contactus')->with('page', $contact);
     }
 
     public function aboutus() {
         $aboutus = Pages::where('slug', 'about-us')->first();
-        return view('frontend.pages.aboutus')->with('aboutus', $aboutus);
+        return view('frontend.pages.aboutus')->with('page', $aboutus);
     }
 
     public function track() {
@@ -54,22 +54,23 @@ class HomeController extends Controller
             ->orderBy('store_name', 'asc')
             ->where('store_name', '!=', '')
             ->get();
-        return view('frontend.pages.track')->with('track', $track)->with('stores', $stores);
+        return view('frontend.pages.track')->with('page', $track)->with('stores', $stores);
     }
 
     public function faq() {
+        $page = Pages::where('slug', 'faq')->first();
         $faq = Faqs::get();
-        return view('frontend.pages.faq')->with('faq', $faq);
+        return view('frontend.pages.faq')->with('faq', $faq)->with('page', $page);
     }
 
     public function terms() {
         $terms = Pages::where('slug', 'terms-and-conditions')->first();
-        return view('frontend.pages.terms')->with('terms', $terms);
+        return view('frontend.pages.terms')->with('page', $terms);
     }
 
     public function privacy_policy() {
         $terms = Pages::where('slug', 'privacy-policy')->first();
-        return view('frontend.pages.terms')->with('terms', $terms);
+        return view('frontend.pages.terms')->with('page', $terms);
     }
 
     public function shop2() {

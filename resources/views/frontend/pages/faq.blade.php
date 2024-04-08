@@ -21,6 +21,9 @@
         <div class="page-content pg-l">
             <h1 class="page-title">FAQ <span class="sm-ls">s</span>
             </h1>
+            <div>
+                    {!! $page->description !!}
+            </div><br>
             <div class="accordion-app">
                 @foreach($faq as $q)
                     <button class="accordion">

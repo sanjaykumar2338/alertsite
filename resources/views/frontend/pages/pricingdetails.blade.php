@@ -388,6 +388,7 @@
 
     <section class="Support-Cause custom-margin-top">
         <div class="container">
+            <br><br><br><br>
             <h1 class="page-title" style="width:24%;">Pricing<br></h1>
             <div class="cell example example5">
                 <form name="paymentfrm" id="paymentfrm" method="post" action="{{route('subscribe.form')}}">
@@ -465,7 +466,7 @@
                         <div class="new">
                             <div class="form-group">
                               <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions">
-                              <label for="terms_and_conditions"></label>By clicking on the Sign Up button below, you agree to our <span style="cursor:pointer;text-decoration: underline;"  onclick="window.location.href = '{{ route('terms') }}';">Terms & Conditions</span> and have read our <span style="cursor:pointer;text-decoration: underline;"   onclick="window.location.href = '{{ route('privacy_policy') }}';">Privacy Policy</span>.
+                              <label for="terms_and_conditions"></label>By clicking on the Pay button below, you agree to our <span style="cursor:pointer;text-decoration: underline;"  onclick="window.location.href = '{{ route('terms') }}';">Terms & Conditions</span> and have read our <span style="cursor:pointer;text-decoration: underline;"   onclick="window.location.href = '{{ route('privacy_policy') }}';">Privacy Policy</span>.
                             </div>
 
                             <span class="text-danger" id="terms_and_conditions_error">Terms and conditions is required<span>

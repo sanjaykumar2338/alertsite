@@ -44,7 +44,7 @@
         .price-label {
             color: #fff;
             background: #ffaa17;
-            font-size: 16px;
+            font-size: 25px;
             width: 100px;
             margin-bottom: 15px;
             display: block;
@@ -182,7 +182,7 @@
         }
 
         .single-pricing h5 {
-            font-size: 14px;
+            font-size: 18px;
             margin-bottom: 0px;
             text-transform: uppercase;
         }
@@ -286,7 +286,7 @@
                     @endif
 
                     <div>
-                        <h1 class="page-title" style="width: 64%">OUR PLANS</h1>
+                        <h1 class="page-title" style="width: 33%">OUR PLANS</h1>
                     </div>
 
                     <div class="row text-center" style="display: flex; justify-content: center; gap: 30px;">
@@ -321,7 +321,7 @@
                                     </a>
                                 @else
                                     <a href="{{ route('plan.detail', [$plansArray['free']->id]) }}">
-                                        Get Start
+                                        Get Started
                                     </a>
                                 @endif
                             </div>
@@ -357,7 +357,7 @@
                                     </a>
                                 @else
                                     <a href="{{ route('plan.detail', [$plansArray['basic']->id]) }}">
-                                        Get Start
+                                        Get Started
                                     </a>
                                 @endif
                             </div>
@@ -379,7 +379,7 @@
                                     <span></span>
                                     <span></span>
                                 </div>
-                                <span class="price-label text-black">Best</span>
+                                <span class="price-label text-black" style="font-size: 25px;">Best</span>
                                 <h1 class="price">$9.99</h1>
                                 <h5 class="monthly">Monthly</h5>
                                 <ul>
@@ -394,7 +394,7 @@
                                     </a>
                                 @else
                                     <a href="{{ route('plan.detail', [$plansArray['premium']->id]) }}">
-                                        Get Start
+                                        Get Started
                                     </a>
                                 @endif
                             </div>

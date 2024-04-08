@@ -7,7 +7,7 @@
             <div class="page-content pg-l">
                 <h1 class="page-title">Contact Us</h1>
                 <div>
-                    {!! $contact->description !!}
+                    {!! $page->description !!}
                 </div>
 
                 <style>
