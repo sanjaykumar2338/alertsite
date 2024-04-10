@@ -17,6 +17,9 @@ class CheckTrackLimit
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if(!Auth::check()){
+            return redirect()->route('home');
+        }
 
         $user = Auth::user();
         $subscription = $user->subscription('default');

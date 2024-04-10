@@ -90,7 +90,7 @@
                         <div class="form-control-input">
                             <label>AMOUNT:
                             </label>
-                            <select style="width:38.5% !important;margin-left: 58px !important;" class="l-operator" id="discount_type" name="discount_type">
+                            <select style="width:40% !important;margin-left: 58px !important;" class="l-operator" id="discount_type" name="discount_type">
                                 <option value="">--Select--</option>
                                 <option value="Percentage">Percent Cash Back</option>
                                 <option value="Fixed">Fixed Cash Back</option>
@@ -103,7 +103,7 @@
                         <div class="form-control-atype">
                             <label>ALERT TYPE*:
                             </label>
-                            <div>
+                            <div style="padding-left: 53px;">
                                 <div class="box-container">
                                     <input type="radio" value="email" name="alert_type" id="alert_checkbox[]"
                                            class="l-alert_checkbox" onclick="singleSelection(this)">
@@ -120,7 +120,7 @@
                                            onclick="singleSelection(this)">
                                     <div class="box-label">Both</div>
                                 </div>
-                                <span style="font-size: 10px;padding-left:13px;"><i>*US Customers only. Automated alert messages will be sent to the phone number provided. Msg and data rates may apply. Msg frequency may vary. To opt out, text "STOP"</i></span>
+                                <span class="footer_note"><i>*US Customers only. Automated alert messages will be sent to the phone number provided. Msg and data rates may apply. Msg frequency may vary. To opt out, text "STOP"</i></span>
                             </div>
                             <br>
                         </div>
@@ -140,10 +140,11 @@
                                 </label>
                             </div>
                         </div>
+
                         <div class="form-control-add">
-                            
                             <input type="submit" id="submit" class="l-submit" value="Submit">
                         </div>
+                        
                     </form>
                 </div>
             </div>

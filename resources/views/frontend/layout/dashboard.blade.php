@@ -47,7 +47,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: cadetblue;">
     <!-- Brand Logo -->
     <a href="{{url('/')}}/my_account" class="brand-link">
-      <span style="font-size: 18px;" class="brand-text font-weight-light">Welcome {{auth()->user()->first_name}} {{auth()->user()->last_name}},</span>
+      <span style="font-size: 18px;" class="brand-text font-weight-light">Welcome {{auth()->user()->first_name}} {{auth()->user()->last_name}}</span>
     </a>
 
     <!-- Sidebar -->

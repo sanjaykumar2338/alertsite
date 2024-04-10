@@ -130,7 +130,7 @@
 
                     <button type="submit" class="btn btn-primary">Sign Up
                     </button>
-
+                    Forgot your password? <a href="{{ route('password.request') }}">Reset Password</a>
                 </form>
             </div>
 

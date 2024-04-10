@@ -72,7 +72,7 @@ class UserController extends Controller
             if (Auth::user()->role == 1) {
                 return redirect('admin')->with('success', 'Login successful.');
             } else {
-                return redirect()->route('track.list')->with('success', 'Login successful.');
+                return redirect()->route('track')->with('success', 'Login successful.');
             }
         }
 

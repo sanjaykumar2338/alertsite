@@ -320,9 +320,9 @@
                                         UnSubscribe
                                     </a>
                                 @else
-                                    <a href="{{ route('plan.detail', [$plansArray['free']->id]) }}">
-                                        Get Started
-                                    </a>
+                                    <div class="form-control-add" style="margin-left:65px;">
+                                        <input onclick=" window.open('{{ route('plan.detail', [$plansArray['free']->id]) }}')" type="submit" id="submit" class="l-submit" value="Get Started">
+                                    </div>
                                 @endif
                             </div>
                         </div><!--- END COL -->
@@ -356,7 +356,11 @@
                                         UnSubscribe
                                     </a>
                                 @else
-                                    <a href="{{ route('plan.detail', [$plansArray['basic']->id]) }}">
+
+                                    <div class="form-control-add" style="margin-left:65px;">
+                                        <input onclick=" window.open('{{ route('plan.detail', [$plansArray['basic']->id]) }}')" type="submit" id="submit" class="l-submit" value="Get Started">
+                                    </div>
+                                    <a style="display:none" href="{{ route('plan.detail', [$plansArray['basic']->id]) }}">
                                         Get Started
                                     </a>
                                 @endif
@@ -393,9 +397,10 @@
                                         UnSubscribe
                                     </a>
                                 @else
-                                    <a href="{{ route('plan.detail', [$plansArray['premium']->id]) }}">
-                                        Get Started
-                                    </a>
+
+                                    <div class="form-control-add" style="margin-left:65px;">
+                                        <input onclick=" window.open('{{ route('plan.detail', [$plansArray['premium']->id]) }}')" type="submit" id="submit" class="l-submit" value="Get Started">
+                                    </div>
                                 @endif
                             </div>
                         </div><!--- END COL -->

@@ -300,7 +300,7 @@ input:checked + .slider:before {
   margin-top: 15px;
   flex-direction: row;
   gap: 15px;
-  margin-left: 154px;
+  margin-left: 150px;
 }
 .hero-column,
 .hero-main {
@@ -464,5 +464,10 @@ div.menu-ftr a.f-menu {
 }
 
 .alert-input-switcher{
-  margin-left:62px;
+  margin-left:60px;
+}
+
+.footer_note{
+  font-size: 10px;
+  padding-left:13px;
 }
