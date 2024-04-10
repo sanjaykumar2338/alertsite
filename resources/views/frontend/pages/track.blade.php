@@ -1,5 +1,50 @@
 @extends('frontend.layout.homepagenew')
 
+<style>
+    * {
+    font-family: sans-serif; /* Change your font family */
+    }
+
+    .content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .content-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+    }
+
+    .content-table th,
+    .content-table td {
+    padding: 12px 15px;
+    }
+
+    .content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    }
+
+    .content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+    }
+
+    .content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+    }
+
+    .content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+    }
+</style>
+
 @section('content')
     <section class="main-section full-container">
         <div class="container flex l-gap flex-mobile lr-m">
@@ -144,8 +189,32 @@
                         <div class="form-control-add">
                             <input type="submit" id="submit" class="l-submit" value="Submit">
                         </div>
-                        
                     </form>
+
+                    @if(count($all_tracks) > 0)
+                        <table class="content-table">
+                            <thead>
+                                <tr>
+                                    <th>#ID</th>
+                                    <th>Store Name</th>
+                                    <th>Operator</th>
+                                    <th>Discount Type</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($all_tracks as $key=>$track)
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$track->store_name}}</td>
+                                        <td>{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}} {{$track->operator=='>=' ? 'Greator to or Equal to' : ''}}</td>
+                                        <td>{{$track->discount_type}}</td>
+                                        <td>{{$track->price}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
                 </div>
             </div>
         </div>

@@ -53,9 +53,11 @@ class TrackController extends Controller
                 'status' => 'required'
             ]);
 
+            $rec = \DB::table('stores')->where('store_id', $request->store)->first();
             $track = Tracks::find($id);
             $track->user_id = \Auth::id();
             $track->store_id = $request->store;
+            $track->store_name = $rec->store_name;
             $track->discount_type = $request->discount_type;
             $track->operator = $request->operator;
             $track->price = $request->price;
@@ -78,10 +80,12 @@ class TrackController extends Controller
             'price' => 'required',
         ]);
 
+        $rec = \DB::table('stores')->where('store_id', $request->store)->first();
         $status = $request->has('status') ? 1 : 0;
         $track = new Tracks;
         $track->user_id = Auth::id();
         $track->store_id = $request->store;
+        $track->store_name = $rec->store_name;
         $track->discount_type = $request->discount_type;
         $track->operator = $request->operator;
         $track->price = $request->price;

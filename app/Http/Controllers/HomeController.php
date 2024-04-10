@@ -54,7 +54,11 @@ class HomeController extends Controller
             ->orderBy('store_name', 'asc')
             ->where('store_name', '!=', '')
             ->get();
-        return view('frontend.pages.track')->with('page', $track)->with('stores', $stores);
+
+        $user = Auth::user();
+        //echo "<pre>"; print_r($user->tracks()->get()); die;
+        $all_tracks = $user->tracks()->get();
+        return view('frontend.pages.track')->with('page', $track)->with('stores', $stores)->with('all_tracks',$all_tracks);
     }
 
     public function faq() {
