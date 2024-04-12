@@ -41,10 +41,8 @@ class PaymentController extends Controller
             dd($e->getMessage());
         }
 
-        session()->flash('success', 'Subscription successful! You are now subscribed to the selected plan.');
-
+        session()->flash('success', 'Subscription successful! You are now subscribed to the selected plan. <a href="'.route('track').'">Start Tracking</a>');
         return to_route('plans');
-
     }
 
     public function subscriptionCancel() {

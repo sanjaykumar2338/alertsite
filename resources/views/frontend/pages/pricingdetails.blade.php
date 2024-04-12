@@ -1,13 +1,8 @@
 @extends('frontend.layout.homepagenew')
-
 @section('content')
 
     <style type="text/css">
-        body {
-            background-color: white;
-            color: black;
-        }
-
+     
         .example.example5 {
             /*   background-color: #333; */
             padding: 5px;
@@ -323,7 +318,7 @@
         }
 
         /* This css is for normalizing styles. You can skip this. */
-        *, *:before, *:after {
+        .example *, *:before, *:after {
           -webkit-box-sizing: border-box;
           -moz-box-sizing: border-box;
           box-sizing: border-box;
@@ -331,12 +326,12 @@
           padding: 0;
         }
 
-        .form-group {
+        .example .form-group {
           display: block;
           margin-bottom: 15px;
         }
 
-        .form-group input {
+        .example .form-group input {
           padding: 0;
           height: initial;
           width: initial;
@@ -345,12 +340,12 @@
           cursor: pointer;
         }
 
-        .form-group label {
+        .example .form-group label {
           position: relative;
           cursor: pointer;
         }
 
-        .form-group label:before {
+        .example .form-group label:before {
           content:'';
           -webkit-appearance: none;
           background-color: transparent;
@@ -364,7 +359,7 @@
           margin-right: 5px;
         }
 
-        .form-group input:checked + label:after {
+        .example .form-group input:checked + label:after {
           content: '';
           display: block;
           position: absolute;
@@ -377,7 +372,7 @@
           transform: rotate(45deg);
         }
 
-        .text-danger{
+        .example .text-danger{
             color: red;
         }
     </style>

@@ -7,7 +7,7 @@
 
     .content-table {
     border-collapse: collapse;
-    margin: 25px 0;
+    margin: 26px 29px;
     font-size: 0.9em;
     min-width: 400px;
     border-radius: 5px 5px 0 0;
@@ -16,8 +16,8 @@
     }
 
     .content-table thead tr {
-    background-color: #009879;
-    color: #ffffff;
+    background-color: #95bb3c;
+    color: #000000;
     text-align: left;
     font-weight: bold;
     }
@@ -33,10 +33,6 @@
 
     .content-table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
-    }
-
-    .content-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
     }
 
     .content-table tbody tr.active-row {
@@ -141,14 +137,13 @@
                                 <option value="Fixed">Fixed Cash Back</option>
                             </select>
                             &nbsp;
-                            <input type="text" class="l-operator" placeholder="Enter Amount" id="price" name="price" style="width: 40% !important;height: 1.2rem !important; color: black !important;" oninput="this.value = this.value.replace(/\D/g, '').substring(0, 3);">
+                            <input type="text" class="l-operator form-control" placeholder="Enter Amount" id="price" name="price" style="" oninput="this.value = this.value.replace(/\D/g, '').substring(0, 3);">
 
                         </div>
 
                         <div class="form-control-atype">
-                            <label>ALERT TYPE*:
-                            </label>
-                            <div style="padding-left: 53px;">
+                            <label style="width: 37%;">ALERT TYPE*:</label>
+                            <div style="padding-left: 0px;">
                                 <div class="box-container">
                                     <input type="radio" value="email" name="alert_type" id="alert_checkbox[]"
                                            class="l-alert_checkbox" onclick="singleSelection(this)">
@@ -157,7 +152,7 @@
                                 <div class="box-container">
                                     <input type="radio" name="alert_type" id="alert_checkbox[]"
                                            class="l-alert_checkbox" value="text" onclick="singleSelection(this)">
-                                    <div class="box-label">*Text/SMS</div>
+                                    <div class="box-label">Text/SMS</div>
                                 </div>
                                 <div class="box-container">
                                     <input type="radio" name="alert_type" id="alert_checkbox[]"
@@ -169,7 +164,7 @@
                             </div>
                             <br>
                         </div>
-                        <div class="form-control-alert-on">
+                        <div class="form-control-alert-on" style="display:none;">
                             <div class="alert-lable-container">
                              <label>ALERT:
                              </label>
@@ -200,6 +195,7 @@
                                     <th>Operator</th>
                                     <th>Discount Type</th>
                                     <th>Amount</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -210,6 +206,7 @@
                                         <td>{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}} {{$track->operator=='>=' ? 'Greator to or Equal to' : ''}}</td>
                                         <td>{{$track->discount_type}}</td>
                                         <td>{{$track->price}}</td>
+                                        <td><a href="{{route('track.edit',$track->id)}}">Modify</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

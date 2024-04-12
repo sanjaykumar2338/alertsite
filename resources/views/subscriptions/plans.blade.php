@@ -266,7 +266,7 @@
 
                     @if(Session::has('success'))
                         <div class="alert native-success" role="alert">
-                            {{ Session::get('success') }}
+                            {!! session('success') !!}
                         </div>
                     @endif
                     @if(session('error'))

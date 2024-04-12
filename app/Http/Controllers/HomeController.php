@@ -166,9 +166,8 @@ class HomeController extends Controller
     }
 
     public function plandetails(Request $request, $id = null) {
-
+        
         $plan = \DB::table('plans')->where('id', $id)->first();
-
         if (!$plan) {
             return redirect()->back()->with('success', 'No plan found!!!');
         }
