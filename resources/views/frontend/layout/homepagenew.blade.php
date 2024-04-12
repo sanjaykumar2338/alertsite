@@ -24,11 +24,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap" rel="stylesheet">
-    <link id="reset_style" rel="stylesheet" href="{{asset('asset/frontend/test/css/normalize.css')}}" />
+    <link id="reset_style" rel="stylesheet" href="{{asset('asset/frontend/test/css/normalize.css')}}?v={{time()}}" />
     <link id="layout_main" rel="stylesheet" href="{{asset('asset/frontend/test/css/style.css')}}?v={{time()}}" />
     <link id="layout_menu" rel="stylesheet" href="{{asset('asset/frontend/test/css/menu.css')}}?v={{time()}}" />
-    <link id="mobile_responsive" rel="stylesheet" href="{{asset('asset/frontend/test/css/responsive.css')}}" />
-    <link id="accordion_layout" rel="stylesheet" href="{{asset('asset/frontend/test/css/accordion.css')}}" />
+    <link id="mobile_responsive" rel="stylesheet" href="{{asset('asset/frontend/test/css/responsive.css')}}?v={{time()}}" />
+    <link id="accordion_layout" rel="stylesheet" href="{{asset('asset/frontend/test/css/accordion.css')}}?v={{time()}}" />
 
 </head>
 
@@ -166,7 +166,7 @@
     </section>
 
     <!-- ========== End footer ========== -->
-    <script id="form_fields" type="text/javascript" src="{{ asset('asset/frontend/test/js/script.js') }}"></script>
+    <script id="form_fields" type="text/javascript" src="{{ asset('asset/frontend/test/js/script.js') }}?v={{time()}}"></script>
     <script>
         'undefined' === typeof _trfq || (window._trfq = []);
         'undefined' === typeof _trfd && (window._trfd = []), _trfd.push({
