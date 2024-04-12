@@ -321,7 +321,7 @@
                                     </a>
                                 @else
                                     <div class="form-control-add" style="margin-left:65px;">
-                                        <input onclick=" window.open('{{ route('plan.detail', [$plansArray['free']->id]) }}')" type="submit" id="submit" class="l-submit" value="Get Started">
+                                        <input onclick="window.location.href='{{ route('plan.detail', [$plansArray['free']->id]) }}'" type="submit" id="submit" class="l-submit" value="Get Started">
                                     </div>
                                 @endif
                             </div>
@@ -358,7 +358,7 @@
                                 @else
 
                                     <div class="form-control-add" style="margin-left:65px;">
-                                        <input onclick=" window.open('{{ route('plan.detail', [$plansArray['basic']->id]) }}')" type="submit" id="submit" class="l-submit" value="Get Started">
+                                        <input onclick="window.location.href='{{ route('plan.detail', [$plansArray['basic']->id]) }}'" type="submit" id="submit" class="l-submit" value="Get Started">
                                     </div>
                                     <a style="display:none" href="{{ route('plan.detail', [$plansArray['basic']->id]) }}">
                                         Get Started
@@ -399,7 +399,7 @@
                                 @else
 
                                     <div class="form-control-add" style="margin-left:65px;">
-                                        <input onclick=" window.open('{{ route('plan.detail', [$plansArray['premium']->id]) }}')" type="submit" id="submit" class="l-submit" value="Get Started">
+                                        <input onclick="window.location.href='{{ route('plan.detail', [$plansArray['premium']->id]) }}'" type="submit" id="submit" class="l-submit" value="Get Started">
                                     </div>
                                 @endif
                             </div>
