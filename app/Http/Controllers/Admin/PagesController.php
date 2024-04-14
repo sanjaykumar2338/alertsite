@@ -65,7 +65,7 @@ class PagesController extends Controller
 
         $this->validate($request, [
             'title' => 'required|string|max:255',
-            'description' => 'required',
+            'description' => '',
             'feature_image' => '',
             'blog_image' => '',
             'meta_title' => 'max:255',
@@ -151,7 +151,7 @@ class PagesController extends Controller
         $blog = Pages::find($id);
         $this->validate($request, [
             'title' => 'required|string|max:255',
-            'description' => 'required',
+            'description' => '',
             'feature_image' => '',
             'blog_image' => '',
             'meta_title' => 'max:255',
