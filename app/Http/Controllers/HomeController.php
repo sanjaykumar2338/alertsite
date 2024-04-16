@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -251,5 +252,16 @@ class HomeController extends Controller
 
     public function register() {
         return view('frontend.pages.register');
+    }
+
+    public function webhook(Request $request){
+        Log::info('Received request', [
+            'url' => $request->fullUrl(),
+            'method' => $request->method(),
+            'ip' => $request->ip(),
+            'parameters' => $request->all(),
+        ]);
+
+        return 'done';
     }
 }
