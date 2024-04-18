@@ -10,6 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Http;
 
 class SendSMSJob implements ShouldQueue
 {
@@ -72,9 +73,31 @@ class SendSMSJob implements ShouldQueue
             ";
         }
 
+        /*
         try {
             Facade::message($this->phone_number, $message);
             Log::info("Message sent successfully to {$this->phone_number}");
+        } catch (\Exception $e) {
+            Log::error("Error: " . $e->getMessage());
+        }
+        */
+
+        try {
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . env('TELNYX_API_KEY')
+            ])->post('https://api.telnyx.com/v2/messages', [
+                'from' => env('TELNYX_FROM_NUMBER'),
+                'to' => $this->phone_number,
+                'text' => $message
+            ]);
+        
+            // Check if the request was successful (status code 2xx)
+            if ($response->successful()) {
+                Log::info("Message sent successfully to " . env('TELNYX_TO_NUMBER'));
+            } else {
+                Log::error("Error: " . $response->status());
+            }
         } catch (\Exception $e) {
             Log::error("Error: " . $e->getMessage());
         }
