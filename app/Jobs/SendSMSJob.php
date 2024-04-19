@@ -94,12 +94,15 @@ class SendSMSJob implements ShouldQueue
         
             // Check if the request was successful (status code 2xx)
             if ($response->successful()) {
-                Log::info("Message sent successfully to " . env('TELNYX_TO_NUMBER'));
+                Log::info("Message sent successfully to " . $this->phone_number);
+                Log::info("Message" .$message);
             } else {
                 Log::error("Error: " . $response->status());
+                Log::info("Message" .$message);
             }
         } catch (\Exception $e) {
             Log::error("Error: " . $e->getMessage());
+            Log::info("Message" .$message);
         }
     }
 }
