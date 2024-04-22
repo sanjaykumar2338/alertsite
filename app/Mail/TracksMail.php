@@ -30,6 +30,12 @@ class TracksMail extends Mailable
         );
     }
 
+    public function build()
+    {
+        return $this
+            ->from($address = 'info@trackrak.com', $name = 'TrackRak Support');
+    }
+
     public function content(): Content {
 
         $template = Setting::first();
