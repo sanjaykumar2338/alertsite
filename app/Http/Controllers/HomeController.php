@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
 class HomeController extends Controller
 {
     /**
@@ -197,6 +198,9 @@ class HomeController extends Controller
         ]);
 
         Contacts::create($request->all());
+
+         // Send email
+        Mail::to('hello@trackrak.com')->send(new ContactMail($request->all()));
         return redirect()->route('home')->with('success', 'We have received your message and will get back to you soon.');
     }
 
