@@ -42,13 +42,20 @@ class TracksMail extends Mailable
         $template = Setting::first();
         if ($template) {
             // Replace placeholders with dynamic data
+            $symbols = [
+                '==' => 'equals to',
+                '>=' => 'greater than or equals to',
+                '>' => 'greater than',
+            ];
+
+            $op = $symbols[$this->operator];
             $email_content = $template->email_content;
             $email_content = str_replace('{{store_name}}', $this->store, $email_content);
             $email_content = str_replace('{{url}}', $this->url, $email_content);
             $email_content = str_replace('{{customer_name}}', $this->userName, $email_content);
             $email_content = str_replace('{{discount_type}}', $this->discountType, $email_content);
             $email_content = str_replace('{{amount}}', $this->offerPercent, $email_content);
-            $email_content = str_replace('{{operator}}', $this->operator, $email_content);
+            $email_content = str_replace('{{operator}}', $op, $email_content);
 
             // Replace storeUrl and shopping_url with anchor tags
             $email_content = str_replace('{{url}}', '<a href="' . $this->url . '">' . $this->store . '</a>', $email_content);
