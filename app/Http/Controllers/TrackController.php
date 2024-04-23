@@ -215,6 +215,7 @@ class TrackController extends Controller
                         'discountType' => $track->discount_type,
                         'amount' => $amt,
                         'shoppingUrl' => $store->shopping_url,
+                        'operator' => $track->operator
                     ];
                 }
             }
@@ -230,7 +231,8 @@ class TrackController extends Controller
                     $data['storeName'],
                     $data['discountType'],
                     $data['amount'],
-                    $data['shoppingUrl']
+                    $data['shoppingUrl'],
+                    $data['operator']
                 );
             }
         }

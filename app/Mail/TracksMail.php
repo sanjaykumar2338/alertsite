@@ -13,15 +13,16 @@ class TracksMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $store, $url, $userName, $offerPercent, $storeUrl, $discountType;
+    public $store, $url, $userName, $offerPercent, $storeUrl, $discountType, $operator;
 
-    public function __construct($userName, $store, $discountType, $offerPercent, $storeUrl) {
+    public function __construct($userName, $store, $discountType, $offerPercent, $storeUrl, $operator) {
         $this->store = $store;
         $this->url = route('plans');
         $this->userName = $userName;
         $this->discountType = $discountType;
         $this->offerPercent = $offerPercent;
         $this->storeUrl = $storeUrl;
+        $this->operator = $operator;
     }
 
     public function envelope(): Envelope {
@@ -47,6 +48,7 @@ class TracksMail extends Mailable
             $email_content = str_replace('{{customer_name}}', $this->userName, $email_content);
             $email_content = str_replace('{{discount_type}}', $this->discountType, $email_content);
             $email_content = str_replace('{{amount}}', $this->offerPercent, $email_content);
+            $email_content = str_replace('{{operator}}', $this->operator, $email_content);
 
             // Replace storeUrl and shopping_url with anchor tags
             $email_content = str_replace('{{url}}', '<a href="' . $this->url . '">' . $this->store . '</a>', $email_content);
