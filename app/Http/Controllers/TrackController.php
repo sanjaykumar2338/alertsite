@@ -202,9 +202,10 @@ class TrackController extends Controller
             foreach ($user->tracks as $track) {
                 $store = $track->store;
                 if ($store) {
-                    $amt = $track->amount.'%';
+                    
+                    $amt = $store->amount.'%';
                     if($track->discountType=='Fixed'){
-                        $amt = '$'.$track->amount;
+                        $amt = '$'.$store->amount;
                     }
 
                     $emailData[] = [
