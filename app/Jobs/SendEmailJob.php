@@ -14,15 +14,16 @@ class SendEmailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $userEmail, $userName, $storeName, $discountType, $amount, $shoppingUrl;
+    public $userEmail, $userName, $storeName, $discountType, $amount, $shoppingUrl, $operator;
 
-    public function __construct($userEmail, $userName, $storeName, $discountType, $amount, $shoppingUrl) {
+    public function __construct($userEmail, $userName, $storeName, $discountType, $amount, $shoppingUrl, $operator) {
         $this->userEmail = $userEmail;
         $this->userName = $userName;
         $this->storeName = $storeName;
         $this->discountType = $discountType;
         $this->amount = $amount;
         $this->shoppingUrl = $shoppingUrl;
+        $this->operator = $operator;
     }
 
     public function handle() {
@@ -31,7 +32,8 @@ class SendEmailJob implements ShouldQueue
             $this->storeName,
             $this->discountType,
             $this->amount,
-            $this->shoppingUrl
+            $this->shoppingUrl,
+            $this->operator
         ));
     }
 
