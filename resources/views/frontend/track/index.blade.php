@@ -74,11 +74,11 @@
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
         @if ($tracks->previousPageUrl())
-            <a href="{{ $orders->previousPageUrl() }}"><< Previous</a>
+            <a href="{{ $tracks->previousPageUrl() }}"><< Previous</a>
         @endif
         
         @if ($tracks->nextPageUrl())
-            <a href="{{ $orders->nextPageUrl() }}">Next >></a>
+            <a href="{{ $tracks->nextPageUrl() }}">Next >></a>
         @endif
     </div>
   </nav>
