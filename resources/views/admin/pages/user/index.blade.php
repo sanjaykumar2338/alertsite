@@ -37,7 +37,7 @@
    <div class="container-fluid">
       <div class="row mb-2">
          <div class="col-sm-6">
-            <h1>Customer List</h1>
+            <h1>User(s) List</h1>
          </div>
          <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -72,6 +72,7 @@
                            <th>Email</th>
                            <th>Registration On</th>
                            <th class="text-center">Cancel Subscription</th>
+                           <th>Action</th>
                         </tr>
                      </thead>
                      <tbody>
@@ -88,6 +89,7 @@
                                     <button type="button" id="not-subscribed-btn" class="btn btn-info">Not Subscribed</button>
                                 @endif
                                 </td>
+                                <td><a onclick="return confirm('Are you sure?')" href="{{url('admin/customer/delete')}}/{{$customer->id}}"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
                         @endforeach
 

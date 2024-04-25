@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Tracks;
 use App\Models\Setting;
 use App\Models\Payment;
 use PhpParser\Node\Stmt\If_;
@@ -86,5 +87,16 @@ class AdminController extends Controller{
     public function customer(){
         $customers = User::where('role', 2)->paginate(5);
         return view('admin.pages.user.index')->with('customers',$customers)->with('activeLink','customer');
+    }
+
+    public function customer_delete($id){
+        $new = User::find($id);
+        if ($new && $new->subscribed('default')) {
+            $new->subscription('default')->cancelNow();
+        }
+        
+        User::where('id', $id)->delete();
+        Tracks::where('user_id', $id)->delete();
+        return redirect('/admin/customer')->with('success');
     }
 }
