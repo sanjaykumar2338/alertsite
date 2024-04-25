@@ -90,7 +90,7 @@ Route::group(['middleware' => 'check.auth'], function () {
 
     Route::get('/track/list', [App\Http\Controllers\TrackController::class, 'track_list'])->name('track.list');
     Route::get('/track/add', [App\Http\Controllers\TrackController::class, 'add'])->middleware('check.track.limit')->name('track.add');
-    Route::post('/track/save', [App\Http\Controllers\TrackController::class, 'save'])->name('track.save');
+    Route::post('/track/save', [App\Http\Controllers\TrackController::class, 'save'])->middleware('check.track.limit')->name('track.save');
     Route::get('/track/remove/{id}', [App\Http\Controllers\TrackController::class, 'destroy'])->name('track.destroy');
     Route::get('/track/edit/{id}', [App\Http\Controllers\TrackController::class, 'edit'])->name('track.edit');
     Route::post('/track/update/{id}', [App\Http\Controllers\TrackController::class, 'update'])->middleware('check.track.update.limit')->name('track.update');
@@ -107,7 +107,7 @@ Route::post('/contact/save', [App\Http\Controllers\HomeController::class, 'conta
 Route::get('/pricing', [App\Http\Controllers\HomeController::class, 'pricing'])->name('pricing');
 Route::get('/contactus', [App\Http\Controllers\HomeController::class, 'contactus'])->name('contactus');
 Route::get('/aboutus', [App\Http\Controllers\HomeController::class, 'aboutus'])->name('aboutus');
-Route::get('/track', [App\Http\Controllers\HomeController::class, 'track'])->middleware('check.track.limit')->name('track');
+Route::get('/track', [App\Http\Controllers\HomeController::class, 'track'])->name('track');
 //Route::get('/track/add', [App\Http\Controllers\TrackController::class, 'add'])->middleware('check.track.limit')->name('track.add');
 
 Route::get('/faq', [App\Http\Controllers\HomeController::class, 'faq'])->name('faq');
