@@ -93,7 +93,8 @@ Route::group(['middleware' => 'check.auth'], function () {
     Route::post('/track/save', [App\Http\Controllers\TrackController::class, 'save'])->middleware('check.track.limit')->name('track.save');
     Route::get('/track/remove/{id}', [App\Http\Controllers\TrackController::class, 'destroy'])->name('track.destroy');
     Route::get('/track/edit/{id}', [App\Http\Controllers\TrackController::class, 'edit'])->name('track.edit');
-    Route::post('/track/update/{id}', [App\Http\Controllers\TrackController::class, 'update'])->middleware('check.track.update.limit')->name('track.update');
+    Route::post('/track/update/{id}', [App\Http\Controllers\TrackController::class, 'update'])->name('track.update');
+    //Route::post('/track/update/{id}', [App\Http\Controllers\TrackController::class, 'update'])->middleware('check.track.update.limit')->name('track.update');
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
