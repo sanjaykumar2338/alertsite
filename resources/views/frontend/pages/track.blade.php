@@ -105,6 +105,12 @@
                         </div>
                     @endif
 
+                    @if(session('success'))
+                        <div class="alert alert-success" style="color: green;font-size: 18px;">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
                     <form name="save_track" method="post" action="{{route('track.save')}}">
                         @csrf
                         <div class="form-control-input">

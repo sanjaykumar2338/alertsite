@@ -110,7 +110,7 @@ class TrackController extends Controller
 
         $track->status = $status;
         $track->save();
-        return redirect()->route('track.list')->with('success', 'Track saved successfully');
+        return redirect()->route('track')->with('success', 'Track saved successfully');
     }
 
     public function sendSMSToUsers() {
