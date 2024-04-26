@@ -75,8 +75,8 @@ class HomeController extends Controller
     }
 
     public function privacy_policy() {
-        $terms = Pages::where('slug', 'privacy-policy')->first();
-        return view('frontend.pages.terms')->with('page', $terms);
+        $terms = Pages::where('slug', 'privacy-policy')->first();       
+        return view('frontend.pages.privacy')->with('page', $terms);
     }
 
     public function shop2() {

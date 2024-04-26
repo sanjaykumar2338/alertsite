@@ -198,7 +198,7 @@
                         <table class="content-table">
                             <thead>
                                 <tr>
-                                    <th>#ID</th>
+                                    <th>ID</th>
                                     <th>Store Name</th>
                                     <th>Operator</th>
                                     <th>Discount Type</th>
