@@ -49,6 +49,6 @@ class ResetPasswordController extends Controller
     public function build(): self
     {
         return $this
-            ->subject('Password changed');
+            ->from('TrackRak Support');
     }
 }
