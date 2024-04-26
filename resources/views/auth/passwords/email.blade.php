@@ -2,6 +2,28 @@
 
 @section('content')
 
+ <style>
+    button {
+        width: 100%;
+        margin-top: 10px;
+        padding: 12px;
+        border-radius: 7px;
+        background-color: #d1ddb0;
+        color: black;
+        font-weight: bold;
+        border: none;
+    }
+
+    input[type=email]{
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 7px;
+    }
+ </style>
  <div class="container flex l-gap flex-mobile custom-margin-top">
         <div class="cta-sidebar">
             <div><p>Stay on top of <span style="color: #8529cd; width:auto;">Rakuten</span> deals effortlessly with our

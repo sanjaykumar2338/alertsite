@@ -89,8 +89,10 @@ class TrackController extends Controller
         $track->discount_type = $request->discount_type;
         $track->operator = $request->operator;
         $track->price = $request->price;
+        
         $track->alert_email = $request->alert_email;
         $track->alert_text = $request->alert_text;
+
         $track->status = $status;
         $track->save();
         return redirect()->route('track.list')->with('success', 'Track saved successfully');

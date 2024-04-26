@@ -124,7 +124,7 @@
                         <br/>
                         <input type="checkbox" name="agree_terms_and_condition"> By clicking on the Sign Up button below, you agree to our <span style="cursor:pointer;text-decoration: underline;"  onclick="window.location.href = '{{ route('terms') }}';">Terms & Conditions</span> and have read our <span style="cursor:pointer;text-decoration: underline;"   onclick="window.location.href = '{{ route('privacy_policy') }}';">Privacy Policy</span>.
                         @error('agree_terms_and_condition')
-                        <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">The agree to Terms and Conditions <u>check box</u> is required.</span>
                         @enderror
                     </div>
 
