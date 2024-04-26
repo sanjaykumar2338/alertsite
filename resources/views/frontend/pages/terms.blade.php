@@ -7,7 +7,7 @@
 
     <div class="container" style="padding-top: 38px;font-size: 21px;">
         <div class="text">
-            {!! @$terms->description !!}
+            {!! @$page->description !!}
         </div>
     </div>
 @endsection
