@@ -31,7 +31,7 @@ class ResetPasswordController extends Controller
         // Customize sender address and name
         $senderAddress = 'info@trackrak.com';
         $senderName = 'TrackRak Support';
-        
+
         // Send the password reset link with customized sender details
         $response = $this->broker()->sendResetLink(
             $this->credentials($request),
@@ -44,5 +44,11 @@ class ResetPasswordController extends Controller
         return $response == Password::RESET_LINK_SENT
             ? $this->sendResetLinkResponse($request, $response)
             : $this->sendResetLinkFailedResponse($request, $response);
+    }
+
+    public function build(): self
+    {
+        return $this
+            ->subject('Password changed');
     }
 }
