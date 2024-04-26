@@ -59,7 +59,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview">
 
-            <a href="{{url('/')}}" class="nav-link">
+            <a href="{{url('/track')}}" class="nav-link">
               <i class="nav-icon fas fa-solid fa-globe"></i>
               <p>
                 View Site
@@ -76,7 +76,7 @@
             <a href="{{url('/track/list')}}" class="nav-link {{$activeLink=='track'?'active':''}}">
               <i class="nav-icon fas fa-walking"></i>
               <p>
-                My Track(s)
+                My Alert(s)
               </p>
             </a>
 

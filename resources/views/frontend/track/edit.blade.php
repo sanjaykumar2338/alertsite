@@ -27,7 +27,7 @@
 <div class="container">
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1"><i class="nav-icon fas fa-walking"></i> My Track(s)</span>
+        <span class="navbar-brand mb-0 h1"><i class="nav-icon fas fa-walking"></i> My Alert(s)</span>
         <span class="navbar-brand mb-0 h1"><a href="{{route('track.list')}}"><i class="fas fa-arrow-left"></i>Back</a></span>
     </div>
   </nav>
@@ -60,7 +60,7 @@
               <select class="form-control" id="operator" name="operator">
                   <option {{$track->operator=='>' ? 'selected':''}} value=">">Greater than</option>
                   <option {{$track->operator=='==' ? 'selected':''}} value="==">Equal to</option>
-                  <option {{$track->operator=='>=' ? 'selected':''}} value=">=">Greater than or Equal to</option>
+                  <option style="display:none;" {{$track->operator=='>=' ? 'selected':''}} value=">=">Greater than or Equal to</option>
               </select>
           </div>
 
@@ -73,7 +73,7 @@
             </select>
 
             &nbsp;&nbsp;&nbsp;
-            <input type="number" class="form-control" value="{{$track->price}}" id="price" name="price" style="width: 40%;" oninput="this.value = this.value.replace(/\D/g, '').substring(0, 3);">
+            <input type="text" class="form-control" value="{{$track->price}}" id="price" name="price" style="width: 40%;" oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/^(\d{0,3})(\.\d{0,2})?.*$/, '$1$2');">
           </div>
           
           <div class="form-group">

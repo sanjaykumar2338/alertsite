@@ -27,7 +27,7 @@
 <div class="container">
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1"><i class="nav-icon fas fa-walking"></i> My Track(s)</span>
+        <span class="navbar-brand mb-0 h1"><i class="nav-icon fas fa-walking"></i> My Alert(s)</span>
         <span class="navbar-brand mb-0 h1"><a href="{{route('track.list')}}"><i class="fas fa-arrow-left"></i>Back</a></span>
     </div>
   </nav>
@@ -61,7 +61,7 @@
               <select class="form-control" id="operator" name="operator">
                   <option value=">">Greater than</option>
                   <option value="==">Equal to</option>
-                  <option value=">=">Greater than or Equal to</option>
+                  <option value=">=" style="display:none;">Greater than or Equal to</option>
               </select>
           </div>
 
@@ -72,7 +72,7 @@
               <option>Fixed</option>
               <option>Percentage</option>
             </select>&nbsp;&nbsp;&nbsp;
-            <input type="number" class="form-control" id="price" name="price" style="width: 40%;" oninput="this.value = this.value.replace(/\D/g, '').substring(0, 3);">
+            <input type="text" class="form-control" id="price" name="price" style="width: 40%;" oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/^(\d{0,3})(\.\d{0,2})?.*$/, '$1$2');">
           </div>
           
           <div class="form-group">

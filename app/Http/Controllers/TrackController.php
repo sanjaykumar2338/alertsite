@@ -90,8 +90,23 @@ class TrackController extends Controller
         $track->operator = $request->operator;
         $track->price = $request->price;
         
-        $track->alert_email = $request->alert_email;
-        $track->alert_text = $request->alert_text;
+        if($request->has('track_page')){
+            if($request->alert_type=='text'){
+                $track->alert_text =$request->alert_type;
+            }
+
+            if($request->alert_type=='email'){
+                $track->alert_email = $request->alert_type;
+            }
+
+            if($request->alert_type=='both'){
+                $track->alert_email = 'email';
+                $track->alert_text = 'text';
+            }
+        }else{
+            $track->alert_email = $request->alert_email;
+            $track->alert_text = $request->alert_text;
+        }
 
         $track->status = $status;
         $track->save();

@@ -27,7 +27,7 @@
 <div class="container" style="max-width: 1230px;">
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1"><i class="nav-icon fas fa-walking"></i> My Track(s)</span>
+        <span class="navbar-brand mb-0 h1"><i class="nav-icon fas fa-walking"></i> My Alert(s)</span>
         <span class="navbar-brand mb-0 h1"><a href="{{route('track.add')}}"><i class="nav-icon fas fa-plus"></i> Add New</a></span>
     </div>
   </nav>

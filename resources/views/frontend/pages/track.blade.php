@@ -124,7 +124,7 @@
                             <select class="l-operator" id="operator" name="operator">
                                 <option value=">">Greater than</option>
                                 <option value="==">Equal to</option>
-                                <option value=">=">Greater than or Equal to</option>
+                                <option value=">=" style="display:none;">Greater than or Equal to</option>
                             </select>
                         </div>
 
@@ -137,10 +137,12 @@
                                 <option value="Fixed">Fixed Cash Back</option>
                             </select>
                             &nbsp;
-                            <input type="text" class="l-operator form-control" placeholder="Enter Amount" id="price" name="price" style="" oninput="this.value = this.value.replace(/\D/g, '').substring(0, 3);">
+                            <input type="text" class="l-operator form-control" placeholder="Enter Amount" id="price" name="price" style="" oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/^(\d{0,3})(\.\d{0,2})?.*$/, '$1$2');">
 
                         </div>
 
+                        <input type="hidden" value="track_page" name="track_page">
+                        
                         <div class="form-control-atype">
                             <label style="width: 37%;">ALERT TYPE*:</label>
                             <div style="padding-left: 0px;">
@@ -206,7 +208,7 @@
                                         <td>{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}} {{$track->operator=='>=' ? 'Greator to or Equal to' : ''}}</td>
                                         <td>{{$track->discount_type}}</td>
                                         <td>{{$track->price}}</td>
-                                        <td><a href="{{route('track.edit',$track->id)}}">Modify</a></td>
+                                        <td><a target="_blank" href="{{route('track.edit',$track->id)}}">Modify</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
