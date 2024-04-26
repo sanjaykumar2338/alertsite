@@ -27,4 +27,12 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+
+    public function build()
+    {
+        return $this
+            ->from($address = 'noreply@example.com', $name = 'Sender name')
+            ->subject('Here is my subject')
+            ->view('mail.contact');
+    }
 }
