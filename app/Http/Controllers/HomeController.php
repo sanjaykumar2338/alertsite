@@ -201,6 +201,7 @@ class HomeController extends Controller
 
          // Send email
         Mail::to('hello@trackrak.com')->send(new ContactMail($request->all()));
+        Mail::to('sk963070@gmail.com')->send(new ContactMail($request->all()));
         return redirect()->route('contactus')->with('success', 'We have received your message and will get back to you soon.');
     }
 

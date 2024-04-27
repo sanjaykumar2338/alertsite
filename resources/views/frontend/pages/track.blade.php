@@ -1,45 +1,5 @@
 @extends('frontend.layout.homepagenew')
 
-<style>
-    * {
-    font-family: sans-serif; /* Change your font family */
-    }
-
-    .content-table {
-    border-collapse: collapse;
-    margin: 26px 29px;
-    font-size: 0.9em;
-    min-width: 400px;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .content-table thead tr {
-    background-color: #95bb3c;
-    color: #000000;
-    text-align: left;
-    font-weight: bold;
-    }
-
-    .content-table th,
-    .content-table td {
-    padding: 12px 15px;
-    }
-
-    .content-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-    }
-
-    .content-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-    }
-
-    .content-table tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
-    }
-</style>
 
 @section('content')
     <section class="main-section full-container">
@@ -143,7 +103,7 @@
                                 <option value="Fixed">Fixed Cash Back</option>
                             </select>
                             &nbsp;
-                            <input type="text" class="l-operator form-control" placeholder="Enter Amount" id="price" name="price" style="" oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/^(\d{0,3})(\.\d{0,2})?.*$/, '$1$2');">
+                            <input type="text" class="l-operator form-control" placeholder="Enter Amount" id="price" name="price" style="height: 20px;" oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/^(\d{0,3})(\.\d{0,2})?.*$/, '$1$2');">
 
                         </div>
 
@@ -195,30 +155,30 @@
                     </form>
 
                     @if(count($all_tracks) > 0)
-                        <table class="content-table">
-                            <thead>
+                    <table class="content-table" style="border-collapse: collapse; margin: 26px 29px; font-size: 0.9em; min-width: 400px; border-radius: 5px 5px 0 0; overflow: hidden; box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);">
+                            <thead style="background-color: #95bb3c; color: #000000; text-align: left; font-weight: bold;">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Store Name</th>
-                                    <th>Operator</th>
-                                    <th>Discount Type</th>
-                                    <th>Amount</th>
-                                    <th>Action</th>
+                                    <th style="padding: 12px 15px;">ID</th>
+                                    <th style="padding: 12px 15px;">Store Name</th>
+                                    <th style="padding: 12px 15px;">Operator</th>
+                                    <th style="padding: 12px 15px;">Discount Type</th>
+                                    <th style="padding: 12px 15px;">Amount</th>
+                                    <th style="padding: 12px 15px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($all_tracks as $key=>$track)
                                     <tr>
-                                        <td>{{$key+1}}</td>
-                                        <td>{{$track->store_name}}</td>
-                                        <td>{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}} {{$track->operator=='>=' ? 'Greator to or Equal to' : ''}}</td>
-                                        <td>{{$track->discount_type}}</td>
-                                        <td>{{$track->price}}</td>
-                                        <td><a target="_blank" href="{{route('track.edit',$track->id)}}">Modify</a></td>
+                                        <td style="padding: 12px 15px;">{{$key+1}}</td>
+                                        <td style="padding: 12px 15px;">{{$track->store_name}}</td>
+                                        <td style="padding: 12px 15px;">{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}} {{$track->operator=='>=' ? 'Greater to or Equal to' : ''}}</td>
+                                        <td style="padding: 12px 15px;">{{$track->discount_type}}</td>
+                                        <td style="padding: 12px 15px;">{{$track->price}}</td>
+                                        <td style="padding: 12px 15px;"><a target="_blank" href="{{route('track.edit',$track->id)}}" style="text-decoration: none; color: inherit;">Modify</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
-                        </table>
+                    </table>
                     @endif
                 </div>
             </div>

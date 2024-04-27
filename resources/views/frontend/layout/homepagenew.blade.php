@@ -42,9 +42,13 @@
     <header class="menu-section full-container">
       <div class="container flex f-row flex-m-p nav-flex">
             <div class="logo-con">
+            @if(auth()->check())
+                <a href="{{ route('track') }}">
+            @else
                 <a href="{{ route('home') }}">
-                    <img src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" class="branding" alt="TrackRak logo" />
-                </a>
+            @endif
+                <img src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" class="branding" alt="TrackRak logo" />
+            </a>
             </div>
             <div class="menu-con">
                 
