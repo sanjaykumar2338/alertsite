@@ -27,4 +27,10 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+
+    public function build()
+    {
+        return $this
+            ->from($address = 'hello@trackrak.com', $name = 'TrackRak Support');
+    }
 }
