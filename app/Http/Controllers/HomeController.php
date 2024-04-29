@@ -65,7 +65,7 @@ class HomeController extends Controller
 
     public function faq() {
         $page = Pages::where('slug', 'faq')->first();
-        $faq = Faqs::get();
+        $faq = Faqs::orderBy('order','asc')->get();
         return view('frontend.pages.faq')->with('faq', $faq)->with('page', $page);
     }
 
