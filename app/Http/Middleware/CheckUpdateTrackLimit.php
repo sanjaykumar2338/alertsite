@@ -34,7 +34,7 @@ class CheckUpdateTrackLimit
                 if (array_key_exists($currentPlanName, $trackLimitByPlan)) {
                     $trackLimit = $trackLimitByPlan[$currentPlanName];
                     if ($totalTracks >= $trackLimit && $request->status == 1) {
-                        return redirect()->route('plans')->with('unable', 'According to your plan, u are unable to modify tracks more than ' . $trackLimit);
+                        return redirect()->route('track')->with('unable', 'According to your plan, u are unable to modify tracks more than ' . $trackLimit);
                     }
                 }
             }

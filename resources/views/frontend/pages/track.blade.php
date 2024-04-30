@@ -65,6 +65,12 @@
                         </div>
                     @endif
 
+                    @if(session('plan_error'))
+                        <div class="alert alert-danger" role="alert">
+                            You have set your maximum number of alerts. Please visit your <a href="{{route('track.list')}}" target="_blank">My Account page</a> to edit or remove current alerts, or <a href="{{route('plans')}}" target="_blank">UPGRADE YOUR PLAN</a>.
+                        </div>
+                    @endif
+
                     @if(session('success'))
                         <div class="alert alert-success" style="color: green;font-size: 18px;">
                             {{ session('success') }}
@@ -158,7 +164,7 @@
                     <table class="content-table" style="border-collapse: collapse; margin: 26px 29px; font-size: 0.9em; min-width: 400px; border-radius: 5px 5px 0 0; overflow: hidden; box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);">
                             <thead style="background-color: #95bb3c; color: #000000; text-align: left; font-weight: bold;">
                                 <tr>
-                                    <th style="padding: 12px 15px;">ID</th>
+                                    <th style="padding: 12px 15px;">#</th>
                                     <th style="padding: 12px 15px;">Store Name</th>
                                     <th style="padding: 12px 15px;">Operator</th>
                                     <th style="padding: 12px 15px;">Discount Type</th>
@@ -174,7 +180,7 @@
                                         <td style="padding: 12px 15px;">{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}} {{$track->operator=='>=' ? 'Greater to or Equal to' : ''}}</td>
                                         <td style="padding: 12px 15px;">{{$track->discount_type}}</td>
                                         <td style="padding: 12px 15px;">{{$track->price}}</td>
-                                        <td style="padding: 12px 15px;"><a target="_blank" href="{{route('track.edit',$track->id)}}" style="text-decoration: none; color: inherit;">Modify</a></td>
+                                        <td style="padding: 12px 15px;"><a target="_blank" href="{{route('track.edit',$track->id)}}" style="color: inherit;">Modify</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

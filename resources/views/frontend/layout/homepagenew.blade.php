@@ -61,19 +61,21 @@
                 <div class="menu-tag">
                     <ul>
                         <li>
-                            <a href="{{ route('track') }}" class="m-hover track">Track
-                                <div class="ml-con">
-                                    <div class="m-layout h-mobile">
-                                        <div class="m-circle">
-                                            <div class="inner-cle-track"></div>
-                                        </div>
-                                        <div class="m-line"></div>
+                        <a href="{{ route('track') }}" class="m-hover track{{ Route::currentRouteName() == 'track' ? ' track-active' : '' }}">
+                            Track
+                            <div class="ml-con">
+                                <div class="m-layout h-mobile">
+                                    <div class="m-circle">
+                                        <div class="inner-cle-track"></div>
                                     </div>
+                                    <div class="m-line"></div>
                                 </div>
-                            </a>
+                            </div>
+                        </a>
                         </li>
                         <li>
-                            <a href="{{ route('faq') }}" class="m-hover faqs">FAQ<span class="sm-ls-menu">s</span>
+                            <a href="{{ route('faq') }}" class="m-hover track{{ Route::currentRouteName() == 'faq' ? ' faqs-active' : '' }}">
+                                FAQ<span class="sm-ls-menu">s</span>
                                 <div class="ml-con">
                                     <div class="m-layout h-mobile">
                                         <div class="m-circle">
@@ -85,7 +87,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('contactus') }}" class="m-hover contact">Contact
+                            <a href="{{ route('contactus') }}" class="m-hover track{{ Route::currentRouteName() == 'contactus' ? ' contact-active' : '' }}">Contact
                                 <div class="ml-con">
                                     <div class="m-layout h-mobile">
                                         <div class="m-circle">
@@ -99,9 +101,9 @@
                         <li>
                             @if(auth()->check())
                                 @if(Auth::user()->role==1)
-                                    <a href="{{ url('admin') }}" class="m-hover login">My Account
+                                    <a target="_blank" href="{{ url('admin') }}" class="m-hover login{{ Route::currentRouteName() == 'admin' ? ' login-active' : '' }}">My Account
                                 @else(Auth::user()->role==1)  
-                                    <a href="{{ route('track.list') }}" class="m-hover login">My Account
+                                    <a target="_blank" href="{{ route('track.list') }}" class="m-hover login{{ Route::currentRouteName() == 'track.list' ? ' login-active' : '' }}">My Account
                                 @endif  
                                     <div class="ml-con">
                                         <div class="m-layout h-mobile">
@@ -113,7 +115,7 @@
                                     </div>
                                 </a>
                             @else
-                            <a href="{{ route('login') }}" class="m-hover login">SignUp/Login
+                            <a href="{{ route('login') }}" class="m-hover login{{ Route::currentRouteName() == 'login' ? ' login-active' : '' }}">SignUp/Login
                                 <div class="ml-con">
                                     <div class="m-layout h-mobile">
                                         <div class="m-circle">

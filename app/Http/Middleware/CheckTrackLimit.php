@@ -43,12 +43,12 @@ class CheckTrackLimit
                     $trackLimit = $trackLimitByPlan[$currentPlanName];
 
                     if ($user->tracks()->count() >= $trackLimit) {
-                        return redirect()->route('plans')->with('plan_error', 'You have set your maximum number of alerts. Please visit your My Account page to edit or remove current alerts, or UPGRADE YOUR PLAN');
+                        return redirect()->route('track')->with('plan_error', 'You have set your maximum number of alerts. Please visit your My Account page to edit or remove current alerts, or UPGRADE YOUR PLAN');
                     }
                 }
             }
         } else {
-            return redirect()->route('plans')->with('error', 'To have access all features, Please buy a plan first');
+            return redirect()->route('track')->with('error', 'To have access all features, Please buy a plan first');
         }
 
         return $next($request);

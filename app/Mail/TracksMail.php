@@ -27,14 +27,14 @@ class TracksMail extends Mailable
 
     public function envelope(): Envelope {
         return new Envelope(
-            subject: 'New Offer Mail By TrackRak Team',
+            subject: 'TrackRak Alert!',
         );
     }
 
     public function build()
     {
         return $this
-            ->from($address = 'info@trackrak.com', $name = 'TrackRak Support');
+            ->from($address = 'hello@trackrak.com', $name = 'TrackRak Alert!');
     }
 
     public function content(): Content {

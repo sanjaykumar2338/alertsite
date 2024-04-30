@@ -11,6 +11,6 @@
     </div>
     <div>
         <p>Already saving with TrackRak?</p>
-        <a href="{{route('login')}}" class="cta-btn">Login now!</a>
+        <a href="{{route('login')}}" class="cta-btn">@if(!Auth::check()) Login now! @endif @if(Auth::check()) Logout @endif</a>
     </div>
 </div>

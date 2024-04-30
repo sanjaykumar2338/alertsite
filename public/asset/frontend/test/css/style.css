@@ -524,3 +524,24 @@ color:#f58f2e; font-weight: 600; font-size: 1.25em; }
     height: 115px;
     border-bottom: 10px solid #000;
 }
+
+.track-active {
+  border-bottom: 10px solid #005280;
+  color: #005280;
+  padding-bottom: 1px;
+}
+.faqs-active {
+  border-bottom: 10px solid #88173c;
+  color: #88173c;
+  padding-bottom: 1px;
+}
+.contact-active {
+  border-bottom: 10px solid #f6902d;
+  color: #f6902d;
+  padding-bottom: 1px;
+}
+.login-active {
+  border-bottom: 10px solid #95bb3c;
+  color: #95bb3c;
+  padding-bottom: 1px;
+}

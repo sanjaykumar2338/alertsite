@@ -35,13 +35,12 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">#ID</th>
+            <th scope="col">#</th>
             <th scope="col">Store</th>
             <th scope="col">Store Name</th>
             <th scope="col">Discount Type</th>
             <th scope="col">Amount</th>
             <th scope="col">Operator</th>
-            
             <th scope="col">Alert Type</th>
             <th scope="col">Created On</th>
             <th scope="col">Action</th>

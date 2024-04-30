@@ -24,24 +24,21 @@
         border-radius: 7px;
     }
  </style>
- <div class="container flex l-gap flex-mobile custom-margin-top">
-        <div class="cta-sidebar">
-            <div><p>Stay on top of <span style="color: #8529cd; width:auto;">Rakuten</span> deals effortlessly with our
-                    tracking and alert system. Never miss out on savings again.</p><a
-                    href="{{route('register')}}"
-                    class="cta-btn">Join Now!</a></div>
-            <div><p>Already saving with TrackRak?</p><a
-                    href="{{route('login')}}"
-                    class="cta-btn">Login Now!</a></div>
-        </div>
+<section class="main-section full-container">
+    <div class="container flex l-gap flex-mobile lr-m">
+        @includeIf('frontend.layout.sidebar')
         <div class="page-content pg-l">
               <div class="card">
                         <h1 class="page-title">{{ __('Reset Password') }}</h1>
 
                         <div class="card-body">
                             @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
+                                <div class="alert alert-success" role="alert" style="color:red;">
+                                    @if('We have emailed your password reset link.'==session('status'))
+                                        We have emailed your password reset link. Go here to <a style="color: red;" href="{{route('login')}}">login</a>
+                                    @else
+                                        {{ session('status') }}
+                                    @endif
                                 </div>
                             @endif
 
@@ -74,4 +71,5 @@
                     </div>
         </div>
     </div>
+</section>
 @endsection

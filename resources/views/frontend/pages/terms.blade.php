@@ -1,13 +1,21 @@
 @extends('frontend.layout.homepagenew')
 
 @section('content')
-    <!-- ========== End header ========== -->
-    <br><br>
-    <h1 style="text-align: center"> Terms & Conditions </h1>
 
-    <div class="container" style="padding-top: 38px;font-size: 21px;">
-        <div class="text">
-            {!! @$page->description !!}
+<section class="main-section full-container">
+    <div class="container flex l-gap flex-mobile lr-m">
+        @includeIf('frontend.layout.sidebar')
+        <div class="page-content pg-l" style="width:700px;">
+            <h1 class="page-title">Terms & Conditions</h1>
+            </h1>
+            <div>
+                {!! $page->description !!}
+            </div>
         </div>
     </div>
+</section>
+
+@includeIf('frontend.layout.hero-section')
+
 @endsection
+
