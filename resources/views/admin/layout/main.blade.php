@@ -180,7 +180,7 @@
 <!-- ChartJS -->
 <script src="{{url('/')}}/asset/admin/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
-<script src="{{url('/')}}/asset/admin/plugins/sparklines/sparkline.js"></script>
+
 <!-- JQVMap -->
 <script src="{{url('/')}}/asset/admin/plugins/jqvmap/jquery.vmap.min.js"></script>
 <script src="{{url('/')}}/asset/admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
@@ -197,9 +197,7 @@
 <script src="{{url('/')}}/asset/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{url('/')}}/asset/admin/dist/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{url('/')}}/asset/admin/dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
+
 <script src="{{url('/')}}/asset/admin/dist/js/demo.js"></script>
 
 <script src="https://cdn.tiny.cloud/1/7gtylscgdr875mfsqpbflevbsvh2fwh9blxq0mhiab5psdd5/tinymce/6/tinymce.min.js"></script>

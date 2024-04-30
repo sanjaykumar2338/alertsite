@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin','middleware' => 'check.auth'], function () {
     Route::post('/faq', [FaqController::class, 'store'])->name('admin.faq.store');
     Route::post('/faq/update/{id}', [FaqController::class, 'update']);
     Route::get('/faq/remove/{id}', [FaqController::class, 'destroy']);
+    Route::post('/faq/update_order', [FaqController::class, 'update_order']);
     Route::get('/faq/edit/{id}', [FaqController::class, 'edit']);
     Route::get('faq/{product}', [FaqController::class, 'show']);
     Route::get('faq/add/new', [FaqController::class, 'create']);

@@ -40,7 +40,7 @@ class FaqController extends Controller
 
     public function index()
     {
-        $faqs = Faqs::paginate(5);
+        $faqs = Faqs::orderBy('order','asc')->paginate(5);
         return view('admin.pages.faq.index')->with('faqs', $faqs)->with('activeLink', 'faq');
     }
 
@@ -81,6 +81,26 @@ class FaqController extends Controller
         $blog->description = $request->input('description');
         $blog->save();
         return redirect('/admin/faq')->with('success');
+    }
+
+    public function update_order(Request $request){
+        // Retrieve the order data from the request
+        $orderData = $request->input('order');
+    
+        // Loop through the received order array
+        foreach ($orderData as $index => $faqId) {
+            // Find the Faqs model instance by ID
+            $faq = Faqs::find($faqId);
+    
+            // Update the order field with the current index
+            $faq->order = $index + 1; // Adjust index to start from 1 if needed
+    
+            // Save the changes
+            $faq->save();
+        }
+    
+        // Return a response or perform any other necessary actions
+        return response()->json(['message' => 'Order updated successfully']);
     }
 
     /**

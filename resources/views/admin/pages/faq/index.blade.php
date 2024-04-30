@@ -33,6 +33,7 @@
             color: white;
         }
     </style>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -68,47 +69,47 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                @if(count($faqs)>0)
-                    @foreach($faqs as $blog)
+                
+                    <table id="sortable-table" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="col-sm-2 col-md-2">ID</th>
+                                        <th class="col-sm-2 col-md-2">Title</th>
+                                        <th class="col-sm-3 col-md-3" style="text-align: right;">Action</th>
+                                    </tr>
+                                </thead>
+                    <tbody>
+                    @if(count($faqs)>0)
+                    @foreach($faqs as $key=>$blog)
 
-                            <div class="row">
+                           
 
-                                    <table class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th class="col-sm-2 col-md-2">Title</th>
+                           
+                              
+                                    <tr data-id="{{$blog->id}}">
+                                        <td class="col-sm-2 col-md-2">
+                                           {{ $key+1 }}
+                                        </td>
+                                        <td class="col-sm-2 col-md-2">
+                                           {{ $blog->title }}
+                                        </td>
+                                        <td class="col-sm-3 col-md-3" style="text-align: right">
+                                           <a href="{{url('/admin/faq/edit/')}}/{{$blog->id}}">Edit</a> |
+                                           <a href="{{url('/admin/faq/remove/')}}/{{$blog->id}}">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <!-- Additional table rows -->
+                              
+                          
 
-                                            <th class="col-sm-3 col-md-3"  style="text-align: right;">Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        <tr>
-
-                                            <td class="col-sm-2 col-md-2">
-
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <h4  class="product-title" ><a href="#">{{$blog->title}}</a></h4>
-
-                                                        <span>Created at :  </span><span class="text-success"><strong>{{$blog->created_at}}</strong></span>
-                                                    </div>
-
-                                                </div>
-                                            </td>
-                                            <td class="col-sm-3 col-md-3" style="text-align: right">
-                                              <a onclick="return confirm('Are you sure ?')" href="/admin/faq/remove/{{$blog->id}}" class="btn btn-danger">Remove</a>
-                                              <a href="/admin/faq/edit/{{$blog->id}}" class="btn btn-primary">EDIT</a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                      </table>
-                            </div>
+                          
                         @endforeach
                     @else
                         <h6 class="display-8">THERE'S NO FAQS</h6>
 
-                @endif
+                     @endif
+                    </tbody>
+                    </table>
                 </div>
 
               
@@ -130,4 +131,32 @@
           &nbsp;&nbsp;&nbsp;<a href="{{ $faqs->nextPageUrl() }}">Next >></a>
         @endif
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#sortable-table tbody").sortable({
+                update: function(event, ui) {
+                    // Get the updated order of elements
+                    var newOrder = $(this).sortable('toArray', { attribute: 'data-id' });
+
+                    // Update the order in the FAQ table using Ajax
+                    $.ajax({
+                        url: '/admin/faq/update_order',
+                        method: 'POST',
+                        data: { order: newOrder, _token: '{{ csrf_token() }}' },
+                        success: function(response) {
+                            // Handle success
+                            console.log('Order updated successfully');
+                        },
+                        error: function(xhr, status, error) {
+                            // Handle error
+                            console.error('Error updating order:', error);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection
