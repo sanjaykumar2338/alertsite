@@ -40,7 +40,7 @@ class FaqController extends Controller
 
     public function index()
     {
-        $faqs = Faqs::orderBy('order','asc')->paginate(5);
+        $faqs = Faqs::orderBy('order','asc')->paginate(15);
         return view('admin.pages.faq.index')->with('faqs', $faqs)->with('activeLink', 'faq');
     }
 
