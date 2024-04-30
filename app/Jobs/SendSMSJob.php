@@ -36,17 +36,12 @@ class SendSMSJob implements ShouldQueue
             $message = str_replace('&nbsp;', ' ', $message);
             $message = str_replace('{{new_line}}', "\n", $message);
 
-            $amt = $this->amount.'%';
-            if($this->discountType=='Fixed'){
-                '$'.$this->amount;
-            }
-
             $placeholders = [
                 '{{customer_name}}' => $this->name,
                 '{{store_name}}' => $this->storeName,
                 '{{operator}}' => $this->operator,
                 '{{discount_type}}' => $this->discountType,
-                '{{amount}}' => $amt,
+                '{{amount}}' => $this->amount,
                 '{{shopping_url}}' => $this->shoppingUrl
             ];
 
