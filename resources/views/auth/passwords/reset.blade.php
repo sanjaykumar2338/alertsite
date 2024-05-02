@@ -1,5 +1,66 @@
 @extends('frontend.layout.homepagenew')
+
 @section('content')
+
+    <style>
+
+        .text-danger {
+            color: #dc3545; /* Red color for indicating danger */
+            font-size: 14px; /* Adjust font size as needed */
+            margin: 0 0 5px 0; /* Add spacing between the input field and error message */
+            display: block; /* Ensure error message appears on a new line */
+        }
+
+        .iti.iti--allow-dropdown {
+            width: 100%
+        }
+
+        .login-title {
+            font-size: 4rem;
+        }
+
+        form {
+            width: 100%
+        }
+
+        input[type=text], input[type=password], input[type=email] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 7px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 7px;
+            background-color: #d1ddb0;
+            color: black;
+            font-weight: bold;
+            border: none;
+        }
+
+        button:disabled {
+            background-color: #cccccc; /* Change background color */
+            color: #666666; /* Change text color */
+            cursor: not-allowed; /* Change cursor style */
+        }
+
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+        }
+
+        .invalid-feedback{
+            color:red;
+        }
+    </style>
 
  <div class="container flex l-gap flex-mobile custom-margin-top">
         <div class="cta-sidebar">
