@@ -89,7 +89,6 @@
                             <label style="margin-bottom: 21px;">STORE:
                             </label>
                             <select name="store" id="store" class="l-store selectpicker">
-                                <option value="" disabled selected>Type store name</option>
                             </select>
                         </div>
 
@@ -195,51 +194,70 @@
     </section>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Function to show loader
-            function showLoader() {
-                var loader = document.createElement('div');
-                loader.classList.add('loader');
-                loader.textContent = 'Loading...';
-                document.body.appendChild(loader);
-            }
+        // Function to show loader
+        function showLoader() {
+            var select = document.getElementById('store');
+            var option = document.createElement('option');
+            option.textContent = 'Loading...';
+            //option.disabled = true;
+            select.appendChild(option);
+        }
 
-            // Function to hide loader
-            function hideLoader() {
-                var loader = document.querySelector('.loader');
-                if (loader) {
-                    loader.remove();
+        // Function to hide loader and show default text
+        function hideLoaderAndShowDefault(defaultText) {
+            var select = document.getElementById('store');
+            // Remove any existing "Loading..." option
+            var options = select.querySelectorAll('option');
+            options.forEach(function(option) {
+                if (option.textContent === 'Loading...') {
+                    select.removeChild(option);
                 }
+            });
+            // Check if "Type store name" option already exists
+            var defaultOption = select.querySelector('option[value=""]');
+            if (!defaultOption) {
+                // Create and append the "Type store name" option
+                defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                select.insertBefore(defaultOption, select.firstChild);
             }
+            // Update the text content of the default option
+            defaultOption.textContent = defaultText;
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+        }
 
-            // Function to load stores via AJAX
-            function loadStores() {
-                showLoader();
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', '/get_stores', true);
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            hideLoader();
-                            var response = JSON.parse(xhr.responseText);
-                            if (response.stores.length > 0) {
-                                var select = document.getElementById('store');
-                                response.stores.forEach(function(store) {
-                                    var option = document.createElement('option');
-                                    option.value = store.store_id;
-                                    option.textContent = store.store_name;
-                                    select.appendChild(option);
-                                });
-                            }
+        document.addEventListener('DOMContentLoaded', function() {
+        // Function to load stores via AJAX
+        function loadStores() {
+            showLoader();
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get_stores', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.stores.length > 0) {
+                            var select = document.getElementById('store');
+                            response.stores.forEach(function(store) {
+                                var option = document.createElement('option');
+                                option.value = store.store_id;
+                                option.textContent = store.store_name;
+                                select.appendChild(option);
+                            });
                         }
-                    }
-                };
-                xhr.send();
-            }
 
-            // Load stores when the page is loaded
-            loadStores();
-        });
+                        hideLoaderAndShowDefault('Type store name');
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        // Load stores when the page is loaded
+        loadStores();
+});
+
 
     </script>
 
