@@ -109,7 +109,7 @@ Route::post('/contact/save', [App\Http\Controllers\HomeController::class, 'conta
 Route::get('/pricing', [App\Http\Controllers\HomeController::class, 'pricing'])->name('pricing');
 Route::get('/contactus', [App\Http\Controllers\HomeController::class, 'contactus'])->name('contactus');
 Route::get('/aboutus', [App\Http\Controllers\HomeController::class, 'aboutus'])->name('aboutus');
-Route::get('/track', [App\Http\Controllers\HomeController::class, 'track'])->name('track');
+Route::get('/track', [App\Http\Controllers\HomeController::class, 'track'])->middleware('check.auth')->name('track');
 //Route::get('/track/add', [App\Http\Controllers\TrackController::class, 'add'])->middleware('check.track.limit')->name('track.add');
 
 Route::get('/faq', [App\Http\Controllers\HomeController::class, 'faq'])->name('faq');
