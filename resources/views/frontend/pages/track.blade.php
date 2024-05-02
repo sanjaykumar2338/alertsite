@@ -90,9 +90,6 @@
                             </label>
                             <select name="store" id="store" class="l-store selectpicker">
                                 <option value="" disabled selected>Type store name</option>
-                                @foreach($stores as $store)
-                                    <option value="{{$store->store_id}}">{{$store->store_name}}</option>
-                                @endforeach
                             </select>
                         </div>
 
@@ -184,7 +181,7 @@
                                         <td style="padding: 12px 15px;">{{$key+1}}</td>
                                         <td style="padding: 12px 15px;">{{$track->store_name}}</td>
                                         <td style="padding: 12px 15px;">{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}} {{$track->operator=='>=' ? 'Greater to or Equal to' : ''}}</td>
-                                        <td style="padding: 12px 15px;">{{$track->discount_type}}</td>
+                                        <td style="padding: 12px 15px;">{{$track->discount_type=='Fixed'?'Cash back':'Percentage'}}</td>
                                         <td style="padding: 12px 15px;">{{$track->price}}</td>
                                         <td style="padding: 12px 15px;"><a target="_blank" href="{{route('track.edit',$track->id)}}" style="color: inherit;">Modify</a></td>
                                     </tr>
@@ -196,6 +193,36 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Function to load stores via AJAX
+        function loadStores() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get_stores', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.stores.length > 0) {
+                            var select = document.getElementById('store');
+                            response.stores.forEach(function(store) {
+                                var option = document.createElement('option');
+                                option.value = store.store_id;
+                                option.textContent = store.store_name;
+                                select.appendChild(option);
+                            });
+                        }
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        // Load stores when the page is loaded
+        loadStores();
+    });
+    </script>
 
     @includeIf('frontend.layout.hero-section')
 

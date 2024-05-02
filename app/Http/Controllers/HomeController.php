@@ -63,6 +63,16 @@ class HomeController extends Controller
         return view('frontend.pages.track')->with('page', $track)->with('stores', $stores)->with('all_tracks',$all_tracks);
     }
 
+    public function get_stores() {
+        $stores = DB::table('stores')
+            ->orderByRaw("CASE WHEN store_name REGEXP '^[A-Za-z]' THEN 0 ELSE 1 END")
+            ->orderBy('store_name', 'asc')
+            ->where('store_name', '!=', '')
+            ->get();
+
+        return response()->json(['stores' => $stores]);
+    }
+
     public function faq() {
         $page = Pages::where('slug', 'faq')->first();
         $faq = Faqs::orderBy('order','asc')->get();

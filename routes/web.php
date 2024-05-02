@@ -110,6 +110,7 @@ Route::get('/pricing', [App\Http\Controllers\HomeController::class, 'pricing'])-
 Route::get('/contactus', [App\Http\Controllers\HomeController::class, 'contactus'])->name('contactus');
 Route::get('/aboutus', [App\Http\Controllers\HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('/track', [App\Http\Controllers\HomeController::class, 'track'])->middleware('check.auth')->name('track');
+Route::get('/get_stores', [App\Http\Controllers\HomeController::class, 'get_stores'])->middleware('check.auth')->name('get_stores');
 //Route::get('/track/add', [App\Http\Controllers\TrackController::class, 'add'])->middleware('check.track.limit')->name('track.add');
 
 Route::get('/faq', [App\Http\Controllers\HomeController::class, 'faq'])->name('faq');
