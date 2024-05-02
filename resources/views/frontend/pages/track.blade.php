@@ -196,32 +196,51 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        // Function to load stores via AJAX
-        function loadStores() {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/get_stores', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        var response = JSON.parse(xhr.responseText);
-                        if (response.stores.length > 0) {
-                            var select = document.getElementById('store');
-                            response.stores.forEach(function(store) {
-                                var option = document.createElement('option');
-                                option.value = store.store_id;
-                                option.textContent = store.store_name;
-                                select.appendChild(option);
-                            });
+            // Function to show loader
+            function showLoader() {
+                var loader = document.createElement('div');
+                loader.classList.add('loader');
+                loader.textContent = 'Loading...';
+                document.body.appendChild(loader);
+            }
+
+            // Function to hide loader
+            function hideLoader() {
+                var loader = document.querySelector('.loader');
+                if (loader) {
+                    loader.remove();
+                }
+            }
+
+            // Function to load stores via AJAX
+            function loadStores() {
+                showLoader();
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/get_stores', true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            hideLoader();
+                            var response = JSON.parse(xhr.responseText);
+                            if (response.stores.length > 0) {
+                                var select = document.getElementById('store');
+                                response.stores.forEach(function(store) {
+                                    var option = document.createElement('option');
+                                    option.value = store.store_id;
+                                    option.textContent = store.store_name;
+                                    select.appendChild(option);
+                                });
+                            }
                         }
                     }
-                }
-            };
-            xhr.send();
-        }
+                };
+                xhr.send();
+            }
 
-        // Load stores when the page is loaded
-        loadStores();
-    });
+            // Load stores when the page is loaded
+            loadStores();
+        });
+
     </script>
 
     @includeIf('frontend.layout.hero-section')
