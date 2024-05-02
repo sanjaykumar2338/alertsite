@@ -407,7 +407,7 @@
                           <tbody>
                             <tr>
                               <td>
-                                <img height="auto" src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" style="margin: auto;width: 35% !important;border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;padding-top: 30px;"/>
+                                <img height="auto" src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" style="margin: auto;width: 35% !important;border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;padding-top: 30px;margin-bottom: -60px;"/>
                               </td>
                             </tr>
                           </tbody>
