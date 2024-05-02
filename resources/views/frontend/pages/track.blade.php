@@ -67,7 +67,7 @@
 
                     @if(session('plan_error'))
                         <div class="alert alert-danger" role="alert">
-                            You have set your maximum number of alerts. Please visit your <a href="{{route('track.list')}}" target="_blank">My Account page</a> to edit or remove current alerts, or <a href="{{route('plans')}}" target="_blank">UPGRADE YOUR PLAN</a>.
+                            You have set your maximum number of alerts. Please visit your <a href="{{route('track.list')}}" target="_blank">My Account</a> page to edit or remove current alerts, or <a href="{{route('plans')}}" target="_blank">UPGRADE YOUR PLAN</a>.
                         </div>
                     @endif
 
