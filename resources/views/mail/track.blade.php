@@ -152,7 +152,7 @@
       font-family: Lato, 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
       font-size: 18px;
       line-height: 1.5;
-      color: #e3e4e8;
+      color: #3d4852;
     }
 
     img {
@@ -166,7 +166,7 @@
 
     p,
     li {
-      color: #e3e4e8;
+      color: #3d4852;
       line-height: 1.5;
       font-size: 18px;
       margin: 0 0 15px 0;
