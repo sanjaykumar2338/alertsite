@@ -35,7 +35,7 @@
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert" style="color:red;">
                                     @if('We have emailed your password reset link.'==session('status'))
-                                        We have emailed your password reset link. Go here to <a style="color: red;" href="{{route('login')}}">login.</a>
+                                        We have emailed your password reset link. Go here to <a style="color: red;" href="{{route('login')}}">login</a>.
                                     @else
                                         {{ session('status') }}
                                     @endif
