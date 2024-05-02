@@ -431,7 +431,7 @@
                     </tr>
 
                     <tr>
-                              <td align="left" vertical-align="middle" style="padding: 35px;font-size:0px;padding:0;word-break:break-word;">
+                              <td align="left" vertical-align="middle" style="padding: 35px;font-size:0px;padding:31px;word-break:break-word;">
                                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
                                   <tbody>
                                     <tr>
@@ -443,13 +443,8 @@
                                     </tr>
                                   </tbody>
                                 </table>
-                                
-                                <div style="background: #7e7e7e; margin-top: 20px; height: 1px;"></div>
-
                               </td>
                             </tr>
-
-
                   </tbody>
                 </table>
               </div>
