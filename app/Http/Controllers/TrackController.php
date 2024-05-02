@@ -152,7 +152,7 @@ class TrackController extends Controller
                 $store = $track->store;
                 if ($store) {
 
-                    $amt = $track->price.'%';
+                    $amt = $store->amount.'%';
                     if($track->discountType=='Fixed'){
                         $amt = '$'.$store->amount;
                     }
@@ -226,7 +226,7 @@ class TrackController extends Controller
                 $store = $track->store;
                 if ($store) {
                     
-                    $amt = $track->price.'%';
+                    $amt = $store->amount.'%';
                     //$amt = $store->amount.'%';
 
                     if($track->discountType=='Fixed'){
