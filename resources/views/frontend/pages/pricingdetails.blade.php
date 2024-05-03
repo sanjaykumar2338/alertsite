@@ -501,7 +501,7 @@
     <script type="text/javascript">
         'use strict';
 
-        var stripe = Stripe('pk_test_51OorH6GwaL3VeJw6AGuv6k9hXgQYiQzLmtaUQJ2yWb0Tyr4NwUWyPVjxMbNM83jUBtcFwRSitLTdhxulXJ8XDACW00qDv6g840');
+        var stripe = Stripe("{{ env('STRIPE_KEY') }}");
 
         function registerElements(elements, exampleName) {
             var formClass = '.' + exampleName;

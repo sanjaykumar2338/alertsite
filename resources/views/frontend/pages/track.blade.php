@@ -261,6 +261,28 @@
 
     </script>
 
+    <script>
+        document.getElementById('store').addEventListener('change', function() {
+            var storeId = this.value;
+            if (storeId) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/check_store/' + storeId, true);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if(!response.exist){
+                           alert(response.message);
+                        }
+                        // You can further handle the response here
+                    } else {
+                        alert('Request failed. Please try again later.');
+                    }
+                };
+                xhr.send();
+            }
+        });
+    </script>
+
     @includeIf('frontend.layout.hero-section')
 
 @endsection

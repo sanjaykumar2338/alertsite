@@ -32,6 +32,7 @@
                         <div class = "alert alert-danger">                       
                             <span class="error">{{ session('error') }}</span>
                         </div>
+                        <br>
                     @endif
 
                     @if(session('success'))
@@ -69,7 +70,7 @@
                             </label>
                             <textarea cols="8" rows="10" class="l-operator" placeholder="Write your message..." id="message" name="message" style="height: 4.2rem !important; color: black !important;">{{old('message')}}</textarea>
                         </div>
-
+                        
                         <!-- Google Recaptcha Widget-->
                         <div class="form-control-input">
                             <div style="margin-left: 124px;" class="g-recaptcha mt-4" data-sitekey="{{env('RECAPTCHA_SITE_KEY')}}"></div>

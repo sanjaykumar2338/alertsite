@@ -339,4 +339,48 @@ class TrackController extends Controller
             }
         }
     }
+    public function check_store(Request $request, $store){
+        $curl = curl_init();
+        $id = $request->id;
+    
+        // Check if $id is null
+        if (is_null($id)) {
+            return response()->json(['message' => 'Store ID is required'], 400);
+        }    
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.engager.ecbsn.com/datagrid/rest/v1/data?name=button_reward_v1&variables=%7B%22storeIds%22%3A%5B%22' . $id . '%22%5D%7D',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+            'Client-Agent: button',
+            'Cookie: AWSALB=VFVkjfGCmntUcIztMNqomhcFXFb7s2Lsdji5JNT4ATBhplgZ2+j3t25N3KA4SNxKODUdX0pvUUKI1IR0Pg/Y6p/3Av3aYK4oA+fgKdIzLA/bhzdX/8SwU1qJljBK; AWSALBCORS=VFVkjfGCmntUcIztMNqomhcFXFb7s2Lsdji5JNT4ATBhplgZ2+j3t25N3KA4SNxKODUdX0pvUUKI1IR0Pg/Y6p/3Av3aYK4oA+fgKdIzLA/bhzdX/8SwU1qJljBK'
+        ),
+        ));
+    
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+
+        // Check if response is valid JSON
+        $response_array = json_decode($response, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return response()->json(['message' => 'Invalid response from server']);
+        }
+
+        // Check if response contains any data
+        //print_r($response_array); die;
+        if (isset($response_array['data']['stores'])) {
+            $stores = $response_array['data']['stores'];
+            return response()->json(['message' => 'Store exists', 'data' => $stores,'exist'=>true]);
+        } else {
+            return response()->json(['message' => 'Store does not exist','exist'=>false]);
+        }
+    }    
 }

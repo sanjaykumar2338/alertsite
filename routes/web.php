@@ -158,6 +158,8 @@ Route::get('/linkstorage', function () {
 
 Route::get('plans', [SubscriptionController::class, 'index'])->middleware('auth')->name('plans');
 Route::get('/plan/{id}', [App\Http\Controllers\HomeController::class, 'plandetails'])->middleware('auth')->name('plan.detail');
+Route::get('/check_store/{id}', [App\Http\Controllers\TrackController::class, 'check_store'])->middleware('auth')->name('check_store');
+
 Route::get('/subscribe', 'SubscriptionController@showSubscription');
 Route::post('/subscribe', [PaymentController::class, 'store'])->name('subscribe.form');
 Route::get('/subscription-cancel', [PaymentController::class, 'subscriptionCancel'])->name('subscription-cancel');
