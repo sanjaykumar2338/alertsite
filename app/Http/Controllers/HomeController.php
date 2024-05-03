@@ -18,6 +18,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
+
 class HomeController extends Controller
 {
     /**
@@ -199,19 +200,42 @@ class HomeController extends Controller
         return view('frontend.pages.pricingdetails', compact('planId', 'userIntent', 'planPrice'));
     }
 
-    public function contact(Request $request) {
+    public function contact(Request $request) {      
+    
+        // Get reCAPTCHA response from the form
+        $recaptcha = $request->input('g-recaptcha-response');
+    
+        // Verify reCAPTCHA response
+        $response = Http::post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => env('RECAPTCHA_SECRET_KEY'),
+            'response' => $recaptcha,
+            'remoteip' => $request->ip()
+        ]);
+    
+        // Decode the response
+        $result = $response->json();
+    
+        // Check if reCAPTCHA verification is successful
+        if (!$response->successful() || !$result['success']) {
+            return redirect()->back()->with('error', 'reCAPTCHA verification failed. Please try again.');
+        }
+
+        // Validate the form inputs
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required|numeric',
             'message' => 'required'
         ]);
-
+    
+        // Create a new contact record
         Contacts::create($request->all());
-
-         // Send email
+    
+        // Send emails
         Mail::to('hello@trackrak.com')->send(new ContactMail($request->all()));
         Mail::to('sk963070@gmail.com')->send(new ContactMail($request->all()));
+    
+        // Redirect back to the contact page with a success message
         return redirect()->route('contactus')->with('success', 'We have received your message and will get back to you soon.');
     }
 
