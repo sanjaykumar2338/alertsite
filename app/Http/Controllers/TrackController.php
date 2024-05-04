@@ -150,7 +150,9 @@ class TrackController extends Controller
         foreach ($usersWithSpecificTracks as $user) {
             foreach ($user->tracks as $track) {
                 $store = $track->store;
-                if ($store) {
+                if ($store && $store->amount!=$track->last_amount_sms) {
+                    
+                    \DB::table('tracks')->where('id',$track->id)->update(['last_amount_sms'=>$store->amount]);
 
                     $amt = $store->amount.'%';
                     if($track->discountType=='Fixed'){
@@ -223,15 +225,20 @@ class TrackController extends Controller
 
         foreach ($usersWithSpecificTracks as $user) {
             foreach ($user->tracks as $track) {
+                
                 $store = $track->store;
-                if ($store) {
+
+                if ($store && $store->amount!=$track->last_amount_email) {
                     
+                    \DB::table('tracks')->where('id',$track->id)->update(['last_amount_email'=>$store->amount]);
+
                     $amt = $store->amount.'%';
                     //$amt = $store->amount.'%';
 
                     if($track->discountType=='Fixed'){
                         $amt = '$'.$store->amount;
                     }
+                    
 
                     $emailData[] = [
                         'email' => $track->user->email,
