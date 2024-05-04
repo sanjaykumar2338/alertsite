@@ -458,6 +458,22 @@
                             </div>
                         </div>
 
+                        @if($plan->title!='free')
+                        <div class="row">
+                            <div class="field">
+                                <label for="example5-card" style="color: black; font-weight: bold">Coupon</label>
+
+                                <div style="display: inline-flex;">
+                                    <input id="example5-coupon"
+                                            class="input empty coupon" type="text" placeholder="" name="coupon">
+                                    <button id="check-coupon-btn">Apply Coupon</button>
+                                </div>
+
+                                <div id="coupon-errors" class="text-danger mt-1"></div>                               
+                            </div>
+                        </div>
+                        @endif
+
                         <div class="new">
                             <div class="form-group">
                               <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions">
@@ -468,6 +484,7 @@
                         </div>
 
                         <input type="hidden" name="token" class="token">
+                        <input type="hidden" name="planPrice" id="planPrice" class="planPrice" value="{{$planPrice}}">
                         <button type="button" id="checkout-submit-btn" data-tid="elements_examples.form.pay_button">Pay
                             ${{$planPrice}}</button>
                     </fieldset>
@@ -573,88 +590,6 @@
                     }
                 });
             });
-
-            // Listen on the form's 'submit' handler...
-            // form.addEventListener('submit', function(e) {
-            //   e.preventDefault();
-            //
-            //   // Trigger HTML5 validation UI on the form if any of the inputs fail
-            //   // validation.
-            //   var plainInputsValid = true;
-            //   Array.prototype.forEach.call(form.querySelectorAll('input'), function(
-            //     input
-            //   ) {
-            //     if (input.checkValidity && !input.checkValidity()) {
-            //       plainInputsValid = false;
-            //       return;
-            //     }
-            //   });
-            //   if (!plainInputsValid) {
-            //     triggerBrowserValidation();
-            //     return;
-            //   }
-            //
-            //   // Show a loading screen...
-            //   example.classList.add('submitting');
-            //
-            //   // Disable all inputs.
-            //   disableInputs();
-            //
-            //   // Gather additional customer data we may have collected in our form.
-            //   var name = form.querySelector('#' + exampleName + '-name');
-            //   var address1 = form.querySelector('#' + exampleName + '-address');
-            //   var city = form.querySelector('#' + exampleName + '-city');
-            //   var state = form.querySelector('#' + exampleName + '-state');
-            //   var zip = form.querySelector('#' + exampleName + '-zip');
-            //   var additionalData = {
-            //     name: name ? name.value : undefined,
-            //     address_line1: address1 ? address1.value : undefined,
-            //     address_city: city ? city.value : undefined,
-            //     address_state: state ? state.value : undefined,
-            //     address_zip: zip ? zip.value : undefined,
-            //   };
-            //
-            //   // Use Stripe.js to create a token. We only need to pass in one Element
-            //   // from the Element group in order to create a token. We can also pass
-            //   // in the additional customer data we collected in our form.
-            //
-            //    //  stripe.createToken(elements[0], additionalData).then(function(result) {
-            //    //  // Stop loading!
-            //    //  example.classList.remove('submitting');
-            //    //
-            //    //
-            //    //  if (result.token) {
-            //    //    // If we received a token, show the token ID.
-            //    //    example.querySelector('.token').value = result.token.id;
-            //    //    example.classList.add('submitted');
-            //    //    $('#paymentfrm').submit();
-            //    //  } else {
-            //    //    // Otherwise, un-disable inputs.
-            //    //    enableInputs();
-            //    //  }
-            //    // });
-            //
-            //
-            // });
-
-            // resetButton.addEventListener('click', function(e) {
-            //   e.preventDefault();
-            //   // Resetting the form (instead of setting the value to `''` for each input)
-            //   // helps us clear webkit autofill styles.
-            //   form.reset();
-            //
-            //   // Clear each Element.
-            //   elements.forEach(function(element) {
-            //     element.clear();
-            //   });
-            //
-            //   // Reset error state as well.
-            //   error.classList.remove('visible');
-            //
-            //   // Resetting the form does not un-disable inputs, so we need to do it separately:
-            //   enableInputs();
-            //   example.classList.remove('submitted');
-            // });
         }
 
         (function () {
@@ -813,5 +748,90 @@
             registerElements([card], "example5");
         })();
     </script>
+
+    <script>
+        let typingTimer;
+        const doneTypingInterval = 1000; // milliseconds (1 second)
+
+        // Event listener for click event on checkout button
+        document.getElementById('check-coupon-btn').addEventListener('click', async () => {
+            validateCoupon();
+        });
+
+        // Function to validate coupon
+        async function validateCoupon() {
+            const couponInput = document.getElementById('example5-coupon');
+            const couponValue = couponInput.value.trim();
+
+            if (couponValue === "") {
+                // Clear any previous error messages
+                document.getElementById('coupon-errors').innerText = '';
+                return false;
+            }
+
+            // Disable the coupon input field
+            couponInput.disabled = true;
+
+            // Display a message indicating coupon validation is in progress
+            document.getElementById('coupon-errors').innerText = 'Please wait, checking coupon...';
+
+            typingTimer = setTimeout(async () => {
+                try {
+                    const response = await fetch('/check_coupon', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}' // Include CSRF token if you're using it
+                        },
+                        body: JSON.stringify({ coupon: couponValue })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        // Coupon validation succeeded, update UI accordingly
+                        console.log('Coupon is valid:', data);
+                        document.getElementById('coupon-errors').innerText = data.message;
+
+                        // Update the displayed price if a discount is applied
+                        if (data.valid && data.discount > 0) {
+                            const originalPrice = parseFloat(document.getElementById('planPrice').value); // Retrieve original price
+                            let discountedPrice;
+
+                            if (data.discount_type === 'fixed_amount') {
+                                // If the discount is a fixed amount
+                                discountedPrice = originalPrice - (parseFloat(data.discount) / 100); // Adjusted price after discount
+                            } else {
+                                // If the discount is a percentage
+                                discountedPrice = originalPrice * (1 - (parseFloat(data.discount) / 100)); // Adjusted price after discount
+                            }
+
+                            document.getElementById('checkout-submit-btn').innerText = `Pay $${discountedPrice.toFixed(2)}`;
+                        } else {
+                            // No discount applied, display original price
+                            document.getElementById('checkout-submit-btn').innerText = `Pay $${document.getElementById('planPrice').value}`;
+                        }
+
+                        if (!data.valid) {
+                            couponInput.value = '';
+                        }
+                    } else {
+                        // Coupon validation failed, display error message
+                        console.error('Coupon validation failed:', data.error);
+                        document.getElementById('coupon-errors').innerText = data.message;
+                    }
+                } catch (error) {
+                    // Handle network error
+                    console.error('Network error:', error);
+                    document.getElementById('coupon-errors').innerText = 'Network error. Please try again.';
+                } finally {
+                    // Re-enable the coupon input field after validation is complete
+                    couponInput.disabled = false;
+                }
+            }, doneTypingInterval);
+        }
+    </script>
+
+
 
 @endsection

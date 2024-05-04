@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Plans;
 use App\Models\Tracks;
 use Illuminate\Http\Request;
-
+use Laravel\Cashier\Exceptions\IncompletePayment;
 class PaymentController extends Controller
 {
     public function index() {
@@ -17,32 +17,42 @@ class PaymentController extends Controller
         return view('subscriptions.payment')->with($data);
     }
     public function store(Request $request) {
-
-        $subscription = auth()->user()->subscription('default');
-
-        if ($subscription){
-            $subscription->items()->delete();
-            $subscription->delete();
-        }
-
-        $plan = Plans::find($request->plan);
-        $planId = $plan->stripe_id;
-
-        $user = $request->user();
-        $paymentMethod = $request->get('payment_method');
-        $user->createOrGetStripeCustomer();
-        $user->addPaymentMethod($paymentMethod);
         try {
-            $user->newSubscription('default', $planId)
-                ->create($paymentMethod, [
-                    'email' => $user->email,
-                ]);
+            $subscription = auth()->user()->subscription('default');
+    
+            if ($subscription) {
+                $subscription->items()->delete();
+                $subscription->delete();
+            }
+    
+            $plan = Plans::find($request->plan);
+            $planId = $plan->stripe_id;
+    
+            $user = $request->user();
+            $paymentMethod = $request->get('payment_method');
+            $user->createOrGetStripeCustomer();
+            $user->addPaymentMethod($paymentMethod);
+    
+            $subscription = $user->newSubscription('default', $planId);
+    
+            // Apply coupon code if provided
+            if ($request->has('coupon')) {
+                $subscription->withCoupon($request->coupon);
+            }
+    
+            $subscription->create($paymentMethod, [
+                'email' => $user->email,
+            ]);
+    
+            session()->flash('success', 'Subscription successful! You are now subscribed to the selected plan. <a href="'.route('track').'">Start Tracking</a>');
+            return redirect()->route('plans');
+        } catch (IncompletePayment $exception) {
+            // Handle incomplete payment
+            dd($exception->getMessage());
         } catch (\Exception $e) {
+            // Handle other exceptions
             dd($e->getMessage());
         }
-
-        session()->flash('success', 'Subscription successful! You are now subscribed to the selected plan. <a href="'.route('track').'">Start Tracking</a>');
-        return to_route('plans');
     }
 
     public function subscriptionCancel() {

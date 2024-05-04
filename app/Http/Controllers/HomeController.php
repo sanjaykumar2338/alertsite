@@ -197,7 +197,7 @@ class HomeController extends Controller
 
         $userIntent = auth()->user()->createSetupIntent();
 
-        return view('frontend.pages.pricingdetails', compact('planId', 'userIntent', 'planPrice'));
+        return view('frontend.pages.pricingdetails', compact('planId', 'userIntent', 'planPrice','plan'));
     }
 
     public function contact(Request $request) {      

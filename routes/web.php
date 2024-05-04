@@ -152,6 +152,8 @@ Route::post(
 );
 
 Route::post('/charge', [App\Http\Controllers\PaymentController::class, 'processPayment'])->name('charge');
+Route::post('/check_coupon', [App\Http\Controllers\PaymentController::class, 'check_coupon'])->name('check_coupon');
+
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
