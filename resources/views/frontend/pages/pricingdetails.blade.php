@@ -466,7 +466,7 @@
                                 <div style="display: inline-flex;">
                                     <input id="example5-coupon"
                                             class="input empty coupon" type="text" placeholder="" name="coupon">
-                                    <button id="check-coupon-btn">Apply Coupon</button>
+                                    <button style="margin-left: 25px;" id="check-coupon-btn">Apply Coupon</button>
                                 </div>
 
                                 <div id="coupon-errors" class="text-danger mt-1"></div>                               
@@ -486,7 +486,7 @@
                         <input type="hidden" name="token" class="token">
                         <input type="hidden" name="planPrice" id="planPrice" class="planPrice" value="{{$planPrice}}">
                         <button type="button" id="checkout-submit-btn" data-tid="elements_examples.form.pay_button">Pay
-                            ${{$planPrice}}</button>
+                            ${{$planPrice}}/month</button>
                     </fieldset>
 
                     <div class="error" role="alert">
@@ -806,10 +806,12 @@
                                 discountedPrice = originalPrice * (1 - (parseFloat(data.discount) / 100)); // Adjusted price after discount
                             }
 
-                            document.getElementById('checkout-submit-btn').innerText = `Pay $${discountedPrice.toFixed(2)}`;
+                            document.getElementById('checkout-submit-btn').innerText = `Pay $${discountedPrice.toFixed(2)}/month`;
+
+
                         } else {
                             // No discount applied, display original price
-                            document.getElementById('checkout-submit-btn').innerText = `Pay $${document.getElementById('planPrice').value}`;
+                            document.getElementById('checkout-submit-btn').innerText = `Pay $${document.getElementById('planPrice').value}/month`;
                         }
 
                         if (!data.valid) {
