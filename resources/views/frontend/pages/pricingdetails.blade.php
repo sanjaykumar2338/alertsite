@@ -469,7 +469,8 @@
                                     <button style="margin-left: 25px;" id="check-coupon-btn">Apply Coupon</button>
                                 </div>
 
-                                <div id="coupon-errors" class="text-danger mt-1"></div>                               
+                                <div id="coupon-errors" class="text-danger mt-1"></div> 
+                                                              
                             </div>
                         </div>
                         @endif
