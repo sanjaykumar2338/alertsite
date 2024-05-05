@@ -545,19 +545,3 @@ color:#f58f2e; font-weight: 600; font-size: 1.25em; }
   color: #95bb3c;
   padding-bottom: 1px;
 }
-@media (min-width: 768px) { 
-  container {
-          width: 100%;
-          max-width: 100%;
-          padding-left: 15px !important;
-          padding-right: 15px !important;
-  }
-}
-@media only screen and (max-width: 480px) {
-  .container {
-      width: 100% !important;
-      max-width: 100%;
-      padding-left: 15px !important;
-      padding-right: 15px !important;
-  }
-}
