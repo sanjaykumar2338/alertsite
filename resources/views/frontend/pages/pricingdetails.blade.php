@@ -474,6 +474,7 @@
                             </div>
                         </div>
                         @endif
+                        
                         <div class="new">
                             <div class="form-group">
                               <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions">
