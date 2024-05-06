@@ -155,7 +155,7 @@ class TrackController extends Controller
                     \DB::table('tracks')->where('id',$track->id)->update(['last_amount_sms'=>$store->amount]);
 
                     $amt = $store->amount.'%';
-                    if($track->discountType=='Fixed'){
+                    if($track->discount_type=='Fixed'){
                         $amt = '$'.$store->amount;
                     }
 
@@ -235,7 +235,7 @@ class TrackController extends Controller
                     $amt = $store->amount.'%';
                     //$amt = $store->amount.'%';
 
-                    if($track->discountType=='Fixed'){
+                    if($track->discount_type=='Fixed'){
                         $amt = '$'.$store->amount;
                     }
                     
