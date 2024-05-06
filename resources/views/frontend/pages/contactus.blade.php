@@ -73,7 +73,7 @@
                         
                         <!-- Google Recaptcha Widget-->
                         <div class="form-control-input">
-                            <div style="margin-left: 124px;" class="g-recaptcha mt-4" data-sitekey="{{env('RECAPTCHA_SITE_KEY')}}"></div>
+                            <div style="margin-left: 120px;" class="g-recaptcha mt-4" data-sitekey="{{env('RECAPTCHA_SITE_KEY')}}"></div>
                         </div>
 
                         <div class="form-control-add" style="margin-left: 122px;">
