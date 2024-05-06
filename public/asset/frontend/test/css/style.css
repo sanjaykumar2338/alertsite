@@ -375,6 +375,7 @@ input:checked + .slider:before {
   margin-top: -20px;
   margin-left: 35px;
 }
+
 .menu-ftr {
   display: flex;
   justify-content: space-between;
