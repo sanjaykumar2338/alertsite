@@ -114,6 +114,7 @@
                             <input type="text" class="l-operator form-control" placeholder="Enter Amount" id="price" name="price" style="height: 20px;" oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/^(\d{0,3})(\.\d{0,2})?.*$/, '$1$2');">
 
                         </div>
+                        
 
                         <input type="hidden" value="track_page" name="track_page">
                         

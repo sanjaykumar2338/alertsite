@@ -39,6 +39,7 @@ class PaymentController extends Controller
             if ($request->has('coupon')) {
                 $subscription->withCoupon($request->coupon);
             }
+            
     
             $subscription->create($paymentMethod, [
                 'email' => $user->email,

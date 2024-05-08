@@ -36,6 +36,7 @@ class UserController extends Controller
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
         ]);
+        
 
         auth()->login($user);
         return redirect()->route('plans')->with('success', 'Registration successful.');

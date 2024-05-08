@@ -384,6 +384,7 @@
                                 @endif
                             </div>
                         </div><!--- END COL -->
+                        
                         <div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s"
                              data-wow-delay="0.3s" data-wow-offset="0"
                              style="width:350px !important; text-align: center"

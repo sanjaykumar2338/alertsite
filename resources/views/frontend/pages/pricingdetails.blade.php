@@ -462,6 +462,7 @@
                                 <div id="card-errors" class="text-danger mt-1"></div>
                             </div>
                         </div>
+                        
 
                         @if($plan->title!='free')
                         <div class="row">
