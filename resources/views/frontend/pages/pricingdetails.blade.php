@@ -385,6 +385,11 @@
         <div class="container">
             <br><br><br><br>
             <h1 class="page-title" style="width:24%;">Pricing<br></h1>
+
+            @if($plan->title=='free')
+                <span style="color:red;">We need your credit card information, even for our FREE plan. Rest assured, we will not charge anything unless you upgrade to a higher plan!</span>
+            @endif
+
             <div class="cell example example5">
                 <form name="paymentfrm" id="paymentfrm" method="post" action="{{route('subscribe.form')}}">
                     @csrf
@@ -464,7 +469,7 @@
                                 <label for="example5-card" style="color: black; font-weight: bold">Coupon</label>
 
                                 <div style="display: inline-flex;">
-                                    <input id="example5-coupon"
+                                    <input style="padding-top: 30px;" id="example5-coupon"
                                             class="input empty coupon" type="text" placeholder="" name="coupon">
                                     <button style="margin-left: 25px;" id="check-coupon-btn">Apply Coupon</button>
                                 </div>

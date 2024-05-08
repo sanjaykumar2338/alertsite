@@ -44,7 +44,7 @@ class PaymentController extends Controller
                 'email' => $user->email,
             ]);
     
-            session()->flash('success', 'Subscription successful! You are now subscribed to the selected plan. <a href="'.route('track').'">Start Tracking</a>');
+            session()->flash('success', 'Subscription successful! You are now signed up. <a href="'.route('track').'">START TRACKING HERE.</a>');
             return redirect()->route('plans');
         } catch (IncompletePayment $exception) {
             // Handle incomplete payment

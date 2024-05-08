@@ -66,13 +66,13 @@
                     @endif
 
                     @if(session('error'))
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger" role="alert" style="color: #f3031a;background-color: transparent;border-color: #f5c6cb;">
                             {{ session('error') }}
                         </div>
                     @endif
 
                     @if(session('plan_error'))
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger" role="alert" style="color: #f3031a;background-color: transparent;border-color: #f5c6cb;">
                             You have set your maximum number of alerts. Please visit your <a href="{{route('track.list')}}" target="_blank">My Account</a> page to edit or remove current alerts, or <a href="{{route('plans')}}" target="_blank">UPGRADE YOUR PLAN</a>.
                         </div>
                     @endif
@@ -118,7 +118,7 @@
                         <input type="hidden" value="track_page" name="track_page">
                         
                         <div class="form-control-atype">
-                            <label style="width: 37%;">ALERT TYPE*:</label>
+                            <label style="width: 37%;">ALERT TYPE:</label>
                             <div style="padding-left: 0px;">
                                 <div class="box-container">
                                     <input type="radio" value="email" name="alert_type" id="alert_checkbox[]"
@@ -128,7 +128,7 @@
                                 <div class="box-container">
                                     <input type="radio" name="alert_type" id="alert_checkbox[]"
                                            class="l-alert_checkbox" value="text" onclick="singleSelection(this)">
-                                    <div class="box-label">Text/SMS</div>
+                                    <div class="box-label">Text/SMS*</div>
                                 </div>
                                 <div class="box-container">
                                     <input type="radio" name="alert_type" id="alert_checkbox[]"

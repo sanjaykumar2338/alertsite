@@ -38,7 +38,7 @@ class UserController extends Controller
         ]);
 
         auth()->login($user);
-        return redirect()->route('track.list')->with('success', 'Registration successful.');
+        return redirect()->route('plans')->with('success', 'Registration successful.');
     }
 
     public function formatUSPhoneNumber($phoneNumber)

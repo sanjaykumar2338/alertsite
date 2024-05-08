@@ -145,8 +145,8 @@
         .price-label {
             color: #fff;
             background: #ffaa17;
-            font-size: 16px;
-            width: 100px;
+            font-size: 20px;
+            width: 130px;
             margin-bottom: 15px;
             display: block;
             -webkit-clip-path: polygon(100% 0%, 90% 50%, 100% 100%, 0% 100%, 0 50%, 0% 0%);
@@ -256,11 +256,13 @@
             border-radius: .25rem;
         }
 
-
+        .fadeInUp{
+            border: 1px solid;
+        }
     </style>
 
-    <div class="container mt-2 mb-5">
-        <div class="row justify-content-center">
+    <section class="main-section full-container">
+        <div class="container flex l-gap flex-mobile lr-m">
             <section id="pricing" class="pricing-content section-padding">
                 <div class="container">
 
@@ -320,7 +322,12 @@
                                 </ul>
                                 @if($user && $userSubscribed && $currentPlanName === 'free')
                                     <a
-                                        style="background-color: #cb1414; color: white; text-decoration: none; border:none"
+                                        style="background-color: #cb1414;color: white;
+    text-decoration: none;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 50px;
+    font-size: 25px;"
                                         href="{{ route('subscription-cancel') }}"
                                     >
                                         UnSubscribe
@@ -356,7 +363,12 @@
                                 </ul>
                                 @if($user && $userSubscribed && $currentPlanName === 'basic')
                                     <a
-                                        style="background-color: #cb1414; color: white; text-decoration: none; border:none"
+                                        style="background-color: #cb1414;color: white;
+    text-decoration: none;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 50px;
+    font-size: 25px;"
                                         href="{{ route('subscription-cancel') }}"
                                     >
                                         UnSubscribe
@@ -397,7 +409,12 @@
                                 </ul>
                                 @if($user && $userSubscribed && $currentPlanName === 'premium')
                                     <a
-                                        style="background-color: #cb1414; color: white; text-decoration: none; border:none"
+                                        style="background-color: #cb1414;color: white;
+    text-decoration: none;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 50px;
+    font-size: 25px;"
                                         href="{{ route('subscription-cancel') }}"
                                     >
                                         UnSubscribe
@@ -414,5 +431,5 @@
                 </div><!--- END CONTAINER -->
             </section>
         </div>
-    </div>
+    </section>
 @endsection
