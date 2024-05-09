@@ -145,7 +145,7 @@
             width: 100%;
             height: 40px;
             margin: 20px 0 0;
-            background-color: #74C8C0;
+            background-color: #95bb3c;
             border-radius: 6px;
             color: #fff;
             font-weight: 500;
@@ -462,7 +462,7 @@
                                 <div id="card-errors" class="text-danger mt-1"></div>
                             </div>
                         </div>
-                        
+
 
                         @if($plan->title!='free')
                         <div class="row">

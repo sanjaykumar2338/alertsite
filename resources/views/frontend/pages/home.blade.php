@@ -1,7 +1,6 @@
 @extends('frontend.layout.homepagenew')
 
 @section('content')
-    <br>
     <section class="main-section full-container">
         <div class="container flex l-gap flex-mobile lr-m">
             @includeIf('frontend.layout.sidebar')
