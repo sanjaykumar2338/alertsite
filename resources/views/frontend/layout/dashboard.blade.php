@@ -80,6 +80,13 @@
               </p>
             </a>
 
+            <a href="{{url('/plans')}}" class="nav-link {{$activeLink=='plans'?'active':''}}">
+              <i class="nav-icon fas fa-hourglass"></i>
+              <p>
+                 Edit Plan 
+              </p>
+            </a>
+
             <a href="{{url('/logout')}}" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>

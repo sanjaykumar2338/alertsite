@@ -1,6 +1,4 @@
 @extends('frontend.layout.homepagenew')
-
-
 @section('content')
     <section class="main-section full-container">
         <div class="container flex l-gap flex-mobile lr-m">
@@ -147,7 +145,7 @@
                              </label>
                             </div>
 
-                            <div class="alert-input-switcher">
+                            <div class="alert-input-switcher" style="display:none;">
                                 <label class="switch">
                                     <input type="checkbox" id="status" name="status" class="l-alert_on" checked value="1">
                                     <div class="slider round">
@@ -183,7 +181,7 @@
                                         <td style="padding: 12px 15px;">{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}} {{$track->operator=='>=' ? 'Greater to or Equal to' : ''}}</td>
                                         <td style="padding: 12px 15px;">{{$track->discount_type=='Fixed'?'Cash back':'Percentage'}}</td>
                                         <td style="padding: 12px 15px;">{{$track->price}}</td>
-                                        <td style="padding: 12px 15px;"><a target="_blank" href="{{route('track.edit',$track->id)}}" style="color: inherit;">Modify</a></td>
+                                        <td style="padding: 12px 15px;    font-size: 20px;"><a target="_blank" title="Edit Track" href="{{route('track.edit',$track->id)}}" style="color: inherit;">&#9998;</a> <a href="{{url('track/remove')}}/{{$track->id}}" onclick="return confirm('Are you sure?')" title="Delete Track" style="color: inherit;">&times;</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

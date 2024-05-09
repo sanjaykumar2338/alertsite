@@ -145,8 +145,8 @@
         .price-label {
             color: #fff;
             background: #ffaa17;
-            font-size: 20px;
-            width: 130px;
+            font-size: 16px;
+            width: 115px;
             margin-bottom: 15px;
             display: block;
             -webkit-clip-path: polygon(100% 0%, 90% 50%, 100% 100%, 0% 100%, 0 50%, 0% 0%);
@@ -297,6 +297,11 @@
                         <h1 class="page-title" style="width: 33%">OUR PLANS</h1>
                     </div>
 
+                    @if($currentPlanName)
+                        You are currently subscribed to the <b>{{strtoupper($currentPlanName)}}</b> Plan (or whatever plan they have). To switch to another plan, click on the <b>Get Started</b> button. You will be asked for your credit card information again to agree to the new monthly charge.</p>
+                    <br>
+                    @endif
+
                     <div class="row text-center" style="display: flex; justify-content: center; gap: 30px;">
                         <div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s"
                              data-wow-delay="0.1s" data-wow-offset="0"
@@ -330,7 +335,7 @@
     font-size: 25px;"
                                         href="{{ route('subscription-cancel') }}"
                                     >
-                                        UnSubscribe
+                                        Unsubscribe
                                     </a>
                                 @else
                                     <div class="form-control-add" style="margin-left:65px;">
@@ -371,7 +376,7 @@
     font-size: 25px;"
                                         href="{{ route('subscription-cancel') }}"
                                     >
-                                        UnSubscribe
+                                        Unsubscribe
                                     </a>
                                 @else
 
@@ -418,7 +423,7 @@
     font-size: 25px;"
                                         href="{{ route('subscription-cancel') }}"
                                     >
-                                        UnSubscribe
+                                        Unsubscribe
                                     </a>
                                 @else
 

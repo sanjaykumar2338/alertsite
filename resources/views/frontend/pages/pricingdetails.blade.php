@@ -351,7 +351,7 @@
           background-color: transparent;
           border: 2px solid #0079bf;
           box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
-          padding: 10px;
+          padding: 6px;
           display: inline-block;
           position: relative;
           vertical-align: middle;
@@ -364,9 +364,9 @@
           display: block;
           position: absolute;
           top: 2px;
-          left: 9px;
-          width: 6px;
-          height: 14px;
+          left: 6px;
+          width: 5px;
+          height: 11px;
           border: solid #0079bf;
           border-width: 0 2px 2px 0;
           transform: rotate(45deg);
@@ -384,7 +384,7 @@
     <section class="Support-Cause custom-margin-top">
         <div class="container">
             <br><br><br><br>
-            <h1 class="page-title" style="width:24%;">Pricing<br></h1>
+            <h1 class="page-title" style="width:24%;">PAYMENT<br></h1>
 
             @if($plan->title=='free')
                 <span style="color:red;">We need your credit card information, even for our FREE plan. Rest assured, we will not charge anything unless you upgrade to a higher plan!</span>
@@ -487,7 +487,7 @@
                               <label for="terms_and_conditions"></label>By clicking on the Pay button below, you agree to our <span style="cursor:pointer;text-decoration: underline;"  onclick="window.location.href = '{{ route('terms') }}';">Terms & Conditions</span> and have read our <span style="cursor:pointer;text-decoration: underline;"   onclick="window.location.href = '{{ route('privacy_policy') }}';">Privacy Policy</span>.
                             </div>
 
-                            <span class="text-danger" id="terms_and_conditions_error">Terms and conditions is required<span>
+                            <span class="text-danger" id="terms_and_conditions_error">The agree to Terms and Conditions check box is required.<span>
                         </div>
 
                         <input type="hidden" name="token" class="token">

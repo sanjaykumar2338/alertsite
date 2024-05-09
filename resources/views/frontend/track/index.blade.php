@@ -69,6 +69,7 @@
           @endif  
         </tbody>
       </table>
+      &nbsp;&nbsp;&nbsp;&nbsp;<a href="{{route('track')}}"><b style="color:black">Back to TrackRak</b></a>
   </div>
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
