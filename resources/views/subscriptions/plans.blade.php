@@ -27,7 +27,7 @@
             z-index: 2;
             border: 1px solid #eee;
             box-shadow: 0 10px 40px -10px rgba(0, 64, 128, .09);
-            transition: 0.3s;
+            transition: 14.3s;
         }
 
         .single-pricing:hover {
@@ -127,7 +127,7 @@
             z-index: 2;
             border: 1px solid #eee;
             box-shadow: 0 10px 40px -10px rgba(0, 64, 128, .09);
-            transition: 0.3s;
+            transition: 14.3s;
         }
 
         @media only screen and (max-width: 480px) {
@@ -326,17 +326,9 @@
                                     <li class="fw-bold text-center d-block" style="padding-right: 35px">1 Alert</li>
                                 </ul>
                                 @if($user && $userSubscribed && $currentPlanName === 'free')
-                                    <a
-                                        style="background-color: #cb1414;color: white;
-    text-decoration: none;
-    border: none;
-    padding: 14px 20px;
-    border-radius: 50px;
-    font-size: 25px;"
-                                        href="{{ route('subscription-cancel') }}"
-                                    >
-                                        Unsubscribe
-                                    </a>
+                                    <div class="form-control-add" style="margin-left:65px;">
+                                        <input style="    background-color: #cb1414;" onclick="window.location.href='{{ route('subscription-cancel') }}'" type="submit" id="submit" class="l-submit" value="Unsubscribe">
+                                    </div>
                                 @else
                                     <div class="form-control-add" style="margin-left:65px;">
                                         <input onclick="window.location.href='{{ route('plan.detail', [$plansArray['free']->id]) }}'" type="submit" id="submit" class="l-submit" value="Get Started">
@@ -367,17 +359,9 @@
                                     <li class="fw-bold text-center d-block" style="padding-right: 35px">5 Alerts</li>
                                 </ul>
                                 @if($user && $userSubscribed && $currentPlanName === 'basic')
-                                    <a
-                                        style="background-color: #cb1414;color: white;
-    text-decoration: none;
-    border: none;
-    padding: 14px 20px;
-    border-radius: 50px;
-    font-size: 25px;"
-                                        href="{{ route('subscription-cancel') }}"
-                                    >
-                                        Unsubscribe
-                                    </a>
+                                    <div class="form-control-add" style="margin-left:65px;">
+                                        <input style="    background-color: #cb1414;" onclick="window.location.href='{{ route('subscription-cancel') }}'" type="submit" id="submit" class="l-submit" value="Unsubscribe">
+                                    </div>
                                 @else
 
                                     <div class="form-control-add" style="margin-left:65px;">
@@ -414,17 +398,9 @@
                                     <li class="fw-bold text-center d-block" style="padding-right: 35px">10 Alerts</li>
                                 </ul>
                                 @if($user && $userSubscribed && $currentPlanName === 'premium')
-                                    <a
-                                        style="background-color: #cb1414;color: white;
-    text-decoration: none;
-    border: none;
-    padding: 14px 20px;
-    border-radius: 50px;
-    font-size: 25px;"
-                                        href="{{ route('subscription-cancel') }}"
-                                    >
-                                        Unsubscribe
-                                    </a>
+                                    <div class="form-control-add" style="margin-left:65px;">
+                                        <input style="    background-color: #cb1414;" onclick="window.location.href='{{ route('subscription-cancel') }}'" type="submit" id="submit" class="l-submit" value="Unsubscribe">
+                                    </div>
                                 @else
 
                                     <div class="form-control-add" style="margin-left:65px;">
