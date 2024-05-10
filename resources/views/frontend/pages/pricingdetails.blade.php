@@ -384,7 +384,7 @@
     <section class="Support-Cause custom-margin-top">
         <div class="container">
             <br><br><br><br>
-            <h1 class="page-title" style="width:24%;">PAYMENT<br></h1>
+            <h1 class="page-title" style="width:28%;">PAYMENT<br></h1>
 
             @if($plan->title=='free')
                 <span style="color:red;">We need your credit card information, even for our FREE plan. Rest assured, we will not charge anything unless you upgrade to a higher plan!</span>

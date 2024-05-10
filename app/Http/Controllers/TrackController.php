@@ -37,7 +37,7 @@ class TrackController extends Controller
     public function destroy(Request $request, $id) {
         try {
             Tracks::where('id', $id)->delete();
-            return redirect()->back()->with('success', 'Track deleted successfully.');
+            return redirect()->back()->with('success', 'Alert deleted successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('success', $e->getMessage());
         }
