@@ -298,7 +298,7 @@
                     </div>
 
                     @if($currentPlanName)
-                        You are currently subscribed to the <b>{{strtoupper($currentPlanName)}}</b> Plan (or whatever plan they have). To switch to another plan, click on the <b>Get Started</b> button. You will be asked for your credit card information again to agree to the new monthly charge.</p>
+                        You are currently subscribed to the <b>{{strtoupper($currentPlanName)}}</b> Plan. To switch to another plan, click on the <b>Get Started</b> button. You will be asked for your credit card information again to agree to the new monthly charge.</p>
                     <br>
                     @endif
 
