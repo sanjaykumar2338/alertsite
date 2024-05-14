@@ -48,7 +48,7 @@ class CheckTrackLimit
                 }
             }
         } else {
-            return redirect()->route('track')->with('error', 'To have access all features, Please buy a plan first');
+            return redirect()->route('track')->with('no_plan_error', 'To have access all features, Please buy a plan first');
         }
 
         return $next($request);
