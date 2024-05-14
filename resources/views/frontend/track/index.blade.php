@@ -20,6 +20,18 @@
             vertical-align: middle;
         }
     }
+
+    .back-button {
+      display: block;
+      width: 100%;
+      height: 40px;
+      margin: 20px 0 0;
+      background-color: #95bb3c;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 500;
+      cursor: pointer;
+    }
 </style>
 
 
@@ -68,8 +80,9 @@
             </tr> 
           @endif  
         </tbody>
-      </table>
-      &nbsp;&nbsp;&nbsp;&nbsp;<a href="{{route('track')}}"><b style="color:black">Back to TrackRak</b></a>
+      </table>      
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button class="back-button" onclick="window.location.href='track'">Back to TrackRak</button>
   </div>
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
