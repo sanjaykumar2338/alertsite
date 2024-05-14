@@ -77,7 +77,7 @@
 
                     @if(session('no_plan_error'))
                         <div class="alert alert-danger" role="alert" style="color: #f3031a;background-color: transparent;border-color: #f5c6cb;">
-                            To set up alerts, you must <a href="{{route('plans')}}" target="_blank">sign up for one of our plans</a>. We even have a FREE plan so you can try TrackRak out!                           
+                            To set up alerts, you must <a href="{{route('plans')}}">sign up for one of our plans</a>. We even have a FREE plan so you can try TrackRak out!                           
                         </div>
                     @endif
 
