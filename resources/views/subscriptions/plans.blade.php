@@ -309,7 +309,7 @@
                         >
                             <div class="single-pricing">
                                 @if($currentPlanName === 'free')
-                                    <span class="price-label fw-bold pe-2 text-black">Subscribed</span>
+                                    <span style="display:none;"  class="price-label fw-bold pe-2 text-black">Subscribed</span>
                                 @endif
                                 <div class="price-head">
                                     <h2>Free</h2>
@@ -342,7 +342,7 @@
                         >
                             <div class="single-pricing">
                                 @if($currentPlanName === 'basic')
-                                    <span class="price-label fw-bold pe-2 text-black">Subscribed</span>
+                                    <span style="display:none;"  class="price-label fw-bold pe-2 text-black">Subscribed</span>
                                 @endif
                                 <div class="price-head">
                                     <h2>Basic</h2>
@@ -379,8 +379,9 @@
                              style="width:350px !important; text-align: center"
                         >
                             <div class="single-pricing single-pricing-white">
+                                <span class="price-label text-black" style="font-size: 25px;">Best</span>
                                 @if($currentPlanName === 'premium')
-                                    <span class="price-label fw-bold pe-2 text-black">Subscribed</span>
+                                    <span style="display:none;" class="price-label fw-bold pe-2 text-black">Subscribed</span>
                                 @endif
                                 <div class="price-head">
                                     <h2>Premium</h2>
@@ -390,8 +391,7 @@
                                     <span></span>
                                     <span></span>
                                     <span></span>
-                                </div>
-                                <span class="price-label text-black" style="font-size: 25px;">Best</span>
+                                </div>                                
                                 <h1 class="price">$9.99</h1>
                                 <h5 class="monthly">Monthly</h5>
                                 <ul>
