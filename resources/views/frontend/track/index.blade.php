@@ -23,13 +23,15 @@
 
     .back-button {
       display: block;
-      width: 100%;
+      width: 12%;
       height: 40px;
-      margin: 20px 0 0;
+      margin: 0px 0 0;
       background-color: #95bb3c;
       border-radius: 6px;
       color: #fff;
+      /* float: right; */
       font-weight: 500;
+      margin-left: 12px;
       cursor: pointer;
     }
 </style>
