@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Subscriptions;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SubscriptionSuccessful;
+use App\Mail\SubscriptionCancelled;
 use App\Models\Plans;
 use App\Models\Tracks;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 class PaymentController extends Controller
 {
@@ -47,6 +50,7 @@ class PaymentController extends Controller
             
             //$id = \Auth::id();
             //Tracks::where('user_id', $id)->delete();
+            Mail::to($user->email)->send(new SubscriptionSuccessful($plan));
 
             session()->flash('success', 'Subscription successful! You are now signed up. <a href="'.route('track').'">START TRACKING HERE</a>.');
             return redirect()->route('plans');
@@ -78,9 +82,8 @@ class PaymentController extends Controller
         $id = \Auth::id();
         Tracks::where('user_id', $id)->delete();
         
+        Mail::to($user->email)->send(new SubscriptionCancelled());
         session()->flash('cancel', 'Subscription canceled successfully.');
         return to_route('plans');
     }
-
-
 }
