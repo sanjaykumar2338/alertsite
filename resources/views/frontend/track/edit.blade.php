@@ -20,6 +20,20 @@
             vertical-align: middle;
         }
     }
+
+    .back-button {
+      display: block;
+      width: auto;
+		  padding: 5px 15px;
+      height: 40px;
+      margin: 0px 0 0;
+      background-color: #95bb3c;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 500;
+      margin-left: 12px;
+      cursor: pointer;
+    }
 </style>
 
 
@@ -125,7 +139,7 @@
                   border: 1px solid #ccc;
               }
           </style>
-          <button type="submit" class="btn btn-primary track-form-submit-btn" @if(!auth()->user()->subscribed()) data-tooltip="Please buy a plan"  disabled @endif>Submit</button>
+          <button type="submit" class="back-button" @if(!auth()->user()->subscribed()) data-tooltip="Please buy a plan"  disabled @endif>Submit</button>
       </form>
     </div>
   </div>
