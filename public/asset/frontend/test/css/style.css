@@ -157,8 +157,9 @@ hr {
 }
 .l-operator {
   width: 76.5% !important;
-  height: 40px;
+  height: 60px;
   padding: 10px !important;
+  box-sizing: border-box;
 }
 .l-operator > option {
   padding: 25px !important;
@@ -398,9 +399,7 @@ input:checked + .slider:before {
   display: flex;
 }
 .page-title {
-  margin-top: -30px;
   margin-bottom: 35px;
-  height: 115px;
   border-bottom: 10px solid #000;
 }
 .sm-ls {
@@ -483,10 +482,11 @@ color:#005280; font-weight: 600; font-size: 1.25em; }
 color:#f58f2e; font-weight: 600; font-size: 1.25em; }
 
 .page-title {
-    margin-top: -30px;
+    margin-top: 0;
     margin-bottom: 35px;
-    height: 115px;
+    height: auto;
     border-bottom: 10px solid #000;
+    line-height: 100px;
 }
 
 .home {
@@ -519,10 +519,13 @@ color:#005280; font-weight: 600; font-size: 1.25em; }
 color:#f58f2e; font-weight: 600; font-size: 1.25em; }
 
 .page-title {
-    margin-top: -30px;
+    margin-top: 0;
     margin-bottom: 35px;
-    height: 115px;
+    height: auto;
     border-bottom: 10px solid #000;
+    line-height: 100px;
+    display: inline-block;
+    width: auto;
 }
 
 .track-active {
@@ -545,3 +548,24 @@ color:#f58f2e; font-weight: 600; font-size: 1.25em; }
   color: #95bb3c;
   padding-bottom: 1px;
 }
+
+/* New css */
+.cmn-form {
+    box-sizing: border-box;
+    width: 100%;
+}
+.cmn-table {
+    overflow-x: auto;
+    padding: 0 25px 25px;
+}
+
+.cmn-table table {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 !important;
+}
+.form-control-input select#discount_type {
+    width: 40% !important;
+    margin-left: 58px;
+}
+/* End New css */
