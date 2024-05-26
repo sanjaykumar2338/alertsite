@@ -98,7 +98,7 @@
         </tbody>
       </table>      
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <button class="back-button" onclick="window.location.href='/'">Back to TrackRak</button>
+      <button class="back-button" onclick="window.location.href='/track'">Back to TrackRak</button>
   </div>
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
