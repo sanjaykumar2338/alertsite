@@ -67,7 +67,7 @@
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{$track->store_id}}</td>
                     <td>{{$track->store_name}}</td>
-                    <td>{{$track->discount_type}}</td>
+                    <td>{{$track->discount_type=='Fixed'?'Cash back':'Percentage'}}</td>                    
                     <td>{{$track->price}}</td>
                     <td>{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}} {{$track->operator=='>=' ? 'Greator to or Equal to' : ''}}</td>
                     
