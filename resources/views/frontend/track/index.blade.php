@@ -8,7 +8,7 @@
 
 <style>
     .container {
-        padding: 2rem 0rem;
+        padding: 2rem 15px;
     }
 
     h4 {
@@ -23,17 +23,31 @@
 
     .back-button {
       display: block;
-      width: 12%;
+      width: auto;
+		padding: 5px 15px;
       height: 40px;
       margin: 0px 0 0;
       background-color: #95bb3c;
       border-radius: 6px;
       color: #fff;
-      /* float: right; */
       font-weight: 500;
       margin-left: 12px;
       cursor: pointer;
     }
+.track-list-adm {
+    overflow-x: auto;
+    padding: 0 0 15px;
+}
+@media only screen and (max-width:767px){
+.track-list-adm table th {
+    font-size: 14px;
+    line-height: normal;
+}
+.track-list-adm table td {
+    font-size: 14px;
+    line-height: normal;
+}	
+}
 </style>
 
 
@@ -45,7 +59,7 @@
         <span class="navbar-brand mb-0 h1"><a href="{{route('track.add')}}"><i class="nav-icon fas fa-plus"></i> Add New</a></span>
     </div>
   </nav>
-  <div class="">
+  <div class="track-list-adm">
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -67,7 +81,7 @@
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{$track->store_id}}</td>
                     <td>{{$track->store_name}}</td>
-                    <td>{{$track->discount_type=='Fixed'?'Cash back':'Percentage'}}</td>                    
+                    <td>{{$track->discount_type=='Fixed'?'Cash back':'Percentage'}}</td>  
                     <td>{{$track->price}}</td>
                     <td>{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}} {{$track->operator=='>=' ? 'Greator to or Equal to' : ''}}</td>
                     
