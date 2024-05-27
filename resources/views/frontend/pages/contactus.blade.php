@@ -71,18 +71,7 @@
                             </label>
                             <textarea cols="8" rows="10" class="l-operator" placeholder="Write your message..." id="message" name="message" style="height: 4.2rem !important; color: black !important;">{{old('message')}}</textarea>
                         </div>
-                        <script src="https://www.google.com/recaptcha/api.js"></script>
-
-                        <button class="g-recaptcha" 
-        data-sitekey="{{env('RECAPTCHA_SITE_KEY')}}" 
-        data-callback='onSubmit' 
-        data-action='submit'>Submit</button>
                         
-        <script>
-   function onSubmit(token) {
-     document.getElementById("demo-form").submit();
-   }
- </script>
                         <!-- Google Recaptcha Widget-->
                         <div class="form-control-input">
                             <div style="margin-left: 120px;" class="g-recaptcha mt-4" data-sitekey="{{env('RECAPTCHA_SITE_KEY')}}"></div>
