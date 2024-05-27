@@ -51,6 +51,23 @@
                             background-color: #f8d7da;
                             border-color: #f5c6cb;
                         }
+
+                        #select2-store-container{
+                            padding-top: 12px !important;
+                        }
+
+                        .select2-selection{
+                            height: 50px !important;
+                        }
+
+                        .selection{
+                            height: 35px !important;
+                        }
+
+                        .select2-container{
+                           
+                            height: 43px !important;
+                        }
                     </style>
 
                     @if (count($errors) > 0)
@@ -90,9 +107,10 @@
                     <form name="save_track" method="post" action="{{route('track.save')}}">
                         @csrf
                         <div class="form-control-input">
-                            <label style="margin-bottom: 21px;">STORE:
+                            <label style="margin-bottom: 0px;">STORE:
                             </label>
                             <select name="store" id="store" class="l-store selectpicker">
+                            <option value="" disabled selected>Type store name</option>
                             </select>
                         </div>
 
@@ -199,6 +217,8 @@
     </section>
 
     <script>
+
+       
         // Function to show loader
         function showLoader() {
             var select = document.getElementById('store');
@@ -235,7 +255,7 @@
         document.addEventListener('DOMContentLoaded', function() {
         // Function to load stores via AJAX
         function loadStores() {
-            showLoader();
+           // showLoader();
             var xhr = new XMLHttpRequest();
             xhr.open('GET', '/get_stores', true);
             xhr.onreadystatechange = function() {
@@ -252,7 +272,7 @@
                             });
                         }
 
-                        hideLoaderAndShowDefault('Type store name');
+                        //hideLoaderAndShowDefault('Type store name');
                     }
                 }
             };

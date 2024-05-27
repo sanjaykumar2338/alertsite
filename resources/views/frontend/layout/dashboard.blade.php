@@ -27,6 +27,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+  <link rel="icon" href="{{ asset('asset/frontend/images/favicon.png') }}" type="image/x-icon">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
