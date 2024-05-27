@@ -200,6 +200,9 @@
 
         $(document).ready(function() {
             $('#store').select2();
+            setTimeout(function(){
+                $('#store').select2();
+            },4000);
         });
 
         /*
