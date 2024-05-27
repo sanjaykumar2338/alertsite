@@ -133,7 +133,7 @@
                                 <option value="Fixed">Fixed Cash Back</option>
                             </select>
                             &nbsp;
-                            <input type="text" class="l-operator form-control" placeholder="Enter Amount" id="price" name="price" style="height: 20px;" oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/^(\d{0,3})(\.\d{0,2})?.*$/, '$1$2');">
+                            <input type="text" class="l-operator form-control" placeholder="Enter Amount" id="price" name="price" style="height: 60px;" oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/^(\d{0,3})(\.\d{0,2})?.*$/, '$1$2');">
 
                         </div>
                         
