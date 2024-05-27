@@ -238,6 +238,8 @@
                     select.removeChild(option);
                 }
             });
+
+            return;
             // Check if "Type store name" option already exists
             var defaultOption = select.querySelector('option[value=""]');
             if (!defaultOption) {
@@ -255,7 +257,7 @@
         document.addEventListener('DOMContentLoaded', function() {
         // Function to load stores via AJAX
         function loadStores() {
-           // showLoader();
+            showLoader();
             var xhr = new XMLHttpRequest();
             xhr.open('GET', '/get_stores', true);
             xhr.onreadystatechange = function() {
@@ -272,7 +274,7 @@
                             });
                         }
 
-                        //hideLoaderAndShowDefault('Type store name');
+                        hideLoaderAndShowDefault('Type store name');
                     }
                 }
             };
