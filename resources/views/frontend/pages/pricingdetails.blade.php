@@ -387,6 +387,7 @@
             <h1 class="page-title" style="width:28%;">PAYMENT<br></h1>
 
             @if($plan->title=='free')
+                <br>
                 <span style="color:red;">We need your credit card information, even for our FREE plan. Rest assured, we will not charge anything unless you upgrade to a higher plan!</span>
             @endif
 

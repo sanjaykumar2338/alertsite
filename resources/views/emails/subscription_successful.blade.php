@@ -1,12 +1,72 @@
-@component('mail::message')
-# Subscription Successful
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+        }
+        .logo {
+            margin: auto;
+            width: 35% !important;
+            display: block;
+            padding-top: 30px;
+            margin-bottom: -60px;
+        }
+        .button {
+            background-color: #95bb3c;
+            padding: 7px 20px;
+            border-radius: 50px;
+            font-size: 25px;
+            font-weight: bolder;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+        .footer a {
+            color: #555;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        {{-- Logo --}}
+        <img src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" alt="TrackRak Logo" class="logo" />
 
-You have successfully subscribed to our plan. Thank you for choosing our service!
+        {{-- Content --}}
+        <h1>Subscription Successful!</h1>
 
-@component('mail::button', ['url' => route('track')])
-Start Tracking
-@endcomponent
+        <p>You are signed up for our XXXXX Plan.</p>
 
-Thanks,<br>
-{{ config('app.name') }}
-@endcomponent
+        <p>You can now set up your alerts so you never miss out on savings again!</p>
+
+        <a href="{{ route('track') }}" class="button">Start Tracking</a>
+
+        <br><br>
+        <strong>TrackRak & Get More Money Back</strong>
+
+        <p>Thanks,<br>{{ config('app.name') }}</p>
+
+        {{-- Footer --}}
+        <div class="footer">
+            &copy; {{ date('Y') }} TrackRak, All Rights Reserved | <a href="{{ url('/terms-and-conditions') }}">Terms & Conditions</a> | <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
+        </div>
+    </div>
+</body>
+</html>
