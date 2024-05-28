@@ -218,62 +218,60 @@
         </div>
     </section>
 
-    <script>
+<script>
+    // Function to show loader
+    function showLoader() {
+        const select = document.getElementById('store');
+        const option = document.createElement('option');
+        option.textContent = 'Loading...';
+        select.appendChild(option);
+    }
 
-       
-        // Function to show loader
-        function showLoader() {
-            var select = document.getElementById('store');
-            var option = document.createElement('option');
-            option.textContent = 'Loading...';
-            //option.disabled = true;
-            select.appendChild(option);
+    // Function to hide loader and show default text
+    function hideLoaderAndShowDefault(defaultText) {
+        const select = document.getElementById('store');
+        // Remove any existing "Loading..." option
+        const loadingOption = select.querySelector('option[textContent="Loading..."]');
+        if (loadingOption) {
+            select.removeChild(loadingOption);
         }
 
-        // Function to hide loader and show default text
-        function hideLoaderAndShowDefault(defaultText) {
-            var select = document.getElementById('store');
-            // Remove any existing "Loading..." option
-            var options = select.querySelectorAll('option');
-            options.forEach(function(option) {
-                if (option.textContent === 'Loading...') {
-                    select.removeChild(option);
-                }
-            });
-
-            return;
-            // Check if "Type store name" option already exists
-            var defaultOption = select.querySelector('option[value=""]');
-            if (!defaultOption) {
-                // Create and append the "Type store name" option
-                defaultOption = document.createElement('option');
-                defaultOption.value = '';
-                select.insertBefore(defaultOption, select.firstChild);
-            }
-            // Update the text content of the default option
-            defaultOption.textContent = defaultText;
-            defaultOption.disabled = true;
-            defaultOption.selected = true;
+        // Check if "Type store name" option already exists
+        let defaultOption = select.querySelector('option[value=""]');
+        if (!defaultOption) {
+            // Create and append the "Type store name" option
+            defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            select.insertBefore(defaultOption, select.firstChild);
         }
+        // Update the text content of the default option
+        defaultOption.textContent = defaultText;
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+    }
 
-        document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         // Function to load stores via AJAX
         function loadStores() {
             showLoader();
-            var xhr = new XMLHttpRequest();
+            const xhr = new XMLHttpRequest();
             xhr.open('GET', '/get_stores', true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        var response = JSON.parse(xhr.responseText);
+                        const response = JSON.parse(xhr.responseText);
                         if (response.stores.length > 0) {
-                            var select = document.getElementById('store');
+                            const select = document.getElementById('store');
+                            const fragment = document.createDocumentFragment();
+
                             response.stores.forEach(function(store) {
-                                var option = document.createElement('option');
+                                const option = document.createElement('option');
                                 option.value = store.store_id;
                                 option.textContent = store.store_name;
-                                select.appendChild(option);
+                                fragment.appendChild(option);
                             });
+
+                            select.appendChild(fragment);
                         }
 
                         hideLoaderAndShowDefault('Type store name');
@@ -285,34 +283,32 @@
 
         // Load stores when the page is loaded
         loadStores();
-});
+    });
+</script>
 
-
-    </script>
-
-    <script>
-        document.getElementById('store').addEventListener('change', function() {
-            var storeId = this.value;
-            if (storeId) {
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', '/check_store/' + storeId, true);
-                xhr.onload = function() {
-                    if (xhr.status === 200) {
-                        var response = JSON.parse(xhr.responseText);
-                        if(!response.exist){
-                           alert(response.message);
-                        }
-                        // You can further handle the response here
-                    } else {
-                        alert('Request failed. Please try again later.');
+<script>
+    document.getElementById('store').addEventListener('change', function() {
+        var storeId = this.value;
+        if (storeId) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/check_store/' + storeId, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if(!response.exist){
+                        alert(response.message);
                     }
-                };
-                xhr.send();
-            }
-        });
-    </script>
+                    // You can further handle the response here
+                } else {
+                    alert('Request failed. Please try again later.');
+                }
+            };
+            xhr.send();
+        }
+    });
+</script>
 
-    @includeIf('frontend.layout.hero-section')
+@includeIf('frontend.layout.hero-section')
 
 @endsection
 
