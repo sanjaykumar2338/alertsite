@@ -127,13 +127,13 @@
                         <div class="form-control-input">
                             <label>AMOUNT:
                             </label>
-                            <select style="width:40% !important;margin-left: 58px !important;" class="l-operator" id="discount_type" name="discount_type">
+                            <select style="" class="l-operator" id="discount_type" name="discount_type">
                                 <option value="">--Select--</option>
                                 <option value="Percentage">Percent Cash Back</option>
                                 <option value="Fixed">Fixed Cash Back</option>
                             </select>
                             &nbsp;
-                            <input type="text" class="l-operator form-control" placeholder="Enter Amount" id="price" name="price" style="height: 60px;" oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/^(\d{0,3})(\.\d{0,2})?.*$/, '$1$2');">
+                            <input type="text" class="l-operator form-control" placeholder="Enter Amount" id="price" name="price" oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/^(\d{0,3})(\.\d{0,2})?.*$/, '$1$2');">
 
                         </div>
                         
