@@ -58,7 +58,7 @@
         {{-- Content --}}
         <h1>Subscription Successful!</h1>
 
-        <p>You are signed up for our XXXXX Plan.</p>
+        <p>You are signed up for our {{ucfirst($plan->title)}} Plan.</p>
 
         <p>You can now set up your alerts so you never miss out on savings again!</p>
 
@@ -66,8 +66,6 @@
 
         <br><br>
         <strong>TrackRak & Get More Money Back</strong>
-
-        <p>Thanks,<br>{{ config('app.name') }}</p>
 
         {{-- Footer --}}
         <div class="footer">

@@ -13,12 +13,16 @@ class SubscriptionSuccessful extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $plan;
+
     /**
      * Create a new message instance.
+     *
+     * @param string $plan
      */
-    public function __construct()
+    public function __construct($plan)
     {
-        //
+        $this->plan = $plan;
     }
 
     /**
@@ -38,6 +42,9 @@ class SubscriptionSuccessful extends Mailable
     {
         return new Content(
             markdown: 'emails.subscription_successful',
+            with: [
+                'plan' => $this->plan,
+            ],
         );
     }
 
