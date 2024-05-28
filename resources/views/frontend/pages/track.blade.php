@@ -5,8 +5,8 @@
             
             @includeIf('frontend.layout.sidebar')
             <div class="page-content home">
-                <h1 class="page-title" style="width:235px">Track</h1>
-                <div>
+                <h1 class="page-title">Track</h1>
+                <div class="cmn-form">
                     <style>
                         .selectpicker option {
                             border: none;
@@ -186,6 +186,7 @@
                     </form>
 
                     @if(count($all_tracks) > 0)
+                    <div class="cmn-table">	
                     <table class="content-table" style="border-collapse: collapse; margin: 26px 29px; font-size: 0.9em; min-width: 400px; border-radius: 5px 5px 0 0; overflow: hidden; box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);">
                             <thead style="background-color: #95bb3c; color: #000000; text-align: left; font-weight: bold;">
                                 <tr>
