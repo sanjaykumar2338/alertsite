@@ -156,8 +156,9 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; {{date('Y')}}</strong>
-    All rights reserved.
+
+            &copy; {{ date('Y') }} TrackRak, All Rights Reserved | <a href="{{ url('/terms-and-conditions') }}">Terms & Conditions</a> | <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
+  
   </footer>
 
   <!-- Control Sidebar -->
