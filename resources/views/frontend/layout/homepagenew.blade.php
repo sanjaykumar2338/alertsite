@@ -246,6 +246,13 @@
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         if (xhr.status === 200) {
                             const response = JSON.parse(xhr.responseText);
+
+                            const select = document.getElementById('store');                
+                            // Remove existing options before appending new ones
+                            while (select.firstChild) {
+                                select.removeChild(select.firstChild);
+                            }
+
                             if (response.stores.length > 0) {
                                 const select = document.getElementById('store');
                                 const fragment = document.createDocumentFragment();
@@ -262,7 +269,6 @@
 
                             // Reinitialize Select2 after data is loaded
                             $('#store').select2();
-
                             hideLoaderAndShowDefault('Type store name');
                         }
                     }
