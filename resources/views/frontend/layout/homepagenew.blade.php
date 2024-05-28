@@ -210,7 +210,7 @@
         function hideLoaderAndShowDefault(defaultText) {
             const select = document.getElementById('store');
             // Remove any existing "Loading..." option
-            const loadingOption = select.querySelector('option[textContent="Loading..."]');
+            const loadingOption = select.querySelector('option[value=""]');
             if (loadingOption) {
                 select.removeChild(loadingOption);
             }
@@ -263,7 +263,7 @@
                             // Reinitialize Select2 after data is loaded
                             $('#store').select2();
 
-                            //hideLoaderAndShowDefault('Type store name');
+                            hideLoaderAndShowDefault('Type store name');
                         }
                     }
                 };

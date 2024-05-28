@@ -109,8 +109,7 @@
                         <div class="form-control-input">
                             <label style="margin-bottom: 0px;">STORE:
                             </label>
-                            <select name="store" id="store" class="l-store selectpicker">
-                            <option value="" disabled selected>Type store name</option>
+                            <select name="store" id="store" class="l-store selectpicker">                            
                             </select>
                         </div>
 
