@@ -14,13 +14,14 @@
             padding: 20px;
             border: 1px solid #eaeaea;
             border-radius: 10px;
+            text-align: center;
         }
         .logo {
             margin: auto;
-            width: 35% !important;
+            width: 20% !important;
             display: block;
             padding-top: 30px;
-            margin-bottom: -60px;
+            margin-bottom: -30px;
         }
         .button {
             background-color: #95bb3c;
@@ -31,6 +32,7 @@
             color: white;
             text-decoration: none;
             display: inline-block;
+            margin: 20px 0;
         }
         .footer {
             text-align: center;
