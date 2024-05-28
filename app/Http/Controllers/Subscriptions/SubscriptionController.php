@@ -26,7 +26,9 @@ class SubscriptionController extends Controller
                 $currentSubscribedPlanPriceId = $subscription->stripe_price;
 
                 $currentPlan = \App\Models\Plans::where('stripe_id', $currentSubscribedPlanPriceId)->first();
-                $currentPlanName = $currentPlan->identifier;
+                if($currentPlan){
+                    $currentPlanName = @$currentPlan->identifier;
+                }
             }
         }
 
