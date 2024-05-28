@@ -71,7 +71,7 @@
                            <th>Name</th>
                            <th>Email</th>
                            <th>Registration On</th>
-                           <th class="text-center">Cancel Subscription</th>
+                           <th class="text-center">Plan</th>
                            <th>Action</th>
                         </tr>
                      </thead>
@@ -84,9 +84,20 @@
                                 <td>{{$customer->created_at}}</td>
                                 <td class="justify-content-center text-center">
                                 @if($customer->subscribed())
-                                    <button data-route="{{ route('cancel.subscription', $customer->id) }}" type="button" id="cancel-subscription-btn" class="btn btn-danger">Cancel</button>
+                                    
+                                 @php
+                                    $subscription = $customer->subscription('default');
+                                    if ($subscription) {
+                                       $currentSubscribedPlanPriceId = $subscription->stripe_price;
+
+                                       $currentPlan = \App\Models\Plans::where('stripe_id', $currentSubscribedPlanPriceId)->first();
+                                       $currentPlanName = @$currentPlan->identifier;
+                                    }
+                                 @endphp
+
+                                    {{ucfirst($currentPlanName)}}
                                 @else
-                                    <button type="button" id="not-subscribed-btn" class="btn btn-info">Not Subscribed</button>
+                                    
                                 @endif
                                 </td>
                                 <td><a onclick="return confirm('Are you sure?')" href="{{url('admin/customer/delete')}}/{{$customer->id}}"><i class="fas fa-trash-alt"></i></a></td>
