@@ -42,7 +42,7 @@
                         </div>
                     @endif
 
-                    <form name="save_track" method="post" action="{{route('contact.save')}}">
+                    <form name="contact_us_frm" id="contact_us_frm" method="post" action="{{route('contact.save')}}">
                         @csrf
                         
                         <div class="form-control-input">
@@ -70,16 +70,16 @@
                             <label>Message:
                             </label>
                             <textarea cols="8" rows="10" class="l-operator" placeholder="Write your message..." id="message" name="message" style="height: 4.2rem !important; color: black !important;">{{old('message')}}</textarea>
-                        </div>
-                        
-                        <!-- Google Recaptcha Widget-->
-                        <div class="form-control-input">
-                            <div style="margin-left: 120px;" class="g-recaptcha mt-4" data-sitekey="{{env('RECAPTCHA_SITE_KEY')}}"></div>
-                        </div>
-
-                        <div class="form-control-add" style="margin-left: 122px;">
-                            <input type="submit" id="submit" class="l-submit" value="Submit">
-                        </div>
+                        </div>                        
+                      
+                        <div class="form-control-add">
+                            <button style="background-color: #95bb3c;    padding: 7px 20px;
+    border-radius: 50px;
+    font-size: 25px;    font-weight: bolder;" class="g-recaptcha l-submit"
+                                    data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"
+                                    data-callback="onSubmit"
+                                    data-action="submitContact">Submit</button>
+                        </div>                       
                     </form>
                 </div>
             </div>

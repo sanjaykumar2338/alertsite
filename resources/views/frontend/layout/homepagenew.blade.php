@@ -30,6 +30,12 @@
     <link id="mobile_responsive" rel="stylesheet" href="{{asset('asset/frontend/test/css/responsive.css')}}?v={{time()}}" />
     <link id="accordion_layout" rel="stylesheet" href="{{asset('asset/frontend/test/css/accordion.css')}}?v={{time()}}" />
 
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("contact_us_frm").submit();
+        }
+    </script>
 </head>
 
 <body>

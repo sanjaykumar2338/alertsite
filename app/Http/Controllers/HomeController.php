@@ -18,6 +18,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
+use App\Rules\ReCaptchaV3;
 
 class HomeController extends Controller
 {
@@ -201,35 +202,17 @@ class HomeController extends Controller
     }
 
     public function contact(Request $request) {      
-    
-        // Get reCAPTCHA response from the form
-        $recaptcha = $request->input('g-recaptcha-response');
-    
-        // Verify reCAPTCHA response
-        $response = Http::post('https://www.google.com/recaptcha/api/siteverify', [
-            'secret' => env('RECAPTCHA_SECRET_KEY'),
-            'response' => $recaptcha,
-            'remoteip' => $request->ip()
-        ]);
-    
-        // Decode the response
-        $result = $response->json();
-    
-        // Check if reCAPTCHA verification is successful
-        if (!$response->successful() || !$result['success']) {
-            return redirect()->back()->with('error', 'reCAPTCHA verification failed. Please try again.');
-        }
-
         // Validate the form inputs
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required|numeric',
-            'message' => 'required'
+            'message' => 'required',
+            'g-recaptcha-response' => ['required', new ReCaptchaV3('submitContact')]
         ]);
     
         // Create a new contact record
-        Contacts::create($request->all());
+        Contacts::create($request->except('g-recaptcha-response'));
     
         // Send emails
         Mail::to('hello@trackrak.com')->send(new ContactMail($request->all()));
