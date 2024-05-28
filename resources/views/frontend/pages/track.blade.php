@@ -216,76 +216,7 @@
                 </div>
             </div>
         </div>
-    </section>
-
-<script>
-    // Function to show loader
-    function showLoader() {
-        const select = document.getElementById('store');
-        const option = document.createElement('option');
-        option.textContent = 'Loading...';
-        select.appendChild(option);
-    }
-
-    // Function to hide loader and show default text
-    function hideLoaderAndShowDefault(defaultText) {
-        const select = document.getElementById('store');
-        // Remove any existing "Loading..." option
-        const loadingOption = select.querySelector('option[textContent="Loading..."]');
-        if (loadingOption) {
-            select.removeChild(loadingOption);
-        }
-
-        // Check if "Type store name" option already exists
-        let defaultOption = select.querySelector('option[value=""]');
-        if (!defaultOption) {
-            // Create and append the "Type store name" option
-            defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            select.insertBefore(defaultOption, select.firstChild);
-        }
-        // Update the text content of the default option
-        defaultOption.textContent = defaultText;
-        defaultOption.disabled = true;
-        defaultOption.selected = true;
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        // Function to load stores via AJAX
-        function loadStores() {
-            showLoader();
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', '/get_stores', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        const response = JSON.parse(xhr.responseText);
-                        if (response.stores.length > 0) {
-                            const select = document.getElementById('store');
-                            const fragment = document.createDocumentFragment();
-
-                            response.stores.forEach(function(store) {
-                                const option = document.createElement('option');
-                                option.value = store.store_id;
-                                option.textContent = store.store_name;
-                                fragment.appendChild(option);
-                            });
-
-                            select.appendChild(fragment);
-                        }
-
-                        hideLoaderAndShowDefault('Type store name');
-                    }
-                }
-            };
-            xhr.send();
-        }
-
-        // Load stores when the page is loaded
-        loadStores();
-    });
-</script>
-
+</section>
 <script>
     document.getElementById('store').addEventListener('change', function() {
         var storeId = this.value;

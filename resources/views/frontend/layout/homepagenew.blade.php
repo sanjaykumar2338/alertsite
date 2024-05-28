@@ -196,43 +196,84 @@
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.6/build/js/intlTelInput.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script type="text/javascript">
+    
+    <script>
+        // Function to show loader
+        function showLoader() {
+            const select = document.getElementById('store');
+            const option = document.createElement('option');
+            option.textContent = 'Loading...';
+            select.appendChild(option);
+        }
 
-        $(document).ready(function() {
+        // Function to hide loader and show default text
+        function hideLoaderAndShowDefault(defaultText) {
+            const select = document.getElementById('store');
+            // Remove any existing "Loading..." option
+            const loadingOption = select.querySelector('option[textContent="Loading..."]');
+            if (loadingOption) {
+                select.removeChild(loadingOption);
+            }
+
+            // Check if "Type store name" option already exists
+            let defaultOption = select.querySelector('option[value=""]');
+            if (!defaultOption) {
+                // Create and append the "Type store name" option
+                defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                select.insertBefore(defaultOption, select.firstChild);
+            }
+            // Update the text content of the default option
+            defaultOption.textContent = defaultText;
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+        }
+
+        function initializeSelect2() {
             $('#store').select2();
-            setTimeout(function(){
-                $('#store').select2();
-            },6000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Select2 when the page is loaded
+            initializeSelect2();
+
+            // Function to load stores via AJAX
+            function loadStores() {
+                //showLoader();
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', '/get_stores', true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response.stores.length > 0) {
+                                const select = document.getElementById('store');
+                                const fragment = document.createDocumentFragment();
+
+                                response.stores.forEach(function(store) {
+                                    const option = document.createElement('option');
+                                    option.value = store.store_id;
+                                    option.textContent = store.store_name;
+                                    fragment.appendChild(option);
+                                });
+
+                                select.appendChild(fragment);
+                            }                          
+
+                            // Reinitialize Select2 after data is loaded
+                            $('#store').select2();
+
+                            //hideLoaderAndShowDefault('Type store name');
+                        }
+                    }
+                };
+                xhr.send();
+            }
+
+            // Load stores when the page is loaded
+            loadStores();
         });
-
-        /*
-        jQuery('.amount_div').hide();
-        document.addEventListener("DOMContentLoaded", function() {
-            var discountTypeSelect = document.getElementById("discount_type");
-            var amountDiv = document.querySelector(".amount_div");
-            var amountInput = document.getElementById("price");
-            
-            discountTypeSelect.addEventListener("change", function() {
-                var selectedValue = discountTypeSelect.value;
-
-                if (selectedValue === "Percentage") {
-                    amountInput.placeholder = "Enter Percentage Amount";
-                } else if (selectedValue === "Fixed") {
-                    amountInput.placeholder = "Enter Fixed Amount";
-                }
-
-                if (selectedValue) {
-                    // Show the amount_div if a value is selected
-                    jQuery('.amount_div').show();
-                } else {
-                    // Hide the amount_div if no value is selected
-                    jQuery('.amount_div').hide();
-                }
-            });
-        });
-        */
     </script>
-
     @stack('scripts')
 </body>
 
