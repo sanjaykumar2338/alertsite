@@ -17,11 +17,15 @@
             text-align: center;
         }
         .logo {
-            margin: auto;
-            width: 20% !important;
             display: block;
-            padding-top: 30px;
             margin-bottom: -30px;
+            max-width: 88%;
+            margin: auto;
+            width: 21% !important;
+            display: block;
+            padding-top: 8px;
+            height: 92px;
+            max-height: 100px;
         }
         .button {
             background-color: #95bb3c;
