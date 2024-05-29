@@ -69,7 +69,10 @@
 
         {{-- Footer --}}
         <div class="footer">
-            &copy; {{ date('Y') }} TrackRak, All Rights Reserved | <a href="{{ url('/terms-and-conditions') }}">Terms & Conditions</a> | <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
+            &copy; {{ date('Y') }} TrackRak, All Rights Reserved
+        </div>
+        <div class="footer">
+            <a href="{{ url('/terms-and-conditions') }}">Terms & Conditions</a> | <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
         </div>
     </div>
 </body>

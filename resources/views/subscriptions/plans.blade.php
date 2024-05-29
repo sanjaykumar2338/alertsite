@@ -256,9 +256,46 @@
             border-radius: .25rem;
         }
 
-        .fadeInUp{
-            border: 1px solid;
-        }
+		.plan-row .col-lg-4 {
+			width: 30.66%;
+			background: border-box;
+			padding: 0 15px;
+		}
+		.plan-row .row {
+			display: flex;
+			flex-wrap: wrap;
+			/* gap: 30px; */
+			box-sizing: border-box;
+			margin-left: -15px;
+			margin-right: -15px;
+		}
+		.single-pricing {
+			border: 1px solid #000;
+		}
+		@media only screen and (max-width:767px){
+			.plan-row .col-lg-4 {
+				width: 100%;
+			}
+			
+		.single-pricing .form-control-add {
+			padding-right: 0;
+		}
+
+		.single-pricing .form-control-add input#submit {
+			margin: 0 auto;
+		}
+
+		.single-pricing ul, .single-pricing ul li {
+			padding: 0 !important;
+		}
+
+		.price-label {
+			margin-top: -30px;
+			font-size: 16px !important;
+			padding: 4px 0;
+			width: 80px;
+		}
+		}
     </style>
 
     <section class="main-section full-container">
@@ -294,18 +331,18 @@
 
                     
                     <div>
-                        <h1 class="page-title" style="width: 33%">OUR PLANS</h1>
+                        <h1 class="page-title">OUR PLANS</h1>
                     </div>
 
                     @if($currentPlanName)
                         You are currently subscribed to the <b>{{strtoupper($currentPlanName)}}</b> Plan. To switch to another plan, click on the <b>Get Started</b> button. You will be asked for your credit card information again to agree to the new monthly charge.</p>
                     <br>
                     @endif
-
-                    <div class="row text-center" style="display: flex; justify-content: center; gap: 30px;">
+					<div class="plan-row">
+                    <div class="row text-center">
                         <div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s"
                              data-wow-delay="0.1s" data-wow-offset="0"
-                             style="width:350px !important; text-align: center;"
+                             style="text-align: center;"
                         >
                             <div class="single-pricing">
                                 @if($currentPlanName === 'free')
@@ -338,7 +375,7 @@
                         </div><!--- END COL -->
                         <div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s"
                              data-wow-delay="0.2s" data-wow-offset="0"
-                             style="width:350px !important; text-align: center"
+                             style="text-align: center"
                         >
                             <div class="single-pricing">
                                 @if($currentPlanName === 'basic')
@@ -376,7 +413,7 @@
                         
                         <div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s"
                              data-wow-delay="0.3s" data-wow-offset="0"
-                             style="width:350px !important; text-align: center"
+                             style="text-align: center"
                         >
                             <div class="single-pricing single-pricing-white">
                                 <span class="price-label text-black" style="font-size: 25px;">Best</span>
@@ -410,6 +447,7 @@
                             </div>
                         </div><!--- END COL -->
                     </div><!--- END ROW -->
+                    </div>
                 </div><!--- END CONTAINER -->
             </section>
         </div>
