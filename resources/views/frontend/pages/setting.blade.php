@@ -43,7 +43,7 @@
          </div>
       @endif
 
-      <form name="save_track" method="post" action="{{route('profile.update')}}">
+      <form name="save_track" method="post" action="{{route('profile.update')}}" style="padding-left: 12px;">
           @csrf
           
           <div class="form-group">
