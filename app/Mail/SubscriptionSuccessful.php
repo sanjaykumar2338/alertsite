@@ -48,6 +48,12 @@ class SubscriptionSuccessful extends Mailable
         );
     }
 
+    public function build()
+    {
+        return $this
+            ->from($address = 'info@trackrak.com', $name = 'TrackRak');
+    }
+
     /**
      * Get the attachments for the message.
      *
