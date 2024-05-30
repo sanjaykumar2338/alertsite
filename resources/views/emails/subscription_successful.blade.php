@@ -2,7 +2,7 @@
 <html>
 <head>
     <style>
-        body {
+                body {
             font-family: Arial, sans-serif;
             font-size: 16px;
             line-height: 1.5;
@@ -68,7 +68,7 @@
     </style>
 </head>
 <body>
-    <div class="email-container">       
+    <div class="email-container">          
         {{-- Logo --}}
         <img src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" alt="TrackRak Logo" class="logo" />
 

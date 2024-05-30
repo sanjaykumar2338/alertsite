@@ -48,10 +48,18 @@ class SubscriptionSuccessful extends Mailable
         );
     }
 
+    /**
+     * Build the message.
+     */
     public function build()
     {
         return $this
-            ->from($address = 'info@trackrak.com', $name = 'TrackRak');
+            ->from('info@trackrak.com', 'TrackRak')
+            ->subject('Subscription Successful')
+            ->view('emails.subscription_successful')
+            ->with([
+                'plan' => $this->plan,
+            ]);
     }
 
     /**
