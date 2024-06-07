@@ -155,11 +155,11 @@ class TrackController extends Controller
                     \DB::table('tracks')->where('id',$track->id)->update(['last_amount_sms'=>$store->amount]);
 
                     //$amt = $store->amount.'%';
-                    $amt = $track->amount.'%';
+                    $amt = $track->price.'%';
                     
                     if($track->discount_type=='Fixed'){
                         //$amt = '$'.$store->amount;
-                        $amt = '$'.$track->amount;
+                        $amt = '$'.$track->price;
                     }
 
                     $smsData[] = [
@@ -235,11 +235,11 @@ class TrackController extends Controller
                     
                     \DB::table('tracks')->where('id',$track->id)->update(['last_amount_email'=>$store->amount]);
 
-                    $amt = $track->amount.'%';
+                    $amt = $track->price.'%';
                     //$amt = $store->amount.'%';                    
 
                     if($track->discount_type=='Fixed'){
-                        $amt = '$'.$track->amount;
+                        $amt = '$'.$track->price;
                         //$amt = '$'.$store->amount;
                     }
                     

@@ -14,7 +14,7 @@
 
         <p style="margin: 0 0 10px; font-size: 16px; text-align: center; line-height: normal;">You can now set up your alerts so you never miss out on savings again!</p>
 
-        <a href="{{ route('track') }}" style="background-color: #95bb3c; padding: 10px 30px; border-radius: 50px; font-size: 24px; font-weight: bolder; color: white; text-decoration: none; display: inline-block; margin: 20px 0; line-height: normal;">Start Tracking</a>
+        <a href="{{ route('track') }}" style="background-color: #95bb3c; padding: 10px 30px; border-radius: 50px; font-size: 25px; font-weight: bolder; color: #000000 !important; text-decoration: none; display: inline-block; margin: 20px 0; line-height: normal;border: solid black;">Start Tracking</a>
 
         <p style="margin: 0 0 10px; font-size: 16px; text-align: center; line-height: normal;"><strong>TrackRak & Get More Money Back</strong></p>
 
