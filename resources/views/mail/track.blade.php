@@ -435,10 +435,10 @@
                                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
                                   <tbody>
                                     <tr>
-                                      <td align="left" bgcolor="#76a6ec" role="presentation" style="border:none;border-radius:3px;cursor:auto;padding:0;background:#76a6ec;" valign="middle">
-                                        <a href="{{url('/')}}" style="display:inline-block;background:#95bb3c;color:white;font-family:Lato, system-ui, sans-serif;font-size:22px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:3px;" target="_blank">
-                                        Take Me to TrackRak
-                                        </a>
+                                      <td align="left" role="presentation" valign="middle">
+                                       
+                                      <a href="{{ url('/') }}" style="background-color: #95bb3c; padding: 10px 30px; border-radius: 50px; font-size: 25px; font-weight: bolder; color: #000000 !important; text-decoration: none; display: inline-block;line-height: normal;border: solid black;">Take Me to TrackRak</a>
+
                                       </td>
                                     </tr>
                                   </tbody>
