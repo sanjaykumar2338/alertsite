@@ -51,8 +51,8 @@ class SendSMSJob implements ShouldQueue
 
             // Replace specific symbols with names
             $symbols = [
-                '==' => 'equals to',
-                '>=' => 'greater than or equals to',
+                '==' => 'equal to',
+                '>=' => 'greater than or equal to',
                 '>' => 'greater than',
             ];
 
