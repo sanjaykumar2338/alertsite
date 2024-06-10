@@ -66,6 +66,8 @@
             }
         }
     </style>
+
+    @includeIf('frontend.layout.analytic')
 </head>
 
 <body>

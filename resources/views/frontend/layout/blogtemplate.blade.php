@@ -46,6 +46,8 @@
     <meta name="twitter:title" content="{{$blog->meta_title}}">
     <meta name="twitter:description" content="{{$blog->meta_description}}">
     <meta name="twitter:image" content="{{$blog->blog_image}}">
+
+    @includeIf('frontend.layout.analytic')
 </head>
 
 <body>

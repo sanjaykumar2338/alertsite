@@ -39,6 +39,8 @@
         min-height: 200px;
     }
   </style>
+
+  @includeIf('frontend.layout.analytic')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 

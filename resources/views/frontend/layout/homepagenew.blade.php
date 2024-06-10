@@ -36,6 +36,8 @@
             document.getElementById("contact_us_frm").submit();
         }
     </script>
+
+    @includeIf('frontend.layout.analytic')
 </head>
 
 <body>
