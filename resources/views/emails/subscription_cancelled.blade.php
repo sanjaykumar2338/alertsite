@@ -7,6 +7,9 @@
         <!-- Logo -->
         <img src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" alt="TrackRak Logo" style="margin: auto; display: block; padding: 15px 0; width: 125px; height: auto;" />
 
+        <!-- Content -->
+        <h1 style="margin: 10px 0 15px; font-size: 28px; line-height: normal; text-align: center;">Subscription Cancelled!</h1>
+
         <p style="margin: 0 0 10px; font-size: 16px; line-height: normal;">Your subscription has been cancelled. If you have any feedback, please let us know.</p>
 
         Thanks,<br>
