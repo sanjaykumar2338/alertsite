@@ -364,7 +364,7 @@
                                 </ul>
                                 @if($user && $userSubscribed && $currentPlanName === 'free')
                                     <div class="form-control-add" style="margin-left:65px;">
-                                        <input style="color: white;background-color: #cb1414;" onclick="window.location.href='{{ route('subscription-cancel') }}'" type="submit" id="submit" class="l-submit" value="Unsubscribe">
+                                        <input style="color: white;background-color: #cb1414;" onclick="confirmUnsubscribe('{{ $currentPlanName }}')" type="submit" id="submit" class="l-submit" value="Unsubscribe">
                                     </div>
                                 @else
                                     <div class="form-control-add" style="margin-left:65px;">
@@ -397,7 +397,7 @@
                                 </ul>
                                 @if($user && $userSubscribed && $currentPlanName === 'basic')
                                     <div class="form-control-add" style="margin-left:65px;">
-                                        <input style="color: white;background-color: #cb1414;" onclick="window.location.href='{{ route('subscription-cancel') }}'" type="submit" id="submit" class="l-submit" value="Unsubscribe">
+                                        <input style="color: white;background-color: #cb1414;" onclick="confirmUnsubscribe('{{ $currentPlanName }}')" type="submit" id="submit" class="l-submit" value="Unsubscribe">
                                     </div>
                                 @else
 
@@ -436,7 +436,7 @@
                                 </ul>
                                 @if($user && $userSubscribed && $currentPlanName === 'premium')
                                     <div class="form-control-add" style="margin-left:65px;">
-                                        <input style="color: white;background-color: #cb1414;" onclick="window.location.href='{{ route('subscription-cancel') }}'" type="submit" id="submit" class="l-submit" value="Unsubscribe">
+                                        <input style="color: white;background-color: #cb1414;" onclick="confirmUnsubscribe('{{ $currentPlanName }}')" type="submit" id="submit" class="l-submit" value="Unsubscribe">
                                     </div>
                                 @else
 
@@ -453,3 +453,17 @@
         </div>
     </section>
 @endsection
+
+<script>
+    function confirmUnsubscribe(planName) {
+        var confirmationMessage = "Are you sure you want to unsubscribe from the " + planName + " plan? All of your alerts will be deleted.";
+        
+        if (confirm(confirmationMessage)) {
+            window.location.href = "{{ route('subscription-cancel') }}";
+        } else {
+            // Optionally handle if user cancels
+            // For example, you can prevent default form submission:
+            // event.preventDefault();
+        }
+    }
+</script>

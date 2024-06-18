@@ -48,12 +48,13 @@ class PaymentController extends Controller
                 'email' => $user->email,
             ]);
             
-            //$id = \Auth::id();
-            //Tracks::where('user_id', $id)->delete();
-            Mail::to($user->email)->send(new SubscriptionSuccessful($plan));
+            $id = \Auth::id();
+            Tracks::where('user_id', $id)->delete();
 
+            Mail::to($user->email)->send(new SubscriptionSuccessful($plan));
             session()->flash('success', 'Subscription successful! You are now signed up. <a href="'.route('track').'">START TRACKING HERE</a>.');
             return redirect()->route('plans');
+            
         } catch (IncompletePayment $exception) {
             // Handle incomplete payment
             dd($exception->getMessage());

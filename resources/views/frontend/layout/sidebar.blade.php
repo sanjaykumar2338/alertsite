@@ -7,10 +7,10 @@
             alert tool. Never miss out on savings again!<br>
             <br>
             Your first alert is <strong>FREE!</strong></p>
-        <a href="{{route('register')}}" class="cta-btn">Join now!</a>
+            @if(!auth()->check())<a href="{{route('register')}}" class="cta-btn">Join now!</a>@endif
     </div>
     <div>
-        <p>Already saving with TrackRak?</p>
+        @if(!auth()->check())<p>Already saving with TrackRak?</p>@endif
         <a href="{{ auth()->check() ? route('logout') : route('login') }}" class="cta-btn">
             @if(auth()->guest())
                 Login now!
