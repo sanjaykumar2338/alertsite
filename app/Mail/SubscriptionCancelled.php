@@ -27,7 +27,7 @@ class SubscriptionCancelled extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Subscription Cancelled',
+            subject: 'Subscription Canceled',
         );
     }
 

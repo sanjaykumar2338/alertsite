@@ -8,12 +8,16 @@
         <img src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" alt="TrackRak Logo" style="margin: auto; display: block; padding: 15px 0; width: 125px; height: auto;" />
 
         <!-- Content -->
-        <h1 style="margin: 10px 0 15px; font-size: 28px; line-height: normal; text-align: center;">Subscription Cancelled!</h1>
+        <h1 style="margin: 10px 0 15px; font-size: 28px; line-height: normal; text-align: center;">Subscription Canceled!</h1>
 
-        <p style="margin: 0 0 10px; font-size: 16px; line-height: normal;">Your subscription has been cancelled. If you have any feedback, please let us know.</p>
+        <p style="margin: 0 0 10px; font-size: 16px; text-align: center; line-height: normal;">&nbsp;</p>
 
-        Thanks,<br>
-        {{ config('app.name') }}
+        <p style="margin: 0 0 10px; font-size: 16px; text-align: center; line-height: normal;">Your subscription has been canceled. We are sorry to see you go.</p>
+
+        <p style="margin: 0 0 10px; font-size: 16px; text-align: center; line-height: normal;">&nbsp;</p>
+
+        <p style="margin: 0 0 10px; font-size: 16px; text-align: center; line-height: normal;"><strong>TrackRak & Get More Money Back</strong></p>
+
         <!-- Footer -->
         <div style="text-align: center; margin-top: 20px; font-size: 14px; color: #555;">
             <p style="font-size: 14px; margin: 0 0 5px; line-height: normal; text-align: center;">&copy; {{ date('Y') }} TrackRak, All Rights Reserved</p>

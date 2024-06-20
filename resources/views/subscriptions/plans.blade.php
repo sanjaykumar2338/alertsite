@@ -364,7 +364,7 @@
                                 </ul>
                                 @if($user && $userSubscribed && $currentPlanName === 'free')
                                     <div class="form-control-add" style="margin-left:65px;">
-                                        <input style="color: white;background-color: #cb1414;" onclick="confirmUnsubscribe('{{ $currentPlanName }}')" type="submit" id="submit" class="l-submit" value="Unsubscribe">
+                                        <input style="color: white;background-color: #cb1414;" onclick="confirmUnsubscribe('{{ strtoupper($currentPlanName) }}')" type="submit" id="submit" class="l-submit" value="Unsubscribe">
                                     </div>
                                 @else
                                     <div class="form-control-add" style="margin-left:65px;">
@@ -397,7 +397,7 @@
                                 </ul>
                                 @if($user && $userSubscribed && $currentPlanName === 'basic')
                                     <div class="form-control-add" style="margin-left:65px;">
-                                        <input style="color: white;background-color: #cb1414;" onclick="confirmUnsubscribe('{{ $currentPlanName }}')" type="submit" id="submit" class="l-submit" value="Unsubscribe">
+                                        <input style="color: white;background-color: #cb1414;" onclick="confirmUnsubscribe('{{ strtoupper($currentPlanName) }}')" type="submit" id="submit" class="l-submit" value="Unsubscribe">
                                     </div>
                                 @else
 
@@ -436,7 +436,7 @@
                                 </ul>
                                 @if($user && $userSubscribed && $currentPlanName === 'premium')
                                     <div class="form-control-add" style="margin-left:65px;">
-                                        <input style="color: white;background-color: #cb1414;" onclick="confirmUnsubscribe('{{ $currentPlanName }}')" type="submit" id="submit" class="l-submit" value="Unsubscribe">
+                                        <input style="color: white;background-color: #cb1414;" onclick="confirmUnsubscribe('{{ strtoupper($currentPlanName) }}')" type="submit" id="submit" class="l-submit" value="Unsubscribe">
                                     </div>
                                 @else
 
