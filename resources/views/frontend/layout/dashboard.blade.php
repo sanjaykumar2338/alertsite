@@ -48,7 +48,7 @@
   <!-- /.navbar -->
 
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: cadetblue;">
-  <a href="{{url('/')}}/track"><img src="http://127.0.0.1:8000/asset/frontend/test/images/trackrak-logo.png" class="branding" alt="TrackRak logo" style="
+  <a href="{{url('/')}}/track"><img src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" class="branding" alt="TrackRak logo" style="
     width: 190px;
     height: 76px;
     margin: 11px;
