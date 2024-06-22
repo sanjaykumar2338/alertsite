@@ -105,7 +105,7 @@
                 </label>
               </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" style="display:none;">
               <label for="exampleFormControlSelect1">ALERT</label>
               <select class="form-control" id="status" name="status">
                   <option value="1" {{$track->status=='1' ? 'selected':''}}>On</option>

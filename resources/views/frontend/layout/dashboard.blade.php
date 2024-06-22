@@ -48,7 +48,11 @@
   <!-- /.navbar -->
 
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: cadetblue;">
-    <!-- Brand Logo -->
+  <a href="{{url('/')}}/track"><img src="http://127.0.0.1:8000/asset/frontend/test/images/trackrak-logo.png" class="branding" alt="TrackRak logo" style="
+    width: 190px;
+    height: 76px;
+    margin: 11px;
+    "></a>
     <a href="{{url('/')}}/my_account" class="brand-link">
       <span style="font-size: 18px;" class="brand-text font-weight-light">Welcome {{auth()->user()->first_name}} {{auth()->user()->last_name}}</span>
     </a>
