@@ -1,6 +1,6 @@
 @media only screen and (max-width: 1100px) {
   .container {
-    width: 95%;
+    width: 90%;
   }
   .home {
     margin-right: 30px;
@@ -37,8 +37,8 @@
   }
   .menu-ftr {
     flex-direction: row;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 45px;
+    margin-right: 45px;
   }
   .cta-sidebar {
     width: 100%;
@@ -54,75 +54,48 @@
     width: unset !important;
   }
   
-/* New css */ 
-.pg-l .page-content {
-    padding: 0;
+  
+.page-content.pg-l > .card {
+    width: 100%;
 }
-.page-content.pg-l {
-    padding: 0;
+h1.page-title {
+    font-size: 38px;
+    height: auto;
+    border-bottom-width: 5px;
+    margin-bottom: 25px;
+    margin-top: 0;
+	display: inline-block;
 }
+h1.page-title span.sm-ls {
+    font-size: 23px;
+    margin-left: -4px;
+}
+.form-control-input input, .form-control-input textarea {
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.form-control-add input#submit {
+    font-size: 18px;
+}
+
 .page-content {
-    box-sizing: border-box;
+    padding: 0;
     width: 100%;
 }
-.form-control-input .g-recaptcha.mt-4 {
-    margin-left: 0 !important;
-}
 
-.form-control-add {
-    margin-left: 0 !important;
-    flex-direction: unset;
-}
-.page-title {
-	font-size: 45px;
-	height: auto;
-	border-bottom: 7px solid #000;
-	line-height: 45px;
-}
-.page-content.home {
-    display: flex;
-    flex-wrap: wrap;
-}
-#submit {
+.form-control-input label {
     font-size: 16px;
+    margin: 0 0 5px;
 }
 
-.hero-column.flex-m-2 {
-    overflow: hidden;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 310px;
-    margin: 0 auto;
-}
-.paragraph-content {
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.paragraph-content p {word-break: break-word;font-size: 14px;} 
-.terms-main .page-content.pg-l {
-    width: 100% !important;
-}
-span.sm-ls {
-	font-size: 30px;
-	margin-left: -5px;
-}
-.cmn-table {
-    padding: 0 0px 25px;
-}
-.form-control-input select {
-    width: 99% !important;
-    height: 60px !important;
-}
-.form-control-input select#discount_type {
-    width: 99% !important;
-    margin-left: 0;
-}
 .form-control-add {
-    align-items: start !important;
-    margin-bottom: 10px;
+    align-items: unset;
 }
-/* End New css */  
+
+.menu-ftr {
+    margin: 10px auto 0;
+}  
 }
 
 @media only screen and (max-width: 541px) {
@@ -154,7 +127,7 @@ span.sm-ls {
     width: auto;
   }
   .container {
-    width: 90% !important;
+    width: 80% !important;
   }
   .ftr-info {
     text-align: center;
@@ -274,4 +247,5 @@ span.sm-ls {
    position: relative;
    bottom: 1px;
   }
+
 }
