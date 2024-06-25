@@ -128,7 +128,6 @@ hr {
   background-position: 90% 90%;
   background-repeat: no-repeat;
 }
-
 .slider.round {
   width: 75px;
   border: 3px solid #000;
@@ -157,9 +156,8 @@ hr {
 }
 .l-operator {
   width: 76.5% !important;
-  height: 60px;
+  height: 40px;
   padding: 10px !important;
-  box-sizing: border-box;
 }
 .l-operator > option {
   padding: 25px !important;
@@ -399,7 +397,9 @@ input:checked + .slider:before {
   display: flex;
 }
 .page-title {
+  margin-top: -30px;
   margin-bottom: 35px;
+  height: 115px;
   border-bottom: 10px solid #000;
 }
 .sm-ls {
@@ -471,101 +471,3 @@ div.menu-ftr a.f-menu {
   font-size: 10px;
   padding-left:13px;
 }
-
-.green-label {
-  color:#95bb3d; font-weight: 600; font-size: 1.25em; }
-  
-.blue-label {
-color:#005280; font-weight: 600; font-size: 1.25em; }
-
-.orange-label {
-color:#f58f2e; font-weight: 600; font-size: 1.25em; }
-
-.page-title {
-    margin-top: 0;
-    margin-bottom: 35px;
-    height: auto;
-    border-bottom: 10px solid #000;
-    line-height: 100px;
-}
-
-.home {
-  background-color: #d5d5d5;
-  border: 2px solid #95bb3c;
-  box-shadow: 9px 10px 0 0 #95bb3c;
-  -webkit-box-shadow: 9px 10px 0 0 #95bb3c;
-  -moz-box-shadow: 9px 10px 0 0 #95bb3c;
-  padding-left: 10px;
-  background-image: url("./../images/home-bg.png");
-  background-position: 90% 90%;
-  background-repeat: no-repeat;
-}
-
-
-.label-input label {
-  width: auto;
-  padding-top: 5px;
-}
-
-.home p { padding: 10px; }
-
-.green-label {
-color:#95bb3d; font-weight: 600; font-size: 1.25em; }
-
-.blue-label {
-color:#005280; font-weight: 600; font-size: 1.25em; }
-
-.orange-label {
-color:#f58f2e; font-weight: 600; font-size: 1.25em; }
-
-.page-title {
-    margin-top: 0;
-    margin-bottom: 35px;
-    height: auto;
-    border-bottom: 10px solid #000;
-    line-height: 100px;
-    display: inline-block;
-    width: auto;
-}
-
-.track-active {
-  border-bottom: 10px solid #005280;
-  color: #005280;
-  padding-bottom: 1px;
-}
-.faqs-active {
-  border-bottom: 10px solid #88173c;
-  color: #88173c;
-  padding-bottom: 1px;
-}
-.contact-active {
-  border-bottom: 10px solid #f6902d;
-  color: #f6902d;
-  padding-bottom: 1px;
-}
-.login-active {
-  border-bottom: 10px solid #95bb3c;
-  color: #95bb3c;
-  padding-bottom: 1px;
-}
-
-/* New css */
-.cmn-form {
-    box-sizing: border-box;
-    width: 100%;
-}
-.cmn-table {
-    overflow-x: auto;
-    padding: 0 25px 25px;
-}
-
-.cmn-table table {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0 !important;
-}
-.form-control-input select#discount_type {
-    width: 60% !important;
-    margin-left: 58px;
-}
-/* End New css */

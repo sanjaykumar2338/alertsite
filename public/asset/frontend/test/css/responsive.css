@@ -59,12 +59,13 @@
     width: 100%;
 }
 h1.page-title {
-    font-size: 38px;
-    height: auto;
-    border-bottom-width: 5px;
-    margin-bottom: 25px;
-    margin-top: 0;
+	font-size: 38px;
+	height: auto;
+	border-bottom-width: 5px;
+	margin-bottom: 25px;
+	margin-top: 0;
 	display: inline-block;
+	line-height: normal;
 }
 h1.page-title span.sm-ls {
     font-size: 23px;
@@ -79,11 +80,14 @@ h1.page-title span.sm-ls {
     font-size: 18px;
 }
 
-.page-content {
+.page-content.pg-l .page-content {
     padding: 0;
     width: 100%;
 }
-
+.page-content {
+    box-sizing: border-box;
+    width: 100% !important;
+}
 .form-control-input label {
     font-size: 16px;
     margin: 0 0 5px;
@@ -95,7 +99,12 @@ h1.page-title span.sm-ls {
 
 .menu-ftr {
     margin: 10px auto 0;
-}  
+} 
+.page-content.home input#submit {
+    font-size: 16px;
+    padding: 6px 12px;
+    margin-right: 5px;
+} 
 }
 
 @media only screen and (max-width: 541px) {
