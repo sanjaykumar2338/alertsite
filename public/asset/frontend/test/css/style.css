@@ -127,6 +127,7 @@ hr {
   background-image: url("./../images/home-bg.png");
   background-position: 90% 90%;
   background-repeat: no-repeat;
+padding-bottom: 10px;
 }
 .slider.round {
   width: 75px;
@@ -397,10 +398,14 @@ input:checked + .slider:before {
   display: flex;
 }
 .page-title {
-  margin-top: -30px;
-  margin-bottom: 35px;
-  height: 115px;
-  border-bottom: 10px solid #000;
+    margin-top: -30px;
+    margin-bottom: 35px;
+    height: 115px;
+    border-bottom: 10px solid #000;
+    display: inline-block;
+}
+.btn-container-submit {
+    margin-top: 10px;
 }
 .sm-ls {
   font-size: 80px;
