@@ -471,3 +471,47 @@ div.menu-ftr a.f-menu {
   font-size: 10px;
   padding-left:13px;
 }
+
+/* New css */
+.cmn-form {
+    box-sizing: border-box;
+    width: 100%;
+}
+.cmn-form input {
+    box-sizing: border-box;
+}
+.single-pricing .form-control-add {
+    margin-left: 0 !important;
+    justify-content: center;
+}
+.plan-row .row {
+    flex-wrap: unset !important;
+}
+.pricing-content {
+    width: 100%;
+}
+#pricing .container {
+    width: 100%;
+}
+.single-pricing ul {
+    padding: 0;
+}
+
+.single-pricing ul li {
+    padding: 0 !important;
+}
+.cmn-table {
+    overflow-x: auto;
+    padding: 0 25px 25px;
+}
+
+.cmn-table table {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 !important;
+}
+.form-control-input select#discount_type {
+    width: 40% !important;
+    margin-left: 58px;
+}
+/* End New css */

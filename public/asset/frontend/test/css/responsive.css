@@ -105,6 +105,82 @@ h1.page-title span.sm-ls {
     padding: 6px 12px;
     margin-right: 5px;
 } 
+
+
+.container {
+	width: 90% !important;
+}
+.page-content {
+    box-sizing: border-box;
+    width: 100%;
+}
+.form-control-input .g-recaptcha.mt-4 {
+    margin-left: 0 !important;
+}
+
+.form-control-add {
+    margin-left: 0 !important;
+    flex-direction: unset;
+}
+.hero-column.flex-m-2 {
+    overflow: hidden;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 310px;
+    margin: 0 auto;
+}
+.cmn-table {
+    padding: 0 0px 25px;
+}
+.cmn-form .select2-selection {
+    height: 40px !important;
+}
+.cmn-form #select2-store-container {
+    padding-top: 6px !important;
+}
+.select2-container {
+    width: 100% !important;
+}
+.cmn-form select#store {
+    width: auto !important;
+}
+.form-control-input select {
+    width: 99% !important;
+    height: 40px !important;
+}
+.form-control-input select#discount_type {
+    width: 99% !important;
+    margin-left: 0;
+}
+.form-control-add {
+    align-items: start !important;
+    margin-bottom: 10px;
+}
+.cmn-form label {
+    font-size: 14px;
+}
+.cmn-form .form-control-input {
+	flex-direction: column;
+	align-items: flex-start;
+}
+.cmn-form .l-operator {
+    width: 99% !important;
+}
+.cmn-form .box-label {
+    font-size: 14px;
+}
+.plan-row .row {
+    flex-wrap: wrap !important;
+}
+.single-pricing {
+	margin-bottom: 30px;
+}
+.plan-row .col-lg-4 {
+    width: 100% !important;
+}
+#contact_us_frm .form-control-add button.g-recaptcha.l-submit {
+    font-size: 18px !important;
+}
 }
 
 @media only screen and (max-width: 541px) {
@@ -135,9 +211,7 @@ h1.page-title span.sm-ls {
   .form-control-atype label {
     width: auto;
   }
-  .container {
-    width: 80% !important;
-  }
+
   .ftr-info {
     text-align: center;
   }
