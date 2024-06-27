@@ -108,7 +108,7 @@
 
         .example.example5 input:-webkit-autofill,
         .example.example5 select:-webkit-autofill {
-            -webkit-text-fill-color: #fce883;
+            -webkit-text-fill-color: black;
             transition: background-color 100000000s;
             -webkit-animation: 1ms void-animation-out;
         }
@@ -380,6 +380,12 @@
     <script src="https://js.stripe.com/v3/"></script>
 
     <div class="loading" hidden id="screen-loader">Loading&#8230;</div>
+
+    @if(session('error'))
+        <div class="alert native-error" role="alert">
+            {{ session('error') }}
+        </div>
+    @endif
 
     <section class="Support-Cause custom-margin-top">
         <div class="container">

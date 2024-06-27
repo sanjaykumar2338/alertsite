@@ -42,27 +42,26 @@ class PaymentController extends Controller
             if ($request->has('coupon')) {
                 $subscription->withCoupon($request->coupon);
             }
-            
     
             $subscription->create($paymentMethod, [
                 'email' => $user->email,
             ]);
-            
+    
             $id = \Auth::id();
             Tracks::where('user_id', $id)->delete();
-
+    
             Mail::to($user->email)->send(new SubscriptionSuccessful($plan));
             session()->flash('success', 'Subscription successful! You are now signed up. <a href="'.route('track').'">START TRACKING HERE</a>.');
             return redirect()->route('plans');
-            
+    
         } catch (IncompletePayment $exception) {
             // Handle incomplete payment
-            dd($exception->getMessage());
+            return redirect()->back()->with('error', 'Incomplete payment: ' . $exception->getMessage());
         } catch (\Exception $e) {
             // Handle other exceptions
-            dd($e->getMessage());
+            return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
         }
-    }
+    }    
 
     public function subscriptionCancel() {
 

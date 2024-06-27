@@ -519,4 +519,27 @@ div.menu-ftr a.f-menu {
     width: 40% !important;
     margin-left: 58px;
 }
+.home ol {
+    padding-left: 20px;
+    margin: 0 0 10px;
+}
+
+.home ol li {
+    margin: 5px 0;
+}
+
+.home p.tagline {
+    margin: 10px 0 0;
+}
+
+.home p strong {
+    margin: 0px 0 10px;
+    display: block;
+}
+.example.example5 fieldset legend {
+    color: #000 !important;
+}
+.example.example5 .input:-webkit-autofill{
+	-webkit-text-fill-color:#000 !important;
+}
 /* End New css */
