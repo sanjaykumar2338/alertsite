@@ -542,4 +542,15 @@ div.menu-ftr a.f-menu {
 .example.example5 .input:-webkit-autofill{
 	-webkit-text-fill-color:#000 !important;
 }
+span.blue-label {
+  font-weight: bolder;
+}
+
+span.orange-label {
+  font-weight: bolder;
+}
+
+span.green-label {
+  font-weight: bolder;
+}
 /* End New css */
