@@ -120,7 +120,6 @@
                             <select class="l-operator" id="operator" name="operator">
                                 <option value=">">Greater than</option>
                                 <option value="==">Equal to</option>
-                                <option value=">=" style="display:none;">Greater than or Equal to</option>
                             </select>
                         </div>
 

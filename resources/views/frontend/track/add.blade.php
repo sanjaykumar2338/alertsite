@@ -74,8 +74,7 @@
               <label for="exampleFormControlSelect1">Operator</label>
               <select class="form-control" id="operator" name="operator">
                   <option value=">">Greater than</option>
-                  <option value="==">Equal to</option>
-                  <option value=">=" style="display:none;">Greater than or Equal to</option>
+                  <option value="==">Equal to</option>                  
               </select>
           </div>
 

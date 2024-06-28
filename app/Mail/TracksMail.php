@@ -43,8 +43,7 @@ class TracksMail extends Mailable
         if ($template) {
             // Replace placeholders with dynamic data
             $symbols = [
-                '==' => 'equal to',
-                '>=' => 'greater than or equal to',
+                '==' => 'equal to',                
                 '>' => 'greater than',
             ];
 
