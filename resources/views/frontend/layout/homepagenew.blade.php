@@ -4,10 +4,10 @@
 
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Expires" content="0">    
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>
         @if (!empty(@$page->meta_title))
             {{@$page->meta_title}}
@@ -42,6 +42,17 @@
     </script>
 
     @includeIf('frontend.layout.analytic')
+
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -290,6 +301,10 @@
 
             // Load stores when the page is loaded
             loadStores();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.overflowX = 'hidden';
         });
     </script>
     @stack('scripts')

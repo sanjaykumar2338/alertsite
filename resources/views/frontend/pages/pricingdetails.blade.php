@@ -479,7 +479,7 @@
                                 <div style="display: inline-flex;">
                                     <input style="padding-top: 30px;" id="example5-coupon"
                                             class="input empty coupon" type="text" placeholder="" name="coupon">
-                                    <button style="margin-left: 25px;" id="check-coupon-btn">Apply Coupon</button>
+                                    <button data-planid="{{$planId}}" style="margin-left: 25px;" id="check-coupon-btn">Apply Coupon</button>
                                 </div>
 
                                 <div id="coupon-errors" class="text-danger mt-1"></div> 
@@ -769,11 +769,12 @@
 
         // Event listener for click event on checkout button
         document.getElementById('check-coupon-btn').addEventListener('click', async () => {
-            validateCoupon();
+            const planId = event.target.dataset.planid;
+            validateCoupon(planId);
         });
 
         // Function to validate coupon
-        async function validateCoupon() {
+        async function validateCoupon(planId) {
             const couponInput = document.getElementById('example5-coupon');
             const couponValue = couponInput.value.trim();
 
@@ -797,7 +798,7 @@
                             'Content-Type': 'application/json',
                             'X-CSRF-TOKEN': '{{ csrf_token() }}' // Include CSRF token if you're using it
                         },
-                        body: JSON.stringify({ coupon: couponValue })
+                        body: JSON.stringify({ coupon: couponValue,plan: planId })
                     });
 
                     const data = await response.json();

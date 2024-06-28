@@ -7,6 +7,7 @@ use App\Models\Payment;
 use Stripe\Coupon;
 use Stripe\Subscription;
 use Auth;
+use App\Models\Plans;
 class PaymentController extends Controller
 {
     public function processPayment(Request $request)
@@ -80,13 +81,25 @@ class PaymentController extends Controller
                 // Coupon does not specify a discount
                 throw new \Exception('Invalid coupon: No discount amount specified.');
             }
-    
+            
+            $plan = Plans::find($request->plan);
+            $discount_fixed_amount = '';
+            
+            if($plan->identifier=='basic'){
+                $discount_fixed_amount = '$1.99';
+            }
+
+            if($plan->identifier=='premium'){
+                $discount_fixed_amount = '$4.99';
+            }
+
             // Build the response data
             $responseData = [
                 'valid' => true,
                 'discount' => $discountAmount,
                 'discount_type' => $discountType,
-                'message' => 'Coupon is valid. Discount: ' . ($discountType === 'fixed_amount' ? ($discountAmount / 100) . ' USD' : $discountAmount . '%'),
+                'message_old' => 'Coupon is valid. Discount: ' . ($discountType === 'fixed_amount' ? ($discountAmount / 100) . ' USD' : $discountAmount . '%'),
+                'message' => 'Coupon is valid. Discount ' . $discount_fixed_amount,
             ];
     
             // Return success response with coupon details
