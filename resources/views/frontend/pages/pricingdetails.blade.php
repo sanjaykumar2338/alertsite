@@ -381,20 +381,22 @@
 
     <div class="loading" hidden id="screen-loader">Loading&#8230;</div>
 
-    @if(session('error'))
-        <div class="alert native-error" role="alert">
-            {{ session('error') }}
-        </div>
-    @endif
+    
 
     <section class="Support-Cause custom-margin-top">
         <div class="container">
             <br><br><br><br>
-            <h1 class="page-title" style="width:28%;">PAYMENT<br></h1>
+            <h1 class="page-title">PAYMENT<br></h1>
 
             @if($plan->title=='free')
                 <br>
                 <span style="color:red;">We need your credit card information, even for our FREE plan. Rest assured, we will not charge anything unless you upgrade to a higher plan!</span>
+            @endif
+
+            @if(session('error'))
+                <div tyle="color:red;" class="alert native-error" role="alert">
+                    {{ session('error') }}
+                </div>
             @endif
 
             <div class="cell example example5">

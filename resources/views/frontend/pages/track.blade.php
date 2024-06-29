@@ -200,7 +200,7 @@
                             </thead>
                             <tbody>
                                 @foreach($all_tracks as $key=>$track)
-                                    <tr>
+                                    <tr style="border-bottom: 1px solid #030303;">
                                         <td style="padding: 12px 15px;">{{$key+1}}</td>
                                         <td style="padding: 12px 15px;">{{$track->store_name}}</td>
                                         <td style="padding: 12px 15px;">{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}} {{$track->operator=='>=' ? 'Greater to or Equal to' : ''}}</td>
