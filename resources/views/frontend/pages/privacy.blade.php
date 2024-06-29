@@ -6,7 +6,7 @@
     <div class="container flex l-gap flex-mobile lr-m">
         @includeIf('frontend.layout.sidebar')
         <div class="page-content pg-l">
-            <h1 class="page-title">Privacy Policy</h1>
+            <h1 class="page-title">Privacy Policyddd</h1>
             </h1>
             <div>
                 {!! @$page->description !!}
