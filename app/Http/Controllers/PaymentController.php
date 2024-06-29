@@ -101,6 +101,7 @@ class PaymentController extends Controller
                 'message_old' => 'Coupon is valid. Discount: ' . ($discountType === 'fixed_amount' ? ($discountAmount / 100) . ' USD' : $discountAmount . '%'),
                 'message' => 'Coupon is valid.'
             ];
+            
     
             // Return success response with coupon details
             return response()->json($responseData);
