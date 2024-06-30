@@ -8,7 +8,7 @@
         <div class="page-content pg-l" style="width:550;">
             <h1 class="page-title">Privacy Policy</h1>
             </h1>
-            <div style="    text-align: justify;">
+            <div style="text-align: justify;padding-right:10px;">
                 {!! @$page->description !!}
             </div>
         </div>
