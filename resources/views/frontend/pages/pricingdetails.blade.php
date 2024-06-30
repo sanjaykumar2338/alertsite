@@ -823,7 +823,7 @@
                                 discountedPrice = originalPrice * (1 - (parseFloat(data.discount) / 100)); // Adjusted price after discount
                             }
 
-                            document.getElementById('checkout-submit-btn').innerText = `Pay $${discountedPrice.toFixed(2)}/month`;
+                            document.getElementById('checkout-submit-btn').innerText = `Pay $${discountedPrice.toFixed(2) - 0.01}/month`;
 
 
                         } else {
