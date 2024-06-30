@@ -5,7 +5,7 @@
 <section class="main-section full-container">
     <div class="container flex l-gap flex-mobile lr-m">
         @includeIf('frontend.layout.sidebar')
-        <div class="page-content pg-l" style="width:700px;">
+        <div class="page-content pg-l" style="width:650px;">
             <h1 class="page-title">Privacy Policy</h1>
             </h1>
             <div>
