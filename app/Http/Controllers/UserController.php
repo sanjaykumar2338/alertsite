@@ -90,7 +90,7 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         // Redirect to home or login page after logout
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 
     public function product_slug() {
