@@ -181,6 +181,10 @@ h1.page-title span.sm-ls {
 #contact_us_frm .form-control-add button.g-recaptcha.l-submit {
     font-size: 18px !important;
 }
+#contact_us_frm .form-control-add {
+    margin-left: 0;
+    align-items: flex-start !important;
+}
 }
 
 @media only screen and (max-width: 541px) {
