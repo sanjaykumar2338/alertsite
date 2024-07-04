@@ -120,9 +120,9 @@
                         <li>
                             @if(auth()->check())
                                 @if(Auth::user()->role==1)
-                                    <a target="_blank" href="{{ url('admin') }}" class="m-hover login{{ Route::currentRouteName() == 'admin' ? ' login-active' : '' }}">My Account
+                                    <a target="" href="{{ url('admin') }}" class="m-hover login{{ Route::currentRouteName() == 'admin' ? ' login-active' : '' }}">My Account
                                 @else(Auth::user()->role==1)  
-                                    <a target="_blank" href="{{ route('track.list') }}" class="m-hover login{{ Route::currentRouteName() == 'track.list' ? ' login-active' : '' }}">My Account
+                                    <a target="" href="{{ route('dashboard.index') }}" class="m-hover login{{ Route::currentRouteName() == 'dashboard.index' ? ' login-active' : '' }}">My Account
                                 @endif  
                                     <div class="ml-con">
                                         <div class="m-layout h-mobile">
