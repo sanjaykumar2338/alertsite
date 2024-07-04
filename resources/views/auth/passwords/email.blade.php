@@ -62,7 +62,8 @@
                                 
                                 <div class="row mb-10">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
+                                        <input type="submit" id="submit" class="l-submit" value="{{ __('Send Password Reset Link') }}">
+                                        <button style="display:none;" type="submit" class="btn btn-primary">
                                             {{ __('Send Password Reset Link') }}
                                         </button>
                                     </div>

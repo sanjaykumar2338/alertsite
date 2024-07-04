@@ -127,9 +127,9 @@
                         <span class="text-danger">The agree to Terms and Conditions check box is required.</span>
                         @enderror
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Sign Up
-                    </button>
+                    <br>
+                    <input type="submit" id="submit" class="l-submit" value="Sign Up">
+                    <br><br>
                     Forgot your password? <a href="{{ route('password.request') }}">Reset Password</a>
                 </form>
             </div>

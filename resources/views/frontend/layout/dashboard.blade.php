@@ -29,6 +29,21 @@
 
   <link rel="icon" href="{{ asset('asset/frontend/images/favicon.png') }}" type="image/x-icon">
 
+  <style>
+    .alert{
+      padding: 2px;
+      margin-bottom: 50px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+
+    .alert-danger {
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+    }
+  </style>
+
   @includeIf('frontend.layout.analytic')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">

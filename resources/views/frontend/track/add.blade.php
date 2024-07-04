@@ -49,7 +49,7 @@
     <div class="col-12">
 
       @if (count($errors) > 0)
-         <div class = "alert alert-danger">
+        <div class="alert alert-danger" role="alert" style="">
             <ul>
                @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
@@ -70,10 +70,10 @@
             </select>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" style="display:none;">
               <label for="exampleFormControlSelect1">Operator</label>
               <select class="form-control" id="operator" name="operator">
-                  <option value=">">Greater than</option>
+                  <option selected value=">">Greater than</option>
                   <option value="==">Equal to</option>                  
               </select>
           </div>

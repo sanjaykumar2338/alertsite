@@ -100,8 +100,8 @@
 
                     <label for="psw"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="password" required>
-
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <br><br>
+                    <input type="submit" id="submit" class="l-submit" value="Login">
 
                     <div class="Login-form-submit-section">
                         <span>Don't have an account yet? <a href="{{ route('register.form') }}">Create Account</a></span>

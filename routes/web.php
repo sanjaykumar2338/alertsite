@@ -10,6 +10,7 @@ use App\Http\Controllers\Subscriptions\PaymentController;
 use App\Http\Controllers\Subscriptions\StripeWebhookController;
 use App\Http\Controllers\Subscriptions\SubscriptionController;
 use App\Http\Controllers\TrackController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Cashier\Http\Controllers\WebhookController;
 
@@ -96,6 +97,9 @@ Route::group(['middleware' => 'check.auth'], function () {
     Route::get('/track/edit/{id}', [App\Http\Controllers\TrackController::class, 'edit'])->name('track.edit');
     Route::post('/track/update/{id}', [App\Http\Controllers\TrackController::class, 'update'])->name('track.update');
     //Route::post('/track/update/{id}', [App\Http\Controllers\TrackController::class, 'update'])->middleware('check.track.update.limit')->name('track.update');
+
+    //For the user dashboard
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

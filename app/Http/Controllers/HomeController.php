@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogReview;
 use App\Models\Pages;
+use App\Models\Plans;
 use App\Models\Faqs;
 use App\Models\Contacts;
 use App\Models\PrintfulOrder;
@@ -62,7 +63,32 @@ class HomeController extends Controller
         $user = Auth::user();
         //echo "<pre>"; print_r($user->tracks()->get()); die;
         $all_tracks = $user->tracks()->get();
-        return view('frontend.pages.track')->with('page', $track)->with('stores', $stores)->with('all_tracks',$all_tracks);
+
+
+        $plans = Plans::get();
+
+        $plansArray = [];
+        foreach ($plans as $plan) {
+            $plansArray[$plan->identifier] = $plan;
+        }
+
+        $currentPlanName = '';
+
+        $user = auth()->user();
+        $userSubscribed = $user->subscribed();
+        if ($user){
+            $subscription = $user->subscription('default');
+            if ($subscription) {
+                $currentSubscribedPlanPriceId = $subscription->stripe_price;
+
+                $currentPlan = \App\Models\Plans::where('stripe_id', $currentSubscribedPlanPriceId)->first();
+                if($currentPlan){
+                    $currentPlanName = @$currentPlan->identifier;
+                }
+            }
+        }
+
+        return view('frontend.pages.track')->with('page', $track)->with('stores', $stores)->with('all_tracks',$all_tracks)->with('currentPlanName',$currentPlanName);
     }
 
     public function get_stores() {
