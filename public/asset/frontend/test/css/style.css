@@ -557,3 +557,31 @@ span.green-label {
     margin-left: 110px;
 }
 /* End New css */
+
+ul.cta-menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cta-menu li a {
+    text-decoration: none;
+    padding: 14px 15px;
+    display: block;
+    background-color: rgb(255 255 255 / 15%);
+    font-size: 16px;
+    font-weight: 700;
+    transition: all 0.3s;
+    border-radius: 5px;
+	color: #000;
+}
+
+.cta-menu li {
+    margin: 0 0 5px;
+}
+
+.cta-menu li a:hover, .cta-menu li a.nav-active {
+    background-color: #fff;
+    box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.25);
+    color: #f6902d;
+}
