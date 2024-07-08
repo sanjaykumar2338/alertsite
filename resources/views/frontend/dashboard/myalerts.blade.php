@@ -76,10 +76,23 @@
                                     </tbody>
                             </table>
                         </div>
+
+                        <nav class="navbar navbar-light bg-light">
+                            <div class="container-fluid">
+                                @if ($all_tracks->previousPageUrl())
+                                    <a href="{{ $tracks->previousPageUrl() }}"><< Previous</a>
+                                @endif
+                                
+                                @if ($all_tracks->nextPageUrl())
+                                    <a href="{{ $tracks->nextPageUrl() }}">Next >></a>
+                                @endif
+                            </div>
+                        </nav>
+
                     @else
                         <p style="text-align: center;
-    text-decoration: underline;
-">No Alerts Found!</p>
+                        text-decoration: underline;
+                    ">No Alerts Found!</p>
                     @endif
 
                 </div>
