@@ -4,7 +4,6 @@ function singleSelection(id){
   Array.prototype.forEach.call(myCheckbox,function(el){
        el.checked = false;
    });
-
    id.checked = true;
 }
 

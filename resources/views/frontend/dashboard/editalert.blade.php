@@ -5,15 +5,47 @@
             
             @includeIf('frontend.layout.dashboardsidebar')
             <div class="page-content home">
-                <h1 class="page-title">Track</h1>
-                @if(empty($currentPlanName))
-                    <div class="" role="alert" style="">
-                        In order to start tracking, you must <a href="plans">SIGN UP FOR A PLAN</a>.
-                    </div>
-                    <br>
-                @endif
-
+                <h1 class="page-title">Edit Alert</h1>
                 <div class="cmn-form">
+
+                    <style>
+                        .alert-danger {
+                            color: #721c24;
+                            background-color: #f8d7da;
+                            border-color: #f5c6cb;
+                        }
+
+                        .alert {
+                            padding: 2px;
+                            margin-bottom: 50px;
+                            border: 1px solid transparent;
+                            border-radius: 4px;
+                        }
+                    </style>
+
+                    @if (count($errors) > 0)
+                        <div class = "alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div class="alert alert-danger" role="alert" style="">
+                            {{ session('error') }}
+                        </div><br>
+                    @endif
+
+                    @if(session('success'))
+                        <div class="alert alert-success" style="color: green;font-size: 18px;">
+                            {{ session('success') }}
+                        </div><br>
+                    @endif
+
+                    <div class="cmn-form">
                     <style>
                         .selectpicker option {
                             border: none;
@@ -77,42 +109,11 @@
                         }
                     </style>
 
-                    @if (count($errors) > 0)
-                        <div class = "alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    @if(session('error'))
-                        <div class="alert alert-danger" role="alert" style="">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-
-                    @if(session('plan_error'))
-                        <div class="alert alert-danger" role="alert" style="">
-                            You have set your maximum number of alerts. Please visit your <a href="{{route('track.list')}}" target="_blank">My Account</a> page to edit or remove current alerts, or <a href="{{route('plans')}}" target="_blank">UPGRADE YOUR PLAN</a>.
-                        </div>
-                    @endif
-
-                    @if(session('no_plan_error'))
-                        <div class="alert alert-danger" role="alert" style="">
-                            To set up alerts, you must <a href="{{route('plans')}}">sign up for one of our plans</a>. We even have a FREE plan so you can try TrackRak out!                           
-                        </div>
-                    @endif
-
-                    @if(session('success'))
-                        <div class="alert alert-success" style="color: green;font-size: 18px;">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-
-                    <form name="save_track" method="post" action="{{route('track.save')}}">
+                    <form name="save_track" method="post" action="{{route('track.update', $alert->id)}}">
                         @csrf
+                        
+                        <input type="hidden" value="{{$alert->store_id}}" id="current_store_id" name="current_store_id">
+
                         <div class="form-control-input">
                             <label style="margin-bottom: 0px;">STORE:
                             </label>
@@ -135,11 +136,11 @@
                             </label>
                             <select style="" class="l-operator" id="discount_type" name="discount_type">
                                 <option value="">--Select--</option>
-                                <option value="Percentage">Percent Cash Back</option>
-                                <option value="Fixed">Fixed Cash Back</option>
+                                <option {{$alert->discount_type=='Percentage'?'selected':''}} value="Percentage">Percent Cash Back</option>
+                                <option {{$alert->discount_type=='Fixed'?'selected':''}} value="Fixed">Fixed Cash Back</option>
                             </select>
                             &nbsp;
-                            <input type="text" class="l-operator form-control" placeholder="Enter Amount" id="price" name="price" oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/^(\d{0,3})(\.\d{0,2})?.*$/, '$1$2');">
+                            <input type="text" value="{{$alert->price}}" class="l-operator form-control" placeholder="Enter Amount" id="price" name="price" oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/^(\d{0,3})(\.\d{0,2})?.*$/, '$1$2');">
 
                         </div>
                         
@@ -149,22 +150,26 @@
                         <div class="form-control-atype">
                             <label style="width: 37%;">ALERT TYPE:</label>
                             <div style="padding-left: 0px;">
+
                                 <div class="box-container">
                                     <input type="radio" value="email" name="alert_type" id="alert_checkbox[]"
-                                           class="l-alert_checkbox" onclick="singleSelection(this)">
+                                        class="l-alert_checkbox" onclick="singleSelection(this)" 
+                                        {{ $alert->alert_email == 'email' && $alert->alert_text != 'text' ? 'checked' : '' }}>
                                     <div class="box-label">Email</div>
-                                </div>
-                                <div class="box-container">
-                                    <input type="radio" name="alert_type" id="alert_checkbox[]"
-                                           class="l-alert_checkbox" value="text" onclick="singleSelection(this)">
-                                    <div class="box-label">Text/SMS*</div>
-                                </div>
-                                <div class="box-container">
-                                    <input type="radio" name="alert_type" id="alert_checkbox[]"
-                                           class="l-alert_checkbox" checked="1" value="both"
-                                           onclick="singleSelection(this)">
+                                    </div>
+                                    <div class="box-container">
+                                        <input type="radio" value="text" name="alert_type" id="alert_checkbox[]"
+                                            class="l-alert_checkbox" onclick="singleSelection(this)"
+                                            {{ $alert->alert_text == 'text' && $alert->alert_email != 'email' ? 'checked' : '' }}>
+                                        <div class="box-label">Text/SMS*</div>
+                                    </div>
+                                    <div class="box-container">
+                                    <input type="radio" value="both" name="alert_type" id="alert_checkbox[]"
+                                        class="l-alert_checkbox" onclick="singleSelection(this)" 
+                                        {{ $alert->alert_email == 'email' && $alert->alert_text == 'text' ? 'checked' : '' }}>
                                     <div class="box-label">Both</div>
                                 </div>
+
                                 <span class="footer_note"><i>*US Customers only. Automated alert messages will be sent to the phone number provided. Msg and data rates may apply. Msg frequency may vary. To opt out, text "STOP"</i></span>
                             </div>
                             <br>
@@ -188,9 +193,9 @@
                         </div>
 
                         <div class="form-control-add">
-                            <input type="submit" id="submit" class="l-submit" value="Submit">
+                            <input type="submit" id="submit" class="l-submit" value="Update">
                         </div>
-                    </form>                   
+                    </form>                 
                 </div>
             </div>
         </div>
@@ -215,6 +220,10 @@
             xhr.send();
         }
     });
+
+    setTimeout(() => {
+        $('#store').val($('#current_store_id').val()).trigger('change');
+    }, 1000);
 </script>
 
 @includeIf('frontend.layout.hero-section')

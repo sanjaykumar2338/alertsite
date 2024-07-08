@@ -44,6 +44,7 @@ class TrackController extends Controller
     }
 
     public function update(Request $request, $id) {
+        //echo "<pre>"; print_r($request->all()); die;
         try {
             $this->validate($request, [
                 'store' => 'required',
@@ -61,11 +62,18 @@ class TrackController extends Controller
             $track->discount_type = $request->discount_type;
             $track->operator = $request->operator;
             $track->price = $request->price;
-            $track->alert_email = $request->alert_email;
-            $track->alert_text = $request->alert_text;
+            
+            $track->alert_email = $request->alert_type=='email' ? 'email':'';
+            $track->alert_text = $request->alert_type=='text' ? 'text':'';
+
+            if($request->alert_type=='both'){
+                $track->alert_email = 'email';
+                $track->alert_text = 'text';
+            }
+
             $track->status = $request->status;
             $track->save();
-            return redirect()->route('track.list')->with('success', 'Alert updated successfully.');
+            return redirect()->route('myalerts')->with('success', 'Alert updated successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('success', $e->getMessage());
         }

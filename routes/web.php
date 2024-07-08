@@ -100,6 +100,8 @@ Route::group(['middleware' => 'check.auth'], function () {
 
     //For the user dashboard
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/myalerts', [App\Http\Controllers\DashboardController::class, 'myalerts'])->name('myalerts');
+    Route::get('/editalert/{id}', [App\Http\Controllers\DashboardController::class, 'editalert'])->name('editalert');
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

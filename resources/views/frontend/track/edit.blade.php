@@ -58,7 +58,7 @@
          </div>
       @endif
 
-      <form name="save_track" method="post" action="{{route('track.update', $track->id)}}" style="padding-left: 10px;">
+      <form name="update_track" method="post" action="{{route('track.update', $track->id)}}" style="padding-left: 10px;">
           @csrf
           <div class="form-group">
             <label for="exampleFormControlSelect1">Store</label>
