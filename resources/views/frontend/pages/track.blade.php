@@ -46,6 +46,7 @@
                             background: none;
                             width: 76.5%;
                         }
+                        
                         .alert {
                             padding: 2px;
                             margin-bottom: 50px;

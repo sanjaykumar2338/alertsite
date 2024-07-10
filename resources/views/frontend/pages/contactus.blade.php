@@ -12,8 +12,19 @@
                 </div>
 
                 <style>
-                    .error{
-                        color: red;
+                   
+
+                    .alert {
+                        padding: 2px;
+                        margin-bottom: 50px;
+                        border: 1px solid transparent;
+                        border-radius: 4px;
+                    }
+
+                    .alert-danger {
+                        color: #721c24;
+                        background-color: #f8d7da;
+                        border-color: #f5c6cb;
                     }
                 </style>
 
@@ -23,7 +34,7 @@
                         <div class = "alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
-                                    <li class="error">{{ $error }}</li>
+                                    <li class="">{{ $error }}</li>
                                 @endforeach
                             </ul>
                         </div>
