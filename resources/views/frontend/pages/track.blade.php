@@ -8,7 +8,7 @@
                 <h1 class="page-title">Track</h1>
                 @if(empty($currentPlanName))
                     <div class="" role="alert" style="">
-                        In order to start tracking, you must <a href="plans">SIGN UP FOR A PLAN</a>.
+                        In order to start tracking, you must <a href="plans"><b>SIGN UP FOR A PLAN</b></a>.
                     </div>
                     <br>
                 @endif
