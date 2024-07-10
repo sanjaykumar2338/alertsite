@@ -4,10 +4,13 @@
         <div class="container flex l-gap flex-mobile lr-m">
             
             @includeIf('frontend.layout.dashboardsidebar')
-            <div class="page-content home">
+            @if(count($all_tracks)==0)
+                <div class="page-content home" style="height: 555px;">
+            @else
+                <div class="page-content home" style="height: 555px;">
+            @endif
+
                 <h1 class="page-title">My Alerts</h1>
-                <p style="    text-align: right;
-    text-decoration: underline;'"><b><a href="track">Add New Alert</a></b></p><br>
                 <div class="cmn-form">
 
                     <style>
@@ -77,22 +80,18 @@
                             </table>
                         </div>
 
-                        <nav class="navbar navbar-light bg-light">
-                            <div class="container-fluid">
-                                @if ($all_tracks->previousPageUrl())
-                                    <a href="{{ $tracks->previousPageUrl() }}"><< Previous</a>
-                                @endif
-                                
-                                @if ($all_tracks->nextPageUrl())
-                                    <a href="{{ $tracks->nextPageUrl() }}">Next >></a>
-                                @endif
-                            </div>
-                        </nav>
-
+                        
                     @else
-                        <p style="text-align: center;
-                        text-decoration: underline;
-                    ">No Alerts Found!</p>
+
+                        @if($currentPlanName)
+                            <p style="text-align: center;
+                            text-decoration: underline;
+                                ">No alerts found!</p>
+                        @else
+                            <p style="text-align: center;
+                            text-decoration: underline;
+                                ">No alerts found! In order to start tracking, <b><a href="{{route('plans')}}">SIGN UP FOR A PLAN</a></b>.</p>
+                        @endif
                     @endif
 
                 </div>

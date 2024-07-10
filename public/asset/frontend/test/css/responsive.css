@@ -207,7 +207,18 @@ h1.page-title span.sm-ls {
   section.main-section {
     margin-top: 40px;
   }
+
+  .custom_label{
+    margin: 0 146px 0;
+  }
 }
+
+.custom_label{
+  font-family: "Arial Narrow Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
 @media only screen and (max-width: 480px) {
   /* .form-control-atype label, .form-control-alert-on label, .form-control-add label { width: 85% !important; } */
   .form-control-add label,

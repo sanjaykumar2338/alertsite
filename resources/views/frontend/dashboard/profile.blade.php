@@ -47,7 +47,7 @@
 
                     <form name="profile_update" method="post" action="{{route('profile.update')}}">
                         @csrf
-
+                        
                         <div class="form-control-input">
                             <label>First Name:
                             </label>
@@ -73,15 +73,15 @@
                         </div>
 
                         <div class="form-control-input">
-                            <label>Password:
+                            <label>New Password:
                             </label>
-                            <input autocomplete="new-password" type="password" class="l-operator form-control" placeholder="Enter Password" id="password" name="password" value="">
+                            <input autocomplete="new-password" type="password" class="l-operator form-control" placeholder="Enter new password" id="password" name="password" value="">
                         </div>
 
                         <div class="form-control-input">
-                            <label>Pass. Confirm:
+                            <label>Conf. Password:
                             </label>
-                            <input autocomplete="new-password" type="password" class="l-operator form-control" placeholder="Enter Confirm Password" id="password_confirmation" name="password_confirmation" value="">
+                            <input autocomplete="new-password" type="password" class="l-operator form-control" placeholder="Confirm new password" id="password_confirmation" name="password_confirmation" value="">
                         </div>
 
                         <div class="form-control-add">
