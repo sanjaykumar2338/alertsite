@@ -3,7 +3,7 @@
     <section class="main-section full-container">
         <div class="container flex l-gap flex-mobile lr-m">
             
-            @includeIf('frontend.layout.dashboardsidebar')
+            @includeIf('frontend.layout.sidebar')
             <div class="page-content home">
                 <h1 class="page-title">Edit Alert</h1>
                 <div class="cmn-form">

@@ -80,7 +80,7 @@
                 <div class="menu-tag">
                     <ul>
                         <li>
-                        <a href="{{ route('track') }}" class="m-hover track{{ Route::currentRouteName() == 'track' ? ' track-active' : '' }}">
+                        <a href="{{ route('track') }}" class="m-hover track{{ Route::currentRouteName() == 'track'  || Route::currentRouteName() == 'editalert' ? ' track-active' : '' }}">
                             Track
                             <div class="ml-con">
                                 <div class="m-layout h-mobile">
