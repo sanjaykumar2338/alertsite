@@ -284,6 +284,10 @@
                                 });
 
                                 select.appendChild(fragment);
+
+                                if ($('#current_store_id').length) {
+                                    $('#store').val($('#current_store_id').val()).trigger('change');
+                                }
                             }                          
 
                             // Reinitialize Select2 after data is loaded
