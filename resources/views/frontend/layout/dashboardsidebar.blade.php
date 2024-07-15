@@ -10,7 +10,7 @@
 			<li><a class="" href="{{route('track')}}">Track</a></li>
 			<li><a class="{{ Route::currentRouteName() === 'plans' ? 'nav-active' : '' }}" href="{{route('plans')}}">Edit Plan</a></li>
 			<li style="display:none;"><a class="{{ Route::currentRouteName() === 'myalerts' || Route::currentRouteName() === 'editalert' ? 'nav-active' : '' }}" href="{{route('myalerts')}}">My Alerts</a></li>
-			<li><a class="{{ Route::currentRouteName() === 'logout' ? 'nav-active' : '' }}" href="#">Logout</a></li>
+			<li><a class="{{ Route::currentRouteName() === 'logout' ? 'nav-active' : '' }}" href="{{route('logout')}}">Logout</a></li>
 		</ul>
 	</div>
 </div>

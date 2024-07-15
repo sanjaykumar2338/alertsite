@@ -210,13 +210,22 @@ h1.page-title span.sm-ls {
 
   .custom_label{
     margin: 0 146px 0;
+    font-family: "Arial Narrow Regular", sans-serif;
+    font-weight: bolder;
+    display: flex;
+    gap: 5px;
+    font-size: 19px;
+    margin-bottom: 8px;
   }
 }
 
 .custom_label{
   font-family: "Arial Narrow Regular", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
+  font-weight: bolder;
+  display: flex;
+  gap: 5px;
+  font-size: 19px;
+  margin-bottom: 8px;
 }
 
 @media only screen and (max-width: 480px) {

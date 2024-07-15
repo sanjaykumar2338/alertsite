@@ -79,10 +79,23 @@
                     </style>
 
                     @if (count($errors) > 0)
-                        <div class = "alert alert-danger">
+                        <div class="alert alert-danger">
                             <ul>
+                                @php
+                                    $displayedErrors = [];
+                                @endphp
+
                                 @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
+                                    @if ($error === 'The amount field is required.')
+                                        @if (!in_array($error, $displayedErrors))
+                                            <li>{{ $error }}</li>
+                                            @php
+                                                $displayedErrors[] = $error;
+                                            @endphp
+                                        @endif
+                                    @else
+                                        <li>{{ $error }}</li>
+                                    @endif
                                 @endforeach
                             </ul>
                         </div>
@@ -94,12 +107,11 @@
                         </div>
                     @endif
 
-                    @if(session('plan_error'))
+                   
                         <div class="alert alert-danger" role="alert" style="">
-                            You have set your maximum number of alerts. Please visit your <a href="{{route('track.list')}}" target="_blank">My Account</a> page to edit or remove current alerts, or <a href="{{route('plans')}}" target="_blank">UPGRADE YOUR PLAN</a>.
+                            You have set your maximum number of alerts. <a href="{{route('myalerts')}}" target="_blank">Click HERE to edit or remove your current alerts</a>, or <a href="{{route('plans')}}" target="_blank">UPGRADE YOUR PLAN</a>.
                         </div>
-                    @endif
-
+                   
                     @if(session('no_plan_error'))
                         <div class="alert alert-danger" role="alert" style="">
                             To set up alerts, you must <a href="{{route('plans')}}">sign up for one of our plans</a>. We even have a FREE plan so you can try TrackRak out!                           

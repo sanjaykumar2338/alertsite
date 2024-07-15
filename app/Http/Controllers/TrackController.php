@@ -45,14 +45,20 @@ class TrackController extends Controller
 
     public function update(Request $request, $id) {
         //echo "<pre>"; print_r($request->all()); die;
-        try {
+        //try {
+            
+            $customMessages = [
+                'discount_type.required' => 'The amount field is required.',
+                'price.required' => 'The amount field is required.',
+            ];
+
             $this->validate($request, [
                 'store' => 'required',
                 'discount_type' => 'required',
                 'operator' => 'required',
                 'price' => 'required',
                 'status' => 'required'
-            ]);
+            ], $customMessages);
 
             $rec = \DB::table('stores')->where('store_id', $request->store)->first();
             $track = Tracks::find($id);
@@ -74,19 +80,26 @@ class TrackController extends Controller
             $track->status = $request->status;
             $track->save();
             return redirect()->route('myalerts')->with('success', 'Alert updated successfully.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('success', $e->getMessage());
-        }
+        //} catch (\Exception $e) {
+            //return redirect()->back()->with('error', $e->getMessage());
+        //}
         //echo "<pre>"; print_r($request->all()); die;
     }
 
     public function save(Request $request) {
+        // Custom error messages
+        $customMessages = [
+            'discount_type.required' => 'The amount field is required.',
+            'price.required' => 'The amount field is required.',
+        ];
+
         $this->validate($request, [
             'store' => 'required',
             'discount_type' => 'required',
             'operator' => 'required',
             'price' => 'required',
-        ]);
+            'alert_type' => 'required',
+        ], $customMessages);
 
         $rec = \DB::table('stores')->where('store_id', $request->store)->first();
         $status = $request->has('status') ? 1 : 0;

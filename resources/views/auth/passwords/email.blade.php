@@ -35,7 +35,7 @@
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert" style="color:red;">
                                     @if('We have emailed your password reset link.'==session('status'))
-                                        We have emailed your password reset link. Go here to <a style="color: red;" href="{{route('login')}}">login</a>.
+                                    Please check your email for a link to reset your password. Go here to <a style="color: red;" href="{{route('login')}}">login</a>.
                                     @else
                                         {{ session('status') }}
                                     @endif
@@ -62,7 +62,7 @@
                                 
                                 <div class="row mb-10">
                                     <div class="col-md-6 offset-md-4">
-                                        <input type="submit" id="submit" class="l-submit" value="{{ __('Send Password Reset Link') }}">
+                                        <input type="submit" id="submit" class="l-submit" value="{{ __('Reset') }}">
                                         <button style="display:none;" type="submit" class="btn btn-primary">
                                             {{ __('Send Password Reset Link') }}
                                         </button>

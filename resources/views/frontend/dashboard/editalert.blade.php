@@ -24,17 +24,30 @@
                     </style>
 
                     @if (count($errors) > 0)
-                        <div class = "alert alert-danger">
+                        <div class="alert alert-danger">
                             <ul>
+                                @php
+                                    $displayedErrors = [];
+                                @endphp
+
                                 @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
+                                    @if ($error === 'The amount field is required.')
+                                        @if (!in_array($error, $displayedErrors))
+                                            <li>{{ $error }}</li>
+                                            @php
+                                                $displayedErrors[] = $error;
+                                            @endphp
+                                        @endif
+                                    @else
+                                        <li>{{ $error }}</li>
+                                    @endif
                                 @endforeach
                             </ul>
                         </div>
                     @endif
 
                     @if(session('error'))
-                        <div class="alert alert-danger" role="alert" style="">
+                        <div  class="alert alert-danger" role="alert" style="">
                             {{ session('error') }}
                         </div><br>
                     @endif
