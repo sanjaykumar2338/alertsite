@@ -79,7 +79,7 @@ class TrackController extends Controller
 
             $track->status = $request->status;
             $track->save();
-            return redirect()->route('myalerts')->with('success', 'Alert updated successfully.');
+            return redirect()->back()->with('success', 'Alert updated successfully.');
         //} catch (\Exception $e) {
             //return redirect()->back()->with('error', $e->getMessage());
         //}
