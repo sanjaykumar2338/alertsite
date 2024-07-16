@@ -107,10 +107,11 @@
                         </div>
                     @endif
 
-                   
+                    @if(session('plan_error'))
                         <div class="alert alert-danger" role="alert" style="">
                             You have set your maximum number of alerts. Click <a href="{{route('track')}}" target="">HERE </a>to edit or remove your current alerts, or <a href="{{route('plans')}}" target="">UPGRADE YOUR PLAN</a>.
                         </div>
+                    @endif
                    
                     @if(session('no_plan_error'))
                         <div class="alert alert-danger" role="alert" style="">
