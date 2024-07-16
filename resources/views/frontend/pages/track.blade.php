@@ -109,7 +109,7 @@
 
                    
                         <div class="alert alert-danger" role="alert" style="">
-                            You have set your maximum number of alerts. <a href="{{route('myalerts')}}" target="_blank">Click HERE to edit or remove your current alerts</a>, or <a href="{{route('plans')}}" target="_blank">UPGRADE YOUR PLAN</a>.
+                            You have set your maximum number of alerts. Click <a href="{{route('track')}}" target="">HERE </a>to edit or remove your current alerts, or <a href="{{route('plans')}}" target="">UPGRADE YOUR PLAN</a>.
                         </div>
                    
                     @if(session('no_plan_error'))

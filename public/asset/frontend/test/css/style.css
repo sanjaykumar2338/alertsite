@@ -428,6 +428,9 @@ input:checked + .slider:before {
 .form-control-input label {
   font-weight: bolder;
 }
+#submit{
+  border: 2px solid #000;
+}
 .sm-ls-ftr {
   font-size: 17px;
 }
