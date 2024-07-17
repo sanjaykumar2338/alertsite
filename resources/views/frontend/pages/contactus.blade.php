@@ -84,9 +84,7 @@
                         </div>                        
                       
                         <div class="form-control-add">
-                            <button style="background-color: #95bb3c;    padding: 7px 20px;
-    border-radius: 50px;
-    font-size: 25px;    font-weight: bolder;" class="g-recaptcha l-submit"
+                            <button style="border: 2px solid #000;background-color: #95bb3c;padding: 7px 20px;border-radius: 50px;font-size: 25px;font-weight: bolder;" class="g-recaptcha"
                                     data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"
                                     data-callback="onSubmit"
                                     data-action="submitContact">Submit</button>
