@@ -108,9 +108,16 @@
                     @endif
 
                     @if(session('plan_error'))
-                        <div class="alert alert-danger" role="alert" style="">
-                            You have set your maximum number of alerts. Click <a href="{{route('track')}}" target="">HERE </a>to edit or remove your current alerts, or <a href="{{route('plans')}}" target="">UPGRADE YOUR PLAN</a>.
-                        </div>
+                            @if(session('current_plan')=='premium')
+                                <div class="alert alert-danger" role="alert" style="">
+                                    You have set your maximum number of alerts. Use the chart below to edit or remove your current alerts.                     
+                                </div>
+                            @else
+                                <div class="alert alert-danger" role="alert" style="">
+                                    You have set your maximum number of alerts. Use the chart below to edit or remove your current alerts, or <a href="{{route('plans')}}">UPGRADE YOUR PLAN</a>.
+                                    <span style="display:none;">To set up alerts, you must <a href="{{route('plans')}}">sign up for one of our plans</a>. We even have a FREE plan so you can try TrackRak out!</span>                         
+                                </div>
+                            @endif
                     @endif
                    
                     @if(session('no_plan_error'))

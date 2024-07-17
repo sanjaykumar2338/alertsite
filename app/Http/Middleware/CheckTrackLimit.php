@@ -29,6 +29,7 @@ class CheckTrackLimit
             $currentSubscribedPlanPriceId = $subscription->stripe_price;
 
             $currentPlan = Plans::where('stripe_id', $currentSubscribedPlanPriceId)->first();
+            //print_r($currentPlan->title); die;
 
             if ($currentPlan) {
                 $trackLimitByPlan = [
@@ -43,7 +44,7 @@ class CheckTrackLimit
                     $trackLimit = $trackLimitByPlan[$currentPlanName];
 
                     if ($user->tracks()->count() >= $trackLimit) {
-                        return redirect()->route('track')->with('plan_error', 'You have set your maximum number of alerts. Please visit your My Account page to edit or remove current alerts, or UPGRADE YOUR PLAN');
+                        return redirect()->route('track')->with('plan_error', 'You have set your maximum number of alerts. Please visit your My Account page to edit or remove current alerts, or UPGRADE YOUR PLAN')->with('current_plan',$currentPlan->title);
                     }
                 }
             }
