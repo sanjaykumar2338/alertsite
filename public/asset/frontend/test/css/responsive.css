@@ -187,6 +187,10 @@ h1.page-title span.sm-ls {
 }
 }
 
+.l-submit{
+  color: #000000;
+}
+
 @media only screen and (max-width: 541px) {
   .cta-sidebar {
     margin-top: 30px;
