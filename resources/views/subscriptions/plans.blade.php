@@ -367,9 +367,9 @@
                                         <input style="color: white;background-color: #cb1414;" onclick="confirmUnsubscribe('{{ strtoupper($currentPlanName) }}')" type="submit" id="submit" class="l-submit" value="Unsubscribe">
                                     </div>
                                 @else
-                                    <div class="form-control-add" style="margin-left:65px;">
-                                        <input onclick="window.location.href='{{ route('plan.detail', [$plansArray['free']->id]) }}'" type="submit" id="submit" class="l-submit" value="Get Started">
-                                    </div>
+                                <div class="form-control-add" style="margin-left:65px;">
+                                    <input onclick="checkPlanAndRedirect('{{ $plansArray['free']->id }}')" type="submit" id="submit" class="l-submit" value="Get Started">
+                                </div>
                                 @endif
                             </div>
                         </div><!--- END COL -->
@@ -401,12 +401,13 @@
                                     </div>
                                 @else
 
-                                    <div class="form-control-add" style="margin-left:65px;">
-                                        <input onclick="window.location.href='{{ route('plan.detail', [$plansArray['basic']->id]) }}'" type="submit" id="submit" class="l-submit" value="Get Started">
-                                    </div>
-                                    <a style="display:none" href="{{ route('plan.detail', [$plansArray['basic']->id]) }}">
-                                        Get Started
-                                    </a>
+                                <div class="form-control-add" style="margin-left:65px;">
+                                    <input onclick="checkPlanAndRedirect('{{ $plansArray['basic']->id }}')" type="submit" id="submit" class="l-submit" value="Get Started">
+                                </div>
+
+                                <a style="display:none" href="{{ route('plan.detail', [$plansArray['basic']->id]) }}">
+                                    Get Started
+                                </a>
                                 @endif
                             </div>
                         </div><!--- END COL -->
@@ -440,9 +441,9 @@
                                     </div>
                                 @else
 
-                                    <div class="form-control-add" style="margin-left:65px;">
-                                        <input onclick="window.location.href='{{ route('plan.detail', [$plansArray['premium']->id]) }}'" type="submit" id="submit" class="l-submit" value="Get Started">
-                                    </div>
+                                <div class="form-control-add" style="margin-left:65px;">
+                                    <input onclick="checkPlanAndRedirect('{{ $plansArray['premium']->id }}')" type="submit" id="submit" class="l-submit" value="Get Started">
+                                </div>
                                 @endif
                             </div>
                         </div><!--- END COL -->
@@ -456,14 +457,30 @@
 
 <script>
     function confirmUnsubscribe(planName) {
+        //var current_plan = "{{$currentPlanName}}";
+        //if(current_plan){
+        //    alert('Before you can sign up for another plan, you must unsubscribe from your current plan.');
+        //    return false;
+        //}
+
         var confirmationMessage = "Are you sure you want to unsubscribe from the " + planName + " plan? All of your alerts will be deleted.";
-        
         if (confirm(confirmationMessage)) {
             window.location.href = "{{ route('subscription-cancel') }}";
         } else {
             // Optionally handle if user cancels
             // For example, you can prevent default form submission:
             // event.preventDefault();
+        }
+    }
+
+    function checkPlanAndRedirect(planId) {
+        var current_plan = "{{ $currentPlanName }}";
+
+        if (current_plan) {
+            alert('Before you can sign up for another plan, you must unsubscribe from your current plan.');
+            return false;
+        } else {
+            window.location.href = '{{ url('plan') }}/' + planId;
         }
     }
 </script>
