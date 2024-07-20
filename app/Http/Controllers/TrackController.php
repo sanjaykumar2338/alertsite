@@ -101,6 +101,15 @@ class TrackController extends Controller
             'alert_type' => 'required',
         ], $customMessages);
 
+        $price = $request->price; 
+        $priceDecimal = number_format((float)$price, 2, '.', '');
+
+        $oldtrack = Tracks::where(['user_id'=>Auth::id(),'store_id'=>$request->store,'discount_type'=>$request->discount_type,'price'=>$priceDecimal])->count();
+
+        if($oldtrack > 0){
+            return redirect()->back()->with('error', 'You already have this alert set. Please change your parameters.');
+        }
+
         $rec = \DB::table('stores')->where('store_id', $request->store)->first();
         $status = $request->has('status') ? 1 : 0;
         $track = new Tracks;

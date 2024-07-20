@@ -224,9 +224,9 @@
                                     <tr>
                                         <th style="padding: 12px 15px;">#</th>
                                         <th style="padding: 12px 15px;">Store Name</th>
-                                        <th style="padding: 12px 15px;">Operator</th>
                                         <th style="padding: 12px 15px;">Discount Type</th>
                                         <th style="padding: 12px 15px;">Amount</th>
+                                        <th style="padding: 12px 15px;">Alert Type</th>
                                         <th style="padding: 12px 15px;">Action</th>
                                     </tr>
                                 </thead>
@@ -235,10 +235,10 @@
                                         <tr style="border-bottom: 1px solid #030303;">
                                             <td style="padding: 12px 15px;">{{$key+1}}</td>
                                             <td style="padding: 12px 15px;">{{$track->store_name}}</td>
-                                            <td style="padding: 12px 15px;">{{$track->operator=='>' ? 'Greater than' : ''}} {{$track->operator=='==' ? 'Equal to' : ''}} {{$track->operator=='>=' ? 'Greater to or Equal to' : ''}}</td>
                                             <td style="padding: 12px 15px;">{{$track->discount_type=='Fixed'?'Cash back':'Percentage'}}</td>
                                             <td style="padding: 12px 15px;">{{$track->price}}</td>
-                                            <td style="padding: 12px 15px;    font-size: 20px;"><a title="Edit Track" href="{{route('editalert',$track->id)}}" style="color: inherit;">&#9998;</a> <a href="{{url('track/remove')}}/{{$track->id}}" onclick="return confirm('Are you sure?')" title="Delete Track" style="color: inherit;">&times;</a></td>
+                                            <td style="padding: 12px 15px;">{{$track->alert_email ? $track->alert_email.',':''}} {{$track->alert_text}}</td>
+                                            <td style="padding: 12px 20px;font-size: 20px;"><a title="Edit Track" href="{{route('editalert',$track->id)}}" style="color: inherit;">&#9998;</a> <a href="{{url('track/remove')}}/{{$track->id}}" onclick="return confirm('Are you sure?')" title="Delete Track" style="color: inherit;">&times;</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
