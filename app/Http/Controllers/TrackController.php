@@ -159,34 +159,28 @@ class TrackController extends Controller
                 ->where('alert_text', 'text')
                 ->whereHas('store', function ($storeQuery) {
                     $storeQuery->whereRaw('tracks.discount_type = stores.display')
-                        ->where(function ($query) {
-                            $query->where(function ($q) {
-                                $q->where('tracks.operator', '==')
-                                  ->whereRaw('tracks.price = stores.amount');
-                            })
-                            ->orWhere(function ($q) {
-                                $q->where('tracks.operator', '>')
-                                  ->whereRaw('stores.amount > tracks.price');
-                            });
-                        });
+                        ->whereRaw('(
+                        (tracks.operator = "==" AND tracks.price = stores.amount)
+                        OR
+                        (tracks.operator = ">" AND stores.amount > tracks.price)
+                        OR
+                        (tracks.operator = ">=" AND stores.amount >= tracks.price)
+                    )');
                 });
         })->with(['tracks' => function ($query) {
             $query->where('status', 1)
                 ->where('alert_text', 'text')
                 ->whereHas('store', function ($storeQuery) {
                     $storeQuery->whereRaw('tracks.discount_type = stores.display')
-                        ->where(function ($query) {
-                            $query->where(function ($q) {
-                                $q->where('tracks.operator', '==')
-                                  ->whereRaw('tracks.price = stores.amount');
-                            })
-                            ->orWhere(function ($q) {
-                                $q->where('tracks.operator', '>')
-                                  ->whereRaw('stores.amount > tracks.price');
-                            });
-                        });
+                        ->whereRaw('(
+                        (tracks.operator = "==" AND tracks.price = stores.amount)
+                        OR
+                        (tracks.operator = ">" AND stores.amount > tracks.price)
+                        OR
+                        (tracks.operator = ">=" AND stores.amount >= tracks.price)
+                    )');
                 });
-        }])->get();        
+        }])->get();
 
         //dd($usersWithSpecificTracks);
 
@@ -246,35 +240,29 @@ class TrackController extends Controller
                 ->where('alert_email', 'email')
                 ->whereHas('store', function ($storeQuery) {
                     $storeQuery->whereRaw('tracks.discount_type = stores.display')
-                        ->where(function ($query) {
-                            $query->where(function ($q) {
-                                $q->where('tracks.operator', '==')
-                                  ->whereRaw('tracks.price = stores.amount');
-                            })
-                            ->orWhere(function ($q) {
-                                $q->where('tracks.operator', '>')
-                                  ->whereRaw('stores.amount > tracks.price');
-                            });
-                        });
+                        ->whereRaw('(
+                        (tracks.operator = "==" AND tracks.price = stores.amount)
+                        OR
+                        (tracks.operator = ">" AND stores.amount > tracks.price)
+                        OR
+                        (tracks.operator = ">=" AND stores.amount >= tracks.price)
+                    )');
                 });
         })->with(['tracks' => function ($query) {
             $query->where('status', 1)
-                ->where('alert_text', 'text')
+                ->where('alert_email', 'email')
                 ->whereHas('store', function ($storeQuery) {
                     $storeQuery->whereRaw('tracks.discount_type = stores.display')
-                        ->where(function ($query) {
-                            $query->where(function ($q) {
-                                $q->where('tracks.operator', '==')
-                                  ->whereRaw('tracks.price = stores.amount');
-                            })
-                            ->orWhere(function ($q) {
-                                $q->where('tracks.operator', '>')
-                                  ->whereRaw('stores.amount > tracks.price');
-                            });
-                        });
+                        ->whereRaw('(
+                        (tracks.operator = "==" AND tracks.price = stores.amount)
+                        OR
+                        (tracks.operator = ">" AND stores.amount > tracks.price)
+                        OR
+                        (tracks.operator = ">=" AND stores.amount >= tracks.price)
+                    )');
                 });
         }])->get();
-        
+
         $emailData = [];
 
         foreach ($usersWithSpecificTracks as $user) {
