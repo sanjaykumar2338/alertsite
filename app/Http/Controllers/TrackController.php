@@ -182,11 +182,67 @@ class TrackController extends Controller
                 });
         }])->get();
 
+        $usersWithSpecificTracks2 = User::whereHas('tracks', function ($query) {
+            $query->where('status', 1)
+                ->where('alert_text', 'text')
+                ->whereHas('store', function ($storeQuery) {
+                    $storeQuery->whereRaw('tracks.discount_type = stores.display')
+                        ->whereRaw('(
+                        (tracks.operator2 = "==" AND tracks.price = stores.amount)
+                        OR
+                        (tracks.operator2 = ">" AND stores.amount > tracks.price)
+                        OR
+                        (tracks.operator2 = ">=" AND stores.amount >= tracks.price)
+                    )');
+                });
+        })->with(['tracks' => function ($query) {
+            $query->where('status', 1)
+                ->where('alert_text', 'text')
+                ->whereHas('store', function ($storeQuery) {
+                    $storeQuery->whereRaw('tracks.discount_type = stores.display')
+                        ->whereRaw('(
+                        (tracks.operator2 = "==" AND tracks.price = stores.amount)
+                        OR
+                        (tracks.operator2 = ">" AND stores.amount > tracks.price)
+                        OR
+                        (tracks.operator2 = ">=" AND stores.amount >= tracks.price)
+                    )');
+                });
+        }])->get();
+
         //dd($usersWithSpecificTracks);
 
         $smsData = [];
 
         foreach ($usersWithSpecificTracks as $user) {
+            foreach ($user->tracks as $track) {
+                $store = $track->store;
+                if ($store && $store->amount!=$track->last_amount_sms) {
+                    
+                    \DB::table('tracks')->where('id',$track->id)->update(['last_amount_sms'=>$store->amount]);
+
+                    //$amt = $store->amount.'%';
+                    $amt = $track->price.'%';
+                    
+                    if($track->discount_type=='Fixed'){
+                        //$amt = '$'.$store->amount;
+                        $amt = '$'.$track->price;
+                    }
+
+                    $smsData[] = [
+                        'name' => $track->user->first_name .' '. $track->user->last_name,
+                        'phone_number' => $track->user->phone_number,
+                        'storeName' => $store->store_name,
+                        'discountType' => $track->discount_type,
+                        'amount' => $amt,
+                        'shoppingUrl' => $store->shopping_url,
+                        'operator' => $track->operator
+                    ];
+                }
+            }
+        }
+
+        foreach ($usersWithSpecificTracks2 as $user) {
             foreach ($user->tracks as $track) {
                 $store = $track->store;
                 if ($store && $store->amount!=$track->last_amount_sms) {
@@ -263,9 +319,70 @@ class TrackController extends Controller
                 });
         }])->get();
 
+        $usersWithSpecificTracks2 = User::whereHas('tracks', function ($query) {
+            $query->where('status', 1)
+                ->where('alert_email', 'email')
+                ->whereHas('store', function ($storeQuery) {
+                    $storeQuery->whereRaw('tracks.discount_type = stores.display')
+                        ->whereRaw('(
+                        (tracks.operator2 = "==" AND tracks.price = stores.amount)
+                        OR
+                        (tracks.operator2 = ">" AND stores.amount > tracks.price)
+                        OR
+                        (tracks.operator2 = ">=" AND stores.amount >= tracks.price)
+                    )');
+                });
+        })->with(['tracks' => function ($query) {
+            $query->where('status', 1)
+                ->where('alert_email', 'email')
+                ->whereHas('store', function ($storeQuery) {
+                    $storeQuery->whereRaw('tracks.discount_type = stores.display')
+                        ->whereRaw('(
+                        (tracks.operator2 = "==" AND tracks.price = stores.amount)
+                        OR
+                        (tracks.operator2 = ">" AND stores.amount > tracks.price)
+                        OR
+                        (tracks.operator2 = ">=" AND stores.amount >= tracks.price)
+                    )');
+                });
+        }])->get();
+
+        //echo "<pre>"; print_r($usersWithSpecificTracks2); die;
+
         $emailData = [];
 
         foreach ($usersWithSpecificTracks as $user) {
+            foreach ($user->tracks as $track) {
+                
+                $store = $track->store;
+
+                if ($store && $store->amount!=$track->last_amount_email) {
+                    
+                    \DB::table('tracks')->where('id',$track->id)->update(['last_amount_email'=>$store->amount]);
+
+                    $amt = $track->price.'%';
+                    //$amt = $store->amount.'%';                    
+
+                    if($track->discount_type=='Fixed'){
+                        $amt = '$'.$track->price;
+                        //$amt = '$'.$store->amount;
+                    }
+                    
+
+                    $emailData[] = [
+                        'email' => $track->user->email,
+                        'name' => $track->user->first_name .' '. $track->user->last_name,
+                        'storeName' => $store->store_name,
+                        'discountType' => $track->discount_type,
+                        'amount' => $amt,
+                        'shoppingUrl' => $store->shopping_url,
+                        'operator' => $track->operator
+                    ];
+                }
+            }
+        }
+
+        foreach ($usersWithSpecificTracks2 as $user) {
             foreach ($user->tracks as $track) {
                 
                 $store = $track->store;

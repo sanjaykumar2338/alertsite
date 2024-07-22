@@ -123,35 +123,12 @@ Route::get('/faq', [App\Http\Controllers\HomeController::class, 'faq'])->name('f
 Route::get('/terms-and-conditions', [App\Http\Controllers\HomeController::class, 'terms'])->name('terms');
 Route::get('/privacy-policy', [App\Http\Controllers\HomeController::class, 'privacy_policy'])->name('privacy_policy');
 
-Route::get('/shop2', [App\Http\Controllers\HomeController::class, 'shop2'])->name('shop2');
-Route::get('/media', [App\Http\Controllers\HomeController::class, 'media'])->name('media');
-Route::get('/justice', [App\Http\Controllers\HomeController::class, 'justice'])->name('justice');
-Route::get('/blogs', [App\Http\Controllers\HomeController::class, 'blog'])->name('blogs');
-Route::get('/blog/{slug}', [App\Http\Controllers\HomeController::class, 'blog_detail'])->name('blog_detail');
-Route::get('/products', [App\Http\Controllers\HomeController::class, 'products'])->name('products');
-Route::get('/events', [App\Http\Controllers\HomeController::class, 'events'])->name('events');
-Route::get('/track_order', [App\Http\Controllers\HomeController::class, 'track_order'])->name('track_order');
-Route::get('/shipping', [App\Http\Controllers\HomeController::class, 'shipping'])->name('shipping');
-Route::get('/wishlist', [App\Http\Controllers\HomeController::class, 'wishlist'])->name('wishlist');
-Route::get('/order_history', [App\Http\Controllers\HomeController::class, 'order_history'])->name('order_history');
-Route::get('/return_order', [App\Http\Controllers\HomeController::class, 'return_order'])->name('return_order');
-Route::get('/donate_now', [App\Http\Controllers\HomeController::class, 'donate_now'])->name('donate_now');
 Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
 Route::get('/register', [App\Http\Controllers\HomeController::class, 'register'])->name('register.form');
-Route::get('/product_design', [App\Http\Controllers\HomeController::class, 'product_design'])->name('product_design');
-Route::get('/create_product', [App\Http\Controllers\HomeController::class, 'create_product'])->name('create_product');
-
-Route::get('/product/list/{standwith}/{productfor}/{producttype}', [App\Http\Controllers\HomeController::class, 'product_list']);
-Route::get('/product/category/{category}', [App\Http\Controllers\HomeController::class, 'product_category']);
-Route::get('/{standwithtype}/shop/{productType}/{slug}', [App\Http\Controllers\HomeController::class, 'shop'])->name('shop');
-Route::get('/country/product/{category}', [App\Http\Controllers\HomeController::class, 'country_product'])->name('country_product');
 
 Route::post('/register', [App\Http\Controllers\UserController::class, 'register'])->name('register');
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 Route::post('/login', [App\Http\Controllers\UserController::class, 'login'])->name('login');
-Route::get('/product_slug', [App\Http\Controllers\UserController::class, 'product_slug'])->name('product_slug');
-Route::post('/storeOrder', [App\Http\Controllers\UserController::class, 'storeOrder']);
-
 Route::post(
     'stripe/webhook',
     [WebhookController::class, 'handleWebhook']
