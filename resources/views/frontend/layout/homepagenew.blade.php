@@ -12,7 +12,7 @@
         @if (!empty(@$page->meta_title))
             {{@$page->meta_title}}
         @else
-            {{env('APP_NAME')}}
+            {{env('APP_NAME2')}}
         @endif
     </title>
     <meta name="keywords" content="{{@$page->meta_keywords}}">

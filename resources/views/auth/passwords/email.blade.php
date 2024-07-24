@@ -23,6 +23,19 @@
         box-sizing: border-box;
         border-radius: 7px;
     }
+
+    .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+    }
+
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
  </style>
 <section class="main-section full-container">
     <div class="container flex l-gap flex-mobile lr-m">
@@ -42,6 +55,12 @@
                                 </div>
                             @endif
 
+                            @error('email')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div><br>
+                            @enderror
+
                             <form method="POST" action="{{ route('password.email') }}">
                                 @csrf
 
@@ -50,12 +69,6 @@
 
                                     <div class="col-md-6">
                                         <input id="email" class="form-control" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
                                     </div>
                                 </div>
                                 <br>
