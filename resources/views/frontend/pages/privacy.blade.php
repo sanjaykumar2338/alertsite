@@ -51,6 +51,12 @@
     </div>
 </section>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.style.overflowX = 'hidden';
+});
+</script>    
+
 @includeIf('frontend.layout.hero-section')
 
 @endsection
