@@ -7,7 +7,7 @@
         @includeIf('frontend.layout.sidebar')
         <div class="page-content pg-l" style="width:700px;">
             <h1 class="page-title">Privacy Policy</h1>
-            <div style="width:90%">
+            <div style="width:95%">
                 {!! $page->description !!}
             </div>
         </div>
