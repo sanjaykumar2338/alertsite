@@ -105,15 +105,13 @@
 
 
                     @if (count($errors) > 0)
-                        <ul class="alert alert-danger">
-                            @foreach ($errors->all() as $error)
-                                @if($error=='The password field confirmation does not match.')
-                                    <li>Passwords do not match.</li>
-                                @else
+                        <div class="alert alert-danger">
+                            <ul class="">
+                                @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
-                                @endif
-                            @endforeach
-                        </ul>
+                                @endforeach
+                            </ul>
+                        </div>
                     @endif
 
                     <input type="hidden" name="token" value="{{ $token }}">

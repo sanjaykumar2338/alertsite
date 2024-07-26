@@ -56,11 +56,13 @@
                             @endif
 
                             @if (count($errors) > 0)
-                                <ul class="alert alert-danger">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
+                                <div class="alert alert-danger">
+                                    <ul class="">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             @endif
 
                             <form method="POST" action="{{ route('password.email') }}">
