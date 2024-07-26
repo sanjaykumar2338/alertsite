@@ -13,6 +13,8 @@
 
         <p style="margin: 0 0 10px; font-size: 16px; text-align: center; line-height: normal;">Or click here: <a href="{{ $resetUrl }}">{{ $resetUrl }}</a></p>
 
+        <p style="margin: 0 0 10px; font-size: 16px; text-align: center; line-height: normal;">If you did not request a password reset, no further action is required.</p>
+
         <p style="margin: 0 0 10px; font-size: 16px; text-align: center; line-height: normal;"><strong style="color: #555;">TrackRak & Get More Money Back</strong></p>
 
         <!-- Footer -->
