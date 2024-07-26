@@ -57,6 +57,25 @@
             }
         }
 
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        .alert-info {
+            color: #0c5460;
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+        }
+
     </style>
 
     <section class="main-section full-container">
@@ -69,63 +88,53 @@
                 <form method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
 
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+
+                                @if (session('fullPhoneNumberError'))
+                                     <li>{{ session('fullPhoneNumberError') }}</li>
+                                @endif
+                            </ul>
+                        </div>
+                    @endif
+
                     <div>
                         <label for="first_name"><b>First Name</b></label>
                         <input value="{{ old('first_name') }}" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');" type="text" id="first_name" placeholder="Enter First Name" name="first_name">
-                        @error('first_name')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
 
                     <div>
                         <label for="last_name"><b>Last Name</b></label>
                         <input value="{{ old('last_name') }}" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');" type="text" id="last_name" placeholder="Enter Last Name" name="last_name">
-                        @error('last_name')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
 
                     <div>
                         <label for="phone_number" class="mb-2"><b>Phone Number</b></label>
                         <input value="{{ old('phone_number') }}" oninput="this.value = this.value.replace(/[^\d]/g, '');" id="phone_number" type="text" name="phone_number" placeholder="Enter Phone Number">
-                        @error('phone_number')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                        @if (session('fullPhoneNumberError'))
-                            <span class="text-danger" style="margin-top: 2px">{{ session('fullPhoneNumberError') }}</span>
-                        @endif
                     </div>
 
                     <div>
                         <label for="uname"><b>Email</b></label>
                         <input value="{{ old('email') }}" type="text" placeholder="Enter Email" name="email">
-                        @error('email')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
 
                     <div>
                         <label for="psw"><b>Password</b></label>
                         <input type="password" placeholder="Enter Password" name="password">
-                        @error('password')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
 
                     <div>
                         <label for="psw"><b>Confirm Password</b></label>
                         <input type="password" placeholder="Enter Confirm Password" name="password_confirmation">
-                        @error('password_confirmation')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
 
                     <div>
                         <br/>
-                        <input type="checkbox" name="agree_terms_and_condition"> By clicking on the Sign Up button below, you agree to our <span style="cursor:pointer;text-decoration: underline;"  onclick="window.location.href = '{{ route('terms') }}';">Terms & Conditions</span> and have read our <span style="cursor:pointer;text-decoration: underline;"   onclick="window.location.href = '{{ route('privacy_policy') }}';">Privacy Policy</span>.
-                        @error('agree_terms_and_condition')
-                        <span class="text-danger">The agree to Terms and Conditions check box is required.</span>
-                        @enderror
+                        <input type="checkbox" name="agree_terms_and_condition"> By clicking on the Sign Up button below, you agree to our <span style="cursor:pointer;text-decoration: underline;"  onclick="window.location.href = '{{ route('terms') }}';">Terms & Conditions</span> and have read our <span style="cursor:pointer;text-decoration: underline;"   onclick="window.location.href = '{{ route('privacy_policy') }}';">Privacy Policy</span>
                     </div>
                     <br>
                     <input type="submit" id="submit" class="l-submit" value="Sign Up">

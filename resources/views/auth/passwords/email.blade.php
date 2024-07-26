@@ -55,11 +55,13 @@
                                 </div>
                             @endif
 
-                            @error('email')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div><br>
-                            @enderror
+                            @if (count($errors) > 0)
+                                <ul class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
 
                             <form method="POST" action="{{ route('password.email') }}">
                                 @csrf

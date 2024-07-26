@@ -3,7 +3,25 @@
 @section('content')
 
     <style>
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
 
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        .alert-info {
+            color: #0c5460;
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+        }
+        
         .text-danger {
             color: #dc3545; /* Red color for indicating danger */
             font-size: 14px; /* Adjust font size as needed */
@@ -75,22 +93,6 @@
 
                 <div class="page-content">
                 <div>
-                    @if (count($errors) > 0)
-                        <div class = "alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li class="error">{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    @if(session('error'))
-                        <div class = "alert alert-danger">                       
-                            <span class="error">{{ session('error') }}</span>
-                        </div>
-                        <br>
-                    @endif
 
                     @if(session('success'))
                         <div id="success-message" style="background-color: #d4edda; color: #155724; border-color: #c3e6cb; padding: .75rem 1.25rem; margin-bottom: 1rem; border: 1px solid transparent; border-radius: .25rem;">
@@ -101,19 +103,26 @@
                     <form method="POST" action="{{ route('password.update') }}">
                     @csrf
 
+
+                    @if (count($errors) > 0)
+                        <ul class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                @if($error=='The password field confirmation does not match.')
+                                    <li>Passwords do not match.</li>
+                                @else
+                                    <li>{{ $error }}</li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    @endif
+
                     <input type="hidden" name="token" value="{{ $token }}">
 
                     <div class="row mb-3">
                         <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                         <div class="col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                            @error('email')
-                                <span class="text-danger">
-                                    {{ $message }}
-                                </span>
-                            @enderror
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" autocomplete="email" autofocus>
                         </div>
                     </div>
 
@@ -122,17 +131,7 @@
                         <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                         <div class="col-md-6">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                            @error('password')
-                                <span class="text-danger">
-                                    @if($message=='The password field confirmation does not match.')
-                                        Passwords do not match
-                                    @else
-                                        {{ $message }}
-                                    @endif
-                                </span>
-                            @enderror
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
                         </div>
                     </div>
 
@@ -140,7 +139,7 @@
                         <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
                         <div class="col-md-6">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                         </div>
                     </div>
                     <br>

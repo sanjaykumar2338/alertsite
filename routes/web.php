@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\FaqController;
 
+use App\Http\Controllers\CustomForgotPasswordController;
 use App\Http\Controllers\Subscriptions\PaymentController;
 use App\Http\Controllers\Subscriptions\StripeWebhookController;
 use App\Http\Controllers\Subscriptions\SubscriptionController;
@@ -162,7 +163,8 @@ Route::any('/get-store-price', [TrackController::class, 'getallstore']);
 Route::any('/get-store-name', [TrackController::class, 'getstorewithname']);
 
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+//Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::post('password/email', [CustomForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 

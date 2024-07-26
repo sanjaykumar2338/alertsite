@@ -83,9 +83,13 @@
 
                     @csrf
 
-                    @if ($errors->any())
+                    @if (count($errors) > 0)
                         <div class="alert alert-danger">
-                            {{ $errors->first() }}
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     @endif
 
@@ -96,10 +100,10 @@
                     @endif
 
                     <label for="uname"><b>Email</b></label>
-                    <input type="text" placeholder="Enter Username" name="email" required>
+                    <input type="text" placeholder="Enter Username" name="email">
 
                     <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="password" required>
+                    <input type="password" placeholder="Enter Password" name="password">
                     <br><br>
                     <input type="submit" id="submit" class="l-submit" value="Login">
 
