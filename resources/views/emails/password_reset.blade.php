@@ -7,14 +7,9 @@
         <!-- Logo -->
         <img src="{{ asset('asset/frontend/test/images/trackrak-logo.png') }}" alt="TrackRak Logo" style="margin: auto; display: block; padding: 15px 0; width: 125px; height: auto;" />
 
-        <!-- Content -->
-        <h1 style="margin: 10px 0 15px; font-size: 28px; line-height: normal; text-align: center;">Reset Passowrd</h1>
+        <a href="{{ $resetUrl }}" style="background-color: #95bb3c; padding: 7px 20px; border-radius: 50px; font-size: 25px; font-weight: bolder; color: #000000 !important; text-decoration: none; display: inline-block; margin: 20px 0; line-height: normal;border: solid 2px black;font-family: sans-serif;s">Reset Password</a>
 
-        <a href="{{ $resetUrl }}" style="background-color: #95bb3c; padding: 7px 20px; border-radius: 50px; font-size: 25px; font-weight: bolder; color: #000000 !important; text-decoration: none; display: inline-block; margin: 20px 0; line-height: normal;border: solid 2px black;font-family: sans-serif;s">Click here to reset</a>
-
-        <p style="margin: 0 0 10px; font-size: 16px; text-align: center; line-height: normal;">or open manually <a href="{{ $resetUrl }}">{{ $resetUrl }}</a></p>
-
-        <p style="margin: 0 0 10px; font-size: 16px; text-align: center; line-height: normal;">If you did not request a password reset, no further action is required.</p>
+        <p style="margin: 0 0 10px; font-size: 16px; text-align: center; line-height: normal;">Or click here <a href="{{ $resetUrl }}">{{ $resetUrl }}</a></p>
 
         <p style="margin: 0 0 10px; font-size: 16px; text-align: center; line-height: normal;"><strong>TrackRak & Get More Money Back</strong></p>
 
@@ -29,5 +24,3 @@
     </div>
 </body>
 </html>
-
-
