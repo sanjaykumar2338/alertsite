@@ -220,6 +220,7 @@ class TrackController extends Controller
                 if ($store && $store->amount!=$track->last_amount_sms) {
                     
                     \DB::table('tracks')->where('id',$track->id)->update(['last_amount_sms'=>$store->amount]);
+                    \DB::table('tracks')->where('id',$track->id)->update(['last_amount_email'=>$store->amount]);
 
                     //$amt = $store->amount.'%';
                     $amt = $track->price.'%';
@@ -248,6 +249,7 @@ class TrackController extends Controller
                 if ($store && $store->amount!=$track->last_amount_sms) {
                     
                     \DB::table('tracks')->where('id',$track->id)->update(['last_amount_sms'=>$store->amount]);
+                    \DB::table('tracks')->where('id',$track->id)->update(['last_amount_email'=>$store->amount]);
 
                     //$amt = $store->amount.'%';
                     $amt = $track->price.'%';
@@ -359,6 +361,7 @@ class TrackController extends Controller
                 if ($store && $store->amount!=$track->last_amount_email) {
                     
                     \DB::table('tracks')->where('id',$track->id)->update(['last_amount_email'=>$store->amount]);
+                    \DB::table('tracks')->where('id',$track->id)->update(['last_amount_sms'=>$store->amount]);
 
                     $amt = $track->price.'%';
                     //$amt = $store->amount.'%';                    
@@ -390,6 +393,7 @@ class TrackController extends Controller
                 if ($store && $store->amount!=$track->last_amount_email) {
                     
                     \DB::table('tracks')->where('id',$track->id)->update(['last_amount_email'=>$store->amount]);
+                    \DB::table('tracks')->where('id',$track->id)->update(['last_amount_sms'=>$store->amount]);
 
                     $amt = $track->price.'%';
                     //$amt = $store->amount.'%';                    
