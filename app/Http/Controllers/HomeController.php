@@ -234,7 +234,7 @@ class HomeController extends Controller
             'email' => 'required|email',
             'phone' => 'required|numeric',
             'message' => 'required',
-            'g-recaptcha-response' => ['required', new ReCaptchaV3('submitContact')]
+            'g-recaptcha-response' => 'required',
         ]);
 
         $recaptchaResponse = $request->input('g-recaptcha-response');
