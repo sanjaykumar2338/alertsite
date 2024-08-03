@@ -227,7 +227,7 @@ class HomeController extends Controller
         return view('frontend.pages.pricingdetails', compact('planId', 'userIntent', 'planPrice','plan'));
     }
 
-    public function save(Request $request)
+    public function contact(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
