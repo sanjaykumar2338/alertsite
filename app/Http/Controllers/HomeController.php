@@ -236,6 +236,19 @@ class HomeController extends Controller
             'message' => 'required',
             'g-recaptcha-response' => ['required', new ReCaptchaV3('submitContact')]
         ]);
+
+        $recaptchaResponse = $request->input('g-recaptcha-response');
+        $recaptchaSecret = config('services.recaptcha.secret_key');
+
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => $recaptchaSecret,
+            'response' => $recaptchaResponse,
+        ]);
+
+        $responseData = $response->json();
+        if (!$responseData['success'] || $responseData['score'] < 0.5) {
+            return back()->withErrors(['captcha' => 'ReCAPTCHA verification failed. Please try again.']);
+        }
     
         // Create a new contact record
         Contacts::create($request->except('g-recaptcha-response'));
