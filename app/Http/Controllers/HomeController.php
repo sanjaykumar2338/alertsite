@@ -238,7 +238,7 @@ class HomeController extends Controller
         ]);
 
         $recaptchaResponse = $request->input('g-recaptcha-response');
-        $recaptchaSecret = config('services.recaptcha.secret_key');
+        $recaptchaSecret = env('RECAPTCHA_SECRET_KEY');
 
         $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
             'secret' => $recaptchaSecret,
