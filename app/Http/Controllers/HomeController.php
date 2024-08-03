@@ -227,13 +227,13 @@ class HomeController extends Controller
         return view('frontend.pages.pricingdetails', compact('planId', 'userIntent', 'planPrice','plan'));
     }
 
-    public function contact(Request $request) {      
-        // Validate the form inputs
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required|numeric',
-            'message' => 'required',
+    public function save(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:15',
+            'message' => 'required|string',
             'g-recaptcha-response' => 'required',
         ]);
 
@@ -246,17 +246,18 @@ class HomeController extends Controller
         ]);
 
         $responseData = $response->json();
+
         if (!$responseData['success'] || $responseData['score'] < 0.5) {
             return back()->withErrors(['captcha' => 'ReCAPTCHA verification failed. Please try again.']);
         }
-    
+
         // Create a new contact record
         Contacts::create($request->except('g-recaptcha-response'));
-    
+
         // Send emails
         Mail::to('hello@trackrak.com')->send(new ContactMail($request->all()));
         Mail::to('sk963070@gmail.com')->send(new ContactMail($request->all()));
-    
+
         // Redirect back to the contact page with a success message
         return redirect()->route('contactus')->with('success', 'We have received your message and will get back to you soon.');
     }
