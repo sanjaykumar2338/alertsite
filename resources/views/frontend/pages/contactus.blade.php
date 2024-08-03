@@ -81,19 +81,30 @@
                             <label>Message:
                             </label>
                             <textarea cols="8" rows="10" class="l-operator" placeholder="Write your message..." id="message" name="message" style="height: 4.2rem !important; color: black !important;">{{old('message')}}</textarea>
-                        </div>                        
+                        </div>       
+                        
+                        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+                        <input type="hidden" name="action" value="validate_captcha">
                       
-                        <div class="form-control-add">
-                            <button style="color: #000000;border: 2px solid #000;background-color: #95bb3c;padding: 7px 20px;border-radius: 50px;font-size: 25px;font-weight: bolder;" class="g-recaptcha"
-                                    data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"
-                                    data-callback="onSubmit"
-                                    data-action="submitContact">Submit</button>
-                        </div>                       
+                                             
                     </form>
                 </div>
             </div>
             </div>
         </div>
     </section>
+    
+    <script src="https://www.google.com/recaptcha/api.js?render={{env('RECAPTCHA_SITE_KEY')}}"></script>
+    <script>
+        grecaptcha.ready(function() {
+        // do request for recaptcha token
+        // response is promise with passed token
+            grecaptcha.execute("{{env('RECAPTCHA_SITE_KEY')}}", {action:'validate_captcha'})
+                    .then(function(token) {
+                // add token value to form
+                document.getElementById('g-recaptcha-response').value = token;
+            });
+        });
+    </script>
 
 @endsection

@@ -300,7 +300,7 @@
             }
 
             // Load stores when the page is loaded
-            loadStores();
+            //loadStores();
         });
 
         document.addEventListener('DOMContentLoaded', () => {
