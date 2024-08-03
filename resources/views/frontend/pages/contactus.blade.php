@@ -81,7 +81,9 @@
                             <label>Message:
                             </label>
                             <textarea cols="8" rows="10" class="l-operator" placeholder="Write your message..." id="message" name="message" style="height: 4.2rem !important; color: black !important;">{{old('message')}}</textarea>
-                        </div>                        
+                        </div>           
+                        
+                        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
                       
                         <div class="form-control-add">
                             <button style="color: #000000;border: 2px solid #000;background-color: #95bb3c;padding: 7px 20px;border-radius: 50px;font-size: 25px;font-weight: bolder;" class="g-recaptcha"
@@ -95,5 +97,14 @@
             </div>
         </div>
     </section>
+
+    <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('{{ env('RECAPTCHA_SITE_KEY') }}', { action: 'submitContact' }).then(function (token) {
+                document.getElementById('g-recaptcha-response').value = token;
+            });
+        });
+    </script>
 
 @endsection
