@@ -86,10 +86,7 @@
                         <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
                       
                         <div class="form-control-add">
-                            <button style="color: #000000;border: 2px solid #000;background-color: #95bb3c;padding: 7px 20px;border-radius: 50px;font-size: 25px;font-weight: bolder;" class="g-recaptcha"
-                                    data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"
-                                    data-callback="onSubmit"
-                                    data-action="submitContact">Submit</button>
+                            <button style="color: #000000;border: 2px solid #000;background-color: #95bb3c;padding: 7px 20px;border-radius: 50px;font-size: 25px;font-weight: bolder;">Submit</button>
                         </div>                       
                     </form>
                 </div>
